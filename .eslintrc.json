@@ -6,7 +6,10 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "airbnb"
+        "airbnb",
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:import/typescript"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -21,6 +24,15 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "indent": ["error", 4]
     },
-    "ignorePatterns": ["lib/*.js"]
+    "ignorePatterns": ["lib/*.js"],
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"],
+                "moduleDirectory": ["node_modules", "src/"]
+            }
+        }
+    }
 }

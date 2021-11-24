@@ -1,9 +1,16 @@
-// import * as functions from "firebase-functions";
+import * as functions from 'firebase-functions';
+import express from 'express';
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+const app = express();
+const main = express();
+
+// Middleware
+main.use('/api/v1', app);
+
+// Routes
+app.get('/hello', (_request: any, response: any) => {
+    response.send('hello from hello!');
+});
+
+const api = functions.https.onRequest(main);
+export default api;
