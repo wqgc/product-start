@@ -24,7 +24,16 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "indent": ["error", 4]
+        "indent": ["error", 4],
+        "linebreak-style": ["error", "windows"],
+        "arrow-body-style": "off",
+        "react/jsx-filename-extension": ["error", { "extensions": [".jsx", ".tsx"] }],
+        "react/function-component-definition": ["error", {
+            "namedComponents": "arrow-function",
+            "unnamedComponents": "arrow-function"
+        }],
+        "react/jsx-indent": "off",
+        "import/extensions": "off"
     },
     "ignorePatterns": ["lib/*.js"],
     "settings": {

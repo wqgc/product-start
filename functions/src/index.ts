@@ -8,7 +8,7 @@ const main = express();
 main.use('/api/v1', app);
 
 // Routes
-app.get('/hello', (_request: any, response: any) => {
+app.get('/hello', (_request, response) => {
     response.send('hello from hello!');
 });
 
