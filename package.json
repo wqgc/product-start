@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-server": "esbuild functions/src/index.ts --platform=node --outfile=functions/lib/index.js",
     "build-client": "esbuild src/index.tsx --bundle --sourcemap --outfile=public/index.js",
-    "build": "npm run build-server && npm run build-client",
+    "build-server": "cd functions && tsc",
+    "build": "npm run build-client && npm run build-server",
     "lint": "eslint --ext .js,.ts .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -37,6 +37,7 @@
     "eslint": "^7.6.0",
     "eslint-config-airbnb": "^19.0.1",
     "eslint-config-google": "^0.14.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.27.1",

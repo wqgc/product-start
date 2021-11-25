@@ -1,6 +1,9 @@
 import * as functions from 'firebase-functions';
+import firebase from 'firebase-admin';
 import express from 'express';
+import Products from './models/Products.js';
 
+firebase.initializeApp();
 const app = express();
 const main = express();
 
@@ -9,8 +12,9 @@ main.use('/api/v1', app);
 
 // Product Routes
 // Get all products
-app.get('/products', (_request, response) => {
-    response.send('');
+app.get('/products', async (_request, response) => {
+    // const products = await Products.read();
+    response.json(Products.test());
 });
 
 // Get one product
