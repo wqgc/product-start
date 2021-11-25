@@ -1,7 +1,4 @@
-/*
 import firebase from 'firebase-admin';
-
-const db = firebase.firestore();
 
 interface ProductBody {
     name: string
@@ -14,7 +11,6 @@ interface ProductId {
 }
 
 type Product = ProductId & ProductBody
-*/
 
 /*
 interface ReadConfig {
@@ -30,8 +26,8 @@ class Products {
     }
     */
 
-    /*
     static async read(): Promise<Product[]> {
+        const db = firebase.firestore();
         const productsRef = db.collection('products');
         const snapshot = await productsRef.get();
         const result: Product[] = [];
@@ -39,11 +35,6 @@ class Products {
         snapshot.forEach((doc) => result.push(doc.data() as Product));
 
         return result;
-    }
-    */
-
-    static test() {
-        return ({ message: 'test' });
     }
 
     /*

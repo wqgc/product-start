@@ -13,8 +13,8 @@ main.use('/api/v1', app);
 // Product Routes
 // Get all products
 app.get('/products', async (_request, response) => {
-    // const products = await Products.read();
-    response.json(Products.test());
+    const products = await Products.read();
+    response.json(products);
 });
 
 // Get one product
