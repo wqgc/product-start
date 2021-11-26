@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "module": "es6",
-    "moduleResolution": "Node",
+    "module": "commonjs",
     "noImplicitReturns": true,
     "noUnusedLocals": true,
-    "outDir": "lib",
+    "outDir": "public",
     "sourceMap": true,
     "strict": true,
     "target": "es2017",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "jsx": "react",
   },
   "compileOnSave": true,
   "include": [
