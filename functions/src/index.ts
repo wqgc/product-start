@@ -1,7 +1,7 @@
 import * as functions from 'firebase-functions';
 import firebase from 'firebase-admin';
 import express from 'express';
-import Products from './models/Products.js';
+import Products from './models/products.js';
 
 firebase.initializeApp();
 const app = express();

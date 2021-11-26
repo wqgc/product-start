@@ -21,4 +21,4 @@ class Products {
     }
 }
 export default Products;
-//# sourceMappingURL=Products.js.map
+//# sourceMappingURL=products.js.map

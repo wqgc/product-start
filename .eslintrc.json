@@ -34,7 +34,8 @@
         }],
         "react/jsx-indent": "off",
         "react/no-unescaped-entities": "off",
-        "import/extensions": "off"
+        "import/extensions": "off",
+        "no-unused-vars": "off"
     },
     "ignorePatterns": ["functions/lib/**"],
     "settings": {
