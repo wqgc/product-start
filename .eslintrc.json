@@ -36,7 +36,7 @@
         "react/no-unescaped-entities": "off",
         "import/extensions": "off"
     },
-    "ignorePatterns": ["lib/*.js"],
+    "ignorePatterns": ["lib"],
     "settings": {
         "import/resolver": {
             "node": {
