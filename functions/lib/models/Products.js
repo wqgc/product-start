@@ -1,10 +1,4 @@
 import firebase from 'firebase-admin';
-/*
-interface ReadConfig {
-    id?: string
-    limit?: number
-}
-*/
 class Products {
     /*
     static create(body: ProductBody): Product {

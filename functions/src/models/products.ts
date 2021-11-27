@@ -1,23 +1,5 @@
 import firebase from 'firebase-admin';
-
-interface ProductBody {
-    name: string
-    description: string
-    fundingGoal: number
-}
-
-interface ProductId {
-    id: string
-}
-
-type Product = ProductId & ProductBody
-
-/*
-interface ReadConfig {
-    id?: string
-    limit?: number
-}
-*/
+import { Product } from '../types';
 
 class Products {
     /*

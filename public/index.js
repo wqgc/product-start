@@ -38166,6 +38166,31 @@ const theme2 = createTheme({ palette: {
     await authInternal._updateCurrentUser(userCredential.user);
     return userCredential;
   }
+  async function updateProfile$1(auth, request) {
+    return _performApiRequest(auth, "POST", "/v1/accounts:update", request);
+  }
+  async function updateProfile(user, { displayName, photoURL: photoUrl }) {
+    if (displayName === void 0 && photoUrl === void 0) {
+      return;
+    }
+    const userInternal = getModularInstance(user);
+    const idToken = await userInternal.getIdToken();
+    const profileRequest = {
+      idToken,
+      displayName,
+      photoUrl,
+      returnSecureToken: true
+    };
+    const response = await _logoutIfInvalidated(userInternal, updateProfile$1(userInternal.auth, profileRequest));
+    userInternal.displayName = response.displayName || null;
+    userInternal.photoURL = response.photoUrl || null;
+    const passwordProvider = userInternal.providerData.find(({ providerId }) => providerId === "password");
+    if (passwordProvider) {
+      passwordProvider.displayName = userInternal.displayName;
+      passwordProvider.photoURL = userInternal.photoURL;
+    }
+    await userInternal._updateTokensIfNecessary(response);
+  }
   function startEnrollPhoneMfa(auth, request) {
     return _performApiRequest(auth, "POST", "/v2/accounts/mfaEnrollment:start", _addTidIfNecessary(auth, request));
   }
@@ -39770,12 +39795,42 @@ const theme2 = createTheme({ palette: {
   }
   registerAuth("Browser");
 
+  // src/constants.ts
+  var BASE_URL = "/api/v1/";
+  var CONSTANTS = { BASE_URL };
+  var constants_default = CONSTANTS;
+
   // src/services/UserService.ts
   var UserService = class {
     static async register(email, password) {
       const auth = getAuth();
       return createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
-        return userCredential;
+        return userCredential.user;
+      }).catch((error) => {
+        throw new Error(error);
+      });
+    }
+    static async updateCurrentDisplayName(displayName) {
+      const auth = getAuth();
+      if (auth.currentUser !== null) {
+        return updateProfile(auth.currentUser, { displayName }).then(() => {
+          return displayName;
+        }).catch((error) => {
+          throw new Error(error);
+        });
+      }
+      throw new Error("User not signed in");
+    }
+    static async updateDB(uid, data) {
+      return fetch(`${constants_default.BASE_URL}users/${uid}`, {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+      }).then((response) => {
+        if (response.ok) {
+          return uid;
+        }
+        return Promise.reject(response);
       }).catch((error) => {
         throw new Error(error);
       });
@@ -39789,8 +39844,9 @@ const theme2 = createTheme({ palette: {
       if (setAlert !== null) {
         if (this.isFormValid(data, setErrors)) {
           try {
-            const user = await UserService_default.register(data.email, data.password);
-            console.log(user);
+            const { uid } = await UserService_default.register(data.email, data.password);
+            await UserService_default.updateCurrentDisplayName(data.displayName);
+            await UserService_default.updateDB(uid, { displayName: data.displayName });
             setAlert({ message: "Registered successfully!", type: "success" });
           } catch (error) {
             setAlert({ message: error.message, type: "error" });

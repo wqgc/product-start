@@ -1,11 +1,14 @@
 import * as functions from 'firebase-functions';
 import firebase from 'firebase-admin';
 import express from 'express';
+import bodyParser from 'body-parser';
 import Products from './models/products.js';
+import Users from './models/users.js';
 firebase.initializeApp();
 const app = express();
 const main = express();
 // Middleware
+app.use(bodyParser.json());
 main.use('/api/v1', app);
 // Product Routes
 // Get all products
@@ -38,15 +41,16 @@ app.get('/users', (_request, response) => {
 app.get('/users/:id', (_request, response) => {
     response.send('');
 });
-// Auth Routes
-app.post('/register', (_request, response) => {
-    response.send('');
-});
-app.get('/login', (_request, response) => {
-    response.send('');
-});
-app.get('/logout', (_request, response) => {
-    response.send('');
+// Update user
+app.put('/users/:id', async (request, response) => {
+    const { displayName } = request.body;
+    try {
+        await Users.update({ uid: request.params.id, displayName });
+        response.status(200).send('Successfully updated user');
+    }
+    catch (error) {
+        response.status(400).send(error.message);
+    }
 });
 const api = functions.https.onRequest(main);
 export default api;

@@ -11,3 +11,7 @@ export interface RegistrationData<Type> {
     password: Type
     confirmPassword: Type
 }
+
+export interface PublicUserData {
+    displayName: string
+}
