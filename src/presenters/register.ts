@@ -1,5 +1,6 @@
 import React from 'react';
 import { AlertState, RegistrationData } from '../types';
+import UserService from '../services/UserService';
 
 type SetErrors = React.Dispatch<React.SetStateAction<RegistrationData<boolean>>>
 
@@ -10,12 +11,18 @@ interface SubmitParameters {
 }
 
 class Register {
-    static formSubmit({ data, setAlert, setErrors }: SubmitParameters): void {
-        // TODO: Register with Firebase auth
+    static async formSubmit({ data, setAlert, setErrors }: SubmitParameters): Promise<void> {
         if (setAlert !== null) {
             if (this.isFormValid(data, setErrors)) {
-                setAlert({ message: 'Registered successfully!', type: 'success' });
-                // TODO: Navigate elsewhere
+                try {
+                    const user = await UserService.register(data.email, data.password);
+                    console.log(user);
+                    setAlert({ message: 'Registered successfully!', type: 'success' });
+                    // TODO: Navigate elsewhere
+                } catch (error: any) {
+                    // Firebase errors aren't the most readable, so I would fix this with more time
+                    setAlert({ message: error.message, type: 'error' });
+                }
             } else {
                 setAlert({ message: 'Form data invalid.', type: 'error' });
             }
