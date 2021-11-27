@@ -48,16 +48,8 @@ app.get('/users/:id', (_request, response) => {
     response.send('');
 });
 
-// Auth Routes
-app.post('/register', (_request, response) => {
-    response.send('');
-});
-
-app.get('/login', (_request, response) => {
-    response.send('');
-});
-
-app.get('/logout', (_request, response) => {
+// Update user
+app.put('/users/:id', (_request, response) => {
     response.send('');
 });
 

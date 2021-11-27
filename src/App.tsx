@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { Outlet } from 'react-router-dom';
 import Alert from '@mui/material/Alert';
 import { AlertState } from './types';
-import AlertContext from './utils/alertContext';
+import AlertContext from './utils/AlertContext';
 
 const App: React.FC = () => {
     const [alert, setAlert] = useState<AlertState>({ message: '', type: undefined });
