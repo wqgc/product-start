@@ -39774,9 +39774,8 @@ const theme2 = createTheme({ palette: {
   var UserService = class {
     static async register(email, password) {
       const auth = getAuth();
-      await createUserWithEmailAndPassword(auth, email, password).then(() => {
-        const user = auth.currentUser;
-        return user;
+      return createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+        return userCredential;
       }).catch((error) => {
         throw new Error(error);
       });

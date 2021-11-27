@@ -16,7 +16,6 @@ class Register {
             if (this.isFormValid(data, setErrors)) {
                 try {
                     const user = await UserService.register(data.email, data.password);
-                    console.log(user);
                     setAlert({ message: 'Registered successfully!', type: 'success' });
                     // TODO: Navigate elsewhere
                 } catch (error: any) {
