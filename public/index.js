@@ -31722,19 +31722,19 @@ const theme2 = createTheme({ palette: {
   } : void 0;
   var Alert_default = Alert;
 
-  // src/utils/AlertContext.ts
+  // src/utils/alertContext.ts
   var import_react15 = __toModule(require_react());
   var AlertContext = import_react15.default.createContext({
     alert: { message: "", type: void 0 },
     setAlert: null
   });
-  var AlertContext_default = AlertContext;
+  var alertContext_default = AlertContext;
 
   // src/App.tsx
   var App = () => {
     const [alert, setAlert] = (0, import_react16.useState)({ message: "", type: void 0 });
     const alertData = (0, import_react16.useMemo)(() => ({ alert, setAlert }), []);
-    return /* @__PURE__ */ import_react16.default.createElement(AlertContext_default.Provider, {
+    return /* @__PURE__ */ import_react16.default.createElement(alertContext_default.Provider, {
       value: alertData
     }, "App", alert.message && /* @__PURE__ */ import_react16.default.createElement(Alert_default, {
       severity: alert.type
@@ -39838,7 +39838,7 @@ const theme2 = createTheme({ palette: {
   };
   var UserService_default = UserService;
 
-  // src/presenters/Register.ts
+  // src/presenters/register.ts
   var Register = class {
     static async formSubmit({ data, setAlert, setErrors }) {
       if (setAlert !== null) {
@@ -39891,11 +39891,11 @@ const theme2 = createTheme({ palette: {
       return false;
     }
   };
-  var Register_default = Register;
+  var register_default = Register;
 
   // src/views/RegisterPage.tsx
   var RegisterPage = () => {
-    const { setAlert } = (0, import_react19.useContext)(AlertContext_default);
+    const { setAlert } = (0, import_react19.useContext)(alertContext_default);
     const [email, setEmail] = (0, import_react19.useState)("");
     const [displayName, setDisplayName] = (0, import_react19.useState)("");
     const [password, setPassword] = (0, import_react19.useState)("");
@@ -39921,7 +39921,7 @@ const theme2 = createTheme({ palette: {
         confirmPassword
       };
       setData(newData);
-      const dataIsValid = Register_default.isFormValid(newData, setErrors);
+      const dataIsValid = register_default.isFormValid(newData, setErrors);
       setRegisterDisabled(!dataIsValid);
     }, [email, displayName, password, confirmPassword, setRegisterDisabled]);
     const helperText = {
@@ -39968,7 +39968,7 @@ const theme2 = createTheme({ palette: {
       required: true
     }), /* @__PURE__ */ import_react19.default.createElement(Button_default, {
       variant: "contained",
-      onClick: () => Register_default.formSubmit({ data, setAlert, setErrors }),
+      onClick: () => register_default.formSubmit({ data, setAlert, setErrors }),
       disabled: registerDisabled
     }, "Register")));
   };

@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import Register from '../presenters/Register';
-import AlertContext from '../utils/AlertContext';
+import Register from '../presenters/register';
+import AlertContext from '../utils/alertContext';
 
 const RegisterPage: React.FC = () => {
     const { setAlert } = useContext(AlertContext);
