@@ -3,6 +3,9 @@ import { Outlet } from 'react-router-dom';
 import Alert from '@mui/material/Alert';
 import { AlertState } from './types';
 import AlertContext from './utils/alertContext';
+import TopBar from './components/TopBar';
+import Header from './components/Header';
+import Menu from './components/Menu';
 
 const App: React.FC = () => {
     const [alert, setAlert] = useState<AlertState>({ message: '', type: undefined });
@@ -10,10 +13,14 @@ const App: React.FC = () => {
     const alertData = useMemo(() => ({ alert, setAlert }), []);
     return (
         <AlertContext.Provider value={alertData}>
-            App
+            <TopBar />
+            <Header />
+            <Menu />
             { alert.message
-                && <Alert severity={alert.type}>{alert.message}</Alert> }
-            <Outlet />
+                    && <Alert severity={alert.type}>{alert.message}</Alert> }
+            <main>
+                <Outlet />
+            </main>
         </AlertContext.Provider>
     );
 };

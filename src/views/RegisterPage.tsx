@@ -47,7 +47,7 @@ const RegisterPage: React.FC = () => {
     return (
         <div>
             <h2>Register</h2>
-            <form className="registration--container">
+            <form className="registration-container">
                 <TextField
                     id="email-input"
                     helperText={helperText.email}
