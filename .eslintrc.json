@@ -35,6 +35,7 @@
         "react/jsx-indent": "off",
         "react/no-unescaped-entities": "off",
         "react/jsx-indent-props": "off",
+        "react/jsx-one-expression-per-line": "off",
         "import/extensions": "off",
         "no-unused-vars": "off"
     },

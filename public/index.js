@@ -31771,9 +31771,7 @@ const theme2 = createTheme({ palette: {
   var Menu = () => {
     return /* @__PURE__ */ import_react18.default.createElement("nav", null, /* @__PURE__ */ import_react18.default.createElement("ul", {
       className: "main-navigation menu__horizontal"
-    }, /* @__PURE__ */ import_react18.default.createElement("li", null, /* @__PURE__ */ import_react18.default.createElement("strong", null, /* @__PURE__ */ import_react18.default.createElement(NavLink, {
-      to: "/"
-    }, "Discover"))), /* @__PURE__ */ import_react18.default.createElement("li", null, /* @__PURE__ */ import_react18.default.createElement(NavLink, {
+    }, /* @__PURE__ */ import_react18.default.createElement("li", null, /* @__PURE__ */ import_react18.default.createElement(NavLink, {
       to: "/"
     }, "My Products")), /* @__PURE__ */ import_react18.default.createElement("li", null, /* @__PURE__ */ import_react18.default.createElement(NavLink, {
       to: "/"
@@ -31796,7 +31794,9 @@ const theme2 = createTheme({ palette: {
   // src/views/LandingPage.tsx
   var import_react20 = __toModule(require_react());
   var LandingPage = () => {
-    return /* @__PURE__ */ import_react20.default.createElement("div", null, "Hello from the landing page!");
+    return /* @__PURE__ */ import_react20.default.createElement("div", null, /* @__PURE__ */ import_react20.default.createElement("section", null, /* @__PURE__ */ import_react20.default.createElement("h2", null, "Discover New Ideas!"), /* @__PURE__ */ import_react20.default.createElement("p", null, "A list of products will go here.")), /* @__PURE__ */ import_react20.default.createElement("section", null, /* @__PURE__ */ import_react20.default.createElement("h2", null, "What is ", constants_default.SITE_NAME, "?"), /* @__PURE__ */ import_react20.default.createElement("p", null, constants_default.SITE_NAME, " is a place for entrepreneurs to share product ideas and receive initial funding from interested users. Turn your dream product into a reality. Or, as a user, find and support a product that really matters to you!"), /* @__PURE__ */ import_react20.default.createElement("p", null, /* @__PURE__ */ import_react20.default.createElement("strong", null, "This is a demo site for presentational purposes.")), /* @__PURE__ */ import_react20.default.createElement("p", null, "Sounds interesting? ", /* @__PURE__ */ import_react20.default.createElement(Link, {
+      to: "/register"
+    }, "Sign up today!"))));
   };
   var LandingPage_default = LandingPage;
 
