@@ -2457,11 +2457,11 @@
       if (true) {
         (function() {
           "use strict";
-          var React73 = require_react();
+          var React74 = require_react();
           var _assign = require_object_assign();
           var Scheduler = require_scheduler();
           var tracing = require_tracing();
-          var ReactSharedInternals = React73.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React74.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function warn(format) {
             {
               for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2493,7 +2493,7 @@
               Function.prototype.apply.call(console[level], console, argsWithFormat);
             }
           }
-          if (!React73) {
+          if (!React74) {
             {
               throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
             }
@@ -3709,7 +3709,7 @@
           var didWarnInvalidChild = false;
           function flattenChildren(children) {
             var content = "";
-            React73.Children.forEach(children, function(child) {
+            React74.Children.forEach(children, function(child) {
               if (child == null) {
                 return;
               }
@@ -3720,7 +3720,7 @@
           function validateProps(element, props) {
             {
               if (typeof props.children === "object" && props.children !== null) {
-                React73.Children.forEach(props.children, function(child) {
+                React74.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -10913,7 +10913,7 @@
           }
           var fakeInternalInstance = {};
           var isArray = Array.isArray;
-          var emptyRefsObject = new React73.Component().refs;
+          var emptyRefsObject = new React74.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -12343,7 +12343,7 @@
           }
           var NoFlags$1 = 0;
           var HasEffect = 1;
-          var Layout = 2;
+          var Layout2 = 2;
           var Passive$1 = 4;
           var hydrationParentFiber = null;
           var nextHydratableInstance = null;
@@ -13235,10 +13235,10 @@
             return updateEffectImpl(Update | Passive, Passive$1, create, deps);
           }
           function mountLayoutEffect(create, deps) {
-            return mountEffectImpl(Update, Layout, create, deps);
+            return mountEffectImpl(Update, Layout2, create, deps);
           }
           function updateLayoutEffect(create, deps) {
-            return updateEffectImpl(Update, Layout, create, deps);
+            return updateEffectImpl(Update, Layout2, create, deps);
           }
           function imperativeHandleEffect(create, ref) {
             if (typeof ref === "function") {
@@ -13269,7 +13269,7 @@
               }
             }
             var effectDeps = deps !== null && deps !== void 0 ? deps.concat([ref]) : null;
-            return mountEffectImpl(Update, Layout, imperativeHandleEffect.bind(null, create, ref), effectDeps);
+            return mountEffectImpl(Update, Layout2, imperativeHandleEffect.bind(null, create, ref), effectDeps);
           }
           function updateImperativeHandle(ref, create, deps) {
             {
@@ -13278,7 +13278,7 @@
               }
             }
             var effectDeps = deps !== null && deps !== void 0 ? deps.concat([ref]) : null;
-            return updateEffectImpl(Update, Layout, imperativeHandleEffect.bind(null, create, ref), effectDeps);
+            return updateEffectImpl(Update, Layout2, imperativeHandleEffect.bind(null, create, ref), effectDeps);
           }
           function mountDebugValue(value, formatterFn) {
           }
@@ -16597,7 +16597,7 @@
               case SimpleMemoComponent:
               case Block: {
                 {
-                  commitHookEffectListMount(Layout | HasEffect, finishedWork);
+                  commitHookEffectListMount(Layout2 | HasEffect, finishedWork);
                 }
                 schedulePassiveEffects(finishedWork);
                 return;
@@ -17107,7 +17107,7 @@
               case SimpleMemoComponent:
               case Block: {
                 {
-                  commitHookEffectListUnmount(Layout | HasEffect, finishedWork);
+                  commitHookEffectListUnmount(Layout2 | HasEffect, finishedWork);
                 }
                 return;
               }
@@ -21360,7 +21360,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       if (true) {
         (function() {
           "use strict";
-          var React73 = require_react();
+          var React74 = require_react();
           var _assign = require_object_assign();
           var REACT_ELEMENT_TYPE = 60103;
           var REACT_PORTAL_TYPE = 60106;
@@ -21417,7 +21417,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             }
             return null;
           }
-          var ReactSharedInternals = React73.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React74.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
@@ -23881,11 +23881,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   registerVersion(name2, version2, "app");
 
   // src/index.tsx
-  var import_react25 = __toModule(require_react());
+  var import_react26 = __toModule(require_react());
   var import_react_dom2 = __toModule(require_react_dom());
-
-  // node_modules/react-router-dom/index.js
-  var import_react2 = __toModule(require_react());
 
   // node_modules/@babel/runtime/helpers/esm/extends.js
   function _extends() {
@@ -23903,823 +23900,8 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
     return _extends.apply(this, arguments);
   }
 
-  // node_modules/history/index.js
-  var r;
-  var B = r || (r = {});
-  B.Pop = "POP";
-  B.Push = "PUSH";
-  B.Replace = "REPLACE";
-  var C = true ? function(b) {
-    return Object.freeze(b);
-  } : function(b) {
-    return b;
-  };
-  function D(b, h) {
-    if (!b) {
-      typeof console !== "undefined" && console.warn(h);
-      try {
-        throw Error(h);
-      } catch (k) {
-      }
-    }
-  }
-  function E(b) {
-    b.preventDefault();
-    b.returnValue = "";
-  }
-  function F() {
-    var b = [];
-    return { get length() {
-      return b.length;
-    }, push: function(h) {
-      b.push(h);
-      return function() {
-        b = b.filter(function(k) {
-          return k !== h;
-        });
-      };
-    }, call: function(h) {
-      b.forEach(function(k) {
-        return k && k(h);
-      });
-    } };
-  }
-  function H() {
-    return Math.random().toString(36).substr(2, 8);
-  }
-  function I(b) {
-    var h = b.pathname, k = b.search;
-    b = b.hash;
-    return (h === void 0 ? "/" : h) + (k === void 0 ? "" : k) + (b === void 0 ? "" : b);
-  }
-  function J(b) {
-    var h = {};
-    if (b) {
-      var k = b.indexOf("#");
-      0 <= k && (h.hash = b.substr(k), b = b.substr(0, k));
-      k = b.indexOf("?");
-      0 <= k && (h.search = b.substr(k), b = b.substr(0, k));
-      b && (h.pathname = b);
-    }
-    return h;
-  }
-  function createBrowserHistory(b) {
-    function h() {
-      var c = p.location, a = m.state || {};
-      return [a.idx, C({ pathname: c.pathname, search: c.search, hash: c.hash, state: a.usr || null, key: a.key || "default" })];
-    }
-    function k(c) {
-      return typeof c === "string" ? c : I(c);
-    }
-    function x(c, a) {
-      a === void 0 && (a = null);
-      return C(_extends({ pathname: q.pathname, hash: "", search: "" }, typeof c === "string" ? J(c) : c, { state: a, key: H() }));
-    }
-    function z(c) {
-      t = c;
-      c = h();
-      v = c[0];
-      q = c[1];
-      d.call({ action: t, location: q });
-    }
-    function A(c, a) {
-      function e() {
-        A(c, a);
-      }
-      var l = r.Push, g = x(c, a);
-      if (!f.length || (f.call({ action: l, location: g, retry: e }), false)) {
-        var n = [{ usr: g.state, key: g.key, idx: v + 1 }, k(g)];
-        g = n[0];
-        n = n[1];
-        try {
-          m.pushState(g, "", n);
-        } catch (G) {
-          p.location.assign(n);
-        }
-        z(l);
-      }
-    }
-    function y(c, a) {
-      function e() {
-        y(c, a);
-      }
-      var l = r.Replace, g = x(c, a);
-      f.length && (f.call({ action: l, location: g, retry: e }), 1) || (g = [{ usr: g.state, key: g.key, idx: v }, k(g)], m.replaceState(g[0], "", g[1]), z(l));
-    }
-    function w(c) {
-      m.go(c);
-    }
-    b === void 0 && (b = {});
-    b = b.window;
-    var p = b === void 0 ? document.defaultView : b, m = p.history, u = null;
-    p.addEventListener("popstate", function() {
-      if (u)
-        f.call(u), u = null;
-      else {
-        var c = r.Pop, a = h(), e = a[0];
-        a = a[1];
-        if (f.length)
-          if (e != null) {
-            var l = v - e;
-            l && (u = { action: c, location: a, retry: function() {
-              w(-1 * l);
-            } }, w(l));
-          } else
-            true ? D(false, "You are trying to block a POP navigation to a location that was not created by the history library. The block will fail silently in production, but in general you should do all navigation with the history library (instead of using window.history.pushState directly) to avoid this situation.") : void 0;
-        else
-          z(c);
-      }
-    });
-    var t = r.Pop;
-    b = h();
-    var v = b[0], q = b[1], d = F(), f = F();
-    v == null && (v = 0, m.replaceState(_extends({}, m.state, { idx: v }), ""));
-    return { get action() {
-      return t;
-    }, get location() {
-      return q;
-    }, createHref: k, push: A, replace: y, go: w, back: function() {
-      w(-1);
-    }, forward: function() {
-      w(1);
-    }, listen: function(c) {
-      return d.push(c);
-    }, block: function(c) {
-      var a = f.push(c);
-      f.length === 1 && p.addEventListener("beforeunload", E);
-      return function() {
-        a();
-        f.length || p.removeEventListener("beforeunload", E);
-      };
-    } };
-  }
-
-  // node_modules/react-router/index.js
-  var import_react = __toModule(require_react());
-  function invariant(cond, message) {
-    if (!cond)
-      throw new Error(message);
-  }
-  function warning(cond, message) {
-    if (!cond) {
-      if (typeof console !== "undefined")
-        console.warn(message);
-      try {
-        throw new Error(message);
-      } catch (e) {
-      }
-    }
-  }
-  var alreadyWarned = {};
-  function warningOnce(key, cond, message) {
-    if (!cond && !alreadyWarned[key]) {
-      alreadyWarned[key] = true;
-      true ? warning(false, message) : void 0;
-    }
-  }
-  var NavigationContext = /* @__PURE__ */ (0, import_react.createContext)(null);
-  if (true) {
-    NavigationContext.displayName = "Navigation";
-  }
-  var LocationContext = /* @__PURE__ */ (0, import_react.createContext)(null);
-  if (true) {
-    LocationContext.displayName = "Location";
-  }
-  var RouteContext = /* @__PURE__ */ (0, import_react.createContext)({
-    outlet: null,
-    matches: []
-  });
-  if (true) {
-    RouteContext.displayName = "Route";
-  }
-  function Outlet(_props) {
-    return useOutlet();
-  }
-  function Route(_props) {
-    true ? invariant(false, "A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.") : invariant(false);
-  }
-  function Router(_ref3) {
-    let {
-      basename: basenameProp = "/",
-      children = null,
-      location: locationProp,
-      navigationType = r.Pop,
-      navigator: navigator2,
-      static: staticProp = false
-    } = _ref3;
-    !!useInRouterContext() ? true ? invariant(false, "You cannot render a <Router> inside another <Router>. You should never have more than one in your app.") : invariant(false) : void 0;
-    let basename = normalizePathname(basenameProp);
-    let navigationContext = (0, import_react.useMemo)(() => ({
-      basename,
-      navigator: navigator2,
-      static: staticProp
-    }), [basename, navigator2, staticProp]);
-    if (typeof locationProp === "string") {
-      locationProp = J(locationProp);
-    }
-    let {
-      pathname = "/",
-      search = "",
-      hash: hash2 = "",
-      state = null,
-      key = "default"
-    } = locationProp;
-    let location = (0, import_react.useMemo)(() => {
-      let trailingPathname = stripBasename(pathname, basename);
-      if (trailingPathname == null) {
-        return null;
-      }
-      return {
-        pathname: trailingPathname,
-        search,
-        hash: hash2,
-        state,
-        key
-      };
-    }, [basename, pathname, search, hash2, state, key]);
-    true ? warning(location != null, '<Router basename="' + basename + '"> is not able to match the URL ' + ('"' + pathname + search + hash2 + '" because it does not start with the ') + "basename, so the <Router> won't render anything.") : void 0;
-    if (location == null) {
-      return null;
-    }
-    return /* @__PURE__ */ (0, import_react.createElement)(NavigationContext.Provider, {
-      value: navigationContext
-    }, /* @__PURE__ */ (0, import_react.createElement)(LocationContext.Provider, {
-      children,
-      value: {
-        location,
-        navigationType
-      }
-    }));
-  }
-  function Routes(_ref4) {
-    let {
-      children,
-      location
-    } = _ref4;
-    return useRoutes(createRoutesFromChildren(children), location);
-  }
-  function useHref(to) {
-    !useInRouterContext() ? true ? invariant(false, "useHref() may be used only in the context of a <Router> component.") : invariant(false) : void 0;
-    let {
-      basename,
-      navigator: navigator2
-    } = (0, import_react.useContext)(NavigationContext);
-    let {
-      hash: hash2,
-      pathname,
-      search
-    } = useResolvedPath(to);
-    let joinedPathname = pathname;
-    if (basename !== "/") {
-      let toPathname = getToPathname(to);
-      let endsWithSlash = toPathname != null && toPathname.endsWith("/");
-      joinedPathname = pathname === "/" ? basename + (endsWithSlash ? "/" : "") : joinPaths([basename, pathname]);
-    }
-    return navigator2.createHref({
-      pathname: joinedPathname,
-      search,
-      hash: hash2
-    });
-  }
-  function useInRouterContext() {
-    return (0, import_react.useContext)(LocationContext) != null;
-  }
-  function useLocation() {
-    !useInRouterContext() ? true ? invariant(false, "useLocation() may be used only in the context of a <Router> component.") : invariant(false) : void 0;
-    return (0, import_react.useContext)(LocationContext).location;
-  }
-  function useNavigate() {
-    !useInRouterContext() ? true ? invariant(false, "useNavigate() may be used only in the context of a <Router> component.") : invariant(false) : void 0;
-    let {
-      basename,
-      navigator: navigator2
-    } = (0, import_react.useContext)(NavigationContext);
-    let {
-      matches
-    } = (0, import_react.useContext)(RouteContext);
-    let {
-      pathname: locationPathname
-    } = useLocation();
-    let routePathnamesJson = JSON.stringify(matches.map((match2) => match2.pathnameBase));
-    let activeRef = (0, import_react.useRef)(false);
-    (0, import_react.useEffect)(() => {
-      activeRef.current = true;
-    });
-    let navigate = (0, import_react.useCallback)(function(to, options) {
-      if (options === void 0) {
-        options = {};
-      }
-      true ? warning(activeRef.current, "You should call navigate() in a React.useEffect(), not when your component is first rendered.") : void 0;
-      if (!activeRef.current)
-        return;
-      if (typeof to === "number") {
-        navigator2.go(to);
-        return;
-      }
-      let path = resolveTo(to, JSON.parse(routePathnamesJson), locationPathname);
-      if (basename !== "/") {
-        path.pathname = joinPaths([basename, path.pathname]);
-      }
-      (!!options.replace ? navigator2.replace : navigator2.push)(path, options.state);
-    }, [basename, navigator2, routePathnamesJson, locationPathname]);
-    return navigate;
-  }
-  function useOutlet() {
-    return (0, import_react.useContext)(RouteContext).outlet;
-  }
-  function useResolvedPath(to) {
-    let {
-      matches
-    } = (0, import_react.useContext)(RouteContext);
-    let {
-      pathname: locationPathname
-    } = useLocation();
-    let routePathnamesJson = JSON.stringify(matches.map((match2) => match2.pathnameBase));
-    return (0, import_react.useMemo)(() => resolveTo(to, JSON.parse(routePathnamesJson), locationPathname), [to, routePathnamesJson, locationPathname]);
-  }
-  function useRoutes(routes, locationArg) {
-    !useInRouterContext() ? true ? invariant(false, "useRoutes() may be used only in the context of a <Router> component.") : invariant(false) : void 0;
-    let {
-      matches: parentMatches
-    } = (0, import_react.useContext)(RouteContext);
-    let routeMatch = parentMatches[parentMatches.length - 1];
-    let parentParams = routeMatch ? routeMatch.params : {};
-    let parentPathname = routeMatch ? routeMatch.pathname : "/";
-    let parentPathnameBase = routeMatch ? routeMatch.pathnameBase : "/";
-    let parentRoute = routeMatch && routeMatch.route;
-    if (true) {
-      let parentPath = parentRoute && parentRoute.path || "";
-      warningOnce(parentPathname, !parentRoute || parentPath.endsWith("*"), "You rendered descendant <Routes> (or called `useRoutes()`) at " + ('"' + parentPathname + '" (under <Route path="' + parentPath + '">) but the ') + `parent route path has no trailing "*". This means if you navigate deeper, the parent won't match anymore and therefore the child routes will never render.
-
-` + ('Please change the parent <Route path="' + parentPath + '"> to <Route ') + ('path="' + parentPath + '/*">.'));
-    }
-    let locationFromContext = useLocation();
-    let location;
-    if (locationArg) {
-      var _parsedLocationArg$pa;
-      let parsedLocationArg = typeof locationArg === "string" ? J(locationArg) : locationArg;
-      !(parentPathnameBase === "/" || ((_parsedLocationArg$pa = parsedLocationArg.pathname) == null ? void 0 : _parsedLocationArg$pa.startsWith(parentPathnameBase))) ? true ? invariant(false, "When overriding the location using `<Routes location>` or `useRoutes(routes, location)`, the location pathname must begin with the portion of the URL pathname that was " + ('matched by all parent routes. The current pathname base is "' + parentPathnameBase + '" ') + ('but pathname "' + parsedLocationArg.pathname + '" was given in the `location` prop.')) : invariant(false) : void 0;
-      location = parsedLocationArg;
-    } else {
-      location = locationFromContext;
-    }
-    let pathname = location.pathname || "/";
-    let remainingPathname = parentPathnameBase === "/" ? pathname : pathname.slice(parentPathnameBase.length) || "/";
-    let matches = matchRoutes(routes, {
-      pathname: remainingPathname
-    });
-    if (true) {
-      true ? warning(parentRoute || matches != null, 'No routes matched location "' + location.pathname + location.search + location.hash + '" ') : void 0;
-      true ? warning(matches == null || matches[matches.length - 1].route.element !== void 0, 'Matched leaf route at location "' + location.pathname + location.search + location.hash + '" does not have an element. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.') : void 0;
-    }
-    return _renderMatches(matches && matches.map((match2) => Object.assign({}, match2, {
-      params: Object.assign({}, parentParams, match2.params),
-      pathname: joinPaths([parentPathnameBase, match2.pathname]),
-      pathnameBase: match2.pathnameBase === "/" ? parentPathnameBase : joinPaths([parentPathnameBase, match2.pathnameBase])
-    })), parentMatches);
-  }
-  function createRoutesFromChildren(children) {
-    let routes = [];
-    import_react.Children.forEach(children, (element) => {
-      if (!/* @__PURE__ */ (0, import_react.isValidElement)(element)) {
-        return;
-      }
-      if (element.type === import_react.Fragment) {
-        routes.push.apply(routes, createRoutesFromChildren(element.props.children));
-        return;
-      }
-      !(element.type === Route) ? true ? invariant(false, "[" + (typeof element.type === "string" ? element.type : element.type.name) + "] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>") : invariant(false) : void 0;
-      let route = {
-        caseSensitive: element.props.caseSensitive,
-        element: element.props.element,
-        index: element.props.index,
-        path: element.props.path
-      };
-      if (element.props.children) {
-        route.children = createRoutesFromChildren(element.props.children);
-      }
-      routes.push(route);
-    });
-    return routes;
-  }
-  function matchRoutes(routes, locationArg, basename) {
-    if (basename === void 0) {
-      basename = "/";
-    }
-    let location = typeof locationArg === "string" ? J(locationArg) : locationArg;
-    let pathname = stripBasename(location.pathname || "/", basename);
-    if (pathname == null) {
-      return null;
-    }
-    let branches = flattenRoutes(routes);
-    rankRouteBranches(branches);
-    let matches = null;
-    for (let i = 0; matches == null && i < branches.length; ++i) {
-      matches = matchRouteBranch(branches[i], routes, pathname);
-    }
-    return matches;
-  }
-  function flattenRoutes(routes, branches, parentsMeta, parentPath) {
-    if (branches === void 0) {
-      branches = [];
-    }
-    if (parentsMeta === void 0) {
-      parentsMeta = [];
-    }
-    if (parentPath === void 0) {
-      parentPath = "";
-    }
-    routes.forEach((route, index) => {
-      let meta = {
-        relativePath: route.path || "",
-        caseSensitive: route.caseSensitive === true,
-        childrenIndex: index
-      };
-      if (meta.relativePath.startsWith("/")) {
-        !meta.relativePath.startsWith(parentPath) ? true ? invariant(false, 'Absolute route path "' + meta.relativePath + '" nested under path ' + ('"' + parentPath + '" is not valid. An absolute child route path ') + "must start with the combined path of all its parent routes.") : invariant(false) : void 0;
-        meta.relativePath = meta.relativePath.slice(parentPath.length);
-      }
-      let path = joinPaths([parentPath, meta.relativePath]);
-      let routesMeta = parentsMeta.concat(meta);
-      if (route.children && route.children.length > 0) {
-        !(route.index !== true) ? true ? invariant(false, "Index routes must not have child routes. Please remove " + ('all child routes from route path "' + path + '".')) : invariant(false) : void 0;
-        flattenRoutes(route.children, branches, routesMeta, path);
-      }
-      if (route.path == null && !route.index) {
-        return;
-      }
-      branches.push({
-        path,
-        score: computeScore(path, route.index),
-        routesMeta
-      });
-    });
-    return branches;
-  }
-  function rankRouteBranches(branches) {
-    branches.sort((a, b) => a.score !== b.score ? b.score - a.score : compareIndexes(a.routesMeta.map((meta) => meta.childrenIndex), b.routesMeta.map((meta) => meta.childrenIndex)));
-  }
-  var paramRe = /^:\w+$/;
-  var dynamicSegmentValue = 3;
-  var indexRouteValue = 2;
-  var emptySegmentValue = 1;
-  var staticSegmentValue = 10;
-  var splatPenalty = -2;
-  var isSplat = (s) => s === "*";
-  function computeScore(path, index) {
-    let segments = path.split("/");
-    let initialScore = segments.length;
-    if (segments.some(isSplat)) {
-      initialScore += splatPenalty;
-    }
-    if (index) {
-      initialScore += indexRouteValue;
-    }
-    return segments.filter((s) => !isSplat(s)).reduce((score, segment) => score + (paramRe.test(segment) ? dynamicSegmentValue : segment === "" ? emptySegmentValue : staticSegmentValue), initialScore);
-  }
-  function compareIndexes(a, b) {
-    let siblings = a.length === b.length && a.slice(0, -1).every((n, i) => n === b[i]);
-    return siblings ? a[a.length - 1] - b[b.length - 1] : 0;
-  }
-  function matchRouteBranch(branch, routesArg, pathname) {
-    let routes = routesArg;
-    let {
-      routesMeta
-    } = branch;
-    let matchedParams = {};
-    let matchedPathname = "/";
-    let matches = [];
-    for (let i = 0; i < routesMeta.length; ++i) {
-      let meta = routesMeta[i];
-      let end = i === routesMeta.length - 1;
-      let remainingPathname = matchedPathname === "/" ? pathname : pathname.slice(matchedPathname.length) || "/";
-      let match2 = matchPath({
-        path: meta.relativePath,
-        caseSensitive: meta.caseSensitive,
-        end
-      }, remainingPathname);
-      if (!match2)
-        return null;
-      Object.assign(matchedParams, match2.params);
-      let route = routes[meta.childrenIndex];
-      matches.push({
-        params: matchedParams,
-        pathname: joinPaths([matchedPathname, match2.pathname]),
-        pathnameBase: joinPaths([matchedPathname, match2.pathnameBase]),
-        route
-      });
-      if (match2.pathnameBase !== "/") {
-        matchedPathname = joinPaths([matchedPathname, match2.pathnameBase]);
-      }
-      routes = route.children;
-    }
-    return matches;
-  }
-  function _renderMatches(matches, parentMatches) {
-    if (parentMatches === void 0) {
-      parentMatches = [];
-    }
-    if (matches == null)
-      return null;
-    return matches.reduceRight((outlet, match2, index) => {
-      return /* @__PURE__ */ (0, import_react.createElement)(RouteContext.Provider, {
-        children: match2.route.element !== void 0 ? match2.route.element : /* @__PURE__ */ (0, import_react.createElement)(Outlet, null),
-        value: {
-          outlet,
-          matches: parentMatches.concat(matches.slice(0, index + 1))
-        }
-      });
-    }, null);
-  }
-  function matchPath(pattern, pathname) {
-    if (typeof pattern === "string") {
-      pattern = {
-        path: pattern,
-        caseSensitive: false,
-        end: true
-      };
-    }
-    let [matcher, paramNames] = compilePath(pattern.path, pattern.caseSensitive, pattern.end);
-    let match2 = pathname.match(matcher);
-    if (!match2)
-      return null;
-    let matchedPathname = match2[0];
-    let pathnameBase = matchedPathname.replace(/(.)\/+$/, "$1");
-    let captureGroups = match2.slice(1);
-    let params = paramNames.reduce((memo2, paramName, index) => {
-      if (paramName === "*") {
-        let splatValue = captureGroups[index] || "";
-        pathnameBase = matchedPathname.slice(0, matchedPathname.length - splatValue.length).replace(/(.)\/+$/, "$1");
-      }
-      memo2[paramName] = safelyDecodeURIComponent(captureGroups[index] || "", paramName);
-      return memo2;
-    }, {});
-    return {
-      params,
-      pathname: matchedPathname,
-      pathnameBase,
-      pattern
-    };
-  }
-  function compilePath(path, caseSensitive, end) {
-    if (caseSensitive === void 0) {
-      caseSensitive = false;
-    }
-    if (end === void 0) {
-      end = true;
-    }
-    true ? warning(path === "*" || !path.endsWith("*") || path.endsWith("/*"), 'Route path "' + path + '" will be treated as if it were ' + ('"' + path.replace(/\*$/, "/*") + '" because the `*` character must ') + "always follow a `/` in the pattern. To get rid of this warning, " + ('please change the route path to "' + path.replace(/\*$/, "/*") + '".')) : void 0;
-    let paramNames = [];
-    let regexpSource = "^" + path.replace(/\/*\*?$/, "").replace(/^\/*/, "/").replace(/[\\.*+^$?{}|()[\]]/g, "\\$&").replace(/:(\w+)/g, (_2, paramName) => {
-      paramNames.push(paramName);
-      return "([^\\/]+)";
-    });
-    if (path.endsWith("*")) {
-      paramNames.push("*");
-      regexpSource += path === "*" || path === "/*" ? "(.*)$" : "(?:\\/(.+)|\\/*)$";
-    } else {
-      regexpSource += end ? "\\/*$" : "(?:\\b|$)";
-    }
-    let matcher = new RegExp(regexpSource, caseSensitive ? void 0 : "i");
-    return [matcher, paramNames];
-  }
-  function safelyDecodeURIComponent(value, paramName) {
-    try {
-      return decodeURIComponent(value);
-    } catch (error) {
-      true ? warning(false, 'The value for the URL param "' + paramName + '" will not be decoded because' + (' the string "' + value + '" is a malformed URL segment. This is probably') + (" due to a bad percent encoding (" + error + ").")) : void 0;
-      return value;
-    }
-  }
-  function resolvePath(to, fromPathname) {
-    if (fromPathname === void 0) {
-      fromPathname = "/";
-    }
-    let {
-      pathname: toPathname,
-      search = "",
-      hash: hash2 = ""
-    } = typeof to === "string" ? J(to) : to;
-    let pathname = toPathname ? toPathname.startsWith("/") ? toPathname : resolvePathname(toPathname, fromPathname) : fromPathname;
-    return {
-      pathname,
-      search: normalizeSearch(search),
-      hash: normalizeHash(hash2)
-    };
-  }
-  function resolvePathname(relativePath, fromPathname) {
-    let segments = fromPathname.replace(/\/+$/, "").split("/");
-    let relativeSegments = relativePath.split("/");
-    relativeSegments.forEach((segment) => {
-      if (segment === "..") {
-        if (segments.length > 1)
-          segments.pop();
-      } else if (segment !== ".") {
-        segments.push(segment);
-      }
-    });
-    return segments.length > 1 ? segments.join("/") : "/";
-  }
-  function resolveTo(toArg, routePathnames, locationPathname) {
-    let to = typeof toArg === "string" ? J(toArg) : toArg;
-    let toPathname = toArg === "" || to.pathname === "" ? "/" : to.pathname;
-    let from2;
-    if (toPathname == null) {
-      from2 = locationPathname;
-    } else {
-      let routePathnameIndex = routePathnames.length - 1;
-      if (toPathname.startsWith("..")) {
-        let toSegments = toPathname.split("/");
-        while (toSegments[0] === "..") {
-          toSegments.shift();
-          routePathnameIndex -= 1;
-        }
-        to.pathname = toSegments.join("/");
-      }
-      from2 = routePathnameIndex >= 0 ? routePathnames[routePathnameIndex] : "/";
-    }
-    let path = resolvePath(to, from2);
-    if (toPathname && toPathname !== "/" && toPathname.endsWith("/") && !path.pathname.endsWith("/")) {
-      path.pathname += "/";
-    }
-    return path;
-  }
-  function getToPathname(to) {
-    return to === "" || to.pathname === "" ? "/" : typeof to === "string" ? J(to).pathname : to.pathname;
-  }
-  function stripBasename(pathname, basename) {
-    if (basename === "/")
-      return pathname;
-    if (!pathname.toLowerCase().startsWith(basename.toLowerCase())) {
-      return null;
-    }
-    let nextChar = pathname.charAt(basename.length);
-    if (nextChar && nextChar !== "/") {
-      return null;
-    }
-    return pathname.slice(basename.length) || "/";
-  }
-  var joinPaths = (paths) => paths.join("/").replace(/\/\/+/g, "/");
-  var normalizePathname = (pathname) => pathname.replace(/\/+$/, "").replace(/^\/*/, "/");
-  var normalizeSearch = (search) => !search || search === "?" ? "" : search.startsWith("?") ? search : "?" + search;
-  var normalizeHash = (hash2) => !hash2 || hash2 === "#" ? "" : hash2.startsWith("#") ? hash2 : "#" + hash2;
-
-  // node_modules/react-router-dom/index.js
-  function _extends2() {
-    _extends2 = Object.assign || function(target) {
-      for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];
-        for (var key in source) {
-          if (Object.prototype.hasOwnProperty.call(source, key)) {
-            target[key] = source[key];
-          }
-        }
-      }
-      return target;
-    };
-    return _extends2.apply(this, arguments);
-  }
-  function _objectWithoutPropertiesLoose(source, excluded) {
-    if (source == null)
-      return {};
-    var target = {};
-    var sourceKeys = Object.keys(source);
-    var key, i;
-    for (i = 0; i < sourceKeys.length; i++) {
-      key = sourceKeys[i];
-      if (excluded.indexOf(key) >= 0)
-        continue;
-      target[key] = source[key];
-    }
-    return target;
-  }
-  var _excluded = ["onClick", "reloadDocument", "replace", "state", "target", "to"];
-  var _excluded2 = ["aria-current", "caseSensitive", "className", "end", "style", "to"];
-  function BrowserRouter(_ref) {
-    let {
-      basename,
-      children,
-      window: window2
-    } = _ref;
-    let historyRef = (0, import_react2.useRef)();
-    if (historyRef.current == null) {
-      historyRef.current = createBrowserHistory({
-        window: window2
-      });
-    }
-    let history = historyRef.current;
-    let [state, setState] = (0, import_react2.useState)({
-      action: history.action,
-      location: history.location
-    });
-    (0, import_react2.useLayoutEffect)(() => history.listen(setState), [history]);
-    return /* @__PURE__ */ (0, import_react2.createElement)(Router, {
-      basename,
-      children,
-      location: state.location,
-      navigationType: state.action,
-      navigator: history
-    });
-  }
-  function isModifiedEvent(event) {
-    return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
-  }
-  var Link = /* @__PURE__ */ (0, import_react2.forwardRef)(function LinkWithRef(_ref3, ref) {
-    let {
-      onClick,
-      reloadDocument,
-      replace: replace2 = false,
-      state,
-      target,
-      to
-    } = _ref3, rest = _objectWithoutPropertiesLoose(_ref3, _excluded);
-    let href = useHref(to);
-    let internalOnClick = useLinkClickHandler(to, {
-      replace: replace2,
-      state,
-      target
-    });
-    function handleClick(event) {
-      if (onClick)
-        onClick(event);
-      if (!event.defaultPrevented && !reloadDocument) {
-        internalOnClick(event);
-      }
-    }
-    return /* @__PURE__ */ (0, import_react2.createElement)("a", _extends2({}, rest, {
-      href,
-      onClick: handleClick,
-      ref,
-      target
-    }));
-  });
-  if (true) {
-    Link.displayName = "Link";
-  }
-  var NavLink = /* @__PURE__ */ (0, import_react2.forwardRef)(function NavLinkWithRef(_ref4, ref) {
-    let {
-      "aria-current": ariaCurrentProp = "page",
-      caseSensitive = false,
-      className: classNameProp = "",
-      end = false,
-      style: styleProp,
-      to
-    } = _ref4, rest = _objectWithoutPropertiesLoose(_ref4, _excluded2);
-    let location = useLocation();
-    let path = useResolvedPath(to);
-    let locationPathname = location.pathname;
-    let toPathname = path.pathname;
-    if (!caseSensitive) {
-      locationPathname = locationPathname.toLowerCase();
-      toPathname = toPathname.toLowerCase();
-    }
-    let isActive = locationPathname === toPathname || !end && locationPathname.startsWith(toPathname) && locationPathname.charAt(toPathname.length) === "/";
-    let ariaCurrent = isActive ? ariaCurrentProp : void 0;
-    let className;
-    if (typeof classNameProp === "function") {
-      className = classNameProp({
-        isActive
-      });
-    } else {
-      className = [classNameProp, isActive ? "active" : null].filter(Boolean).join(" ");
-    }
-    let style3 = typeof styleProp === "function" ? styleProp({
-      isActive
-    }) : styleProp;
-    return /* @__PURE__ */ (0, import_react2.createElement)(Link, _extends2({}, rest, {
-      "aria-current": ariaCurrent,
-      className,
-      ref,
-      style: style3,
-      to
-    }));
-  });
-  if (true) {
-    NavLink.displayName = "NavLink";
-  }
-  function useLinkClickHandler(to, _temp) {
-    let {
-      target,
-      replace: replaceProp,
-      state
-    } = _temp === void 0 ? {} : _temp;
-    let navigate = useNavigate();
-    let location = useLocation();
-    let path = useResolvedPath(to);
-    return (0, import_react2.useCallback)((event) => {
-      if (event.button === 0 && (!target || target === "_self") && !isModifiedEvent(event)) {
-        event.preventDefault();
-        let replace2 = !!replaceProp || I(location) === I(path);
-        navigate(to, {
-          replace: replace2,
-          state
-        });
-      }
-    }, [location, navigate, path, replaceProp, state, target, to]);
-  }
-
   // node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
-  function _objectWithoutPropertiesLoose2(source, excluded) {
+  function _objectWithoutPropertiesLoose(source, excluded) {
     if (source == null)
       return {};
     var target = {};
@@ -24735,7 +23917,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   }
 
   // node_modules/@emotion/styled/dist/emotion-styled.browser.esm.js
-  var import_react7 = __toModule(require_react());
+  var import_react5 = __toModule(require_react());
 
   // node_modules/@emotion/memoize/dist/emotion-memoize.browser.esm.js
   function memoize(fn) {
@@ -24756,10 +23938,10 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var emotion_is_prop_valid_browser_esm_default = isPropValid;
 
   // node_modules/@emotion/styled/base/dist/emotion-styled-base.browser.esm.js
-  var import_react5 = __toModule(require_react());
+  var import_react3 = __toModule(require_react());
 
   // node_modules/@emotion/react/dist/emotion-react.browser.esm.js
-  var import_react4 = __toModule(require_react());
+  var import_react2 = __toModule(require_react());
 
   // node_modules/@emotion/sheet/dist/emotion-sheet.browser.esm.js
   function sheetForTag(tag) {
@@ -25558,7 +24740,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   var emotion_cache_browser_esm_default = createCache;
 
   // node_modules/@emotion/react/dist/emotion-element-699e6908.browser.esm.js
-  var import_react3 = __toModule(require_react());
+  var import_react = __toModule(require_react());
 
   // node_modules/@emotion/utils/dist/emotion-utils.browser.esm.js
   var isBrowser = true;
@@ -25915,7 +25097,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
 
   // node_modules/@emotion/react/dist/emotion-element-699e6908.browser.esm.js
   var hasOwnProperty = {}.hasOwnProperty;
-  var EmotionCacheContext = /* @__PURE__ */ (0, import_react3.createContext)(typeof HTMLElement !== "undefined" ? /* @__PURE__ */ emotion_cache_browser_esm_default({
+  var EmotionCacheContext = /* @__PURE__ */ (0, import_react.createContext)(typeof HTMLElement !== "undefined" ? /* @__PURE__ */ emotion_cache_browser_esm_default({
     key: "css"
   }) : null);
   if (true) {
@@ -25923,12 +25105,12 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   }
   var CacheProvider = EmotionCacheContext.Provider;
   var withEmotionCache = function withEmotionCache2(func) {
-    return /* @__PURE__ */ (0, import_react3.forwardRef)(function(props, ref) {
-      var cache2 = (0, import_react3.useContext)(EmotionCacheContext);
+    return /* @__PURE__ */ (0, import_react.forwardRef)(function(props, ref) {
+      var cache2 = (0, import_react.useContext)(EmotionCacheContext);
       return func(props, cache2, ref);
     });
   };
-  var ThemeContext = /* @__PURE__ */ (0, import_react3.createContext)({});
+  var ThemeContext = /* @__PURE__ */ (0, import_react.createContext)({});
   if (true) {
     ThemeContext.displayName = "EmotionThemeContext";
   }
@@ -25950,7 +25132,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     } else if (props.className != null) {
       className = props.className + " ";
     }
-    var serialized = serializeStyles(registeredStyles, void 0, (0, import_react3.useContext)(ThemeContext));
+    var serialized = serializeStyles(registeredStyles, void 0, (0, import_react.useContext)(ThemeContext));
     if (serialized.name.indexOf("-") === -1) {
       var labelFromStack = props[labelPropName];
       if (labelFromStack) {
@@ -25967,9 +25149,9 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     }
     newProps.ref = ref;
     newProps.className = className;
-    var ele = /* @__PURE__ */ (0, import_react3.createElement)(type, newProps);
-    var possiblyStyleElement = /* @__PURE__ */ (0, import_react3.createElement)(Noop, null);
-    return /* @__PURE__ */ (0, import_react3.createElement)(import_react3.Fragment, null, possiblyStyleElement, ele);
+    var ele = /* @__PURE__ */ (0, import_react.createElement)(type, newProps);
+    var possiblyStyleElement = /* @__PURE__ */ (0, import_react.createElement)(Noop, null);
+    return /* @__PURE__ */ (0, import_react.createElement)(import_react.Fragment, null, possiblyStyleElement, ele);
   });
   if (true) {
     Emotion.displayName = "EmotionCssPropInternal";
@@ -26059,9 +25241,9 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       warnedAboutCssPropForGlobal = true;
     }
     var styles4 = props.styles;
-    var serialized = serializeStyles([styles4], void 0, (0, import_react4.useContext)(ThemeContext));
-    var sheetRef = (0, import_react4.useRef)();
-    (0, import_react4.useLayoutEffect)(function() {
+    var serialized = serializeStyles([styles4], void 0, (0, import_react2.useContext)(ThemeContext));
+    var sheetRef = (0, import_react2.useRef)();
+    (0, import_react2.useLayoutEffect)(function() {
       var key = cache2.key + "-global";
       var sheet = new StyleSheet({
         key,
@@ -26084,7 +25266,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         sheet.flush();
       };
     }, [cache2]);
-    (0, import_react4.useLayoutEffect)(function() {
+    (0, import_react2.useLayoutEffect)(function() {
       var sheetRefCurrent = sheetRef.current;
       var sheet = sheetRefCurrent[0], rehydrating = sheetRefCurrent[1];
       if (rehydrating) {
@@ -26202,12 +25384,12 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
     var content = {
       css: css2,
       cx,
-      theme: (0, import_react4.useContext)(ThemeContext)
+      theme: (0, import_react2.useContext)(ThemeContext)
     };
     var ele = props.children(content);
     hasRendered = true;
-    var possiblyStyleElement = /* @__PURE__ */ (0, import_react4.createElement)(Noop3, null);
-    return /* @__PURE__ */ (0, import_react4.createElement)(import_react4.Fragment, null, possiblyStyleElement, ele);
+    var possiblyStyleElement = /* @__PURE__ */ (0, import_react2.createElement)(Noop3, null);
+    return /* @__PURE__ */ (0, import_react2.createElement)(import_react2.Fragment, null, possiblyStyleElement, ele);
   });
   if (true) {
     ClassNames.displayName = "EmotionClassNames";
@@ -26306,7 +25488,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           for (var key in props) {
             mergedProps[key] = props[key];
           }
-          mergedProps.theme = (0, import_react5.useContext)(ThemeContext);
+          mergedProps.theme = (0, import_react3.useContext)(ThemeContext);
         }
         if (typeof props.className === "string") {
           className = getRegisteredStyles(cache2.registered, classInterpolations, props.className);
@@ -26330,9 +25512,9 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         }
         newProps.className = className;
         newProps.ref = ref;
-        var ele = /* @__PURE__ */ (0, import_react5.createElement)(finalTag, newProps);
-        var possiblyStyleElement = /* @__PURE__ */ (0, import_react5.createElement)(Noop5, null);
-        return /* @__PURE__ */ (0, import_react5.createElement)(import_react5.Fragment, null, possiblyStyleElement, ele);
+        var ele = /* @__PURE__ */ (0, import_react3.createElement)(finalTag, newProps);
+        var possiblyStyleElement = /* @__PURE__ */ (0, import_react3.createElement)(Noop5, null);
+        return /* @__PURE__ */ (0, import_react3.createElement)(import_react3.Fragment, null, possiblyStyleElement, ele);
       });
       Styled.displayName = identifierName !== void 0 ? identifierName : "Styled(" + (typeof baseTag === "string" ? baseTag : baseTag.displayName || baseTag.name || "Component") + ")";
       Styled.defaultProps = tag.defaultProps;
@@ -27803,7 +26985,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   }
 
   // node_modules/@mui/system/esm/createTheme/createBreakpoints.js
-  var _excluded3 = ["values", "unit", "step"];
+  var _excluded = ["values", "unit", "step"];
   function createBreakpoints(breakpoints) {
     const {
       values: values3 = {
@@ -27815,7 +26997,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       },
       unit = "px",
       step = 5
-    } = breakpoints, other = _objectWithoutPropertiesLoose2(breakpoints, _excluded3);
+    } = breakpoints, other = _objectWithoutPropertiesLoose(breakpoints, _excluded);
     const keys = Object.keys(values3);
     function up(key) {
       const value = typeof values3[key] === "number" ? values3[key] : key;
@@ -27877,14 +27059,14 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   }
 
   // node_modules/@mui/system/esm/createTheme/createTheme.js
-  var _excluded4 = ["breakpoints", "palette", "spacing", "shape"];
+  var _excluded2 = ["breakpoints", "palette", "spacing", "shape"];
   function createTheme(options = {}, ...args) {
     const {
       breakpoints: breakpointsInput = {},
       palette: paletteInput = {},
       spacing: spacingInput,
       shape: shapeInput = {}
-    } = options, other = _objectWithoutPropertiesLoose2(options, _excluded4);
+    } = options, other = _objectWithoutPropertiesLoose(options, _excluded2);
     const breakpoints = createBreakpoints(breakpointsInput);
     const spacing2 = createSpacing(spacingInput);
     let muiTheme = deepmerge({
@@ -27938,14 +27120,14 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   var useTheme_default = useTheme4;
 
   // node_modules/@mui/system/esm/propsToClassKey.js
-  var _excluded5 = ["variant"];
+  var _excluded3 = ["variant"];
   function isEmpty3(string) {
     return string.length === 0;
   }
   function propsToClassKey(props) {
     const {
       variant
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded5);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded3);
     let classKey = variant || "";
     Object.keys(other).sort().forEach((key) => {
       if (key === "color") {
@@ -27958,7 +27140,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   }
 
   // node_modules/@mui/system/esm/createStyled.js
-  var _excluded6 = ["name", "slot", "skipVariantsResolver", "skipSx", "overridesResolver"];
+  var _excluded4 = ["name", "slot", "skipVariantsResolver", "skipSx", "overridesResolver"];
   var _excluded22 = ["theme"];
   var _excluded32 = ["theme"];
   function isEmpty4(obj) {
@@ -28024,7 +27206,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
         skipVariantsResolver: inputSkipVariantsResolver,
         skipSx: inputSkipSx,
         overridesResolver
-      } = inputOptions, options = _objectWithoutPropertiesLoose2(inputOptions, _excluded6);
+      } = inputOptions, options = _objectWithoutPropertiesLoose(inputOptions, _excluded4);
       const skipVariantsResolver = inputSkipVariantsResolver !== void 0 ? inputSkipVariantsResolver : componentSlot && componentSlot !== "Root" || false;
       const skipSx = inputSkipSx || false;
       let label;
@@ -28048,7 +27230,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           return typeof stylesArg === "function" && stylesArg.__emotion_real !== stylesArg ? (_ref) => {
             let {
               theme: themeInput
-            } = _ref, other = _objectWithoutPropertiesLoose2(_ref, _excluded22);
+            } = _ref, other = _objectWithoutPropertiesLoose(_ref, _excluded22);
             return stylesArg(_extends({
               theme: isEmpty4(themeInput) ? defaultTheme2 : themeInput
             }, other));
@@ -28088,7 +27270,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
           transformedStyleArg = (_ref2) => {
             let {
               theme: themeInput
-            } = _ref2, other = _objectWithoutPropertiesLoose2(_ref2, _excluded32);
+            } = _ref2, other = _objectWithoutPropertiesLoose(_ref2, _excluded32);
             return styleArg(_extends({
               theme: isEmpty4(themeInput) ? defaultTheme2 : themeInput
             }, other));
@@ -28383,7 +27565,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
 
   // node_modules/@mui/base/BackdropUnstyled/BackdropUnstyled.js
   var import_jsx_runtime3 = __toModule(require_jsx_runtime());
-  var _excluded7 = ["classes", "className", "invisible", "component", "components", "componentsProps", "theme"];
+  var _excluded5 = ["classes", "className", "invisible", "component", "components", "componentsProps", "theme"];
   var useUtilityClasses = (ownerState) => {
     const {
       classes,
@@ -28403,7 +27585,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       components = {},
       componentsProps = {},
       theme
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded7);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded5);
     const ownerState = _extends({}, props, {
       classes: classesProp,
       invisible
@@ -28895,7 +28077,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
   // node_modules/@mui/base/ModalUnstyled/ModalUnstyled.js
   var import_jsx_runtime6 = __toModule(require_jsx_runtime());
   var import_jsx_runtime7 = __toModule(require_jsx_runtime());
-  var _excluded8 = ["BackdropComponent", "BackdropProps", "children", "classes", "className", "closeAfterTransition", "component", "components", "componentsProps", "container", "disableAutoFocus", "disableEnforceFocus", "disableEscapeKeyDown", "disablePortal", "disableRestoreFocus", "disableScrollLock", "hideBackdrop", "keepMounted", "manager", "onBackdropClick", "onClose", "onKeyDown", "open", "theme", "onTransitionEnter", "onTransitionExited"];
+  var _excluded6 = ["BackdropComponent", "BackdropProps", "children", "classes", "className", "closeAfterTransition", "component", "components", "componentsProps", "container", "disableAutoFocus", "disableEnforceFocus", "disableEscapeKeyDown", "disablePortal", "disableRestoreFocus", "disableScrollLock", "hideBackdrop", "keepMounted", "manager", "onBackdropClick", "onClose", "onKeyDown", "open", "theme", "onTransitionEnter", "onTransitionExited"];
   var useUtilityClasses2 = (ownerState) => {
     const {
       open,
@@ -28942,7 +28124,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       theme,
       onTransitionEnter,
       onTransitionExited
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded8);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded6);
     const [exited, setExited] = React14.useState(true);
     const modal = React14.useRef({});
     const mountNodeRef = React14.useRef(null);
@@ -29123,7 +28305,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
   var import_prop_types12 = __toModule(require_prop_types());
   var import_jsx_runtime8 = __toModule(require_jsx_runtime());
   var import_jsx_runtime9 = __toModule(require_jsx_runtime());
-  var _excluded9 = ["onChange", "maxRows", "minRows", "style", "value"];
+  var _excluded7 = ["onChange", "maxRows", "minRows", "style", "value"];
   function getStyleValue(computedStyle, property) {
     return parseInt(computedStyle[property], 10) || 0;
   }
@@ -29145,7 +28327,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       minRows = 1,
       style: style3,
       value
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded9);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded7);
     const {
       current: isControlled
     } = React15.useRef(value != null);
@@ -29423,7 +28605,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
   var green_default = green;
 
   // node_modules/@mui/material/styles/createPalette.js
-  var _excluded10 = ["mode", "contrastThreshold", "tonalOffset"];
+  var _excluded8 = ["mode", "contrastThreshold", "tonalOffset"];
   var light = {
     text: {
       primary: "rgba(0, 0, 0, 0.87)",
@@ -29577,7 +28759,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
       mode = "light",
       contrastThreshold = 3,
       tonalOffset = 0.2
-    } = palette2, other = _objectWithoutPropertiesLoose2(palette2, _excluded10);
+    } = palette2, other = _objectWithoutPropertiesLoose(palette2, _excluded8);
     const primary = palette2.primary || getDefaultPrimary(mode);
     const secondary = palette2.secondary || getDefaultSecondary(mode);
     const error = palette2.error || getDefaultError(mode);
@@ -29681,7 +28863,7 @@ const theme2 = createTheme({ palette: {
   }
 
   // node_modules/@mui/material/styles/createTypography.js
-  var _excluded11 = ["fontFamily", "fontSize", "fontWeightLight", "fontWeightRegular", "fontWeightMedium", "fontWeightBold", "htmlFontSize", "allVariants", "pxToRem"];
+  var _excluded9 = ["fontFamily", "fontSize", "fontWeightLight", "fontWeightRegular", "fontWeightMedium", "fontWeightBold", "htmlFontSize", "allVariants", "pxToRem"];
   function round(value) {
     return Math.round(value * 1e5) / 1e5;
   }
@@ -29700,7 +28882,7 @@ const theme2 = createTheme({ palette: {
       htmlFontSize = 16,
       allVariants,
       pxToRem: pxToRem2
-    } = _ref, other = _objectWithoutPropertiesLoose2(_ref, _excluded11);
+    } = _ref, other = _objectWithoutPropertiesLoose(_ref, _excluded9);
     if (true) {
       if (typeof fontSize2 !== "number") {
         console.error("MUI: `fontSize` is required to be a number.");
@@ -29759,7 +28941,7 @@ const theme2 = createTheme({ palette: {
   var shadows_default2 = shadows;
 
   // node_modules/@mui/material/styles/createTransitions.js
-  var _excluded12 = ["duration", "easing", "delay"];
+  var _excluded10 = ["duration", "easing", "delay"];
   var easing = {
     easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
     easeOut: "cubic-bezier(0.0, 0, 0.2, 1)",
@@ -29793,7 +28975,7 @@ const theme2 = createTheme({ palette: {
         duration: durationOption = mergedDuration.standard,
         easing: easingOption = mergedEasing.easeInOut,
         delay = 0
-      } = options, other = _objectWithoutPropertiesLoose2(options, _excluded12);
+      } = options, other = _objectWithoutPropertiesLoose(options, _excluded10);
       if (true) {
         const isString = (value) => typeof value === "string";
         const isNumber = (value) => !isNaN(parseFloat(value));
@@ -29837,14 +29019,14 @@ const theme2 = createTheme({ palette: {
   var zIndex_default = zIndex2;
 
   // node_modules/@mui/material/styles/createTheme.js
-  var _excluded13 = ["breakpoints", "mixins", "spacing", "palette", "transitions", "typography", "shape"];
+  var _excluded11 = ["breakpoints", "mixins", "spacing", "palette", "transitions", "typography", "shape"];
   function createTheme2(options = {}, ...args) {
     const {
       mixins: mixinsInput = {},
       palette: paletteInput = {},
       transitions: transitionsInput = {},
       typography: typographyInput = {}
-    } = options, other = _objectWithoutPropertiesLoose2(options, _excluded13);
+    } = options, other = _objectWithoutPropertiesLoose(options, _excluded11);
     const palette2 = createPalette(paletteInput);
     const systemTheme = createTheme_default(options);
     let muiTheme = deepmerge(systemTheme, {
@@ -29925,1887 +29107,841 @@ const theme2 = createTheme({ palette: {
   var styled_default = styled2;
 
   // src/App.tsx
-  var import_react20 = __toModule(require_react());
+  var import_react25 = __toModule(require_react());
 
-  // node_modules/@mui/material/Alert/Alert.js
-  var React32 = __toModule(require_react());
-  var import_prop_types22 = __toModule(require_prop_types());
+  // node_modules/react-router-dom/index.js
+  var import_react10 = __toModule(require_react());
 
-  // node_modules/@mui/material/utils/capitalize.js
-  var capitalize_default = capitalize;
-
-  // node_modules/@mui/material/Paper/Paper.js
-  var React17 = __toModule(require_react());
-  var import_prop_types13 = __toModule(require_prop_types());
-
-  // node_modules/@mui/material/Paper/paperClasses.js
-  function getPaperUtilityClass(slot) {
-    return generateUtilityClass("MuiPaper", slot);
-  }
-  var paperClasses = generateUtilityClasses("MuiPaper", ["root", "rounded", "outlined", "elevation", "elevation0", "elevation1", "elevation2", "elevation3", "elevation4", "elevation5", "elevation6", "elevation7", "elevation8", "elevation9", "elevation10", "elevation11", "elevation12", "elevation13", "elevation14", "elevation15", "elevation16", "elevation17", "elevation18", "elevation19", "elevation20", "elevation21", "elevation22", "elevation23", "elevation24"]);
-
-  // node_modules/@mui/material/Paper/Paper.js
-  var import_jsx_runtime10 = __toModule(require_jsx_runtime());
-  var _excluded14 = ["className", "component", "elevation", "square", "variant"];
-  var getOverlayAlpha = (elevation) => {
-    let alphaValue;
-    if (elevation < 1) {
-      alphaValue = 5.11916 * elevation ** 2;
-    } else {
-      alphaValue = 4.5 * Math.log(elevation + 1) + 2;
-    }
-    return (alphaValue / 100).toFixed(2);
+  // node_modules/history/index.js
+  var r;
+  var B = r || (r = {});
+  B.Pop = "POP";
+  B.Push = "PUSH";
+  B.Replace = "REPLACE";
+  var C = true ? function(b) {
+    return Object.freeze(b);
+  } : function(b) {
+    return b;
   };
-  var useUtilityClasses3 = (ownerState) => {
-    const {
-      square,
-      elevation,
-      variant,
-      classes
-    } = ownerState;
-    const slots = {
-      root: ["root", variant, !square && "rounded", variant === "elevation" && `elevation${elevation}`]
-    };
-    return composeClasses(slots, getPaperUtilityClass, classes);
-  };
-  var PaperRoot = styled_default("div", {
-    name: "MuiPaper",
-    slot: "Root",
-    overridesResolver: (props, styles4) => {
-      const {
-        ownerState
-      } = props;
-      return [styles4.root, styles4[ownerState.variant], !ownerState.square && styles4.rounded, ownerState.variant === "elevation" && styles4[`elevation${ownerState.elevation}`]];
-    }
-  })(({
-    theme,
-    ownerState
-  }) => _extends({
-    backgroundColor: theme.palette.background.paper,
-    color: theme.palette.text.primary,
-    transition: theme.transitions.create("box-shadow")
-  }, !ownerState.square && {
-    borderRadius: theme.shape.borderRadius
-  }, ownerState.variant === "outlined" && {
-    border: `1px solid ${theme.palette.divider}`
-  }, ownerState.variant === "elevation" && _extends({
-    boxShadow: theme.shadows[ownerState.elevation]
-  }, theme.palette.mode === "dark" && {
-    backgroundImage: `linear-gradient(${alpha("#fff", getOverlayAlpha(ownerState.elevation))}, ${alpha("#fff", getOverlayAlpha(ownerState.elevation))})`
-  })));
-  var Paper = /* @__PURE__ */ React17.forwardRef(function Paper2(inProps, ref) {
-    const props = useThemeProps2({
-      props: inProps,
-      name: "MuiPaper"
-    });
-    const {
-      className,
-      component = "div",
-      elevation = 1,
-      square = false,
-      variant = "elevation"
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded14);
-    const ownerState = _extends({}, props, {
-      component,
-      elevation,
-      square,
-      variant
-    });
-    const classes = useUtilityClasses3(ownerState);
-    if (true) {
-      const theme = useTheme5();
-      if (theme.shadows[elevation] === void 0) {
-        console.error([`MUI: The elevation provided <Paper elevation={${elevation}}> is not available in the theme.`, `Please make sure that \`theme.shadows[${elevation}]\` is defined.`].join("\n"));
+  function D(b, h) {
+    if (!b) {
+      typeof console !== "undefined" && console.warn(h);
+      try {
+        throw Error(h);
+      } catch (k) {
       }
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(PaperRoot, _extends({
-      as: component,
-      ownerState,
-      className: clsx_m_default(classes.root, className),
-      ref
-    }, other));
+  }
+  function E(b) {
+    b.preventDefault();
+    b.returnValue = "";
+  }
+  function F() {
+    var b = [];
+    return { get length() {
+      return b.length;
+    }, push: function(h) {
+      b.push(h);
+      return function() {
+        b = b.filter(function(k) {
+          return k !== h;
+        });
+      };
+    }, call: function(h) {
+      b.forEach(function(k) {
+        return k && k(h);
+      });
+    } };
+  }
+  function H() {
+    return Math.random().toString(36).substr(2, 8);
+  }
+  function I(b) {
+    var h = b.pathname, k = b.search;
+    b = b.hash;
+    return (h === void 0 ? "/" : h) + (k === void 0 ? "" : k) + (b === void 0 ? "" : b);
+  }
+  function J(b) {
+    var h = {};
+    if (b) {
+      var k = b.indexOf("#");
+      0 <= k && (h.hash = b.substr(k), b = b.substr(0, k));
+      k = b.indexOf("?");
+      0 <= k && (h.search = b.substr(k), b = b.substr(0, k));
+      b && (h.pathname = b);
+    }
+    return h;
+  }
+  function createBrowserHistory(b) {
+    function h() {
+      var c = p.location, a = m.state || {};
+      return [a.idx, C({ pathname: c.pathname, search: c.search, hash: c.hash, state: a.usr || null, key: a.key || "default" })];
+    }
+    function k(c) {
+      return typeof c === "string" ? c : I(c);
+    }
+    function x(c, a) {
+      a === void 0 && (a = null);
+      return C(_extends({ pathname: q.pathname, hash: "", search: "" }, typeof c === "string" ? J(c) : c, { state: a, key: H() }));
+    }
+    function z(c) {
+      t = c;
+      c = h();
+      v = c[0];
+      q = c[1];
+      d.call({ action: t, location: q });
+    }
+    function A(c, a) {
+      function e() {
+        A(c, a);
+      }
+      var l = r.Push, g = x(c, a);
+      if (!f.length || (f.call({ action: l, location: g, retry: e }), false)) {
+        var n = [{ usr: g.state, key: g.key, idx: v + 1 }, k(g)];
+        g = n[0];
+        n = n[1];
+        try {
+          m.pushState(g, "", n);
+        } catch (G) {
+          p.location.assign(n);
+        }
+        z(l);
+      }
+    }
+    function y(c, a) {
+      function e() {
+        y(c, a);
+      }
+      var l = r.Replace, g = x(c, a);
+      f.length && (f.call({ action: l, location: g, retry: e }), 1) || (g = [{ usr: g.state, key: g.key, idx: v }, k(g)], m.replaceState(g[0], "", g[1]), z(l));
+    }
+    function w(c) {
+      m.go(c);
+    }
+    b === void 0 && (b = {});
+    b = b.window;
+    var p = b === void 0 ? document.defaultView : b, m = p.history, u = null;
+    p.addEventListener("popstate", function() {
+      if (u)
+        f.call(u), u = null;
+      else {
+        var c = r.Pop, a = h(), e = a[0];
+        a = a[1];
+        if (f.length)
+          if (e != null) {
+            var l = v - e;
+            l && (u = { action: c, location: a, retry: function() {
+              w(-1 * l);
+            } }, w(l));
+          } else
+            true ? D(false, "You are trying to block a POP navigation to a location that was not created by the history library. The block will fail silently in production, but in general you should do all navigation with the history library (instead of using window.history.pushState directly) to avoid this situation.") : void 0;
+        else
+          z(c);
+      }
+    });
+    var t = r.Pop;
+    b = h();
+    var v = b[0], q = b[1], d = F(), f = F();
+    v == null && (v = 0, m.replaceState(_extends({}, m.state, { idx: v }), ""));
+    return { get action() {
+      return t;
+    }, get location() {
+      return q;
+    }, createHref: k, push: A, replace: y, go: w, back: function() {
+      w(-1);
+    }, forward: function() {
+      w(1);
+    }, listen: function(c) {
+      return d.push(c);
+    }, block: function(c) {
+      var a = f.push(c);
+      f.length === 1 && p.addEventListener("beforeunload", E);
+      return function() {
+        a();
+        f.length || p.removeEventListener("beforeunload", E);
+      };
+    } };
+  }
+
+  // node_modules/react-router/index.js
+  var import_react9 = __toModule(require_react());
+  function invariant(cond, message) {
+    if (!cond)
+      throw new Error(message);
+  }
+  function warning(cond, message) {
+    if (!cond) {
+      if (typeof console !== "undefined")
+        console.warn(message);
+      try {
+        throw new Error(message);
+      } catch (e) {
+      }
+    }
+  }
+  var alreadyWarned = {};
+  function warningOnce(key, cond, message) {
+    if (!cond && !alreadyWarned[key]) {
+      alreadyWarned[key] = true;
+      true ? warning(false, message) : void 0;
+    }
+  }
+  var NavigationContext = /* @__PURE__ */ (0, import_react9.createContext)(null);
+  if (true) {
+    NavigationContext.displayName = "Navigation";
+  }
+  var LocationContext = /* @__PURE__ */ (0, import_react9.createContext)(null);
+  if (true) {
+    LocationContext.displayName = "Location";
+  }
+  var RouteContext = /* @__PURE__ */ (0, import_react9.createContext)({
+    outlet: null,
+    matches: []
   });
-  true ? Paper.propTypes = {
-    children: import_prop_types13.default.node,
-    classes: import_prop_types13.default.object,
-    className: import_prop_types13.default.string,
-    component: import_prop_types13.default.elementType,
-    elevation: chainPropTypes(integerPropType_default, (props) => {
-      const {
-        elevation,
-        variant
-      } = props;
-      if (elevation > 0 && variant === "outlined") {
-        return new Error(`MUI: Combining \`elevation={${elevation}}\` with \`variant="${variant}"\` has no effect. Either use \`elevation={0}\` or use a different \`variant\`.`);
-      }
-      return null;
-    }),
-    square: import_prop_types13.default.bool,
-    sx: import_prop_types13.default.oneOfType([import_prop_types13.default.arrayOf(import_prop_types13.default.oneOfType([import_prop_types13.default.func, import_prop_types13.default.object])), import_prop_types13.default.func, import_prop_types13.default.object]),
-    variant: import_prop_types13.default.oneOfType([import_prop_types13.default.oneOf(["elevation", "outlined"]), import_prop_types13.default.string])
-  } : void 0;
-  var Paper_default = Paper;
-
-  // node_modules/@mui/material/Alert/alertClasses.js
-  function getAlertUtilityClass(slot) {
-    return generateUtilityClass("MuiAlert", slot);
+  if (true) {
+    RouteContext.displayName = "Route";
   }
-  var alertClasses = generateUtilityClasses("MuiAlert", ["root", "action", "icon", "message", "filled", "filledSuccess", "filledInfo", "filledWarning", "filledError", "outlined", "outlinedSuccess", "outlinedInfo", "outlinedWarning", "outlinedError", "standard", "standardSuccess", "standardInfo", "standardWarning", "standardError"]);
-  var alertClasses_default = alertClasses;
-
-  // node_modules/@mui/material/IconButton/IconButton.js
-  var React24 = __toModule(require_react());
-  var import_prop_types20 = __toModule(require_prop_types());
-
-  // node_modules/@mui/material/ButtonBase/ButtonBase.js
-  var React23 = __toModule(require_react());
-  var import_prop_types19 = __toModule(require_prop_types());
-
-  // node_modules/@mui/material/utils/useForkRef.js
-  var useForkRef_default = useForkRef;
-
-  // node_modules/@mui/material/utils/useEventCallback.js
-  var useEventCallback_default = useEventCallback;
-
-  // node_modules/@mui/material/utils/useIsFocusVisible.js
-  var useIsFocusVisible_default = useIsFocusVisible;
-
-  // node_modules/@mui/material/ButtonBase/TouchRipple.js
-  var React22 = __toModule(require_react());
-  var import_prop_types18 = __toModule(require_prop_types());
-
-  // node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
-  function _setPrototypeOf(o, p) {
-    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf2(o2, p2) {
-      o2.__proto__ = p2;
-      return o2;
-    };
-    return _setPrototypeOf(o, p);
+  function Outlet(_props) {
+    return useOutlet();
   }
-
-  // node_modules/@babel/runtime/helpers/esm/inheritsLoose.js
-  function _inheritsLoose(subClass, superClass) {
-    subClass.prototype = Object.create(superClass.prototype);
-    subClass.prototype.constructor = subClass;
-    _setPrototypeOf(subClass, superClass);
+  function Route(_props) {
+    true ? invariant(false, "A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.") : invariant(false);
   }
-
-  // node_modules/react-transition-group/esm/Transition.js
-  var import_prop_types15 = __toModule(require_prop_types());
-  var import_react12 = __toModule(require_react());
-  var import_react_dom = __toModule(require_react_dom());
-
-  // node_modules/react-transition-group/esm/config.js
-  var config_default = {
-    disabled: false
-  };
-
-  // node_modules/react-transition-group/esm/utils/PropTypes.js
-  var import_prop_types14 = __toModule(require_prop_types());
-  var timeoutsShape = true ? import_prop_types14.default.oneOfType([import_prop_types14.default.number, import_prop_types14.default.shape({
-    enter: import_prop_types14.default.number,
-    exit: import_prop_types14.default.number,
-    appear: import_prop_types14.default.number
-  }).isRequired]) : null;
-  var classNamesShape = true ? import_prop_types14.default.oneOfType([import_prop_types14.default.string, import_prop_types14.default.shape({
-    enter: import_prop_types14.default.string,
-    exit: import_prop_types14.default.string,
-    active: import_prop_types14.default.string
-  }), import_prop_types14.default.shape({
-    enter: import_prop_types14.default.string,
-    enterDone: import_prop_types14.default.string,
-    enterActive: import_prop_types14.default.string,
-    exit: import_prop_types14.default.string,
-    exitDone: import_prop_types14.default.string,
-    exitActive: import_prop_types14.default.string
-  })]) : null;
-
-  // node_modules/react-transition-group/esm/TransitionGroupContext.js
-  var import_react11 = __toModule(require_react());
-  var TransitionGroupContext_default = import_react11.default.createContext(null);
-
-  // node_modules/react-transition-group/esm/Transition.js
-  var UNMOUNTED = "unmounted";
-  var EXITED = "exited";
-  var ENTERING = "entering";
-  var ENTERED = "entered";
-  var EXITING = "exiting";
-  var Transition = /* @__PURE__ */ function(_React$Component) {
-    _inheritsLoose(Transition2, _React$Component);
-    function Transition2(props, context) {
-      var _this;
-      _this = _React$Component.call(this, props, context) || this;
-      var parentGroup = context;
-      var appear = parentGroup && !parentGroup.isMounting ? props.enter : props.appear;
-      var initialStatus;
-      _this.appearStatus = null;
-      if (props.in) {
-        if (appear) {
-          initialStatus = EXITED;
-          _this.appearStatus = ENTERING;
-        } else {
-          initialStatus = ENTERED;
-        }
-      } else {
-        if (props.unmountOnExit || props.mountOnEnter) {
-          initialStatus = UNMOUNTED;
-        } else {
-          initialStatus = EXITED;
-        }
-      }
-      _this.state = {
-        status: initialStatus
-      };
-      _this.nextCallback = null;
-      return _this;
+  function Router(_ref3) {
+    let {
+      basename: basenameProp = "/",
+      children = null,
+      location: locationProp,
+      navigationType = r.Pop,
+      navigator: navigator2,
+      static: staticProp = false
+    } = _ref3;
+    !!useInRouterContext() ? true ? invariant(false, "You cannot render a <Router> inside another <Router>. You should never have more than one in your app.") : invariant(false) : void 0;
+    let basename = normalizePathname(basenameProp);
+    let navigationContext = (0, import_react9.useMemo)(() => ({
+      basename,
+      navigator: navigator2,
+      static: staticProp
+    }), [basename, navigator2, staticProp]);
+    if (typeof locationProp === "string") {
+      locationProp = J(locationProp);
     }
-    Transition2.getDerivedStateFromProps = function getDerivedStateFromProps(_ref, prevState) {
-      var nextIn = _ref.in;
-      if (nextIn && prevState.status === UNMOUNTED) {
-        return {
-          status: EXITED
-        };
-      }
-      return null;
-    };
-    var _proto = Transition2.prototype;
-    _proto.componentDidMount = function componentDidMount() {
-      this.updateStatus(true, this.appearStatus);
-    };
-    _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
-      var nextStatus = null;
-      if (prevProps !== this.props) {
-        var status = this.state.status;
-        if (this.props.in) {
-          if (status !== ENTERING && status !== ENTERED) {
-            nextStatus = ENTERING;
-          }
-        } else {
-          if (status === ENTERING || status === ENTERED) {
-            nextStatus = EXITING;
-          }
-        }
-      }
-      this.updateStatus(false, nextStatus);
-    };
-    _proto.componentWillUnmount = function componentWillUnmount() {
-      this.cancelNextCallback();
-    };
-    _proto.getTimeouts = function getTimeouts() {
-      var timeout2 = this.props.timeout;
-      var exit, enter, appear;
-      exit = enter = appear = timeout2;
-      if (timeout2 != null && typeof timeout2 !== "number") {
-        exit = timeout2.exit;
-        enter = timeout2.enter;
-        appear = timeout2.appear !== void 0 ? timeout2.appear : enter;
-      }
-      return {
-        exit,
-        enter,
-        appear
-      };
-    };
-    _proto.updateStatus = function updateStatus(mounting, nextStatus) {
-      if (mounting === void 0) {
-        mounting = false;
-      }
-      if (nextStatus !== null) {
-        this.cancelNextCallback();
-        if (nextStatus === ENTERING) {
-          this.performEnter(mounting);
-        } else {
-          this.performExit();
-        }
-      } else if (this.props.unmountOnExit && this.state.status === EXITED) {
-        this.setState({
-          status: UNMOUNTED
-        });
-      }
-    };
-    _proto.performEnter = function performEnter(mounting) {
-      var _this2 = this;
-      var enter = this.props.enter;
-      var appearing = this.context ? this.context.isMounting : mounting;
-      var _ref2 = this.props.nodeRef ? [appearing] : [import_react_dom.default.findDOMNode(this), appearing], maybeNode = _ref2[0], maybeAppearing = _ref2[1];
-      var timeouts = this.getTimeouts();
-      var enterTimeout = appearing ? timeouts.appear : timeouts.enter;
-      if (!mounting && !enter || config_default.disabled) {
-        this.safeSetState({
-          status: ENTERED
-        }, function() {
-          _this2.props.onEntered(maybeNode);
-        });
-        return;
-      }
-      this.props.onEnter(maybeNode, maybeAppearing);
-      this.safeSetState({
-        status: ENTERING
-      }, function() {
-        _this2.props.onEntering(maybeNode, maybeAppearing);
-        _this2.onTransitionEnd(enterTimeout, function() {
-          _this2.safeSetState({
-            status: ENTERED
-          }, function() {
-            _this2.props.onEntered(maybeNode, maybeAppearing);
-          });
-        });
-      });
-    };
-    _proto.performExit = function performExit() {
-      var _this3 = this;
-      var exit = this.props.exit;
-      var timeouts = this.getTimeouts();
-      var maybeNode = this.props.nodeRef ? void 0 : import_react_dom.default.findDOMNode(this);
-      if (!exit || config_default.disabled) {
-        this.safeSetState({
-          status: EXITED
-        }, function() {
-          _this3.props.onExited(maybeNode);
-        });
-        return;
-      }
-      this.props.onExit(maybeNode);
-      this.safeSetState({
-        status: EXITING
-      }, function() {
-        _this3.props.onExiting(maybeNode);
-        _this3.onTransitionEnd(timeouts.exit, function() {
-          _this3.safeSetState({
-            status: EXITED
-          }, function() {
-            _this3.props.onExited(maybeNode);
-          });
-        });
-      });
-    };
-    _proto.cancelNextCallback = function cancelNextCallback() {
-      if (this.nextCallback !== null) {
-        this.nextCallback.cancel();
-        this.nextCallback = null;
-      }
-    };
-    _proto.safeSetState = function safeSetState(nextState, callback) {
-      callback = this.setNextCallback(callback);
-      this.setState(nextState, callback);
-    };
-    _proto.setNextCallback = function setNextCallback(callback) {
-      var _this4 = this;
-      var active = true;
-      this.nextCallback = function(event) {
-        if (active) {
-          active = false;
-          _this4.nextCallback = null;
-          callback(event);
-        }
-      };
-      this.nextCallback.cancel = function() {
-        active = false;
-      };
-      return this.nextCallback;
-    };
-    _proto.onTransitionEnd = function onTransitionEnd(timeout2, handler) {
-      this.setNextCallback(handler);
-      var node2 = this.props.nodeRef ? this.props.nodeRef.current : import_react_dom.default.findDOMNode(this);
-      var doesNotHaveTimeoutOrListener = timeout2 == null && !this.props.addEndListener;
-      if (!node2 || doesNotHaveTimeoutOrListener) {
-        setTimeout(this.nextCallback, 0);
-        return;
-      }
-      if (this.props.addEndListener) {
-        var _ref3 = this.props.nodeRef ? [this.nextCallback] : [node2, this.nextCallback], maybeNode = _ref3[0], maybeNextCallback = _ref3[1];
-        this.props.addEndListener(maybeNode, maybeNextCallback);
-      }
-      if (timeout2 != null) {
-        setTimeout(this.nextCallback, timeout2);
-      }
-    };
-    _proto.render = function render() {
-      var status = this.state.status;
-      if (status === UNMOUNTED) {
+    let {
+      pathname = "/",
+      search = "",
+      hash: hash2 = "",
+      state = null,
+      key = "default"
+    } = locationProp;
+    let location = (0, import_react9.useMemo)(() => {
+      let trailingPathname = stripBasename(pathname, basename);
+      if (trailingPathname == null) {
         return null;
       }
-      var _this$props = this.props, children = _this$props.children, _in = _this$props.in, _mountOnEnter = _this$props.mountOnEnter, _unmountOnExit = _this$props.unmountOnExit, _appear = _this$props.appear, _enter = _this$props.enter, _exit = _this$props.exit, _timeout = _this$props.timeout, _addEndListener = _this$props.addEndListener, _onEnter = _this$props.onEnter, _onEntering = _this$props.onEntering, _onEntered = _this$props.onEntered, _onExit = _this$props.onExit, _onExiting = _this$props.onExiting, _onExited = _this$props.onExited, _nodeRef = _this$props.nodeRef, childProps = _objectWithoutPropertiesLoose2(_this$props, ["children", "in", "mountOnEnter", "unmountOnExit", "appear", "enter", "exit", "timeout", "addEndListener", "onEnter", "onEntering", "onEntered", "onExit", "onExiting", "onExited", "nodeRef"]);
-      return /* @__PURE__ */ import_react12.default.createElement(TransitionGroupContext_default.Provider, {
-        value: null
-      }, typeof children === "function" ? children(status, childProps) : import_react12.default.cloneElement(import_react12.default.Children.only(children), childProps));
-    };
-    return Transition2;
-  }(import_react12.default.Component);
-  Transition.contextType = TransitionGroupContext_default;
-  Transition.propTypes = true ? {
-    nodeRef: import_prop_types15.default.shape({
-      current: typeof Element === "undefined" ? import_prop_types15.default.any : function(propValue, key, componentName, location, propFullName, secret) {
-        var value = propValue[key];
-        return import_prop_types15.default.instanceOf(value && "ownerDocument" in value ? value.ownerDocument.defaultView.Element : Element)(propValue, key, componentName, location, propFullName, secret);
-      }
-    }),
-    children: import_prop_types15.default.oneOfType([import_prop_types15.default.func.isRequired, import_prop_types15.default.element.isRequired]).isRequired,
-    in: import_prop_types15.default.bool,
-    mountOnEnter: import_prop_types15.default.bool,
-    unmountOnExit: import_prop_types15.default.bool,
-    appear: import_prop_types15.default.bool,
-    enter: import_prop_types15.default.bool,
-    exit: import_prop_types15.default.bool,
-    timeout: function timeout(props) {
-      var pt = timeoutsShape;
-      if (!props.addEndListener)
-        pt = pt.isRequired;
-      for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-        args[_key - 1] = arguments[_key];
-      }
-      return pt.apply(void 0, [props].concat(args));
-    },
-    addEndListener: import_prop_types15.default.func,
-    onEnter: import_prop_types15.default.func,
-    onEntering: import_prop_types15.default.func,
-    onEntered: import_prop_types15.default.func,
-    onExit: import_prop_types15.default.func,
-    onExiting: import_prop_types15.default.func,
-    onExited: import_prop_types15.default.func
-  } : {};
-  function noop2() {
-  }
-  Transition.defaultProps = {
-    in: false,
-    mountOnEnter: false,
-    unmountOnExit: false,
-    appear: false,
-    enter: true,
-    exit: true,
-    onEnter: noop2,
-    onEntering: noop2,
-    onEntered: noop2,
-    onExit: noop2,
-    onExiting: noop2,
-    onExited: noop2
-  };
-  Transition.UNMOUNTED = UNMOUNTED;
-  Transition.EXITED = EXITED;
-  Transition.ENTERING = ENTERING;
-  Transition.ENTERED = ENTERED;
-  Transition.EXITING = EXITING;
-  var Transition_default = Transition;
-
-  // node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js
-  function _assertThisInitialized(self2) {
-    if (self2 === void 0) {
-      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }
-    return self2;
-  }
-
-  // node_modules/react-transition-group/esm/TransitionGroup.js
-  var import_prop_types16 = __toModule(require_prop_types());
-  var import_react14 = __toModule(require_react());
-
-  // node_modules/react-transition-group/esm/utils/ChildMapping.js
-  var import_react13 = __toModule(require_react());
-  function getChildMapping(children, mapFn) {
-    var mapper = function mapper2(child) {
-      return mapFn && (0, import_react13.isValidElement)(child) ? mapFn(child) : child;
-    };
-    var result = Object.create(null);
-    if (children)
-      import_react13.Children.map(children, function(c) {
-        return c;
-      }).forEach(function(child) {
-        result[child.key] = mapper(child);
-      });
-    return result;
-  }
-  function mergeChildMappings(prev2, next2) {
-    prev2 = prev2 || {};
-    next2 = next2 || {};
-    function getValueForKey(key) {
-      return key in next2 ? next2[key] : prev2[key];
-    }
-    var nextKeysPending = Object.create(null);
-    var pendingKeys = [];
-    for (var prevKey in prev2) {
-      if (prevKey in next2) {
-        if (pendingKeys.length) {
-          nextKeysPending[prevKey] = pendingKeys;
-          pendingKeys = [];
-        }
-      } else {
-        pendingKeys.push(prevKey);
-      }
-    }
-    var i;
-    var childMapping = {};
-    for (var nextKey in next2) {
-      if (nextKeysPending[nextKey]) {
-        for (i = 0; i < nextKeysPending[nextKey].length; i++) {
-          var pendingNextKey = nextKeysPending[nextKey][i];
-          childMapping[nextKeysPending[nextKey][i]] = getValueForKey(pendingNextKey);
-        }
-      }
-      childMapping[nextKey] = getValueForKey(nextKey);
-    }
-    for (i = 0; i < pendingKeys.length; i++) {
-      childMapping[pendingKeys[i]] = getValueForKey(pendingKeys[i]);
-    }
-    return childMapping;
-  }
-  function getProp(child, prop, props) {
-    return props[prop] != null ? props[prop] : child.props[prop];
-  }
-  function getInitialChildMapping(props, onExited) {
-    return getChildMapping(props.children, function(child) {
-      return (0, import_react13.cloneElement)(child, {
-        onExited: onExited.bind(null, child),
-        in: true,
-        appear: getProp(child, "appear", props),
-        enter: getProp(child, "enter", props),
-        exit: getProp(child, "exit", props)
-      });
-    });
-  }
-  function getNextChildMapping(nextProps, prevChildMapping, onExited) {
-    var nextChildMapping = getChildMapping(nextProps.children);
-    var children = mergeChildMappings(prevChildMapping, nextChildMapping);
-    Object.keys(children).forEach(function(key) {
-      var child = children[key];
-      if (!(0, import_react13.isValidElement)(child))
-        return;
-      var hasPrev = key in prevChildMapping;
-      var hasNext = key in nextChildMapping;
-      var prevChild = prevChildMapping[key];
-      var isLeaving = (0, import_react13.isValidElement)(prevChild) && !prevChild.props.in;
-      if (hasNext && (!hasPrev || isLeaving)) {
-        children[key] = (0, import_react13.cloneElement)(child, {
-          onExited: onExited.bind(null, child),
-          in: true,
-          exit: getProp(child, "exit", nextProps),
-          enter: getProp(child, "enter", nextProps)
-        });
-      } else if (!hasNext && hasPrev && !isLeaving) {
-        children[key] = (0, import_react13.cloneElement)(child, {
-          in: false
-        });
-      } else if (hasNext && hasPrev && (0, import_react13.isValidElement)(prevChild)) {
-        children[key] = (0, import_react13.cloneElement)(child, {
-          onExited: onExited.bind(null, child),
-          in: prevChild.props.in,
-          exit: getProp(child, "exit", nextProps),
-          enter: getProp(child, "enter", nextProps)
-        });
-      }
-    });
-    return children;
-  }
-
-  // node_modules/react-transition-group/esm/TransitionGroup.js
-  var values2 = Object.values || function(obj) {
-    return Object.keys(obj).map(function(k) {
-      return obj[k];
-    });
-  };
-  var defaultProps = {
-    component: "div",
-    childFactory: function childFactory(child) {
-      return child;
-    }
-  };
-  var TransitionGroup = /* @__PURE__ */ function(_React$Component) {
-    _inheritsLoose(TransitionGroup2, _React$Component);
-    function TransitionGroup2(props, context) {
-      var _this;
-      _this = _React$Component.call(this, props, context) || this;
-      var handleExited = _this.handleExited.bind(_assertThisInitialized(_this));
-      _this.state = {
-        contextValue: {
-          isMounting: true
-        },
-        handleExited,
-        firstRender: true
-      };
-      return _this;
-    }
-    var _proto = TransitionGroup2.prototype;
-    _proto.componentDidMount = function componentDidMount() {
-      this.mounted = true;
-      this.setState({
-        contextValue: {
-          isMounting: false
-        }
-      });
-    };
-    _proto.componentWillUnmount = function componentWillUnmount() {
-      this.mounted = false;
-    };
-    TransitionGroup2.getDerivedStateFromProps = function getDerivedStateFromProps(nextProps, _ref) {
-      var prevChildMapping = _ref.children, handleExited = _ref.handleExited, firstRender = _ref.firstRender;
       return {
-        children: firstRender ? getInitialChildMapping(nextProps, handleExited) : getNextChildMapping(nextProps, prevChildMapping, handleExited),
-        firstRender: false
+        pathname: trailingPathname,
+        search,
+        hash: hash2,
+        state,
+        key
       };
-    };
-    _proto.handleExited = function handleExited(child, node2) {
-      var currentChildMapping = getChildMapping(this.props.children);
-      if (child.key in currentChildMapping)
-        return;
-      if (child.props.onExited) {
-        child.props.onExited(node2);
-      }
-      if (this.mounted) {
-        this.setState(function(state) {
-          var children = _extends({}, state.children);
-          delete children[child.key];
-          return {
-            children
-          };
-        });
-      }
-    };
-    _proto.render = function render() {
-      var _this$props = this.props, Component2 = _this$props.component, childFactory2 = _this$props.childFactory, props = _objectWithoutPropertiesLoose2(_this$props, ["component", "childFactory"]);
-      var contextValue = this.state.contextValue;
-      var children = values2(this.state.children).map(childFactory2);
-      delete props.appear;
-      delete props.enter;
-      delete props.exit;
-      if (Component2 === null) {
-        return /* @__PURE__ */ import_react14.default.createElement(TransitionGroupContext_default.Provider, {
-          value: contextValue
-        }, children);
-      }
-      return /* @__PURE__ */ import_react14.default.createElement(TransitionGroupContext_default.Provider, {
-        value: contextValue
-      }, /* @__PURE__ */ import_react14.default.createElement(Component2, props, children));
-    };
-    return TransitionGroup2;
-  }(import_react14.default.Component);
-  TransitionGroup.propTypes = true ? {
-    component: import_prop_types16.default.any,
-    children: import_prop_types16.default.node,
-    appear: import_prop_types16.default.bool,
-    enter: import_prop_types16.default.bool,
-    exit: import_prop_types16.default.bool,
-    childFactory: import_prop_types16.default.func
-  } : {};
-  TransitionGroup.defaultProps = defaultProps;
-  var TransitionGroup_default = TransitionGroup;
-
-  // node_modules/@mui/material/ButtonBase/Ripple.js
-  var React21 = __toModule(require_react());
-  var import_prop_types17 = __toModule(require_prop_types());
-  var import_jsx_runtime11 = __toModule(require_jsx_runtime());
-  function Ripple(props) {
-    const {
-      className,
-      classes,
-      pulsate = false,
-      rippleX,
-      rippleY,
-      rippleSize,
-      in: inProp,
-      onExited,
-      timeout: timeout2
-    } = props;
-    const [leaving, setLeaving] = React21.useState(false);
-    const rippleClassName = clsx_m_default(className, classes.ripple, classes.rippleVisible, pulsate && classes.ripplePulsate);
-    const rippleStyles = {
-      width: rippleSize,
-      height: rippleSize,
-      top: -(rippleSize / 2) + rippleY,
-      left: -(rippleSize / 2) + rippleX
-    };
-    const childClassName = clsx_m_default(classes.child, leaving && classes.childLeaving, pulsate && classes.childPulsate);
-    if (!inProp && !leaving) {
-      setLeaving(true);
-    }
-    React21.useEffect(() => {
-      if (!inProp && onExited != null) {
-        const timeoutId = setTimeout(onExited, timeout2);
-        return () => {
-          clearTimeout(timeoutId);
-        };
-      }
-      return void 0;
-    }, [onExited, inProp, timeout2]);
-    return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", {
-      className: rippleClassName,
-      style: rippleStyles,
-      children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", {
-        className: childClassName
-      })
-    });
-  }
-  true ? Ripple.propTypes = {
-    classes: import_prop_types17.default.object.isRequired,
-    className: import_prop_types17.default.string,
-    in: import_prop_types17.default.bool,
-    onExited: import_prop_types17.default.func,
-    pulsate: import_prop_types17.default.bool,
-    rippleSize: import_prop_types17.default.number,
-    rippleX: import_prop_types17.default.number,
-    rippleY: import_prop_types17.default.number,
-    timeout: import_prop_types17.default.number.isRequired
-  } : void 0;
-  var Ripple_default = Ripple;
-
-  // node_modules/@mui/material/ButtonBase/touchRippleClasses.js
-  var touchRippleClasses = generateUtilityClasses("MuiTouchRipple", ["root", "ripple", "rippleVisible", "ripplePulsate", "child", "childLeaving", "childPulsate"]);
-  var touchRippleClasses_default = touchRippleClasses;
-
-  // node_modules/@mui/material/ButtonBase/TouchRipple.js
-  var import_jsx_runtime12 = __toModule(require_jsx_runtime());
-  var _excluded15 = ["center", "classes", "className"];
-  var _ = (t) => t;
-  var _t;
-  var _t2;
-  var _t3;
-  var _t4;
-  var DURATION = 550;
-  var DELAY_RIPPLE = 80;
-  var enterKeyframe = keyframes(_t || (_t = _`
-  0% {
-    transform: scale(0);
-    opacity: 0.1;
-  }
-
-  100% {
-    transform: scale(1);
-    opacity: 0.3;
-  }
-`));
-  var exitKeyframe = keyframes(_t2 || (_t2 = _`
-  0% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-`));
-  var pulsateKeyframe = keyframes(_t3 || (_t3 = _`
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(0.92);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-`));
-  var TouchRippleRoot = styled_default("span", {
-    name: "MuiTouchRipple",
-    slot: "Root",
-    skipSx: true
-  })({
-    overflow: "hidden",
-    pointerEvents: "none",
-    position: "absolute",
-    zIndex: 0,
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    borderRadius: "inherit"
-  });
-  var TouchRippleRipple = styled_default(Ripple_default, {
-    name: "MuiTouchRipple",
-    slot: "Ripple"
-  })(_t4 || (_t4 = _`
-  opacity: 0;
-  position: absolute;
-
-  &.${0} {
-    opacity: 0.3;
-    transform: scale(1);
-    animation-name: ${0};
-    animation-duration: ${0}ms;
-    animation-timing-function: ${0};
-  }
-
-  &.${0} {
-    animation-duration: ${0}ms;
-  }
-
-  & .${0} {
-    opacity: 1;
-    display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    background-color: currentColor;
-  }
-
-  & .${0} {
-    opacity: 0;
-    animation-name: ${0};
-    animation-duration: ${0}ms;
-    animation-timing-function: ${0};
-  }
-
-  & .${0} {
-    position: absolute;
-    /* @noflip */
-    left: 0px;
-    top: 0;
-    animation-name: ${0};
-    animation-duration: 2500ms;
-    animation-timing-function: ${0};
-    animation-iteration-count: infinite;
-    animation-delay: 200ms;
-  }
-`), touchRippleClasses_default.rippleVisible, enterKeyframe, DURATION, ({
-    theme
-  }) => theme.transitions.easing.easeInOut, touchRippleClasses_default.ripplePulsate, ({
-    theme
-  }) => theme.transitions.duration.shorter, touchRippleClasses_default.child, touchRippleClasses_default.childLeaving, exitKeyframe, DURATION, ({
-    theme
-  }) => theme.transitions.easing.easeInOut, touchRippleClasses_default.childPulsate, pulsateKeyframe, ({
-    theme
-  }) => theme.transitions.easing.easeInOut);
-  var TouchRipple = /* @__PURE__ */ React22.forwardRef(function TouchRipple2(inProps, ref) {
-    const props = useThemeProps2({
-      props: inProps,
-      name: "MuiTouchRipple"
-    });
-    const {
-      center: centerProp = false,
-      classes = {},
-      className
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded15);
-    const [ripples, setRipples] = React22.useState([]);
-    const nextKey = React22.useRef(0);
-    const rippleCallback = React22.useRef(null);
-    React22.useEffect(() => {
-      if (rippleCallback.current) {
-        rippleCallback.current();
-        rippleCallback.current = null;
-      }
-    }, [ripples]);
-    const ignoringMouseDown = React22.useRef(false);
-    const startTimer = React22.useRef(null);
-    const startTimerCommit = React22.useRef(null);
-    const container = React22.useRef(null);
-    React22.useEffect(() => {
-      return () => {
-        clearTimeout(startTimer.current);
-      };
-    }, []);
-    const startCommit = React22.useCallback((params) => {
-      const {
-        pulsate: pulsate2,
-        rippleX,
-        rippleY,
-        rippleSize,
-        cb
-      } = params;
-      setRipples((oldRipples) => [...oldRipples, /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(TouchRippleRipple, {
-        classes: {
-          ripple: clsx_m_default(classes.ripple, touchRippleClasses_default.ripple),
-          rippleVisible: clsx_m_default(classes.rippleVisible, touchRippleClasses_default.rippleVisible),
-          ripplePulsate: clsx_m_default(classes.ripplePulsate, touchRippleClasses_default.ripplePulsate),
-          child: clsx_m_default(classes.child, touchRippleClasses_default.child),
-          childLeaving: clsx_m_default(classes.childLeaving, touchRippleClasses_default.childLeaving),
-          childPulsate: clsx_m_default(classes.childPulsate, touchRippleClasses_default.childPulsate)
-        },
-        timeout: DURATION,
-        pulsate: pulsate2,
-        rippleX,
-        rippleY,
-        rippleSize
-      }, nextKey.current)]);
-      nextKey.current += 1;
-      rippleCallback.current = cb;
-    }, [classes]);
-    const start = React22.useCallback((event = {}, options = {}, cb) => {
-      const {
-        pulsate: pulsate2 = false,
-        center = centerProp || options.pulsate,
-        fakeElement = false
-      } = options;
-      if (event.type === "mousedown" && ignoringMouseDown.current) {
-        ignoringMouseDown.current = false;
-        return;
-      }
-      if (event.type === "touchstart") {
-        ignoringMouseDown.current = true;
-      }
-      const element = fakeElement ? null : container.current;
-      const rect = element ? element.getBoundingClientRect() : {
-        width: 0,
-        height: 0,
-        left: 0,
-        top: 0
-      };
-      let rippleX;
-      let rippleY;
-      let rippleSize;
-      if (center || event.clientX === 0 && event.clientY === 0 || !event.clientX && !event.touches) {
-        rippleX = Math.round(rect.width / 2);
-        rippleY = Math.round(rect.height / 2);
-      } else {
-        const {
-          clientX,
-          clientY
-        } = event.touches ? event.touches[0] : event;
-        rippleX = Math.round(clientX - rect.left);
-        rippleY = Math.round(clientY - rect.top);
-      }
-      if (center) {
-        rippleSize = Math.sqrt((2 * rect.width ** 2 + rect.height ** 2) / 3);
-        if (rippleSize % 2 === 0) {
-          rippleSize += 1;
-        }
-      } else {
-        const sizeX = Math.max(Math.abs((element ? element.clientWidth : 0) - rippleX), rippleX) * 2 + 2;
-        const sizeY = Math.max(Math.abs((element ? element.clientHeight : 0) - rippleY), rippleY) * 2 + 2;
-        rippleSize = Math.sqrt(sizeX ** 2 + sizeY ** 2);
-      }
-      if (event.touches) {
-        if (startTimerCommit.current === null) {
-          startTimerCommit.current = () => {
-            startCommit({
-              pulsate: pulsate2,
-              rippleX,
-              rippleY,
-              rippleSize,
-              cb
-            });
-          };
-          startTimer.current = setTimeout(() => {
-            if (startTimerCommit.current) {
-              startTimerCommit.current();
-              startTimerCommit.current = null;
-            }
-          }, DELAY_RIPPLE);
-        }
-      } else {
-        startCommit({
-          pulsate: pulsate2,
-          rippleX,
-          rippleY,
-          rippleSize,
-          cb
-        });
-      }
-    }, [centerProp, startCommit]);
-    const pulsate = React22.useCallback(() => {
-      start({}, {
-        pulsate: true
-      });
-    }, [start]);
-    const stop = React22.useCallback((event, cb) => {
-      clearTimeout(startTimer.current);
-      if (event.type === "touchend" && startTimerCommit.current) {
-        startTimerCommit.current();
-        startTimerCommit.current = null;
-        startTimer.current = setTimeout(() => {
-          stop(event, cb);
-        });
-        return;
-      }
-      startTimerCommit.current = null;
-      setRipples((oldRipples) => {
-        if (oldRipples.length > 0) {
-          return oldRipples.slice(1);
-        }
-        return oldRipples;
-      });
-      rippleCallback.current = cb;
-    }, []);
-    React22.useImperativeHandle(ref, () => ({
-      pulsate,
-      start,
-      stop
-    }), [pulsate, start, stop]);
-    return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(TouchRippleRoot, _extends({
-      className: clsx_m_default(classes.root, touchRippleClasses_default.root, className),
-      ref: container
-    }, other, {
-      children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(TransitionGroup_default, {
-        component: null,
-        exit: true,
-        children: ripples
-      })
-    }));
-  });
-  true ? TouchRipple.propTypes = {
-    center: import_prop_types18.default.bool,
-    classes: import_prop_types18.default.object,
-    className: import_prop_types18.default.string
-  } : void 0;
-  var TouchRipple_default = TouchRipple;
-
-  // node_modules/@mui/material/ButtonBase/buttonBaseClasses.js
-  function getButtonBaseUtilityClass(slot) {
-    return generateUtilityClass("MuiButtonBase", slot);
-  }
-  var buttonBaseClasses = generateUtilityClasses("MuiButtonBase", ["root", "disabled", "focusVisible"]);
-  var buttonBaseClasses_default = buttonBaseClasses;
-
-  // node_modules/@mui/material/ButtonBase/ButtonBase.js
-  var import_jsx_runtime13 = __toModule(require_jsx_runtime());
-  var import_jsx_runtime14 = __toModule(require_jsx_runtime());
-  var _excluded16 = ["action", "centerRipple", "children", "className", "component", "disabled", "disableRipple", "disableTouchRipple", "focusRipple", "focusVisibleClassName", "LinkComponent", "onBlur", "onClick", "onContextMenu", "onDragLeave", "onFocus", "onFocusVisible", "onKeyDown", "onKeyUp", "onMouseDown", "onMouseLeave", "onMouseUp", "onTouchEnd", "onTouchMove", "onTouchStart", "tabIndex", "TouchRippleProps", "type"];
-  var useUtilityClasses4 = (ownerState) => {
-    const {
-      disabled,
-      focusVisible,
-      focusVisibleClassName,
-      classes
-    } = ownerState;
-    const slots = {
-      root: ["root", disabled && "disabled", focusVisible && "focusVisible"]
-    };
-    const composedClasses = composeClasses(slots, getButtonBaseUtilityClass, classes);
-    if (focusVisible && focusVisibleClassName) {
-      composedClasses.root += ` ${focusVisibleClassName}`;
-    }
-    return composedClasses;
-  };
-  var ButtonBaseRoot = styled_default("button", {
-    name: "MuiButtonBase",
-    slot: "Root",
-    overridesResolver: (props, styles4) => styles4.root
-  })({
-    display: "inline-flex",
-    alignItems: "center",
-    justifyContent: "center",
-    position: "relative",
-    boxSizing: "border-box",
-    WebkitTapHighlightColor: "transparent",
-    backgroundColor: "transparent",
-    outline: 0,
-    border: 0,
-    margin: 0,
-    borderRadius: 0,
-    padding: 0,
-    cursor: "pointer",
-    userSelect: "none",
-    verticalAlign: "middle",
-    MozAppearance: "none",
-    WebkitAppearance: "none",
-    textDecoration: "none",
-    color: "inherit",
-    "&::-moz-focus-inner": {
-      borderStyle: "none"
-    },
-    [`&.${buttonBaseClasses_default.disabled}`]: {
-      pointerEvents: "none",
-      cursor: "default"
-    },
-    "@media print": {
-      colorAdjust: "exact"
-    }
-  });
-  var ButtonBase = /* @__PURE__ */ React23.forwardRef(function ButtonBase2(inProps, ref) {
-    const props = useThemeProps2({
-      props: inProps,
-      name: "MuiButtonBase"
-    });
-    const {
-      action,
-      centerRipple = false,
-      children,
-      className,
-      component = "button",
-      disabled = false,
-      disableRipple = false,
-      disableTouchRipple = false,
-      focusRipple = false,
-      LinkComponent = "a",
-      onBlur,
-      onClick,
-      onContextMenu,
-      onDragLeave,
-      onFocus,
-      onFocusVisible,
-      onKeyDown,
-      onKeyUp,
-      onMouseDown,
-      onMouseLeave,
-      onMouseUp,
-      onTouchEnd,
-      onTouchMove,
-      onTouchStart,
-      tabIndex = 0,
-      TouchRippleProps,
-      type
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded16);
-    const buttonRef = React23.useRef(null);
-    const rippleRef = React23.useRef(null);
-    const {
-      isFocusVisibleRef,
-      onFocus: handleFocusVisible,
-      onBlur: handleBlurVisible,
-      ref: focusVisibleRef
-    } = useIsFocusVisible_default();
-    const [focusVisible, setFocusVisible] = React23.useState(false);
-    if (disabled && focusVisible) {
-      setFocusVisible(false);
-    }
-    React23.useImperativeHandle(action, () => ({
-      focusVisible: () => {
-        setFocusVisible(true);
-        buttonRef.current.focus();
-      }
-    }), []);
-    React23.useEffect(() => {
-      if (focusVisible && focusRipple && !disableRipple) {
-        rippleRef.current.pulsate();
-      }
-    }, [disableRipple, focusRipple, focusVisible]);
-    function useRippleHandler(rippleAction, eventCallback, skipRippleAction = disableTouchRipple) {
-      return useEventCallback_default((event) => {
-        if (eventCallback) {
-          eventCallback(event);
-        }
-        const ignore = skipRippleAction;
-        if (!ignore && rippleRef.current) {
-          rippleRef.current[rippleAction](event);
-        }
-        return true;
-      });
-    }
-    const handleMouseDown = useRippleHandler("start", onMouseDown);
-    const handleContextMenu = useRippleHandler("stop", onContextMenu);
-    const handleDragLeave = useRippleHandler("stop", onDragLeave);
-    const handleMouseUp = useRippleHandler("stop", onMouseUp);
-    const handleMouseLeave = useRippleHandler("stop", (event) => {
-      if (focusVisible) {
-        event.preventDefault();
-      }
-      if (onMouseLeave) {
-        onMouseLeave(event);
-      }
-    });
-    const handleTouchStart = useRippleHandler("start", onTouchStart);
-    const handleTouchEnd = useRippleHandler("stop", onTouchEnd);
-    const handleTouchMove = useRippleHandler("stop", onTouchMove);
-    const handleBlur = useRippleHandler("stop", (event) => {
-      handleBlurVisible(event);
-      if (isFocusVisibleRef.current === false) {
-        setFocusVisible(false);
-      }
-      if (onBlur) {
-        onBlur(event);
-      }
-    }, false);
-    const handleFocus = useEventCallback_default((event) => {
-      if (!buttonRef.current) {
-        buttonRef.current = event.currentTarget;
-      }
-      handleFocusVisible(event);
-      if (isFocusVisibleRef.current === true) {
-        setFocusVisible(true);
-        if (onFocusVisible) {
-          onFocusVisible(event);
-        }
-      }
-      if (onFocus) {
-        onFocus(event);
-      }
-    });
-    const isNonNativeButton = () => {
-      const button = buttonRef.current;
-      return component && component !== "button" && !(button.tagName === "A" && button.href);
-    };
-    const keydownRef = React23.useRef(false);
-    const handleKeyDown2 = useEventCallback_default((event) => {
-      if (focusRipple && !keydownRef.current && focusVisible && rippleRef.current && event.key === " ") {
-        keydownRef.current = true;
-        rippleRef.current.stop(event, () => {
-          rippleRef.current.start(event);
-        });
-      }
-      if (event.target === event.currentTarget && isNonNativeButton() && event.key === " ") {
-        event.preventDefault();
-      }
-      if (onKeyDown) {
-        onKeyDown(event);
-      }
-      if (event.target === event.currentTarget && isNonNativeButton() && event.key === "Enter" && !disabled) {
-        event.preventDefault();
-        if (onClick) {
-          onClick(event);
-        }
-      }
-    });
-    const handleKeyUp = useEventCallback_default((event) => {
-      if (focusRipple && event.key === " " && rippleRef.current && focusVisible && !event.defaultPrevented) {
-        keydownRef.current = false;
-        rippleRef.current.stop(event, () => {
-          rippleRef.current.pulsate(event);
-        });
-      }
-      if (onKeyUp) {
-        onKeyUp(event);
-      }
-      if (onClick && event.target === event.currentTarget && isNonNativeButton() && event.key === " " && !event.defaultPrevented) {
-        onClick(event);
-      }
-    });
-    let ComponentProp = component;
-    if (ComponentProp === "button" && (other.href || other.to)) {
-      ComponentProp = LinkComponent;
-    }
-    const buttonProps = {};
-    if (ComponentProp === "button") {
-      buttonProps.type = type === void 0 ? "button" : type;
-      buttonProps.disabled = disabled;
-    } else {
-      if (!other.href && !other.to) {
-        buttonProps.role = "button";
-      }
-      if (disabled) {
-        buttonProps["aria-disabled"] = disabled;
-      }
-    }
-    const handleOwnRef = useForkRef_default(focusVisibleRef, buttonRef);
-    const handleRef = useForkRef_default(ref, handleOwnRef);
-    const [mountedState, setMountedState] = React23.useState(false);
-    React23.useEffect(() => {
-      setMountedState(true);
-    }, []);
-    const enableTouchRipple = mountedState && !disableRipple && !disabled;
-    if (true) {
-      React23.useEffect(() => {
-        if (enableTouchRipple && !rippleRef.current) {
-          console.error(["MUI: The `component` prop provided to ButtonBase is invalid.", "Please make sure the children prop is rendered in this custom component."].join("\n"));
-        }
-      }, [enableTouchRipple]);
-    }
-    const ownerState = _extends({}, props, {
-      centerRipple,
-      component,
-      disabled,
-      disableRipple,
-      disableTouchRipple,
-      focusRipple,
-      tabIndex,
-      focusVisible
-    });
-    const classes = useUtilityClasses4(ownerState);
-    return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(ButtonBaseRoot, _extends({
-      as: ComponentProp,
-      className: clsx_m_default(classes.root, className),
-      ownerState,
-      onBlur: handleBlur,
-      onClick,
-      onContextMenu: handleContextMenu,
-      onFocus: handleFocus,
-      onKeyDown: handleKeyDown2,
-      onKeyUp: handleKeyUp,
-      onMouseDown: handleMouseDown,
-      onMouseLeave: handleMouseLeave,
-      onMouseUp: handleMouseUp,
-      onDragLeave: handleDragLeave,
-      onTouchEnd: handleTouchEnd,
-      onTouchMove: handleTouchMove,
-      onTouchStart: handleTouchStart,
-      ref: handleRef,
-      tabIndex: disabled ? -1 : tabIndex,
-      type
-    }, buttonProps, other, {
-      children: [children, enableTouchRipple ? /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(TouchRipple_default, _extends({
-        ref: rippleRef,
-        center: centerRipple
-      }, TouchRippleProps)) : null]
-    }));
-  });
-  true ? ButtonBase.propTypes = {
-    action: refType_default,
-    centerRipple: import_prop_types19.default.bool,
-    children: import_prop_types19.default.node,
-    classes: import_prop_types19.default.object,
-    className: import_prop_types19.default.string,
-    component: elementTypeAcceptingRef_default,
-    disabled: import_prop_types19.default.bool,
-    disableRipple: import_prop_types19.default.bool,
-    disableTouchRipple: import_prop_types19.default.bool,
-    focusRipple: import_prop_types19.default.bool,
-    focusVisibleClassName: import_prop_types19.default.string,
-    href: import_prop_types19.default.any,
-    LinkComponent: import_prop_types19.default.elementType,
-    onBlur: import_prop_types19.default.func,
-    onClick: import_prop_types19.default.func,
-    onContextMenu: import_prop_types19.default.func,
-    onDragLeave: import_prop_types19.default.func,
-    onFocus: import_prop_types19.default.func,
-    onFocusVisible: import_prop_types19.default.func,
-    onKeyDown: import_prop_types19.default.func,
-    onKeyUp: import_prop_types19.default.func,
-    onMouseDown: import_prop_types19.default.func,
-    onMouseLeave: import_prop_types19.default.func,
-    onMouseUp: import_prop_types19.default.func,
-    onTouchEnd: import_prop_types19.default.func,
-    onTouchMove: import_prop_types19.default.func,
-    onTouchStart: import_prop_types19.default.func,
-    sx: import_prop_types19.default.oneOfType([import_prop_types19.default.arrayOf(import_prop_types19.default.oneOfType([import_prop_types19.default.func, import_prop_types19.default.object])), import_prop_types19.default.func, import_prop_types19.default.object]),
-    tabIndex: import_prop_types19.default.number,
-    TouchRippleProps: import_prop_types19.default.object,
-    type: import_prop_types19.default.oneOfType([import_prop_types19.default.oneOf(["button", "reset", "submit"]), import_prop_types19.default.string])
-  } : void 0;
-  var ButtonBase_default = ButtonBase;
-
-  // node_modules/@mui/material/IconButton/iconButtonClasses.js
-  function getIconButtonUtilityClass(slot) {
-    return generateUtilityClass("MuiIconButton", slot);
-  }
-  var iconButtonClasses = generateUtilityClasses("MuiIconButton", ["root", "disabled", "colorInherit", "colorPrimary", "colorSecondary", "edgeStart", "edgeEnd", "sizeSmall", "sizeMedium", "sizeLarge"]);
-  var iconButtonClasses_default = iconButtonClasses;
-
-  // node_modules/@mui/material/IconButton/IconButton.js
-  var import_jsx_runtime15 = __toModule(require_jsx_runtime());
-  var _excluded17 = ["edge", "children", "className", "color", "disabled", "disableFocusRipple", "size"];
-  var useUtilityClasses5 = (ownerState) => {
-    const {
-      classes,
-      disabled,
-      color: color2,
-      edge,
-      size
-    } = ownerState;
-    const slots = {
-      root: ["root", disabled && "disabled", color2 !== "default" && `color${capitalize_default(color2)}`, edge && `edge${capitalize_default(edge)}`, `size${capitalize_default(size)}`]
-    };
-    return composeClasses(slots, getIconButtonUtilityClass, classes);
-  };
-  var IconButtonRoot = styled_default(ButtonBase_default, {
-    name: "MuiIconButton",
-    slot: "Root",
-    overridesResolver: (props, styles4) => {
-      const {
-        ownerState
-      } = props;
-      return [styles4.root, ownerState.color !== "default" && styles4[`color${capitalize_default(ownerState.color)}`], ownerState.edge && styles4[`edge${capitalize_default(ownerState.edge)}`], styles4[`size${capitalize_default(ownerState.size)}`]];
-    }
-  })(({
-    theme,
-    ownerState
-  }) => _extends({
-    textAlign: "center",
-    flex: "0 0 auto",
-    fontSize: theme.typography.pxToRem(24),
-    padding: 8,
-    borderRadius: "50%",
-    overflow: "visible",
-    color: theme.palette.action.active,
-    transition: theme.transitions.create("background-color", {
-      duration: theme.transitions.duration.shortest
-    })
-  }, !ownerState.disableRipple && {
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
-      "@media (hover: none)": {
-        backgroundColor: "transparent"
-      }
-    }
-  }, ownerState.edge === "start" && {
-    marginLeft: ownerState.size === "small" ? -3 : -12
-  }, ownerState.edge === "end" && {
-    marginRight: ownerState.size === "small" ? -3 : -12
-  }), ({
-    theme,
-    ownerState
-  }) => _extends({}, ownerState.color === "inherit" && {
-    color: "inherit"
-  }, ownerState.color !== "inherit" && ownerState.color !== "default" && _extends({
-    color: theme.palette[ownerState.color].main
-  }, !ownerState.disableRipple && {
-    "&:hover": {
-      backgroundColor: alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
-      "@media (hover: none)": {
-        backgroundColor: "transparent"
-      }
-    }
-  }), ownerState.size === "small" && {
-    padding: 5,
-    fontSize: theme.typography.pxToRem(18)
-  }, ownerState.size === "large" && {
-    padding: 12,
-    fontSize: theme.typography.pxToRem(28)
-  }, {
-    [`&.${iconButtonClasses_default.disabled}`]: {
-      backgroundColor: "transparent",
-      color: theme.palette.action.disabled
-    }
-  }));
-  var IconButton = /* @__PURE__ */ React24.forwardRef(function IconButton2(inProps, ref) {
-    const props = useThemeProps2({
-      props: inProps,
-      name: "MuiIconButton"
-    });
-    const {
-      edge = false,
-      children,
-      className,
-      color: color2 = "default",
-      disabled = false,
-      disableFocusRipple = false,
-      size = "medium"
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded17);
-    const ownerState = _extends({}, props, {
-      edge,
-      color: color2,
-      disabled,
-      disableFocusRipple,
-      size
-    });
-    const classes = useUtilityClasses5(ownerState);
-    return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(IconButtonRoot, _extends({
-      className: clsx_m_default(classes.root, className),
-      centerRipple: true,
-      focusRipple: !disableFocusRipple,
-      disabled,
-      ref,
-      ownerState
-    }, other, {
-      children
-    }));
-  });
-  true ? IconButton.propTypes = {
-    children: chainPropTypes(import_prop_types20.default.node, (props) => {
-      const found = React24.Children.toArray(props.children).some((child) => /* @__PURE__ */ React24.isValidElement(child) && child.props.onClick);
-      if (found) {
-        return new Error(["MUI: You are providing an onClick event listener to a child of a button element.", "Prefer applying it to the IconButton directly.", "This guarantees that the whole <button> will be responsive to click events."].join("\n"));
-      }
+    }, [basename, pathname, search, hash2, state, key]);
+    true ? warning(location != null, '<Router basename="' + basename + '"> is not able to match the URL ' + ('"' + pathname + search + hash2 + '" because it does not start with the ') + "basename, so the <Router> won't render anything.") : void 0;
+    if (location == null) {
       return null;
-    }),
-    classes: import_prop_types20.default.object,
-    className: import_prop_types20.default.string,
-    color: import_prop_types20.default.oneOfType([import_prop_types20.default.oneOf(["inherit", "default", "primary", "secondary", "error", "info", "success", "warning"]), import_prop_types20.default.string]),
-    disabled: import_prop_types20.default.bool,
-    disableFocusRipple: import_prop_types20.default.bool,
-    disableRipple: import_prop_types20.default.bool,
-    edge: import_prop_types20.default.oneOf(["end", "start", false]),
-    size: import_prop_types20.default.oneOfType([import_prop_types20.default.oneOf(["small", "medium", "large"]), import_prop_types20.default.string]),
-    sx: import_prop_types20.default.oneOfType([import_prop_types20.default.arrayOf(import_prop_types20.default.oneOfType([import_prop_types20.default.func, import_prop_types20.default.object])), import_prop_types20.default.func, import_prop_types20.default.object])
-  } : void 0;
-  var IconButton_default = IconButton;
-
-  // node_modules/@mui/material/internal/svg-icons/SuccessOutlined.js
-  var React27 = __toModule(require_react());
-
-  // node_modules/@mui/material/utils/createSvgIcon.js
-  var React26 = __toModule(require_react());
-
-  // node_modules/@mui/material/SvgIcon/SvgIcon.js
-  var React25 = __toModule(require_react());
-  var import_prop_types21 = __toModule(require_prop_types());
-
-  // node_modules/@mui/material/SvgIcon/svgIconClasses.js
-  function getSvgIconUtilityClass(slot) {
-    return generateUtilityClass("MuiSvgIcon", slot);
-  }
-  var svgIconClasses = generateUtilityClasses("MuiSvgIcon", ["root", "colorPrimary", "colorSecondary", "colorAction", "colorError", "colorDisabled", "fontSizeInherit", "fontSizeSmall", "fontSizeMedium", "fontSizeLarge"]);
-
-  // node_modules/@mui/material/SvgIcon/SvgIcon.js
-  var import_jsx_runtime16 = __toModule(require_jsx_runtime());
-  var import_jsx_runtime17 = __toModule(require_jsx_runtime());
-  var _excluded18 = ["children", "className", "color", "component", "fontSize", "htmlColor", "titleAccess", "viewBox"];
-  var useUtilityClasses6 = (ownerState) => {
-    const {
-      color: color2,
-      fontSize: fontSize2,
-      classes
-    } = ownerState;
-    const slots = {
-      root: ["root", color2 !== "inherit" && `color${capitalize_default(color2)}`, `fontSize${capitalize_default(fontSize2)}`]
-    };
-    return composeClasses(slots, getSvgIconUtilityClass, classes);
-  };
-  var SvgIconRoot = styled_default("svg", {
-    name: "MuiSvgIcon",
-    slot: "Root",
-    overridesResolver: (props, styles4) => {
-      const {
-        ownerState
-      } = props;
-      return [styles4.root, ownerState.color !== "inherit" && styles4[`color${capitalize_default(ownerState.color)}`], styles4[`fontSize${capitalize_default(ownerState.fontSize)}`]];
     }
-  })(({
-    theme,
-    ownerState
-  }) => {
-    var _theme$palette$ownerS, _theme$palette$ownerS2;
-    return {
-      userSelect: "none",
-      width: "1em",
-      height: "1em",
-      display: "inline-block",
-      fill: "currentColor",
-      flexShrink: 0,
-      transition: theme.transitions.create("fill", {
-        duration: theme.transitions.duration.shorter
-      }),
-      fontSize: {
-        inherit: "inherit",
-        small: theme.typography.pxToRem(20),
-        medium: theme.typography.pxToRem(24),
-        large: theme.typography.pxToRem(35)
-      }[ownerState.fontSize],
-      color: (_theme$palette$ownerS = (_theme$palette$ownerS2 = theme.palette[ownerState.color]) == null ? void 0 : _theme$palette$ownerS2.main) != null ? _theme$palette$ownerS : {
-        action: theme.palette.action.active,
-        disabled: theme.palette.action.disabled,
-        inherit: void 0
-      }[ownerState.color]
-    };
-  });
-  var SvgIcon = /* @__PURE__ */ React25.forwardRef(function SvgIcon2(inProps, ref) {
-    const props = useThemeProps2({
-      props: inProps,
-      name: "MuiSvgIcon"
-    });
-    const {
+    return /* @__PURE__ */ (0, import_react9.createElement)(NavigationContext.Provider, {
+      value: navigationContext
+    }, /* @__PURE__ */ (0, import_react9.createElement)(LocationContext.Provider, {
       children,
-      className,
-      color: color2 = "inherit",
-      component = "svg",
-      fontSize: fontSize2 = "medium",
-      htmlColor,
-      titleAccess,
-      viewBox = "0 0 24 24"
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded18);
-    const ownerState = _extends({}, props, {
-      color: color2,
-      component,
-      fontSize: fontSize2,
-      viewBox
+      value: {
+        location,
+        navigationType
+      }
+    }));
+  }
+  function Routes(_ref4) {
+    let {
+      children,
+      location
+    } = _ref4;
+    return useRoutes(createRoutesFromChildren(children), location);
+  }
+  function useHref(to) {
+    !useInRouterContext() ? true ? invariant(false, "useHref() may be used only in the context of a <Router> component.") : invariant(false) : void 0;
+    let {
+      basename,
+      navigator: navigator2
+    } = (0, import_react9.useContext)(NavigationContext);
+    let {
+      hash: hash2,
+      pathname,
+      search
+    } = useResolvedPath(to);
+    let joinedPathname = pathname;
+    if (basename !== "/") {
+      let toPathname = getToPathname(to);
+      let endsWithSlash = toPathname != null && toPathname.endsWith("/");
+      joinedPathname = pathname === "/" ? basename + (endsWithSlash ? "/" : "") : joinPaths([basename, pathname]);
+    }
+    return navigator2.createHref({
+      pathname: joinedPathname,
+      search,
+      hash: hash2
     });
-    const classes = useUtilityClasses6(ownerState);
-    return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(SvgIconRoot, _extends({
-      as: component,
-      className: clsx_m_default(classes.root, className),
-      ownerState,
-      focusable: "false",
-      viewBox,
-      color: htmlColor,
-      "aria-hidden": titleAccess ? void 0 : true,
-      role: titleAccess ? "img" : void 0,
-      ref
-    }, other, {
-      children: [children, titleAccess ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("title", {
-        children: titleAccess
-      }) : null]
-    }));
-  });
-  true ? SvgIcon.propTypes = {
-    children: import_prop_types21.default.node,
-    classes: import_prop_types21.default.object,
-    className: import_prop_types21.default.string,
-    color: import_prop_types21.default.oneOfType([import_prop_types21.default.oneOf(["inherit", "action", "disabled", "primary", "secondary", "error", "info", "success", "warning"]), import_prop_types21.default.string]),
-    component: import_prop_types21.default.elementType,
-    fontSize: import_prop_types21.default.oneOfType([import_prop_types21.default.oneOf(["inherit", "large", "medium", "small"]), import_prop_types21.default.string]),
-    htmlColor: import_prop_types21.default.string,
-    shapeRendering: import_prop_types21.default.string,
-    sx: import_prop_types21.default.oneOfType([import_prop_types21.default.arrayOf(import_prop_types21.default.oneOfType([import_prop_types21.default.func, import_prop_types21.default.object])), import_prop_types21.default.func, import_prop_types21.default.object]),
-    titleAccess: import_prop_types21.default.string,
-    viewBox: import_prop_types21.default.string
-  } : void 0;
-  SvgIcon.muiName = "SvgIcon";
-  var SvgIcon_default = SvgIcon;
-
-  // node_modules/@mui/material/utils/createSvgIcon.js
-  var import_jsx_runtime18 = __toModule(require_jsx_runtime());
-  function createSvgIcon(path, displayName) {
-    const Component2 = (props, ref) => /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(SvgIcon_default, _extends({
-      "data-testid": `${displayName}Icon`,
-      ref
-    }, props, {
-      children: path
-    }));
+  }
+  function useInRouterContext() {
+    return (0, import_react9.useContext)(LocationContext) != null;
+  }
+  function useLocation() {
+    !useInRouterContext() ? true ? invariant(false, "useLocation() may be used only in the context of a <Router> component.") : invariant(false) : void 0;
+    return (0, import_react9.useContext)(LocationContext).location;
+  }
+  function useNavigate() {
+    !useInRouterContext() ? true ? invariant(false, "useNavigate() may be used only in the context of a <Router> component.") : invariant(false) : void 0;
+    let {
+      basename,
+      navigator: navigator2
+    } = (0, import_react9.useContext)(NavigationContext);
+    let {
+      matches
+    } = (0, import_react9.useContext)(RouteContext);
+    let {
+      pathname: locationPathname
+    } = useLocation();
+    let routePathnamesJson = JSON.stringify(matches.map((match2) => match2.pathnameBase));
+    let activeRef = (0, import_react9.useRef)(false);
+    (0, import_react9.useEffect)(() => {
+      activeRef.current = true;
+    });
+    let navigate = (0, import_react9.useCallback)(function(to, options) {
+      if (options === void 0) {
+        options = {};
+      }
+      true ? warning(activeRef.current, "You should call navigate() in a React.useEffect(), not when your component is first rendered.") : void 0;
+      if (!activeRef.current)
+        return;
+      if (typeof to === "number") {
+        navigator2.go(to);
+        return;
+      }
+      let path = resolveTo(to, JSON.parse(routePathnamesJson), locationPathname);
+      if (basename !== "/") {
+        path.pathname = joinPaths([basename, path.pathname]);
+      }
+      (!!options.replace ? navigator2.replace : navigator2.push)(path, options.state);
+    }, [basename, navigator2, routePathnamesJson, locationPathname]);
+    return navigate;
+  }
+  function useOutlet() {
+    return (0, import_react9.useContext)(RouteContext).outlet;
+  }
+  function useResolvedPath(to) {
+    let {
+      matches
+    } = (0, import_react9.useContext)(RouteContext);
+    let {
+      pathname: locationPathname
+    } = useLocation();
+    let routePathnamesJson = JSON.stringify(matches.map((match2) => match2.pathnameBase));
+    return (0, import_react9.useMemo)(() => resolveTo(to, JSON.parse(routePathnamesJson), locationPathname), [to, routePathnamesJson, locationPathname]);
+  }
+  function useRoutes(routes, locationArg) {
+    !useInRouterContext() ? true ? invariant(false, "useRoutes() may be used only in the context of a <Router> component.") : invariant(false) : void 0;
+    let {
+      matches: parentMatches
+    } = (0, import_react9.useContext)(RouteContext);
+    let routeMatch = parentMatches[parentMatches.length - 1];
+    let parentParams = routeMatch ? routeMatch.params : {};
+    let parentPathname = routeMatch ? routeMatch.pathname : "/";
+    let parentPathnameBase = routeMatch ? routeMatch.pathnameBase : "/";
+    let parentRoute = routeMatch && routeMatch.route;
     if (true) {
-      Component2.displayName = `${displayName}Icon`;
+      let parentPath = parentRoute && parentRoute.path || "";
+      warningOnce(parentPathname, !parentRoute || parentPath.endsWith("*"), "You rendered descendant <Routes> (or called `useRoutes()`) at " + ('"' + parentPathname + '" (under <Route path="' + parentPath + '">) but the ') + `parent route path has no trailing "*". This means if you navigate deeper, the parent won't match anymore and therefore the child routes will never render.
+
+` + ('Please change the parent <Route path="' + parentPath + '"> to <Route ') + ('path="' + parentPath + '/*">.'));
     }
-    Component2.muiName = SvgIcon_default.muiName;
-    return /* @__PURE__ */ React26.memo(/* @__PURE__ */ React26.forwardRef(Component2));
+    let locationFromContext = useLocation();
+    let location;
+    if (locationArg) {
+      var _parsedLocationArg$pa;
+      let parsedLocationArg = typeof locationArg === "string" ? J(locationArg) : locationArg;
+      !(parentPathnameBase === "/" || ((_parsedLocationArg$pa = parsedLocationArg.pathname) == null ? void 0 : _parsedLocationArg$pa.startsWith(parentPathnameBase))) ? true ? invariant(false, "When overriding the location using `<Routes location>` or `useRoutes(routes, location)`, the location pathname must begin with the portion of the URL pathname that was " + ('matched by all parent routes. The current pathname base is "' + parentPathnameBase + '" ') + ('but pathname "' + parsedLocationArg.pathname + '" was given in the `location` prop.')) : invariant(false) : void 0;
+      location = parsedLocationArg;
+    } else {
+      location = locationFromContext;
+    }
+    let pathname = location.pathname || "/";
+    let remainingPathname = parentPathnameBase === "/" ? pathname : pathname.slice(parentPathnameBase.length) || "/";
+    let matches = matchRoutes(routes, {
+      pathname: remainingPathname
+    });
+    if (true) {
+      true ? warning(parentRoute || matches != null, 'No routes matched location "' + location.pathname + location.search + location.hash + '" ') : void 0;
+      true ? warning(matches == null || matches[matches.length - 1].route.element !== void 0, 'Matched leaf route at location "' + location.pathname + location.search + location.hash + '" does not have an element. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.') : void 0;
+    }
+    return _renderMatches(matches && matches.map((match2) => Object.assign({}, match2, {
+      params: Object.assign({}, parentParams, match2.params),
+      pathname: joinPaths([parentPathnameBase, match2.pathname]),
+      pathnameBase: match2.pathnameBase === "/" ? parentPathnameBase : joinPaths([parentPathnameBase, match2.pathnameBase])
+    })), parentMatches);
   }
-
-  // node_modules/@mui/material/internal/svg-icons/SuccessOutlined.js
-  var import_jsx_runtime19 = __toModule(require_jsx_runtime());
-  var SuccessOutlined_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime19.jsx)("path", {
-    d: "M20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4C12.76,4 13.5,4.11 14.2, 4.31L15.77,2.74C14.61,2.26 13.34,2 12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0, 0 22,12M7.91,10.08L6.5,11.5L11,16L21,6L19.59,4.58L11,13.17L7.91,10.08Z"
-  }), "SuccessOutlined");
-
-  // node_modules/@mui/material/internal/svg-icons/ReportProblemOutlined.js
-  var React28 = __toModule(require_react());
-  var import_jsx_runtime20 = __toModule(require_jsx_runtime());
-  var ReportProblemOutlined_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime20.jsx)("path", {
-    d: "M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"
-  }), "ReportProblemOutlined");
-
-  // node_modules/@mui/material/internal/svg-icons/ErrorOutline.js
-  var React29 = __toModule(require_react());
-  var import_jsx_runtime21 = __toModule(require_jsx_runtime());
-  var ErrorOutline_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime21.jsx)("path", {
-    d: "M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
-  }), "ErrorOutline");
-
-  // node_modules/@mui/material/internal/svg-icons/InfoOutlined.js
-  var React30 = __toModule(require_react());
-  var import_jsx_runtime22 = __toModule(require_jsx_runtime());
-  var InfoOutlined_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime22.jsx)("path", {
-    d: "M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20, 12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10, 10 0 0,0 12,2M11,17H13V11H11V17Z"
-  }), "InfoOutlined");
-
-  // node_modules/@mui/material/internal/svg-icons/Close.js
-  var React31 = __toModule(require_react());
-  var import_jsx_runtime23 = __toModule(require_jsx_runtime());
-  var Close_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime23.jsx)("path", {
-    d: "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
-  }), "Close");
-
-  // node_modules/@mui/material/Alert/Alert.js
-  var import_jsx_runtime24 = __toModule(require_jsx_runtime());
-  var import_jsx_runtime25 = __toModule(require_jsx_runtime());
-  var _CloseIcon;
-  var _excluded19 = ["action", "children", "className", "closeText", "color", "icon", "iconMapping", "onClose", "role", "severity", "variant"];
-  var useUtilityClasses7 = (ownerState) => {
-    const {
-      variant,
-      color: color2,
-      severity,
-      classes
-    } = ownerState;
-    const slots = {
-      root: ["root", `${variant}${capitalize_default(color2 || severity)}`, `${variant}`],
-      icon: ["icon"],
-      message: ["message"],
-      action: ["action"]
-    };
-    return composeClasses(slots, getAlertUtilityClass, classes);
-  };
-  var AlertRoot = styled_default(Paper_default, {
-    name: "MuiAlert",
-    slot: "Root",
-    overridesResolver: (props, styles4) => {
-      const {
-        ownerState
-      } = props;
-      return [styles4.root, styles4[ownerState.variant], styles4[`${ownerState.variant}${capitalize_default(ownerState.color || ownerState.severity)}`]];
+  function createRoutesFromChildren(children) {
+    let routes = [];
+    import_react9.Children.forEach(children, (element) => {
+      if (!/* @__PURE__ */ (0, import_react9.isValidElement)(element)) {
+        return;
+      }
+      if (element.type === import_react9.Fragment) {
+        routes.push.apply(routes, createRoutesFromChildren(element.props.children));
+        return;
+      }
+      !(element.type === Route) ? true ? invariant(false, "[" + (typeof element.type === "string" ? element.type : element.type.name) + "] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>") : invariant(false) : void 0;
+      let route = {
+        caseSensitive: element.props.caseSensitive,
+        element: element.props.element,
+        index: element.props.index,
+        path: element.props.path
+      };
+      if (element.props.children) {
+        route.children = createRoutesFromChildren(element.props.children);
+      }
+      routes.push(route);
+    });
+    return routes;
+  }
+  function matchRoutes(routes, locationArg, basename) {
+    if (basename === void 0) {
+      basename = "/";
     }
-  })(({
-    theme,
-    ownerState
-  }) => {
-    const getColor = theme.palette.mode === "light" ? darken : lighten;
-    const getBackgroundColor = theme.palette.mode === "light" ? lighten : darken;
-    const color2 = ownerState.color || ownerState.severity;
-    return _extends({}, theme.typography.body2, {
-      borderRadius: theme.shape.borderRadius,
-      backgroundColor: "transparent",
-      display: "flex",
-      padding: "6px 16px"
-    }, color2 && ownerState.variant === "standard" && {
-      color: getColor(theme.palette[color2].light, 0.6),
-      backgroundColor: getBackgroundColor(theme.palette[color2].light, 0.9),
-      [`& .${alertClasses_default.icon}`]: {
-        color: theme.palette.mode === "dark" ? theme.palette[color2].main : theme.palette[color2].light
+    let location = typeof locationArg === "string" ? J(locationArg) : locationArg;
+    let pathname = stripBasename(location.pathname || "/", basename);
+    if (pathname == null) {
+      return null;
+    }
+    let branches = flattenRoutes(routes);
+    rankRouteBranches(branches);
+    let matches = null;
+    for (let i = 0; matches == null && i < branches.length; ++i) {
+      matches = matchRouteBranch(branches[i], routes, pathname);
+    }
+    return matches;
+  }
+  function flattenRoutes(routes, branches, parentsMeta, parentPath) {
+    if (branches === void 0) {
+      branches = [];
+    }
+    if (parentsMeta === void 0) {
+      parentsMeta = [];
+    }
+    if (parentPath === void 0) {
+      parentPath = "";
+    }
+    routes.forEach((route, index) => {
+      let meta = {
+        relativePath: route.path || "",
+        caseSensitive: route.caseSensitive === true,
+        childrenIndex: index
+      };
+      if (meta.relativePath.startsWith("/")) {
+        !meta.relativePath.startsWith(parentPath) ? true ? invariant(false, 'Absolute route path "' + meta.relativePath + '" nested under path ' + ('"' + parentPath + '" is not valid. An absolute child route path ') + "must start with the combined path of all its parent routes.") : invariant(false) : void 0;
+        meta.relativePath = meta.relativePath.slice(parentPath.length);
       }
-    }, color2 && ownerState.variant === "outlined" && {
-      color: getColor(theme.palette[color2].light, 0.6),
-      border: `1px solid ${theme.palette[color2].light}`,
-      [`& .${alertClasses_default.icon}`]: {
-        color: theme.palette.mode === "dark" ? theme.palette[color2].main : theme.palette[color2].light
+      let path = joinPaths([parentPath, meta.relativePath]);
+      let routesMeta = parentsMeta.concat(meta);
+      if (route.children && route.children.length > 0) {
+        !(route.index !== true) ? true ? invariant(false, "Index routes must not have child routes. Please remove " + ('all child routes from route path "' + path + '".')) : invariant(false) : void 0;
+        flattenRoutes(route.children, branches, routesMeta, path);
       }
-    }, color2 && ownerState.variant === "filled" && {
-      color: "#fff",
-      fontWeight: theme.typography.fontWeightMedium,
-      backgroundColor: theme.palette.mode === "dark" ? theme.palette[color2].dark : theme.palette[color2].main
+      if (route.path == null && !route.index) {
+        return;
+      }
+      branches.push({
+        path,
+        score: computeScore(path, route.index),
+        routesMeta
+      });
     });
-  });
-  var AlertIcon = styled_default("div", {
-    name: "MuiAlert",
-    slot: "Icon",
-    overridesResolver: (props, styles4) => styles4.icon
-  })({
-    marginRight: 12,
-    padding: "7px 0",
-    display: "flex",
-    fontSize: 22,
-    opacity: 0.9
-  });
-  var AlertMessage = styled_default("div", {
-    name: "MuiAlert",
-    slot: "Message",
-    overridesResolver: (props, styles4) => styles4.message
-  })({
-    padding: "8px 0"
-  });
-  var AlertAction = styled_default("div", {
-    name: "MuiAlert",
-    slot: "Action",
-    overridesResolver: (props, styles4) => styles4.action
-  })({
-    display: "flex",
-    alignItems: "flex-start",
-    padding: "4px 0 0 16px",
-    marginLeft: "auto",
-    marginRight: -8
-  });
-  var defaultIconMapping = {
-    success: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(SuccessOutlined_default, {
-      fontSize: "inherit"
-    }),
-    warning: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(ReportProblemOutlined_default, {
-      fontSize: "inherit"
-    }),
-    error: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(ErrorOutline_default, {
-      fontSize: "inherit"
-    }),
-    info: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(InfoOutlined_default, {
-      fontSize: "inherit"
-    })
-  };
-  var Alert = /* @__PURE__ */ React32.forwardRef(function Alert2(inProps, ref) {
-    const props = useThemeProps2({
-      props: inProps,
-      name: "MuiAlert"
+    return branches;
+  }
+  function rankRouteBranches(branches) {
+    branches.sort((a, b) => a.score !== b.score ? b.score - a.score : compareIndexes(a.routesMeta.map((meta) => meta.childrenIndex), b.routesMeta.map((meta) => meta.childrenIndex)));
+  }
+  var paramRe = /^:\w+$/;
+  var dynamicSegmentValue = 3;
+  var indexRouteValue = 2;
+  var emptySegmentValue = 1;
+  var staticSegmentValue = 10;
+  var splatPenalty = -2;
+  var isSplat = (s) => s === "*";
+  function computeScore(path, index) {
+    let segments = path.split("/");
+    let initialScore = segments.length;
+    if (segments.some(isSplat)) {
+      initialScore += splatPenalty;
+    }
+    if (index) {
+      initialScore += indexRouteValue;
+    }
+    return segments.filter((s) => !isSplat(s)).reduce((score, segment) => score + (paramRe.test(segment) ? dynamicSegmentValue : segment === "" ? emptySegmentValue : staticSegmentValue), initialScore);
+  }
+  function compareIndexes(a, b) {
+    let siblings = a.length === b.length && a.slice(0, -1).every((n, i) => n === b[i]);
+    return siblings ? a[a.length - 1] - b[b.length - 1] : 0;
+  }
+  function matchRouteBranch(branch, routesArg, pathname) {
+    let routes = routesArg;
+    let {
+      routesMeta
+    } = branch;
+    let matchedParams = {};
+    let matchedPathname = "/";
+    let matches = [];
+    for (let i = 0; i < routesMeta.length; ++i) {
+      let meta = routesMeta[i];
+      let end = i === routesMeta.length - 1;
+      let remainingPathname = matchedPathname === "/" ? pathname : pathname.slice(matchedPathname.length) || "/";
+      let match2 = matchPath({
+        path: meta.relativePath,
+        caseSensitive: meta.caseSensitive,
+        end
+      }, remainingPathname);
+      if (!match2)
+        return null;
+      Object.assign(matchedParams, match2.params);
+      let route = routes[meta.childrenIndex];
+      matches.push({
+        params: matchedParams,
+        pathname: joinPaths([matchedPathname, match2.pathname]),
+        pathnameBase: joinPaths([matchedPathname, match2.pathnameBase]),
+        route
+      });
+      if (match2.pathnameBase !== "/") {
+        matchedPathname = joinPaths([matchedPathname, match2.pathnameBase]);
+      }
+      routes = route.children;
+    }
+    return matches;
+  }
+  function _renderMatches(matches, parentMatches) {
+    if (parentMatches === void 0) {
+      parentMatches = [];
+    }
+    if (matches == null)
+      return null;
+    return matches.reduceRight((outlet, match2, index) => {
+      return /* @__PURE__ */ (0, import_react9.createElement)(RouteContext.Provider, {
+        children: match2.route.element !== void 0 ? match2.route.element : /* @__PURE__ */ (0, import_react9.createElement)(Outlet, null),
+        value: {
+          outlet,
+          matches: parentMatches.concat(matches.slice(0, index + 1))
+        }
+      });
+    }, null);
+  }
+  function matchPath(pattern, pathname) {
+    if (typeof pattern === "string") {
+      pattern = {
+        path: pattern,
+        caseSensitive: false,
+        end: true
+      };
+    }
+    let [matcher, paramNames] = compilePath(pattern.path, pattern.caseSensitive, pattern.end);
+    let match2 = pathname.match(matcher);
+    if (!match2)
+      return null;
+    let matchedPathname = match2[0];
+    let pathnameBase = matchedPathname.replace(/(.)\/+$/, "$1");
+    let captureGroups = match2.slice(1);
+    let params = paramNames.reduce((memo2, paramName, index) => {
+      if (paramName === "*") {
+        let splatValue = captureGroups[index] || "";
+        pathnameBase = matchedPathname.slice(0, matchedPathname.length - splatValue.length).replace(/(.)\/+$/, "$1");
+      }
+      memo2[paramName] = safelyDecodeURIComponent(captureGroups[index] || "", paramName);
+      return memo2;
+    }, {});
+    return {
+      params,
+      pathname: matchedPathname,
+      pathnameBase,
+      pattern
+    };
+  }
+  function compilePath(path, caseSensitive, end) {
+    if (caseSensitive === void 0) {
+      caseSensitive = false;
+    }
+    if (end === void 0) {
+      end = true;
+    }
+    true ? warning(path === "*" || !path.endsWith("*") || path.endsWith("/*"), 'Route path "' + path + '" will be treated as if it were ' + ('"' + path.replace(/\*$/, "/*") + '" because the `*` character must ') + "always follow a `/` in the pattern. To get rid of this warning, " + ('please change the route path to "' + path.replace(/\*$/, "/*") + '".')) : void 0;
+    let paramNames = [];
+    let regexpSource = "^" + path.replace(/\/*\*?$/, "").replace(/^\/*/, "/").replace(/[\\.*+^$?{}|()[\]]/g, "\\$&").replace(/:(\w+)/g, (_2, paramName) => {
+      paramNames.push(paramName);
+      return "([^\\/]+)";
     });
-    const {
-      action,
+    if (path.endsWith("*")) {
+      paramNames.push("*");
+      regexpSource += path === "*" || path === "/*" ? "(.*)$" : "(?:\\/(.+)|\\/*)$";
+    } else {
+      regexpSource += end ? "\\/*$" : "(?:\\b|$)";
+    }
+    let matcher = new RegExp(regexpSource, caseSensitive ? void 0 : "i");
+    return [matcher, paramNames];
+  }
+  function safelyDecodeURIComponent(value, paramName) {
+    try {
+      return decodeURIComponent(value);
+    } catch (error) {
+      true ? warning(false, 'The value for the URL param "' + paramName + '" will not be decoded because' + (' the string "' + value + '" is a malformed URL segment. This is probably') + (" due to a bad percent encoding (" + error + ").")) : void 0;
+      return value;
+    }
+  }
+  function resolvePath(to, fromPathname) {
+    if (fromPathname === void 0) {
+      fromPathname = "/";
+    }
+    let {
+      pathname: toPathname,
+      search = "",
+      hash: hash2 = ""
+    } = typeof to === "string" ? J(to) : to;
+    let pathname = toPathname ? toPathname.startsWith("/") ? toPathname : resolvePathname(toPathname, fromPathname) : fromPathname;
+    return {
+      pathname,
+      search: normalizeSearch(search),
+      hash: normalizeHash(hash2)
+    };
+  }
+  function resolvePathname(relativePath, fromPathname) {
+    let segments = fromPathname.replace(/\/+$/, "").split("/");
+    let relativeSegments = relativePath.split("/");
+    relativeSegments.forEach((segment) => {
+      if (segment === "..") {
+        if (segments.length > 1)
+          segments.pop();
+      } else if (segment !== ".") {
+        segments.push(segment);
+      }
+    });
+    return segments.length > 1 ? segments.join("/") : "/";
+  }
+  function resolveTo(toArg, routePathnames, locationPathname) {
+    let to = typeof toArg === "string" ? J(toArg) : toArg;
+    let toPathname = toArg === "" || to.pathname === "" ? "/" : to.pathname;
+    let from2;
+    if (toPathname == null) {
+      from2 = locationPathname;
+    } else {
+      let routePathnameIndex = routePathnames.length - 1;
+      if (toPathname.startsWith("..")) {
+        let toSegments = toPathname.split("/");
+        while (toSegments[0] === "..") {
+          toSegments.shift();
+          routePathnameIndex -= 1;
+        }
+        to.pathname = toSegments.join("/");
+      }
+      from2 = routePathnameIndex >= 0 ? routePathnames[routePathnameIndex] : "/";
+    }
+    let path = resolvePath(to, from2);
+    if (toPathname && toPathname !== "/" && toPathname.endsWith("/") && !path.pathname.endsWith("/")) {
+      path.pathname += "/";
+    }
+    return path;
+  }
+  function getToPathname(to) {
+    return to === "" || to.pathname === "" ? "/" : typeof to === "string" ? J(to).pathname : to.pathname;
+  }
+  function stripBasename(pathname, basename) {
+    if (basename === "/")
+      return pathname;
+    if (!pathname.toLowerCase().startsWith(basename.toLowerCase())) {
+      return null;
+    }
+    let nextChar = pathname.charAt(basename.length);
+    if (nextChar && nextChar !== "/") {
+      return null;
+    }
+    return pathname.slice(basename.length) || "/";
+  }
+  var joinPaths = (paths) => paths.join("/").replace(/\/\/+/g, "/");
+  var normalizePathname = (pathname) => pathname.replace(/\/+$/, "").replace(/^\/*/, "/");
+  var normalizeSearch = (search) => !search || search === "?" ? "" : search.startsWith("?") ? search : "?" + search;
+  var normalizeHash = (hash2) => !hash2 || hash2 === "#" ? "" : hash2.startsWith("#") ? hash2 : "#" + hash2;
+
+  // node_modules/react-router-dom/index.js
+  function _extends2() {
+    _extends2 = Object.assign || function(target) {
+      for (var i = 1; i < arguments.length; i++) {
+        var source = arguments[i];
+        for (var key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+          }
+        }
+      }
+      return target;
+    };
+    return _extends2.apply(this, arguments);
+  }
+  function _objectWithoutPropertiesLoose2(source, excluded) {
+    if (source == null)
+      return {};
+    var target = {};
+    var sourceKeys = Object.keys(source);
+    var key, i;
+    for (i = 0; i < sourceKeys.length; i++) {
+      key = sourceKeys[i];
+      if (excluded.indexOf(key) >= 0)
+        continue;
+      target[key] = source[key];
+    }
+    return target;
+  }
+  var _excluded12 = ["onClick", "reloadDocument", "replace", "state", "target", "to"];
+  var _excluded23 = ["aria-current", "caseSensitive", "className", "end", "style", "to"];
+  function BrowserRouter(_ref) {
+    let {
+      basename,
       children,
-      className,
-      closeText = "Close",
-      color: color2,
-      icon,
-      iconMapping = defaultIconMapping,
-      onClose,
-      role = "alert",
-      severity = "success",
-      variant = "standard"
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded19);
-    const ownerState = _extends({}, props, {
-      color: color2,
-      severity,
-      variant
+      window: window2
+    } = _ref;
+    let historyRef = (0, import_react10.useRef)();
+    if (historyRef.current == null) {
+      historyRef.current = createBrowserHistory({
+        window: window2
+      });
+    }
+    let history = historyRef.current;
+    let [state, setState] = (0, import_react10.useState)({
+      action: history.action,
+      location: history.location
     });
-    const classes = useUtilityClasses7(ownerState);
-    return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(AlertRoot, _extends({
-      role,
-      square: true,
-      elevation: 0,
-      ownerState,
-      className: clsx_m_default(classes.root, className),
-      ref
-    }, other, {
-      children: [icon !== false ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(AlertIcon, {
-        ownerState,
-        className: classes.icon,
-        children: icon || iconMapping[severity] || defaultIconMapping[severity]
-      }) : null, /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(AlertMessage, {
-        ownerState,
-        className: classes.message,
-        children
-      }), action != null ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(AlertAction, {
-        className: classes.action,
-        children: action
-      }) : null, action == null && onClose ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(AlertAction, {
-        ownerState,
-        className: classes.action,
-        children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(IconButton_default, {
-          size: "small",
-          "aria-label": closeText,
-          title: closeText,
-          color: "inherit",
-          onClick: onClose,
-          children: _CloseIcon || (_CloseIcon = /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Close_default, {
-            fontSize: "small"
-          }))
-        })
-      }) : null]
+    (0, import_react10.useLayoutEffect)(() => history.listen(setState), [history]);
+    return /* @__PURE__ */ (0, import_react10.createElement)(Router, {
+      basename,
+      children,
+      location: state.location,
+      navigationType: state.action,
+      navigator: history
+    });
+  }
+  function isModifiedEvent(event) {
+    return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+  }
+  var Link = /* @__PURE__ */ (0, import_react10.forwardRef)(function LinkWithRef(_ref3, ref) {
+    let {
+      onClick,
+      reloadDocument,
+      replace: replace2 = false,
+      state,
+      target,
+      to
+    } = _ref3, rest = _objectWithoutPropertiesLoose2(_ref3, _excluded12);
+    let href = useHref(to);
+    let internalOnClick = useLinkClickHandler(to, {
+      replace: replace2,
+      state,
+      target
+    });
+    function handleClick(event) {
+      if (onClick)
+        onClick(event);
+      if (!event.defaultPrevented && !reloadDocument) {
+        internalOnClick(event);
+      }
+    }
+    return /* @__PURE__ */ (0, import_react10.createElement)("a", _extends2({}, rest, {
+      href,
+      onClick: handleClick,
+      ref,
+      target
     }));
   });
-  true ? Alert.propTypes = {
-    action: import_prop_types22.default.node,
-    children: import_prop_types22.default.node,
-    classes: import_prop_types22.default.object,
-    className: import_prop_types22.default.string,
-    closeText: import_prop_types22.default.string,
-    color: import_prop_types22.default.oneOfType([import_prop_types22.default.oneOf(["error", "info", "success", "warning"]), import_prop_types22.default.string]),
-    icon: import_prop_types22.default.node,
-    iconMapping: import_prop_types22.default.shape({
-      error: import_prop_types22.default.node,
-      info: import_prop_types22.default.node,
-      success: import_prop_types22.default.node,
-      warning: import_prop_types22.default.node
-    }),
-    onClose: import_prop_types22.default.func,
-    role: import_prop_types22.default.string,
-    severity: import_prop_types22.default.oneOf(["error", "info", "success", "warning"]),
-    sx: import_prop_types22.default.oneOfType([import_prop_types22.default.arrayOf(import_prop_types22.default.oneOfType([import_prop_types22.default.func, import_prop_types22.default.object])), import_prop_types22.default.func, import_prop_types22.default.object]),
-    variant: import_prop_types22.default.oneOfType([import_prop_types22.default.oneOf(["filled", "outlined", "standard"]), import_prop_types22.default.string])
-  } : void 0;
-  var Alert_default = Alert;
+  if (true) {
+    Link.displayName = "Link";
+  }
+  var NavLink = /* @__PURE__ */ (0, import_react10.forwardRef)(function NavLinkWithRef(_ref4, ref) {
+    let {
+      "aria-current": ariaCurrentProp = "page",
+      caseSensitive = false,
+      className: classNameProp = "",
+      end = false,
+      style: styleProp,
+      to
+    } = _ref4, rest = _objectWithoutPropertiesLoose2(_ref4, _excluded23);
+    let location = useLocation();
+    let path = useResolvedPath(to);
+    let locationPathname = location.pathname;
+    let toPathname = path.pathname;
+    if (!caseSensitive) {
+      locationPathname = locationPathname.toLowerCase();
+      toPathname = toPathname.toLowerCase();
+    }
+    let isActive = locationPathname === toPathname || !end && locationPathname.startsWith(toPathname) && locationPathname.charAt(toPathname.length) === "/";
+    let ariaCurrent = isActive ? ariaCurrentProp : void 0;
+    let className;
+    if (typeof classNameProp === "function") {
+      className = classNameProp({
+        isActive
+      });
+    } else {
+      className = [classNameProp, isActive ? "active" : null].filter(Boolean).join(" ");
+    }
+    let style3 = typeof styleProp === "function" ? styleProp({
+      isActive
+    }) : styleProp;
+    return /* @__PURE__ */ (0, import_react10.createElement)(Link, _extends2({}, rest, {
+      "aria-current": ariaCurrent,
+      className,
+      ref,
+      style: style3,
+      to
+    }));
+  });
+  if (true) {
+    NavLink.displayName = "NavLink";
+  }
+  function useLinkClickHandler(to, _temp) {
+    let {
+      target,
+      replace: replaceProp,
+      state
+    } = _temp === void 0 ? {} : _temp;
+    let navigate = useNavigate();
+    let location = useLocation();
+    let path = useResolvedPath(to);
+    return (0, import_react10.useCallback)((event) => {
+      if (event.button === 0 && (!target || target === "_self") && !isModifiedEvent(event)) {
+        event.preventDefault();
+        let replace2 = !!replaceProp || I(location) === I(path);
+        navigate(to, {
+          replace: replace2,
+          state
+        });
+      }
+    }, [location, navigate, path, replaceProp, state, target, to]);
+  }
 
   // src/utils/alertContext.ts
-  var import_react15 = __toModule(require_react());
-  var AlertContext = import_react15.default.createContext({
+  var import_react11 = __toModule(require_react());
+  var AlertContext = import_react11.default.createContext({
     alert: { message: "", type: void 0 },
     setAlert: null
   });
   var alertContext_default = AlertContext;
 
   // src/utils/userContext.ts
-  var import_react16 = __toModule(require_react());
-  var UserContext = import_react16.default.createContext({
+  var import_react12 = __toModule(require_react());
+  var UserContext = import_react12.default.createContext({
     user: { signedIn: false },
     setUser: null
   });
   var userContext_default = UserContext;
-
-  // src/components/TopBar.tsx
-  var import_react17 = __toModule(require_react());
-  var TopBar = ({ user }) => {
-    return /* @__PURE__ */ import_react17.default.createElement("div", null, /* @__PURE__ */ import_react17.default.createElement("ul", {
-      className: "topbar menu__horizontal"
-    }, user.signedIn ? /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement("strong", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
-      to: "/"
-    }, "Current User"))), /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
-      to: "/"
-    }, "Logout"))) : /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement("strong", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
-      to: "/login"
-    }, "Login"))), /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
-      to: "/register"
-    }, "Register")))));
-  };
-  var TopBar_default = TopBar;
-
-  // src/components/Header.tsx
-  var import_react18 = __toModule(require_react());
-
-  // src/constants.ts
-  var BASE_URL = "/api/v1/";
-  var SITE_NAME = "ProductStart";
-  var CONSTANTS = { BASE_URL, SITE_NAME };
-  var constants_default = CONSTANTS;
-
-  // src/components/Header.tsx
-  var Header = () => {
-    return /* @__PURE__ */ import_react18.default.createElement("header", null, /* @__PURE__ */ import_react18.default.createElement("h1", {
-      className: "site-name"
-    }, /* @__PURE__ */ import_react18.default.createElement(Link, {
-      to: "/"
-    }, constants_default.SITE_NAME)));
-  };
-  var Header_default = Header;
-
-  // src/components/Menu.tsx
-  var import_react19 = __toModule(require_react());
-  var Menu = ({ user }) => {
-    if (!user.signedIn) {
-      return null;
-    }
-    return /* @__PURE__ */ import_react19.default.createElement("nav", null, /* @__PURE__ */ import_react19.default.createElement("ul", {
-      className: "main-navigation menu__horizontal"
-    }, /* @__PURE__ */ import_react19.default.createElement("li", null, /* @__PURE__ */ import_react19.default.createElement(NavLink, {
-      to: "/"
-    }, "My Products")), /* @__PURE__ */ import_react19.default.createElement("li", null, /* @__PURE__ */ import_react19.default.createElement(NavLink, {
-      to: "/"
-    }, "My Pledges"))));
-  };
-  var Menu_default = Menu;
 
   // node_modules/tslib/modules/index.js
   var import_tslib = __toModule(require_tslib());
@@ -35436,32 +33572,1886 @@ const theme2 = createTheme({ palette: {
           setUser((prevState) => {
             return __spreadProps(__spreadValues({}, prevState), { signedIn: true });
           });
-          console.log("user is logged in");
         } else {
           setUser((prevState) => {
             return __spreadProps(__spreadValues({}, prevState), { signedIn: false });
           });
-          console.log("user is not logged in");
         }
       });
     }
   };
   var app_default = AppPresenter;
 
-  // src/App.tsx
-  var App = () => {
-    const [alert, setAlert] = (0, import_react20.useState)({ message: "", type: void 0 });
-    const [user, setUser] = (0, import_react20.useState)({ signedIn: false });
-    (0, import_react20.useEffect)(() => {
-      app_default.setUserStatus(setUser);
+  // src/views/Layout.tsx
+  var import_react20 = __toModule(require_react());
+
+  // node_modules/@mui/material/Alert/Alert.js
+  var React34 = __toModule(require_react());
+  var import_prop_types22 = __toModule(require_prop_types());
+
+  // node_modules/@mui/material/utils/capitalize.js
+  var capitalize_default = capitalize;
+
+  // node_modules/@mui/material/Paper/Paper.js
+  var React19 = __toModule(require_react());
+  var import_prop_types13 = __toModule(require_prop_types());
+
+  // node_modules/@mui/material/Paper/paperClasses.js
+  function getPaperUtilityClass(slot) {
+    return generateUtilityClass("MuiPaper", slot);
+  }
+  var paperClasses = generateUtilityClasses("MuiPaper", ["root", "rounded", "outlined", "elevation", "elevation0", "elevation1", "elevation2", "elevation3", "elevation4", "elevation5", "elevation6", "elevation7", "elevation8", "elevation9", "elevation10", "elevation11", "elevation12", "elevation13", "elevation14", "elevation15", "elevation16", "elevation17", "elevation18", "elevation19", "elevation20", "elevation21", "elevation22", "elevation23", "elevation24"]);
+
+  // node_modules/@mui/material/Paper/Paper.js
+  var import_jsx_runtime10 = __toModule(require_jsx_runtime());
+  var _excluded13 = ["className", "component", "elevation", "square", "variant"];
+  var getOverlayAlpha = (elevation) => {
+    let alphaValue;
+    if (elevation < 1) {
+      alphaValue = 5.11916 * elevation ** 2;
+    } else {
+      alphaValue = 4.5 * Math.log(elevation + 1) + 2;
+    }
+    return (alphaValue / 100).toFixed(2);
+  };
+  var useUtilityClasses3 = (ownerState) => {
+    const {
+      square,
+      elevation,
+      variant,
+      classes
+    } = ownerState;
+    const slots = {
+      root: ["root", variant, !square && "rounded", variant === "elevation" && `elevation${elevation}`]
+    };
+    return composeClasses(slots, getPaperUtilityClass, classes);
+  };
+  var PaperRoot = styled_default("div", {
+    name: "MuiPaper",
+    slot: "Root",
+    overridesResolver: (props, styles4) => {
+      const {
+        ownerState
+      } = props;
+      return [styles4.root, styles4[ownerState.variant], !ownerState.square && styles4.rounded, ownerState.variant === "elevation" && styles4[`elevation${ownerState.elevation}`]];
+    }
+  })(({
+    theme,
+    ownerState
+  }) => _extends({
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.text.primary,
+    transition: theme.transitions.create("box-shadow")
+  }, !ownerState.square && {
+    borderRadius: theme.shape.borderRadius
+  }, ownerState.variant === "outlined" && {
+    border: `1px solid ${theme.palette.divider}`
+  }, ownerState.variant === "elevation" && _extends({
+    boxShadow: theme.shadows[ownerState.elevation]
+  }, theme.palette.mode === "dark" && {
+    backgroundImage: `linear-gradient(${alpha("#fff", getOverlayAlpha(ownerState.elevation))}, ${alpha("#fff", getOverlayAlpha(ownerState.elevation))})`
+  })));
+  var Paper = /* @__PURE__ */ React19.forwardRef(function Paper2(inProps, ref) {
+    const props = useThemeProps2({
+      props: inProps,
+      name: "MuiPaper"
+    });
+    const {
+      className,
+      component = "div",
+      elevation = 1,
+      square = false,
+      variant = "elevation"
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded13);
+    const ownerState = _extends({}, props, {
+      component,
+      elevation,
+      square,
+      variant
+    });
+    const classes = useUtilityClasses3(ownerState);
+    if (true) {
+      const theme = useTheme5();
+      if (theme.shadows[elevation] === void 0) {
+        console.error([`MUI: The elevation provided <Paper elevation={${elevation}}> is not available in the theme.`, `Please make sure that \`theme.shadows[${elevation}]\` is defined.`].join("\n"));
+      }
+    }
+    return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(PaperRoot, _extends({
+      as: component,
+      ownerState,
+      className: clsx_m_default(classes.root, className),
+      ref
+    }, other));
+  });
+  true ? Paper.propTypes = {
+    children: import_prop_types13.default.node,
+    classes: import_prop_types13.default.object,
+    className: import_prop_types13.default.string,
+    component: import_prop_types13.default.elementType,
+    elevation: chainPropTypes(integerPropType_default, (props) => {
+      const {
+        elevation,
+        variant
+      } = props;
+      if (elevation > 0 && variant === "outlined") {
+        return new Error(`MUI: Combining \`elevation={${elevation}}\` with \`variant="${variant}"\` has no effect. Either use \`elevation={0}\` or use a different \`variant\`.`);
+      }
+      return null;
+    }),
+    square: import_prop_types13.default.bool,
+    sx: import_prop_types13.default.oneOfType([import_prop_types13.default.arrayOf(import_prop_types13.default.oneOfType([import_prop_types13.default.func, import_prop_types13.default.object])), import_prop_types13.default.func, import_prop_types13.default.object]),
+    variant: import_prop_types13.default.oneOfType([import_prop_types13.default.oneOf(["elevation", "outlined"]), import_prop_types13.default.string])
+  } : void 0;
+  var Paper_default = Paper;
+
+  // node_modules/@mui/material/Alert/alertClasses.js
+  function getAlertUtilityClass(slot) {
+    return generateUtilityClass("MuiAlert", slot);
+  }
+  var alertClasses = generateUtilityClasses("MuiAlert", ["root", "action", "icon", "message", "filled", "filledSuccess", "filledInfo", "filledWarning", "filledError", "outlined", "outlinedSuccess", "outlinedInfo", "outlinedWarning", "outlinedError", "standard", "standardSuccess", "standardInfo", "standardWarning", "standardError"]);
+  var alertClasses_default = alertClasses;
+
+  // node_modules/@mui/material/IconButton/IconButton.js
+  var React26 = __toModule(require_react());
+  var import_prop_types20 = __toModule(require_prop_types());
+
+  // node_modules/@mui/material/ButtonBase/ButtonBase.js
+  var React25 = __toModule(require_react());
+  var import_prop_types19 = __toModule(require_prop_types());
+
+  // node_modules/@mui/material/utils/useForkRef.js
+  var useForkRef_default = useForkRef;
+
+  // node_modules/@mui/material/utils/useEventCallback.js
+  var useEventCallback_default = useEventCallback;
+
+  // node_modules/@mui/material/utils/useIsFocusVisible.js
+  var useIsFocusVisible_default = useIsFocusVisible;
+
+  // node_modules/@mui/material/ButtonBase/TouchRipple.js
+  var React24 = __toModule(require_react());
+  var import_prop_types18 = __toModule(require_prop_types());
+
+  // node_modules/@babel/runtime/helpers/esm/setPrototypeOf.js
+  function _setPrototypeOf(o, p) {
+    _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf2(o2, p2) {
+      o2.__proto__ = p2;
+      return o2;
+    };
+    return _setPrototypeOf(o, p);
+  }
+
+  // node_modules/@babel/runtime/helpers/esm/inheritsLoose.js
+  function _inheritsLoose(subClass, superClass) {
+    subClass.prototype = Object.create(superClass.prototype);
+    subClass.prototype.constructor = subClass;
+    _setPrototypeOf(subClass, superClass);
+  }
+
+  // node_modules/react-transition-group/esm/Transition.js
+  var import_prop_types15 = __toModule(require_prop_types());
+  var import_react14 = __toModule(require_react());
+  var import_react_dom = __toModule(require_react_dom());
+
+  // node_modules/react-transition-group/esm/config.js
+  var config_default = {
+    disabled: false
+  };
+
+  // node_modules/react-transition-group/esm/utils/PropTypes.js
+  var import_prop_types14 = __toModule(require_prop_types());
+  var timeoutsShape = true ? import_prop_types14.default.oneOfType([import_prop_types14.default.number, import_prop_types14.default.shape({
+    enter: import_prop_types14.default.number,
+    exit: import_prop_types14.default.number,
+    appear: import_prop_types14.default.number
+  }).isRequired]) : null;
+  var classNamesShape = true ? import_prop_types14.default.oneOfType([import_prop_types14.default.string, import_prop_types14.default.shape({
+    enter: import_prop_types14.default.string,
+    exit: import_prop_types14.default.string,
+    active: import_prop_types14.default.string
+  }), import_prop_types14.default.shape({
+    enter: import_prop_types14.default.string,
+    enterDone: import_prop_types14.default.string,
+    enterActive: import_prop_types14.default.string,
+    exit: import_prop_types14.default.string,
+    exitDone: import_prop_types14.default.string,
+    exitActive: import_prop_types14.default.string
+  })]) : null;
+
+  // node_modules/react-transition-group/esm/TransitionGroupContext.js
+  var import_react13 = __toModule(require_react());
+  var TransitionGroupContext_default = import_react13.default.createContext(null);
+
+  // node_modules/react-transition-group/esm/Transition.js
+  var UNMOUNTED = "unmounted";
+  var EXITED = "exited";
+  var ENTERING = "entering";
+  var ENTERED = "entered";
+  var EXITING = "exiting";
+  var Transition = /* @__PURE__ */ function(_React$Component) {
+    _inheritsLoose(Transition2, _React$Component);
+    function Transition2(props, context) {
+      var _this;
+      _this = _React$Component.call(this, props, context) || this;
+      var parentGroup = context;
+      var appear = parentGroup && !parentGroup.isMounting ? props.enter : props.appear;
+      var initialStatus;
+      _this.appearStatus = null;
+      if (props.in) {
+        if (appear) {
+          initialStatus = EXITED;
+          _this.appearStatus = ENTERING;
+        } else {
+          initialStatus = ENTERED;
+        }
+      } else {
+        if (props.unmountOnExit || props.mountOnEnter) {
+          initialStatus = UNMOUNTED;
+        } else {
+          initialStatus = EXITED;
+        }
+      }
+      _this.state = {
+        status: initialStatus
+      };
+      _this.nextCallback = null;
+      return _this;
+    }
+    Transition2.getDerivedStateFromProps = function getDerivedStateFromProps(_ref, prevState) {
+      var nextIn = _ref.in;
+      if (nextIn && prevState.status === UNMOUNTED) {
+        return {
+          status: EXITED
+        };
+      }
+      return null;
+    };
+    var _proto = Transition2.prototype;
+    _proto.componentDidMount = function componentDidMount() {
+      this.updateStatus(true, this.appearStatus);
+    };
+    _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
+      var nextStatus = null;
+      if (prevProps !== this.props) {
+        var status = this.state.status;
+        if (this.props.in) {
+          if (status !== ENTERING && status !== ENTERED) {
+            nextStatus = ENTERING;
+          }
+        } else {
+          if (status === ENTERING || status === ENTERED) {
+            nextStatus = EXITING;
+          }
+        }
+      }
+      this.updateStatus(false, nextStatus);
+    };
+    _proto.componentWillUnmount = function componentWillUnmount() {
+      this.cancelNextCallback();
+    };
+    _proto.getTimeouts = function getTimeouts() {
+      var timeout2 = this.props.timeout;
+      var exit, enter, appear;
+      exit = enter = appear = timeout2;
+      if (timeout2 != null && typeof timeout2 !== "number") {
+        exit = timeout2.exit;
+        enter = timeout2.enter;
+        appear = timeout2.appear !== void 0 ? timeout2.appear : enter;
+      }
+      return {
+        exit,
+        enter,
+        appear
+      };
+    };
+    _proto.updateStatus = function updateStatus(mounting, nextStatus) {
+      if (mounting === void 0) {
+        mounting = false;
+      }
+      if (nextStatus !== null) {
+        this.cancelNextCallback();
+        if (nextStatus === ENTERING) {
+          this.performEnter(mounting);
+        } else {
+          this.performExit();
+        }
+      } else if (this.props.unmountOnExit && this.state.status === EXITED) {
+        this.setState({
+          status: UNMOUNTED
+        });
+      }
+    };
+    _proto.performEnter = function performEnter(mounting) {
+      var _this2 = this;
+      var enter = this.props.enter;
+      var appearing = this.context ? this.context.isMounting : mounting;
+      var _ref2 = this.props.nodeRef ? [appearing] : [import_react_dom.default.findDOMNode(this), appearing], maybeNode = _ref2[0], maybeAppearing = _ref2[1];
+      var timeouts = this.getTimeouts();
+      var enterTimeout = appearing ? timeouts.appear : timeouts.enter;
+      if (!mounting && !enter || config_default.disabled) {
+        this.safeSetState({
+          status: ENTERED
+        }, function() {
+          _this2.props.onEntered(maybeNode);
+        });
+        return;
+      }
+      this.props.onEnter(maybeNode, maybeAppearing);
+      this.safeSetState({
+        status: ENTERING
+      }, function() {
+        _this2.props.onEntering(maybeNode, maybeAppearing);
+        _this2.onTransitionEnd(enterTimeout, function() {
+          _this2.safeSetState({
+            status: ENTERED
+          }, function() {
+            _this2.props.onEntered(maybeNode, maybeAppearing);
+          });
+        });
+      });
+    };
+    _proto.performExit = function performExit() {
+      var _this3 = this;
+      var exit = this.props.exit;
+      var timeouts = this.getTimeouts();
+      var maybeNode = this.props.nodeRef ? void 0 : import_react_dom.default.findDOMNode(this);
+      if (!exit || config_default.disabled) {
+        this.safeSetState({
+          status: EXITED
+        }, function() {
+          _this3.props.onExited(maybeNode);
+        });
+        return;
+      }
+      this.props.onExit(maybeNode);
+      this.safeSetState({
+        status: EXITING
+      }, function() {
+        _this3.props.onExiting(maybeNode);
+        _this3.onTransitionEnd(timeouts.exit, function() {
+          _this3.safeSetState({
+            status: EXITED
+          }, function() {
+            _this3.props.onExited(maybeNode);
+          });
+        });
+      });
+    };
+    _proto.cancelNextCallback = function cancelNextCallback() {
+      if (this.nextCallback !== null) {
+        this.nextCallback.cancel();
+        this.nextCallback = null;
+      }
+    };
+    _proto.safeSetState = function safeSetState(nextState, callback) {
+      callback = this.setNextCallback(callback);
+      this.setState(nextState, callback);
+    };
+    _proto.setNextCallback = function setNextCallback(callback) {
+      var _this4 = this;
+      var active = true;
+      this.nextCallback = function(event) {
+        if (active) {
+          active = false;
+          _this4.nextCallback = null;
+          callback(event);
+        }
+      };
+      this.nextCallback.cancel = function() {
+        active = false;
+      };
+      return this.nextCallback;
+    };
+    _proto.onTransitionEnd = function onTransitionEnd(timeout2, handler) {
+      this.setNextCallback(handler);
+      var node2 = this.props.nodeRef ? this.props.nodeRef.current : import_react_dom.default.findDOMNode(this);
+      var doesNotHaveTimeoutOrListener = timeout2 == null && !this.props.addEndListener;
+      if (!node2 || doesNotHaveTimeoutOrListener) {
+        setTimeout(this.nextCallback, 0);
+        return;
+      }
+      if (this.props.addEndListener) {
+        var _ref3 = this.props.nodeRef ? [this.nextCallback] : [node2, this.nextCallback], maybeNode = _ref3[0], maybeNextCallback = _ref3[1];
+        this.props.addEndListener(maybeNode, maybeNextCallback);
+      }
+      if (timeout2 != null) {
+        setTimeout(this.nextCallback, timeout2);
+      }
+    };
+    _proto.render = function render() {
+      var status = this.state.status;
+      if (status === UNMOUNTED) {
+        return null;
+      }
+      var _this$props = this.props, children = _this$props.children, _in = _this$props.in, _mountOnEnter = _this$props.mountOnEnter, _unmountOnExit = _this$props.unmountOnExit, _appear = _this$props.appear, _enter = _this$props.enter, _exit = _this$props.exit, _timeout = _this$props.timeout, _addEndListener = _this$props.addEndListener, _onEnter = _this$props.onEnter, _onEntering = _this$props.onEntering, _onEntered = _this$props.onEntered, _onExit = _this$props.onExit, _onExiting = _this$props.onExiting, _onExited = _this$props.onExited, _nodeRef = _this$props.nodeRef, childProps = _objectWithoutPropertiesLoose(_this$props, ["children", "in", "mountOnEnter", "unmountOnExit", "appear", "enter", "exit", "timeout", "addEndListener", "onEnter", "onEntering", "onEntered", "onExit", "onExiting", "onExited", "nodeRef"]);
+      return /* @__PURE__ */ import_react14.default.createElement(TransitionGroupContext_default.Provider, {
+        value: null
+      }, typeof children === "function" ? children(status, childProps) : import_react14.default.cloneElement(import_react14.default.Children.only(children), childProps));
+    };
+    return Transition2;
+  }(import_react14.default.Component);
+  Transition.contextType = TransitionGroupContext_default;
+  Transition.propTypes = true ? {
+    nodeRef: import_prop_types15.default.shape({
+      current: typeof Element === "undefined" ? import_prop_types15.default.any : function(propValue, key, componentName, location, propFullName, secret) {
+        var value = propValue[key];
+        return import_prop_types15.default.instanceOf(value && "ownerDocument" in value ? value.ownerDocument.defaultView.Element : Element)(propValue, key, componentName, location, propFullName, secret);
+      }
+    }),
+    children: import_prop_types15.default.oneOfType([import_prop_types15.default.func.isRequired, import_prop_types15.default.element.isRequired]).isRequired,
+    in: import_prop_types15.default.bool,
+    mountOnEnter: import_prop_types15.default.bool,
+    unmountOnExit: import_prop_types15.default.bool,
+    appear: import_prop_types15.default.bool,
+    enter: import_prop_types15.default.bool,
+    exit: import_prop_types15.default.bool,
+    timeout: function timeout(props) {
+      var pt = timeoutsShape;
+      if (!props.addEndListener)
+        pt = pt.isRequired;
+      for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        args[_key - 1] = arguments[_key];
+      }
+      return pt.apply(void 0, [props].concat(args));
+    },
+    addEndListener: import_prop_types15.default.func,
+    onEnter: import_prop_types15.default.func,
+    onEntering: import_prop_types15.default.func,
+    onEntered: import_prop_types15.default.func,
+    onExit: import_prop_types15.default.func,
+    onExiting: import_prop_types15.default.func,
+    onExited: import_prop_types15.default.func
+  } : {};
+  function noop2() {
+  }
+  Transition.defaultProps = {
+    in: false,
+    mountOnEnter: false,
+    unmountOnExit: false,
+    appear: false,
+    enter: true,
+    exit: true,
+    onEnter: noop2,
+    onEntering: noop2,
+    onEntered: noop2,
+    onExit: noop2,
+    onExiting: noop2,
+    onExited: noop2
+  };
+  Transition.UNMOUNTED = UNMOUNTED;
+  Transition.EXITED = EXITED;
+  Transition.ENTERING = ENTERING;
+  Transition.ENTERED = ENTERED;
+  Transition.EXITING = EXITING;
+  var Transition_default = Transition;
+
+  // node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js
+  function _assertThisInitialized(self2) {
+    if (self2 === void 0) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+    }
+    return self2;
+  }
+
+  // node_modules/react-transition-group/esm/TransitionGroup.js
+  var import_prop_types16 = __toModule(require_prop_types());
+  var import_react16 = __toModule(require_react());
+
+  // node_modules/react-transition-group/esm/utils/ChildMapping.js
+  var import_react15 = __toModule(require_react());
+  function getChildMapping(children, mapFn) {
+    var mapper = function mapper2(child) {
+      return mapFn && (0, import_react15.isValidElement)(child) ? mapFn(child) : child;
+    };
+    var result = Object.create(null);
+    if (children)
+      import_react15.Children.map(children, function(c) {
+        return c;
+      }).forEach(function(child) {
+        result[child.key] = mapper(child);
+      });
+    return result;
+  }
+  function mergeChildMappings(prev2, next2) {
+    prev2 = prev2 || {};
+    next2 = next2 || {};
+    function getValueForKey(key) {
+      return key in next2 ? next2[key] : prev2[key];
+    }
+    var nextKeysPending = Object.create(null);
+    var pendingKeys = [];
+    for (var prevKey in prev2) {
+      if (prevKey in next2) {
+        if (pendingKeys.length) {
+          nextKeysPending[prevKey] = pendingKeys;
+          pendingKeys = [];
+        }
+      } else {
+        pendingKeys.push(prevKey);
+      }
+    }
+    var i;
+    var childMapping = {};
+    for (var nextKey in next2) {
+      if (nextKeysPending[nextKey]) {
+        for (i = 0; i < nextKeysPending[nextKey].length; i++) {
+          var pendingNextKey = nextKeysPending[nextKey][i];
+          childMapping[nextKeysPending[nextKey][i]] = getValueForKey(pendingNextKey);
+        }
+      }
+      childMapping[nextKey] = getValueForKey(nextKey);
+    }
+    for (i = 0; i < pendingKeys.length; i++) {
+      childMapping[pendingKeys[i]] = getValueForKey(pendingKeys[i]);
+    }
+    return childMapping;
+  }
+  function getProp(child, prop, props) {
+    return props[prop] != null ? props[prop] : child.props[prop];
+  }
+  function getInitialChildMapping(props, onExited) {
+    return getChildMapping(props.children, function(child) {
+      return (0, import_react15.cloneElement)(child, {
+        onExited: onExited.bind(null, child),
+        in: true,
+        appear: getProp(child, "appear", props),
+        enter: getProp(child, "enter", props),
+        exit: getProp(child, "exit", props)
+      });
+    });
+  }
+  function getNextChildMapping(nextProps, prevChildMapping, onExited) {
+    var nextChildMapping = getChildMapping(nextProps.children);
+    var children = mergeChildMappings(prevChildMapping, nextChildMapping);
+    Object.keys(children).forEach(function(key) {
+      var child = children[key];
+      if (!(0, import_react15.isValidElement)(child))
+        return;
+      var hasPrev = key in prevChildMapping;
+      var hasNext = key in nextChildMapping;
+      var prevChild = prevChildMapping[key];
+      var isLeaving = (0, import_react15.isValidElement)(prevChild) && !prevChild.props.in;
+      if (hasNext && (!hasPrev || isLeaving)) {
+        children[key] = (0, import_react15.cloneElement)(child, {
+          onExited: onExited.bind(null, child),
+          in: true,
+          exit: getProp(child, "exit", nextProps),
+          enter: getProp(child, "enter", nextProps)
+        });
+      } else if (!hasNext && hasPrev && !isLeaving) {
+        children[key] = (0, import_react15.cloneElement)(child, {
+          in: false
+        });
+      } else if (hasNext && hasPrev && (0, import_react15.isValidElement)(prevChild)) {
+        children[key] = (0, import_react15.cloneElement)(child, {
+          onExited: onExited.bind(null, child),
+          in: prevChild.props.in,
+          exit: getProp(child, "exit", nextProps),
+          enter: getProp(child, "enter", nextProps)
+        });
+      }
+    });
+    return children;
+  }
+
+  // node_modules/react-transition-group/esm/TransitionGroup.js
+  var values2 = Object.values || function(obj) {
+    return Object.keys(obj).map(function(k) {
+      return obj[k];
+    });
+  };
+  var defaultProps = {
+    component: "div",
+    childFactory: function childFactory(child) {
+      return child;
+    }
+  };
+  var TransitionGroup = /* @__PURE__ */ function(_React$Component) {
+    _inheritsLoose(TransitionGroup2, _React$Component);
+    function TransitionGroup2(props, context) {
+      var _this;
+      _this = _React$Component.call(this, props, context) || this;
+      var handleExited = _this.handleExited.bind(_assertThisInitialized(_this));
+      _this.state = {
+        contextValue: {
+          isMounting: true
+        },
+        handleExited,
+        firstRender: true
+      };
+      return _this;
+    }
+    var _proto = TransitionGroup2.prototype;
+    _proto.componentDidMount = function componentDidMount() {
+      this.mounted = true;
+      this.setState({
+        contextValue: {
+          isMounting: false
+        }
+      });
+    };
+    _proto.componentWillUnmount = function componentWillUnmount() {
+      this.mounted = false;
+    };
+    TransitionGroup2.getDerivedStateFromProps = function getDerivedStateFromProps(nextProps, _ref) {
+      var prevChildMapping = _ref.children, handleExited = _ref.handleExited, firstRender = _ref.firstRender;
+      return {
+        children: firstRender ? getInitialChildMapping(nextProps, handleExited) : getNextChildMapping(nextProps, prevChildMapping, handleExited),
+        firstRender: false
+      };
+    };
+    _proto.handleExited = function handleExited(child, node2) {
+      var currentChildMapping = getChildMapping(this.props.children);
+      if (child.key in currentChildMapping)
+        return;
+      if (child.props.onExited) {
+        child.props.onExited(node2);
+      }
+      if (this.mounted) {
+        this.setState(function(state) {
+          var children = _extends({}, state.children);
+          delete children[child.key];
+          return {
+            children
+          };
+        });
+      }
+    };
+    _proto.render = function render() {
+      var _this$props = this.props, Component2 = _this$props.component, childFactory2 = _this$props.childFactory, props = _objectWithoutPropertiesLoose(_this$props, ["component", "childFactory"]);
+      var contextValue = this.state.contextValue;
+      var children = values2(this.state.children).map(childFactory2);
+      delete props.appear;
+      delete props.enter;
+      delete props.exit;
+      if (Component2 === null) {
+        return /* @__PURE__ */ import_react16.default.createElement(TransitionGroupContext_default.Provider, {
+          value: contextValue
+        }, children);
+      }
+      return /* @__PURE__ */ import_react16.default.createElement(TransitionGroupContext_default.Provider, {
+        value: contextValue
+      }, /* @__PURE__ */ import_react16.default.createElement(Component2, props, children));
+    };
+    return TransitionGroup2;
+  }(import_react16.default.Component);
+  TransitionGroup.propTypes = true ? {
+    component: import_prop_types16.default.any,
+    children: import_prop_types16.default.node,
+    appear: import_prop_types16.default.bool,
+    enter: import_prop_types16.default.bool,
+    exit: import_prop_types16.default.bool,
+    childFactory: import_prop_types16.default.func
+  } : {};
+  TransitionGroup.defaultProps = defaultProps;
+  var TransitionGroup_default = TransitionGroup;
+
+  // node_modules/@mui/material/ButtonBase/Ripple.js
+  var React23 = __toModule(require_react());
+  var import_prop_types17 = __toModule(require_prop_types());
+  var import_jsx_runtime11 = __toModule(require_jsx_runtime());
+  function Ripple(props) {
+    const {
+      className,
+      classes,
+      pulsate = false,
+      rippleX,
+      rippleY,
+      rippleSize,
+      in: inProp,
+      onExited,
+      timeout: timeout2
+    } = props;
+    const [leaving, setLeaving] = React23.useState(false);
+    const rippleClassName = clsx_m_default(className, classes.ripple, classes.rippleVisible, pulsate && classes.ripplePulsate);
+    const rippleStyles = {
+      width: rippleSize,
+      height: rippleSize,
+      top: -(rippleSize / 2) + rippleY,
+      left: -(rippleSize / 2) + rippleX
+    };
+    const childClassName = clsx_m_default(classes.child, leaving && classes.childLeaving, pulsate && classes.childPulsate);
+    if (!inProp && !leaving) {
+      setLeaving(true);
+    }
+    React23.useEffect(() => {
+      if (!inProp && onExited != null) {
+        const timeoutId = setTimeout(onExited, timeout2);
+        return () => {
+          clearTimeout(timeoutId);
+        };
+      }
+      return void 0;
+    }, [onExited, inProp, timeout2]);
+    return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", {
+      className: rippleClassName,
+      style: rippleStyles,
+      children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", {
+        className: childClassName
+      })
+    });
+  }
+  true ? Ripple.propTypes = {
+    classes: import_prop_types17.default.object.isRequired,
+    className: import_prop_types17.default.string,
+    in: import_prop_types17.default.bool,
+    onExited: import_prop_types17.default.func,
+    pulsate: import_prop_types17.default.bool,
+    rippleSize: import_prop_types17.default.number,
+    rippleX: import_prop_types17.default.number,
+    rippleY: import_prop_types17.default.number,
+    timeout: import_prop_types17.default.number.isRequired
+  } : void 0;
+  var Ripple_default = Ripple;
+
+  // node_modules/@mui/material/ButtonBase/touchRippleClasses.js
+  var touchRippleClasses = generateUtilityClasses("MuiTouchRipple", ["root", "ripple", "rippleVisible", "ripplePulsate", "child", "childLeaving", "childPulsate"]);
+  var touchRippleClasses_default = touchRippleClasses;
+
+  // node_modules/@mui/material/ButtonBase/TouchRipple.js
+  var import_jsx_runtime12 = __toModule(require_jsx_runtime());
+  var _excluded14 = ["center", "classes", "className"];
+  var _ = (t) => t;
+  var _t;
+  var _t2;
+  var _t3;
+  var _t4;
+  var DURATION = 550;
+  var DELAY_RIPPLE = 80;
+  var enterKeyframe = keyframes(_t || (_t = _`
+  0% {
+    transform: scale(0);
+    opacity: 0.1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+`));
+  var exitKeyframe = keyframes(_t2 || (_t2 = _`
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+`));
+  var pulsateKeyframe = keyframes(_t3 || (_t3 = _`
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.92);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+`));
+  var TouchRippleRoot = styled_default("span", {
+    name: "MuiTouchRipple",
+    slot: "Root",
+    skipSx: true
+  })({
+    overflow: "hidden",
+    pointerEvents: "none",
+    position: "absolute",
+    zIndex: 0,
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    borderRadius: "inherit"
+  });
+  var TouchRippleRipple = styled_default(Ripple_default, {
+    name: "MuiTouchRipple",
+    slot: "Ripple"
+  })(_t4 || (_t4 = _`
+  opacity: 0;
+  position: absolute;
+
+  &.${0} {
+    opacity: 0.3;
+    transform: scale(1);
+    animation-name: ${0};
+    animation-duration: ${0}ms;
+    animation-timing-function: ${0};
+  }
+
+  &.${0} {
+    animation-duration: ${0}ms;
+  }
+
+  & .${0} {
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: currentColor;
+  }
+
+  & .${0} {
+    opacity: 0;
+    animation-name: ${0};
+    animation-duration: ${0}ms;
+    animation-timing-function: ${0};
+  }
+
+  & .${0} {
+    position: absolute;
+    /* @noflip */
+    left: 0px;
+    top: 0;
+    animation-name: ${0};
+    animation-duration: 2500ms;
+    animation-timing-function: ${0};
+    animation-iteration-count: infinite;
+    animation-delay: 200ms;
+  }
+`), touchRippleClasses_default.rippleVisible, enterKeyframe, DURATION, ({
+    theme
+  }) => theme.transitions.easing.easeInOut, touchRippleClasses_default.ripplePulsate, ({
+    theme
+  }) => theme.transitions.duration.shorter, touchRippleClasses_default.child, touchRippleClasses_default.childLeaving, exitKeyframe, DURATION, ({
+    theme
+  }) => theme.transitions.easing.easeInOut, touchRippleClasses_default.childPulsate, pulsateKeyframe, ({
+    theme
+  }) => theme.transitions.easing.easeInOut);
+  var TouchRipple = /* @__PURE__ */ React24.forwardRef(function TouchRipple2(inProps, ref) {
+    const props = useThemeProps2({
+      props: inProps,
+      name: "MuiTouchRipple"
+    });
+    const {
+      center: centerProp = false,
+      classes = {},
+      className
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded14);
+    const [ripples, setRipples] = React24.useState([]);
+    const nextKey = React24.useRef(0);
+    const rippleCallback = React24.useRef(null);
+    React24.useEffect(() => {
+      if (rippleCallback.current) {
+        rippleCallback.current();
+        rippleCallback.current = null;
+      }
+    }, [ripples]);
+    const ignoringMouseDown = React24.useRef(false);
+    const startTimer = React24.useRef(null);
+    const startTimerCommit = React24.useRef(null);
+    const container = React24.useRef(null);
+    React24.useEffect(() => {
+      return () => {
+        clearTimeout(startTimer.current);
+      };
     }, []);
-    const alertData = (0, import_react20.useMemo)(() => ({ alert, setAlert }), []);
-    const userData = (0, import_react20.useMemo)(() => ({ user, setUser }), []);
-    return /* @__PURE__ */ import_react20.default.createElement(userContext_default.Provider, {
-      value: userData
-    }, /* @__PURE__ */ import_react20.default.createElement(alertContext_default.Provider, {
-      value: alertData
-    }, /* @__PURE__ */ import_react20.default.createElement(TopBar_default, {
+    const startCommit = React24.useCallback((params) => {
+      const {
+        pulsate: pulsate2,
+        rippleX,
+        rippleY,
+        rippleSize,
+        cb
+      } = params;
+      setRipples((oldRipples) => [...oldRipples, /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(TouchRippleRipple, {
+        classes: {
+          ripple: clsx_m_default(classes.ripple, touchRippleClasses_default.ripple),
+          rippleVisible: clsx_m_default(classes.rippleVisible, touchRippleClasses_default.rippleVisible),
+          ripplePulsate: clsx_m_default(classes.ripplePulsate, touchRippleClasses_default.ripplePulsate),
+          child: clsx_m_default(classes.child, touchRippleClasses_default.child),
+          childLeaving: clsx_m_default(classes.childLeaving, touchRippleClasses_default.childLeaving),
+          childPulsate: clsx_m_default(classes.childPulsate, touchRippleClasses_default.childPulsate)
+        },
+        timeout: DURATION,
+        pulsate: pulsate2,
+        rippleX,
+        rippleY,
+        rippleSize
+      }, nextKey.current)]);
+      nextKey.current += 1;
+      rippleCallback.current = cb;
+    }, [classes]);
+    const start = React24.useCallback((event = {}, options = {}, cb) => {
+      const {
+        pulsate: pulsate2 = false,
+        center = centerProp || options.pulsate,
+        fakeElement = false
+      } = options;
+      if (event.type === "mousedown" && ignoringMouseDown.current) {
+        ignoringMouseDown.current = false;
+        return;
+      }
+      if (event.type === "touchstart") {
+        ignoringMouseDown.current = true;
+      }
+      const element = fakeElement ? null : container.current;
+      const rect = element ? element.getBoundingClientRect() : {
+        width: 0,
+        height: 0,
+        left: 0,
+        top: 0
+      };
+      let rippleX;
+      let rippleY;
+      let rippleSize;
+      if (center || event.clientX === 0 && event.clientY === 0 || !event.clientX && !event.touches) {
+        rippleX = Math.round(rect.width / 2);
+        rippleY = Math.round(rect.height / 2);
+      } else {
+        const {
+          clientX,
+          clientY
+        } = event.touches ? event.touches[0] : event;
+        rippleX = Math.round(clientX - rect.left);
+        rippleY = Math.round(clientY - rect.top);
+      }
+      if (center) {
+        rippleSize = Math.sqrt((2 * rect.width ** 2 + rect.height ** 2) / 3);
+        if (rippleSize % 2 === 0) {
+          rippleSize += 1;
+        }
+      } else {
+        const sizeX = Math.max(Math.abs((element ? element.clientWidth : 0) - rippleX), rippleX) * 2 + 2;
+        const sizeY = Math.max(Math.abs((element ? element.clientHeight : 0) - rippleY), rippleY) * 2 + 2;
+        rippleSize = Math.sqrt(sizeX ** 2 + sizeY ** 2);
+      }
+      if (event.touches) {
+        if (startTimerCommit.current === null) {
+          startTimerCommit.current = () => {
+            startCommit({
+              pulsate: pulsate2,
+              rippleX,
+              rippleY,
+              rippleSize,
+              cb
+            });
+          };
+          startTimer.current = setTimeout(() => {
+            if (startTimerCommit.current) {
+              startTimerCommit.current();
+              startTimerCommit.current = null;
+            }
+          }, DELAY_RIPPLE);
+        }
+      } else {
+        startCommit({
+          pulsate: pulsate2,
+          rippleX,
+          rippleY,
+          rippleSize,
+          cb
+        });
+      }
+    }, [centerProp, startCommit]);
+    const pulsate = React24.useCallback(() => {
+      start({}, {
+        pulsate: true
+      });
+    }, [start]);
+    const stop = React24.useCallback((event, cb) => {
+      clearTimeout(startTimer.current);
+      if (event.type === "touchend" && startTimerCommit.current) {
+        startTimerCommit.current();
+        startTimerCommit.current = null;
+        startTimer.current = setTimeout(() => {
+          stop(event, cb);
+        });
+        return;
+      }
+      startTimerCommit.current = null;
+      setRipples((oldRipples) => {
+        if (oldRipples.length > 0) {
+          return oldRipples.slice(1);
+        }
+        return oldRipples;
+      });
+      rippleCallback.current = cb;
+    }, []);
+    React24.useImperativeHandle(ref, () => ({
+      pulsate,
+      start,
+      stop
+    }), [pulsate, start, stop]);
+    return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(TouchRippleRoot, _extends({
+      className: clsx_m_default(classes.root, touchRippleClasses_default.root, className),
+      ref: container
+    }, other, {
+      children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(TransitionGroup_default, {
+        component: null,
+        exit: true,
+        children: ripples
+      })
+    }));
+  });
+  true ? TouchRipple.propTypes = {
+    center: import_prop_types18.default.bool,
+    classes: import_prop_types18.default.object,
+    className: import_prop_types18.default.string
+  } : void 0;
+  var TouchRipple_default = TouchRipple;
+
+  // node_modules/@mui/material/ButtonBase/buttonBaseClasses.js
+  function getButtonBaseUtilityClass(slot) {
+    return generateUtilityClass("MuiButtonBase", slot);
+  }
+  var buttonBaseClasses = generateUtilityClasses("MuiButtonBase", ["root", "disabled", "focusVisible"]);
+  var buttonBaseClasses_default = buttonBaseClasses;
+
+  // node_modules/@mui/material/ButtonBase/ButtonBase.js
+  var import_jsx_runtime13 = __toModule(require_jsx_runtime());
+  var import_jsx_runtime14 = __toModule(require_jsx_runtime());
+  var _excluded15 = ["action", "centerRipple", "children", "className", "component", "disabled", "disableRipple", "disableTouchRipple", "focusRipple", "focusVisibleClassName", "LinkComponent", "onBlur", "onClick", "onContextMenu", "onDragLeave", "onFocus", "onFocusVisible", "onKeyDown", "onKeyUp", "onMouseDown", "onMouseLeave", "onMouseUp", "onTouchEnd", "onTouchMove", "onTouchStart", "tabIndex", "TouchRippleProps", "type"];
+  var useUtilityClasses4 = (ownerState) => {
+    const {
+      disabled,
+      focusVisible,
+      focusVisibleClassName,
+      classes
+    } = ownerState;
+    const slots = {
+      root: ["root", disabled && "disabled", focusVisible && "focusVisible"]
+    };
+    const composedClasses = composeClasses(slots, getButtonBaseUtilityClass, classes);
+    if (focusVisible && focusVisibleClassName) {
+      composedClasses.root += ` ${focusVisibleClassName}`;
+    }
+    return composedClasses;
+  };
+  var ButtonBaseRoot = styled_default("button", {
+    name: "MuiButtonBase",
+    slot: "Root",
+    overridesResolver: (props, styles4) => styles4.root
+  })({
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "relative",
+    boxSizing: "border-box",
+    WebkitTapHighlightColor: "transparent",
+    backgroundColor: "transparent",
+    outline: 0,
+    border: 0,
+    margin: 0,
+    borderRadius: 0,
+    padding: 0,
+    cursor: "pointer",
+    userSelect: "none",
+    verticalAlign: "middle",
+    MozAppearance: "none",
+    WebkitAppearance: "none",
+    textDecoration: "none",
+    color: "inherit",
+    "&::-moz-focus-inner": {
+      borderStyle: "none"
+    },
+    [`&.${buttonBaseClasses_default.disabled}`]: {
+      pointerEvents: "none",
+      cursor: "default"
+    },
+    "@media print": {
+      colorAdjust: "exact"
+    }
+  });
+  var ButtonBase = /* @__PURE__ */ React25.forwardRef(function ButtonBase2(inProps, ref) {
+    const props = useThemeProps2({
+      props: inProps,
+      name: "MuiButtonBase"
+    });
+    const {
+      action,
+      centerRipple = false,
+      children,
+      className,
+      component = "button",
+      disabled = false,
+      disableRipple = false,
+      disableTouchRipple = false,
+      focusRipple = false,
+      LinkComponent = "a",
+      onBlur,
+      onClick,
+      onContextMenu,
+      onDragLeave,
+      onFocus,
+      onFocusVisible,
+      onKeyDown,
+      onKeyUp,
+      onMouseDown,
+      onMouseLeave,
+      onMouseUp,
+      onTouchEnd,
+      onTouchMove,
+      onTouchStart,
+      tabIndex = 0,
+      TouchRippleProps,
+      type
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded15);
+    const buttonRef = React25.useRef(null);
+    const rippleRef = React25.useRef(null);
+    const {
+      isFocusVisibleRef,
+      onFocus: handleFocusVisible,
+      onBlur: handleBlurVisible,
+      ref: focusVisibleRef
+    } = useIsFocusVisible_default();
+    const [focusVisible, setFocusVisible] = React25.useState(false);
+    if (disabled && focusVisible) {
+      setFocusVisible(false);
+    }
+    React25.useImperativeHandle(action, () => ({
+      focusVisible: () => {
+        setFocusVisible(true);
+        buttonRef.current.focus();
+      }
+    }), []);
+    React25.useEffect(() => {
+      if (focusVisible && focusRipple && !disableRipple) {
+        rippleRef.current.pulsate();
+      }
+    }, [disableRipple, focusRipple, focusVisible]);
+    function useRippleHandler(rippleAction, eventCallback, skipRippleAction = disableTouchRipple) {
+      return useEventCallback_default((event) => {
+        if (eventCallback) {
+          eventCallback(event);
+        }
+        const ignore = skipRippleAction;
+        if (!ignore && rippleRef.current) {
+          rippleRef.current[rippleAction](event);
+        }
+        return true;
+      });
+    }
+    const handleMouseDown = useRippleHandler("start", onMouseDown);
+    const handleContextMenu = useRippleHandler("stop", onContextMenu);
+    const handleDragLeave = useRippleHandler("stop", onDragLeave);
+    const handleMouseUp = useRippleHandler("stop", onMouseUp);
+    const handleMouseLeave = useRippleHandler("stop", (event) => {
+      if (focusVisible) {
+        event.preventDefault();
+      }
+      if (onMouseLeave) {
+        onMouseLeave(event);
+      }
+    });
+    const handleTouchStart = useRippleHandler("start", onTouchStart);
+    const handleTouchEnd = useRippleHandler("stop", onTouchEnd);
+    const handleTouchMove = useRippleHandler("stop", onTouchMove);
+    const handleBlur = useRippleHandler("stop", (event) => {
+      handleBlurVisible(event);
+      if (isFocusVisibleRef.current === false) {
+        setFocusVisible(false);
+      }
+      if (onBlur) {
+        onBlur(event);
+      }
+    }, false);
+    const handleFocus = useEventCallback_default((event) => {
+      if (!buttonRef.current) {
+        buttonRef.current = event.currentTarget;
+      }
+      handleFocusVisible(event);
+      if (isFocusVisibleRef.current === true) {
+        setFocusVisible(true);
+        if (onFocusVisible) {
+          onFocusVisible(event);
+        }
+      }
+      if (onFocus) {
+        onFocus(event);
+      }
+    });
+    const isNonNativeButton = () => {
+      const button = buttonRef.current;
+      return component && component !== "button" && !(button.tagName === "A" && button.href);
+    };
+    const keydownRef = React25.useRef(false);
+    const handleKeyDown2 = useEventCallback_default((event) => {
+      if (focusRipple && !keydownRef.current && focusVisible && rippleRef.current && event.key === " ") {
+        keydownRef.current = true;
+        rippleRef.current.stop(event, () => {
+          rippleRef.current.start(event);
+        });
+      }
+      if (event.target === event.currentTarget && isNonNativeButton() && event.key === " ") {
+        event.preventDefault();
+      }
+      if (onKeyDown) {
+        onKeyDown(event);
+      }
+      if (event.target === event.currentTarget && isNonNativeButton() && event.key === "Enter" && !disabled) {
+        event.preventDefault();
+        if (onClick) {
+          onClick(event);
+        }
+      }
+    });
+    const handleKeyUp = useEventCallback_default((event) => {
+      if (focusRipple && event.key === " " && rippleRef.current && focusVisible && !event.defaultPrevented) {
+        keydownRef.current = false;
+        rippleRef.current.stop(event, () => {
+          rippleRef.current.pulsate(event);
+        });
+      }
+      if (onKeyUp) {
+        onKeyUp(event);
+      }
+      if (onClick && event.target === event.currentTarget && isNonNativeButton() && event.key === " " && !event.defaultPrevented) {
+        onClick(event);
+      }
+    });
+    let ComponentProp = component;
+    if (ComponentProp === "button" && (other.href || other.to)) {
+      ComponentProp = LinkComponent;
+    }
+    const buttonProps = {};
+    if (ComponentProp === "button") {
+      buttonProps.type = type === void 0 ? "button" : type;
+      buttonProps.disabled = disabled;
+    } else {
+      if (!other.href && !other.to) {
+        buttonProps.role = "button";
+      }
+      if (disabled) {
+        buttonProps["aria-disabled"] = disabled;
+      }
+    }
+    const handleOwnRef = useForkRef_default(focusVisibleRef, buttonRef);
+    const handleRef = useForkRef_default(ref, handleOwnRef);
+    const [mountedState, setMountedState] = React25.useState(false);
+    React25.useEffect(() => {
+      setMountedState(true);
+    }, []);
+    const enableTouchRipple = mountedState && !disableRipple && !disabled;
+    if (true) {
+      React25.useEffect(() => {
+        if (enableTouchRipple && !rippleRef.current) {
+          console.error(["MUI: The `component` prop provided to ButtonBase is invalid.", "Please make sure the children prop is rendered in this custom component."].join("\n"));
+        }
+      }, [enableTouchRipple]);
+    }
+    const ownerState = _extends({}, props, {
+      centerRipple,
+      component,
+      disabled,
+      disableRipple,
+      disableTouchRipple,
+      focusRipple,
+      tabIndex,
+      focusVisible
+    });
+    const classes = useUtilityClasses4(ownerState);
+    return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(ButtonBaseRoot, _extends({
+      as: ComponentProp,
+      className: clsx_m_default(classes.root, className),
+      ownerState,
+      onBlur: handleBlur,
+      onClick,
+      onContextMenu: handleContextMenu,
+      onFocus: handleFocus,
+      onKeyDown: handleKeyDown2,
+      onKeyUp: handleKeyUp,
+      onMouseDown: handleMouseDown,
+      onMouseLeave: handleMouseLeave,
+      onMouseUp: handleMouseUp,
+      onDragLeave: handleDragLeave,
+      onTouchEnd: handleTouchEnd,
+      onTouchMove: handleTouchMove,
+      onTouchStart: handleTouchStart,
+      ref: handleRef,
+      tabIndex: disabled ? -1 : tabIndex,
+      type
+    }, buttonProps, other, {
+      children: [children, enableTouchRipple ? /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(TouchRipple_default, _extends({
+        ref: rippleRef,
+        center: centerRipple
+      }, TouchRippleProps)) : null]
+    }));
+  });
+  true ? ButtonBase.propTypes = {
+    action: refType_default,
+    centerRipple: import_prop_types19.default.bool,
+    children: import_prop_types19.default.node,
+    classes: import_prop_types19.default.object,
+    className: import_prop_types19.default.string,
+    component: elementTypeAcceptingRef_default,
+    disabled: import_prop_types19.default.bool,
+    disableRipple: import_prop_types19.default.bool,
+    disableTouchRipple: import_prop_types19.default.bool,
+    focusRipple: import_prop_types19.default.bool,
+    focusVisibleClassName: import_prop_types19.default.string,
+    href: import_prop_types19.default.any,
+    LinkComponent: import_prop_types19.default.elementType,
+    onBlur: import_prop_types19.default.func,
+    onClick: import_prop_types19.default.func,
+    onContextMenu: import_prop_types19.default.func,
+    onDragLeave: import_prop_types19.default.func,
+    onFocus: import_prop_types19.default.func,
+    onFocusVisible: import_prop_types19.default.func,
+    onKeyDown: import_prop_types19.default.func,
+    onKeyUp: import_prop_types19.default.func,
+    onMouseDown: import_prop_types19.default.func,
+    onMouseLeave: import_prop_types19.default.func,
+    onMouseUp: import_prop_types19.default.func,
+    onTouchEnd: import_prop_types19.default.func,
+    onTouchMove: import_prop_types19.default.func,
+    onTouchStart: import_prop_types19.default.func,
+    sx: import_prop_types19.default.oneOfType([import_prop_types19.default.arrayOf(import_prop_types19.default.oneOfType([import_prop_types19.default.func, import_prop_types19.default.object])), import_prop_types19.default.func, import_prop_types19.default.object]),
+    tabIndex: import_prop_types19.default.number,
+    TouchRippleProps: import_prop_types19.default.object,
+    type: import_prop_types19.default.oneOfType([import_prop_types19.default.oneOf(["button", "reset", "submit"]), import_prop_types19.default.string])
+  } : void 0;
+  var ButtonBase_default = ButtonBase;
+
+  // node_modules/@mui/material/IconButton/iconButtonClasses.js
+  function getIconButtonUtilityClass(slot) {
+    return generateUtilityClass("MuiIconButton", slot);
+  }
+  var iconButtonClasses = generateUtilityClasses("MuiIconButton", ["root", "disabled", "colorInherit", "colorPrimary", "colorSecondary", "edgeStart", "edgeEnd", "sizeSmall", "sizeMedium", "sizeLarge"]);
+  var iconButtonClasses_default = iconButtonClasses;
+
+  // node_modules/@mui/material/IconButton/IconButton.js
+  var import_jsx_runtime15 = __toModule(require_jsx_runtime());
+  var _excluded16 = ["edge", "children", "className", "color", "disabled", "disableFocusRipple", "size"];
+  var useUtilityClasses5 = (ownerState) => {
+    const {
+      classes,
+      disabled,
+      color: color2,
+      edge,
+      size
+    } = ownerState;
+    const slots = {
+      root: ["root", disabled && "disabled", color2 !== "default" && `color${capitalize_default(color2)}`, edge && `edge${capitalize_default(edge)}`, `size${capitalize_default(size)}`]
+    };
+    return composeClasses(slots, getIconButtonUtilityClass, classes);
+  };
+  var IconButtonRoot = styled_default(ButtonBase_default, {
+    name: "MuiIconButton",
+    slot: "Root",
+    overridesResolver: (props, styles4) => {
+      const {
+        ownerState
+      } = props;
+      return [styles4.root, ownerState.color !== "default" && styles4[`color${capitalize_default(ownerState.color)}`], ownerState.edge && styles4[`edge${capitalize_default(ownerState.edge)}`], styles4[`size${capitalize_default(ownerState.size)}`]];
+    }
+  })(({
+    theme,
+    ownerState
+  }) => _extends({
+    textAlign: "center",
+    flex: "0 0 auto",
+    fontSize: theme.typography.pxToRem(24),
+    padding: 8,
+    borderRadius: "50%",
+    overflow: "visible",
+    color: theme.palette.action.active,
+    transition: theme.transitions.create("background-color", {
+      duration: theme.transitions.duration.shortest
+    })
+  }, !ownerState.disableRipple && {
+    "&:hover": {
+      backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+      "@media (hover: none)": {
+        backgroundColor: "transparent"
+      }
+    }
+  }, ownerState.edge === "start" && {
+    marginLeft: ownerState.size === "small" ? -3 : -12
+  }, ownerState.edge === "end" && {
+    marginRight: ownerState.size === "small" ? -3 : -12
+  }), ({
+    theme,
+    ownerState
+  }) => _extends({}, ownerState.color === "inherit" && {
+    color: "inherit"
+  }, ownerState.color !== "inherit" && ownerState.color !== "default" && _extends({
+    color: theme.palette[ownerState.color].main
+  }, !ownerState.disableRipple && {
+    "&:hover": {
+      backgroundColor: alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
+      "@media (hover: none)": {
+        backgroundColor: "transparent"
+      }
+    }
+  }), ownerState.size === "small" && {
+    padding: 5,
+    fontSize: theme.typography.pxToRem(18)
+  }, ownerState.size === "large" && {
+    padding: 12,
+    fontSize: theme.typography.pxToRem(28)
+  }, {
+    [`&.${iconButtonClasses_default.disabled}`]: {
+      backgroundColor: "transparent",
+      color: theme.palette.action.disabled
+    }
+  }));
+  var IconButton = /* @__PURE__ */ React26.forwardRef(function IconButton2(inProps, ref) {
+    const props = useThemeProps2({
+      props: inProps,
+      name: "MuiIconButton"
+    });
+    const {
+      edge = false,
+      children,
+      className,
+      color: color2 = "default",
+      disabled = false,
+      disableFocusRipple = false,
+      size = "medium"
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded16);
+    const ownerState = _extends({}, props, {
+      edge,
+      color: color2,
+      disabled,
+      disableFocusRipple,
+      size
+    });
+    const classes = useUtilityClasses5(ownerState);
+    return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(IconButtonRoot, _extends({
+      className: clsx_m_default(classes.root, className),
+      centerRipple: true,
+      focusRipple: !disableFocusRipple,
+      disabled,
+      ref,
+      ownerState
+    }, other, {
+      children
+    }));
+  });
+  true ? IconButton.propTypes = {
+    children: chainPropTypes(import_prop_types20.default.node, (props) => {
+      const found = React26.Children.toArray(props.children).some((child) => /* @__PURE__ */ React26.isValidElement(child) && child.props.onClick);
+      if (found) {
+        return new Error(["MUI: You are providing an onClick event listener to a child of a button element.", "Prefer applying it to the IconButton directly.", "This guarantees that the whole <button> will be responsive to click events."].join("\n"));
+      }
+      return null;
+    }),
+    classes: import_prop_types20.default.object,
+    className: import_prop_types20.default.string,
+    color: import_prop_types20.default.oneOfType([import_prop_types20.default.oneOf(["inherit", "default", "primary", "secondary", "error", "info", "success", "warning"]), import_prop_types20.default.string]),
+    disabled: import_prop_types20.default.bool,
+    disableFocusRipple: import_prop_types20.default.bool,
+    disableRipple: import_prop_types20.default.bool,
+    edge: import_prop_types20.default.oneOf(["end", "start", false]),
+    size: import_prop_types20.default.oneOfType([import_prop_types20.default.oneOf(["small", "medium", "large"]), import_prop_types20.default.string]),
+    sx: import_prop_types20.default.oneOfType([import_prop_types20.default.arrayOf(import_prop_types20.default.oneOfType([import_prop_types20.default.func, import_prop_types20.default.object])), import_prop_types20.default.func, import_prop_types20.default.object])
+  } : void 0;
+  var IconButton_default = IconButton;
+
+  // node_modules/@mui/material/internal/svg-icons/SuccessOutlined.js
+  var React29 = __toModule(require_react());
+
+  // node_modules/@mui/material/utils/createSvgIcon.js
+  var React28 = __toModule(require_react());
+
+  // node_modules/@mui/material/SvgIcon/SvgIcon.js
+  var React27 = __toModule(require_react());
+  var import_prop_types21 = __toModule(require_prop_types());
+
+  // node_modules/@mui/material/SvgIcon/svgIconClasses.js
+  function getSvgIconUtilityClass(slot) {
+    return generateUtilityClass("MuiSvgIcon", slot);
+  }
+  var svgIconClasses = generateUtilityClasses("MuiSvgIcon", ["root", "colorPrimary", "colorSecondary", "colorAction", "colorError", "colorDisabled", "fontSizeInherit", "fontSizeSmall", "fontSizeMedium", "fontSizeLarge"]);
+
+  // node_modules/@mui/material/SvgIcon/SvgIcon.js
+  var import_jsx_runtime16 = __toModule(require_jsx_runtime());
+  var import_jsx_runtime17 = __toModule(require_jsx_runtime());
+  var _excluded17 = ["children", "className", "color", "component", "fontSize", "htmlColor", "titleAccess", "viewBox"];
+  var useUtilityClasses6 = (ownerState) => {
+    const {
+      color: color2,
+      fontSize: fontSize2,
+      classes
+    } = ownerState;
+    const slots = {
+      root: ["root", color2 !== "inherit" && `color${capitalize_default(color2)}`, `fontSize${capitalize_default(fontSize2)}`]
+    };
+    return composeClasses(slots, getSvgIconUtilityClass, classes);
+  };
+  var SvgIconRoot = styled_default("svg", {
+    name: "MuiSvgIcon",
+    slot: "Root",
+    overridesResolver: (props, styles4) => {
+      const {
+        ownerState
+      } = props;
+      return [styles4.root, ownerState.color !== "inherit" && styles4[`color${capitalize_default(ownerState.color)}`], styles4[`fontSize${capitalize_default(ownerState.fontSize)}`]];
+    }
+  })(({
+    theme,
+    ownerState
+  }) => {
+    var _theme$palette$ownerS, _theme$palette$ownerS2;
+    return {
+      userSelect: "none",
+      width: "1em",
+      height: "1em",
+      display: "inline-block",
+      fill: "currentColor",
+      flexShrink: 0,
+      transition: theme.transitions.create("fill", {
+        duration: theme.transitions.duration.shorter
+      }),
+      fontSize: {
+        inherit: "inherit",
+        small: theme.typography.pxToRem(20),
+        medium: theme.typography.pxToRem(24),
+        large: theme.typography.pxToRem(35)
+      }[ownerState.fontSize],
+      color: (_theme$palette$ownerS = (_theme$palette$ownerS2 = theme.palette[ownerState.color]) == null ? void 0 : _theme$palette$ownerS2.main) != null ? _theme$palette$ownerS : {
+        action: theme.palette.action.active,
+        disabled: theme.palette.action.disabled,
+        inherit: void 0
+      }[ownerState.color]
+    };
+  });
+  var SvgIcon = /* @__PURE__ */ React27.forwardRef(function SvgIcon2(inProps, ref) {
+    const props = useThemeProps2({
+      props: inProps,
+      name: "MuiSvgIcon"
+    });
+    const {
+      children,
+      className,
+      color: color2 = "inherit",
+      component = "svg",
+      fontSize: fontSize2 = "medium",
+      htmlColor,
+      titleAccess,
+      viewBox = "0 0 24 24"
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded17);
+    const ownerState = _extends({}, props, {
+      color: color2,
+      component,
+      fontSize: fontSize2,
+      viewBox
+    });
+    const classes = useUtilityClasses6(ownerState);
+    return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(SvgIconRoot, _extends({
+      as: component,
+      className: clsx_m_default(classes.root, className),
+      ownerState,
+      focusable: "false",
+      viewBox,
+      color: htmlColor,
+      "aria-hidden": titleAccess ? void 0 : true,
+      role: titleAccess ? "img" : void 0,
+      ref
+    }, other, {
+      children: [children, titleAccess ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("title", {
+        children: titleAccess
+      }) : null]
+    }));
+  });
+  true ? SvgIcon.propTypes = {
+    children: import_prop_types21.default.node,
+    classes: import_prop_types21.default.object,
+    className: import_prop_types21.default.string,
+    color: import_prop_types21.default.oneOfType([import_prop_types21.default.oneOf(["inherit", "action", "disabled", "primary", "secondary", "error", "info", "success", "warning"]), import_prop_types21.default.string]),
+    component: import_prop_types21.default.elementType,
+    fontSize: import_prop_types21.default.oneOfType([import_prop_types21.default.oneOf(["inherit", "large", "medium", "small"]), import_prop_types21.default.string]),
+    htmlColor: import_prop_types21.default.string,
+    shapeRendering: import_prop_types21.default.string,
+    sx: import_prop_types21.default.oneOfType([import_prop_types21.default.arrayOf(import_prop_types21.default.oneOfType([import_prop_types21.default.func, import_prop_types21.default.object])), import_prop_types21.default.func, import_prop_types21.default.object]),
+    titleAccess: import_prop_types21.default.string,
+    viewBox: import_prop_types21.default.string
+  } : void 0;
+  SvgIcon.muiName = "SvgIcon";
+  var SvgIcon_default = SvgIcon;
+
+  // node_modules/@mui/material/utils/createSvgIcon.js
+  var import_jsx_runtime18 = __toModule(require_jsx_runtime());
+  function createSvgIcon(path, displayName) {
+    const Component2 = (props, ref) => /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(SvgIcon_default, _extends({
+      "data-testid": `${displayName}Icon`,
+      ref
+    }, props, {
+      children: path
+    }));
+    if (true) {
+      Component2.displayName = `${displayName}Icon`;
+    }
+    Component2.muiName = SvgIcon_default.muiName;
+    return /* @__PURE__ */ React28.memo(/* @__PURE__ */ React28.forwardRef(Component2));
+  }
+
+  // node_modules/@mui/material/internal/svg-icons/SuccessOutlined.js
+  var import_jsx_runtime19 = __toModule(require_jsx_runtime());
+  var SuccessOutlined_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime19.jsx)("path", {
+    d: "M20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4C12.76,4 13.5,4.11 14.2, 4.31L15.77,2.74C14.61,2.26 13.34,2 12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0, 0 22,12M7.91,10.08L6.5,11.5L11,16L21,6L19.59,4.58L11,13.17L7.91,10.08Z"
+  }), "SuccessOutlined");
+
+  // node_modules/@mui/material/internal/svg-icons/ReportProblemOutlined.js
+  var React30 = __toModule(require_react());
+  var import_jsx_runtime20 = __toModule(require_jsx_runtime());
+  var ReportProblemOutlined_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime20.jsx)("path", {
+    d: "M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z"
+  }), "ReportProblemOutlined");
+
+  // node_modules/@mui/material/internal/svg-icons/ErrorOutline.js
+  var React31 = __toModule(require_react());
+  var import_jsx_runtime21 = __toModule(require_jsx_runtime());
+  var ErrorOutline_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime21.jsx)("path", {
+    d: "M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+  }), "ErrorOutline");
+
+  // node_modules/@mui/material/internal/svg-icons/InfoOutlined.js
+  var React32 = __toModule(require_react());
+  var import_jsx_runtime22 = __toModule(require_jsx_runtime());
+  var InfoOutlined_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime22.jsx)("path", {
+    d: "M11,9H13V7H11M12,20C7.59,20 4,16.41 4,12C4,7.59 7.59,4 12,4C16.41,4 20,7.59 20, 12C20,16.41 16.41,20 12,20M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10, 10 0 0,0 12,2M11,17H13V11H11V17Z"
+  }), "InfoOutlined");
+
+  // node_modules/@mui/material/internal/svg-icons/Close.js
+  var React33 = __toModule(require_react());
+  var import_jsx_runtime23 = __toModule(require_jsx_runtime());
+  var Close_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime23.jsx)("path", {
+    d: "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+  }), "Close");
+
+  // node_modules/@mui/material/Alert/Alert.js
+  var import_jsx_runtime24 = __toModule(require_jsx_runtime());
+  var import_jsx_runtime25 = __toModule(require_jsx_runtime());
+  var _CloseIcon;
+  var _excluded18 = ["action", "children", "className", "closeText", "color", "icon", "iconMapping", "onClose", "role", "severity", "variant"];
+  var useUtilityClasses7 = (ownerState) => {
+    const {
+      variant,
+      color: color2,
+      severity,
+      classes
+    } = ownerState;
+    const slots = {
+      root: ["root", `${variant}${capitalize_default(color2 || severity)}`, `${variant}`],
+      icon: ["icon"],
+      message: ["message"],
+      action: ["action"]
+    };
+    return composeClasses(slots, getAlertUtilityClass, classes);
+  };
+  var AlertRoot = styled_default(Paper_default, {
+    name: "MuiAlert",
+    slot: "Root",
+    overridesResolver: (props, styles4) => {
+      const {
+        ownerState
+      } = props;
+      return [styles4.root, styles4[ownerState.variant], styles4[`${ownerState.variant}${capitalize_default(ownerState.color || ownerState.severity)}`]];
+    }
+  })(({
+    theme,
+    ownerState
+  }) => {
+    const getColor = theme.palette.mode === "light" ? darken : lighten;
+    const getBackgroundColor = theme.palette.mode === "light" ? lighten : darken;
+    const color2 = ownerState.color || ownerState.severity;
+    return _extends({}, theme.typography.body2, {
+      borderRadius: theme.shape.borderRadius,
+      backgroundColor: "transparent",
+      display: "flex",
+      padding: "6px 16px"
+    }, color2 && ownerState.variant === "standard" && {
+      color: getColor(theme.palette[color2].light, 0.6),
+      backgroundColor: getBackgroundColor(theme.palette[color2].light, 0.9),
+      [`& .${alertClasses_default.icon}`]: {
+        color: theme.palette.mode === "dark" ? theme.palette[color2].main : theme.palette[color2].light
+      }
+    }, color2 && ownerState.variant === "outlined" && {
+      color: getColor(theme.palette[color2].light, 0.6),
+      border: `1px solid ${theme.palette[color2].light}`,
+      [`& .${alertClasses_default.icon}`]: {
+        color: theme.palette.mode === "dark" ? theme.palette[color2].main : theme.palette[color2].light
+      }
+    }, color2 && ownerState.variant === "filled" && {
+      color: "#fff",
+      fontWeight: theme.typography.fontWeightMedium,
+      backgroundColor: theme.palette.mode === "dark" ? theme.palette[color2].dark : theme.palette[color2].main
+    });
+  });
+  var AlertIcon = styled_default("div", {
+    name: "MuiAlert",
+    slot: "Icon",
+    overridesResolver: (props, styles4) => styles4.icon
+  })({
+    marginRight: 12,
+    padding: "7px 0",
+    display: "flex",
+    fontSize: 22,
+    opacity: 0.9
+  });
+  var AlertMessage = styled_default("div", {
+    name: "MuiAlert",
+    slot: "Message",
+    overridesResolver: (props, styles4) => styles4.message
+  })({
+    padding: "8px 0"
+  });
+  var AlertAction = styled_default("div", {
+    name: "MuiAlert",
+    slot: "Action",
+    overridesResolver: (props, styles4) => styles4.action
+  })({
+    display: "flex",
+    alignItems: "flex-start",
+    padding: "4px 0 0 16px",
+    marginLeft: "auto",
+    marginRight: -8
+  });
+  var defaultIconMapping = {
+    success: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(SuccessOutlined_default, {
+      fontSize: "inherit"
+    }),
+    warning: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(ReportProblemOutlined_default, {
+      fontSize: "inherit"
+    }),
+    error: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(ErrorOutline_default, {
+      fontSize: "inherit"
+    }),
+    info: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(InfoOutlined_default, {
+      fontSize: "inherit"
+    })
+  };
+  var Alert = /* @__PURE__ */ React34.forwardRef(function Alert2(inProps, ref) {
+    const props = useThemeProps2({
+      props: inProps,
+      name: "MuiAlert"
+    });
+    const {
+      action,
+      children,
+      className,
+      closeText = "Close",
+      color: color2,
+      icon,
+      iconMapping = defaultIconMapping,
+      onClose,
+      role = "alert",
+      severity = "success",
+      variant = "standard"
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded18);
+    const ownerState = _extends({}, props, {
+      color: color2,
+      severity,
+      variant
+    });
+    const classes = useUtilityClasses7(ownerState);
+    return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(AlertRoot, _extends({
+      role,
+      square: true,
+      elevation: 0,
+      ownerState,
+      className: clsx_m_default(classes.root, className),
+      ref
+    }, other, {
+      children: [icon !== false ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(AlertIcon, {
+        ownerState,
+        className: classes.icon,
+        children: icon || iconMapping[severity] || defaultIconMapping[severity]
+      }) : null, /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(AlertMessage, {
+        ownerState,
+        className: classes.message,
+        children
+      }), action != null ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(AlertAction, {
+        className: classes.action,
+        children: action
+      }) : null, action == null && onClose ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(AlertAction, {
+        ownerState,
+        className: classes.action,
+        children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(IconButton_default, {
+          size: "small",
+          "aria-label": closeText,
+          title: closeText,
+          color: "inherit",
+          onClick: onClose,
+          children: _CloseIcon || (_CloseIcon = /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Close_default, {
+            fontSize: "small"
+          }))
+        })
+      }) : null]
+    }));
+  });
+  true ? Alert.propTypes = {
+    action: import_prop_types22.default.node,
+    children: import_prop_types22.default.node,
+    classes: import_prop_types22.default.object,
+    className: import_prop_types22.default.string,
+    closeText: import_prop_types22.default.string,
+    color: import_prop_types22.default.oneOfType([import_prop_types22.default.oneOf(["error", "info", "success", "warning"]), import_prop_types22.default.string]),
+    icon: import_prop_types22.default.node,
+    iconMapping: import_prop_types22.default.shape({
+      error: import_prop_types22.default.node,
+      info: import_prop_types22.default.node,
+      success: import_prop_types22.default.node,
+      warning: import_prop_types22.default.node
+    }),
+    onClose: import_prop_types22.default.func,
+    role: import_prop_types22.default.string,
+    severity: import_prop_types22.default.oneOf(["error", "info", "success", "warning"]),
+    sx: import_prop_types22.default.oneOfType([import_prop_types22.default.arrayOf(import_prop_types22.default.oneOfType([import_prop_types22.default.func, import_prop_types22.default.object])), import_prop_types22.default.func, import_prop_types22.default.object]),
+    variant: import_prop_types22.default.oneOfType([import_prop_types22.default.oneOf(["filled", "outlined", "standard"]), import_prop_types22.default.string])
+  } : void 0;
+  var Alert_default = Alert;
+
+  // src/components/TopBar.tsx
+  var import_react17 = __toModule(require_react());
+  var TopBar = ({ user }) => {
+    return /* @__PURE__ */ import_react17.default.createElement("div", null, /* @__PURE__ */ import_react17.default.createElement("ul", {
+      className: "topbar menu__horizontal"
+    }, user.signedIn ? /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement("strong", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
+      to: "/"
+    }, "Current User"))), /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
+      to: "/"
+    }, "Logout"))) : /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement("strong", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
+      to: "/login"
+    }, "Login"))), /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
+      to: "/register"
+    }, "Register")))));
+  };
+  var TopBar_default = TopBar;
+
+  // src/components/Header.tsx
+  var import_react18 = __toModule(require_react());
+
+  // src/constants.ts
+  var BASE_URL = "/api/v1/";
+  var SITE_NAME = "ProductStart";
+  var CONSTANTS = { BASE_URL, SITE_NAME };
+  var constants_default = CONSTANTS;
+
+  // src/components/Header.tsx
+  var Header = () => {
+    return /* @__PURE__ */ import_react18.default.createElement("header", null, /* @__PURE__ */ import_react18.default.createElement("h1", {
+      className: "site-name"
+    }, /* @__PURE__ */ import_react18.default.createElement(Link, {
+      to: "/"
+    }, constants_default.SITE_NAME)));
+  };
+  var Header_default = Header;
+
+  // src/components/Menu.tsx
+  var import_react19 = __toModule(require_react());
+  var Menu = ({ user }) => {
+    if (!user.signedIn) {
+      return null;
+    }
+    return /* @__PURE__ */ import_react19.default.createElement("nav", null, /* @__PURE__ */ import_react19.default.createElement("ul", {
+      className: "main-navigation menu__horizontal"
+    }, /* @__PURE__ */ import_react19.default.createElement("li", null, /* @__PURE__ */ import_react19.default.createElement(NavLink, {
+      to: "/"
+    }, "My Products")), /* @__PURE__ */ import_react19.default.createElement("li", null, /* @__PURE__ */ import_react19.default.createElement(NavLink, {
+      to: "/"
+    }, "My Pledges"))));
+  };
+  var Menu_default = Menu;
+
+  // src/views/Layout.tsx
+  var Layout = ({ alert, setAlert, user }) => {
+    return /* @__PURE__ */ import_react20.default.createElement("div", null, /* @__PURE__ */ import_react20.default.createElement(TopBar_default, {
       user
     }), /* @__PURE__ */ import_react20.default.createElement(Header_default, null), /* @__PURE__ */ import_react20.default.createElement(Menu_default, {
       user
@@ -35472,9 +35462,9 @@ const theme2 = createTheme({ palette: {
         setAlert({ message: "", type: void 0 });
       },
       severity: alert.type
-    }, alert.message)), /* @__PURE__ */ import_react20.default.createElement("main", null, /* @__PURE__ */ import_react20.default.createElement(Outlet, null))));
+    }, alert.message)), /* @__PURE__ */ import_react20.default.createElement("main", null, /* @__PURE__ */ import_react20.default.createElement(Outlet, null)));
   };
-  var App_default = App;
+  var Layout_default = Layout;
 
   // src/views/LandingPage.tsx
   var import_react21 = __toModule(require_react());
@@ -35491,7 +35481,7 @@ const theme2 = createTheme({ palette: {
 
   // node_modules/@mui/material/Divider/Divider.js
   var import_jsx_runtime26 = __toModule(require_jsx_runtime());
-  var _excluded20 = ["absolute", "children", "className", "component", "flexItem", "light", "orientation", "role", "textAlign", "variant"];
+  var _excluded19 = ["absolute", "children", "className", "component", "flexItem", "light", "orientation", "role", "textAlign", "variant"];
   var useUtilityClasses8 = (ownerState) => {
     const {
       absolute,
@@ -35632,7 +35622,7 @@ const theme2 = createTheme({ palette: {
       role = component !== "hr" ? "separator" : void 0,
       textAlign: textAlign2 = "center",
       variant = "fullWidth"
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded20);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded19);
     const ownerState = _extends({}, props, {
       absolute,
       component,
@@ -35775,7 +35765,7 @@ const theme2 = createTheme({ palette: {
   // node_modules/@mui/material/InputBase/InputBase.js
   var import_jsx_runtime28 = __toModule(require_jsx_runtime());
   var import_jsx_runtime29 = __toModule(require_jsx_runtime());
-  var _excluded21 = ["aria-describedby", "autoComplete", "autoFocus", "className", "color", "components", "componentsProps", "defaultValue", "disabled", "endAdornment", "error", "fullWidth", "id", "inputComponent", "inputProps", "inputRef", "margin", "maxRows", "minRows", "multiline", "name", "onBlur", "onChange", "onClick", "onFocus", "onKeyDown", "onKeyUp", "placeholder", "readOnly", "renderSuffix", "rows", "size", "startAdornment", "type", "value"];
+  var _excluded20 = ["aria-describedby", "autoComplete", "autoFocus", "className", "color", "components", "componentsProps", "defaultValue", "disabled", "endAdornment", "error", "fullWidth", "id", "inputComponent", "inputProps", "inputRef", "margin", "maxRows", "minRows", "multiline", "name", "onBlur", "onChange", "onClick", "onFocus", "onKeyDown", "onKeyUp", "placeholder", "readOnly", "renderSuffix", "rows", "size", "startAdornment", "type", "value"];
   var rootOverridesResolver = (props, styles4) => {
     const {
       ownerState
@@ -35967,7 +35957,7 @@ const theme2 = createTheme({ palette: {
       startAdornment,
       type = "text",
       value: valueProp
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded21);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded20);
     const value = inputPropsProp.value != null ? inputPropsProp.value : valueProp;
     const {
       current: isControlled
@@ -36234,7 +36224,7 @@ const theme2 = createTheme({ palette: {
 
   // node_modules/@mui/material/Input/Input.js
   var import_jsx_runtime30 = __toModule(require_jsx_runtime());
-  var _excluded23 = ["disableUnderline", "components", "componentsProps", "fullWidth", "inputComponent", "multiline", "type"];
+  var _excluded21 = ["disableUnderline", "components", "componentsProps", "fullWidth", "inputComponent", "multiline", "type"];
   var useUtilityClasses10 = (ownerState) => {
     const {
       classes,
@@ -36332,7 +36322,7 @@ const theme2 = createTheme({ palette: {
       inputComponent = "input",
       multiline = false,
       type = "text"
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded23);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded21);
     const classes = useUtilityClasses10(props);
     const ownerState = {
       disableUnderline
@@ -36564,7 +36554,7 @@ const theme2 = createTheme({ palette: {
       inputComponent = "input",
       multiline = false,
       type = "text"
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded24);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded24);
     const ownerState = _extends({}, props, {
       fullWidth,
       inputComponent,
@@ -36705,7 +36695,7 @@ const theme2 = createTheme({ palette: {
       className,
       label,
       notched
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded25);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded25);
     const ownerState = _extends({}, props, {
       notched,
       label
@@ -36846,7 +36836,7 @@ const theme2 = createTheme({ palette: {
       multiline = false,
       notched,
       type = "text"
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded26);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded26);
     const classes = useUtilityClasses12(props);
     return /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(InputBase_default, _extends({
       components: _extends({
@@ -36988,7 +36978,7 @@ const theme2 = createTheme({ palette: {
       children,
       className,
       component = "label"
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded27);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded27);
     const muiFormControl = useFormControl();
     const fcs = formControlState({
       props,
@@ -37129,7 +37119,7 @@ const theme2 = createTheme({ palette: {
     const {
       disableAnimation = false,
       shrink: shrinkProp
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded28);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded28);
     const muiFormControl = useFormControl();
     let shrink = shrinkProp;
     if (typeof shrink === "undefined" && muiFormControl) {
@@ -37247,7 +37237,7 @@ const theme2 = createTheme({ palette: {
       required = false,
       size = "medium",
       variant = "outlined"
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded29);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded29);
     const ownerState = _extends({}, props, {
       color: color2,
       component,
@@ -37439,7 +37429,7 @@ const theme2 = createTheme({ palette: {
       children,
       className,
       component = "p"
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded30);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded30);
     const muiFormControl = useFormControl();
     const fcs = formControlState({
       props,
@@ -37578,7 +37568,7 @@ const theme2 = createTheme({ palette: {
       dense = false,
       disablePadding = false,
       subheader
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded31);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded31);
     const context = React55.useMemo(() => ({
       dense
     }), [dense]);
@@ -37684,7 +37674,7 @@ const theme2 = createTheme({ palette: {
       disableListWrap = false,
       onKeyDown,
       variant = "selectedMenu"
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded33);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded33);
     const listRef = React56.useRef(null);
     const textCriteriaRef = React56.useRef({
       keys: [],
@@ -37866,7 +37856,7 @@ const theme2 = createTheme({ palette: {
       style: style3,
       timeout: timeout2 = "auto",
       TransitionComponent = Transition_default
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded34);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded34);
     const timer = React57.useRef();
     const autoTimeout = React57.useRef();
     const theme = useTheme5();
@@ -38056,7 +38046,7 @@ const theme2 = createTheme({ palette: {
       style: style3,
       timeout: timeout2 = defaultTimeout,
       TransitionComponent = Transition_default
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded35);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded35);
     const theme = useTheme5();
     const enableStrictModeCompat = true;
     const nodeRef = React58.useRef(null);
@@ -38207,7 +38197,7 @@ const theme2 = createTheme({ palette: {
       open,
       transitionDuration,
       TransitionComponent = Fade_default
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded36);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded36);
     const ownerState = _extends({}, props, {
       invisible
     });
@@ -38309,7 +38299,7 @@ const theme2 = createTheme({ palette: {
       disableScrollLock = false,
       hideBackdrop = false,
       keepMounted = false
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded37);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded37);
     const [exited, setExited] = React60.useState(true);
     const commonProps = {
       closeAfterTransition,
@@ -38468,7 +38458,7 @@ const theme2 = createTheme({ palette: {
       TransitionProps: {
         onEntering
       } = {}
-    } = props, TransitionProps = _objectWithoutPropertiesLoose2(props.TransitionProps, _excluded38), other = _objectWithoutPropertiesLoose2(props, _excluded210);
+    } = props, TransitionProps = _objectWithoutPropertiesLoose(props.TransitionProps, _excluded38), other = _objectWithoutPropertiesLoose(props, _excluded210);
     const paperRef = React61.useRef();
     const handlePaperRef = useForkRef_default(paperRef, PaperProps.ref);
     const ownerState = _extends({}, props, {
@@ -38757,7 +38747,7 @@ const theme2 = createTheme({ palette: {
         onEntering
       } = {},
       variant = "selectedMenu"
-    } = props, TransitionProps = _objectWithoutPropertiesLoose2(props.TransitionProps, _excluded39), other = _objectWithoutPropertiesLoose2(props, _excluded211);
+    } = props, TransitionProps = _objectWithoutPropertiesLoose(props.TransitionProps, _excluded39), other = _objectWithoutPropertiesLoose(props, _excluded211);
     const theme = useTheme5();
     const isRtl = theme.direction === "rtl";
     const ownerState = _extends({}, props, {
@@ -38985,7 +38975,7 @@ const theme2 = createTheme({ palette: {
       IconComponent,
       inputRef,
       variant = "standard"
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded40);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded40);
     const ownerState = _extends({}, props, {
       disabled,
       variant
@@ -39138,7 +39128,7 @@ const theme2 = createTheme({ palette: {
       tabIndex: tabIndexProp,
       value: valueProp,
       variant = "standard"
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded41);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded41);
     const [value, setValueState] = useControlled_default({
       controlled: valueProp,
       default: defaultValue,
@@ -39519,7 +39509,7 @@ const theme2 = createTheme({ palette: {
       renderValue,
       SelectDisplayProps,
       variant: variantProps = "outlined"
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded42);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded42);
     const inputComponent = native ? NativeSelectInput_default : SelectInput_default;
     const muiFormControl = useFormControl();
     const fcs = formControlState({
@@ -39668,7 +39658,7 @@ const theme2 = createTheme({ palette: {
       type,
       value,
       variant = "outlined"
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded43);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded43);
     const ownerState = _extends({}, props, {
       autoFocus,
       color: color2,
@@ -40046,7 +40036,7 @@ const theme2 = createTheme({ palette: {
       startIcon: startIconProp,
       type,
       variant: variantProp
-    } = props, other = _objectWithoutPropertiesLoose2(props, _excluded44);
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded44);
     const color2 = colorProp || colorContext || "primary";
     const disabled = disabledProp || disabledContext || false;
     const disableElevation = disableElevationProp || disableElevationContext || false;
@@ -40295,6 +40285,42 @@ const theme2 = createTheme({ palette: {
   };
   var NotFound_default = NotFound;
 
+  // src/App.tsx
+  var App = () => {
+    const [alert, setAlert] = (0, import_react25.useState)({ message: "", type: void 0 });
+    const [user, setUser] = (0, import_react25.useState)({ signedIn: false });
+    (0, import_react25.useEffect)(() => {
+      app_default.setUserStatus(setUser);
+    }, []);
+    const alertData = (0, import_react25.useMemo)(() => ({ alert, setAlert }), []);
+    const userData = (0, import_react25.useMemo)(() => ({ user, setUser }), []);
+    return /* @__PURE__ */ import_react25.default.createElement(userContext_default.Provider, {
+      value: userData
+    }, /* @__PURE__ */ import_react25.default.createElement(alertContext_default.Provider, {
+      value: alertData
+    }, /* @__PURE__ */ import_react25.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react25.default.createElement(Routes, null, /* @__PURE__ */ import_react25.default.createElement(Route, {
+      path: "/",
+      element: /* @__PURE__ */ import_react25.default.createElement(Layout_default, {
+        alert,
+        setAlert,
+        user
+      })
+    }, /* @__PURE__ */ import_react25.default.createElement(Route, {
+      index: true,
+      element: /* @__PURE__ */ import_react25.default.createElement(LandingPage_default, null)
+    }), /* @__PURE__ */ import_react25.default.createElement(Route, {
+      path: "login",
+      element: /* @__PURE__ */ import_react25.default.createElement(LoginPage_default, null)
+    }), /* @__PURE__ */ import_react25.default.createElement(Route, {
+      path: "register",
+      element: /* @__PURE__ */ import_react25.default.createElement(RegisterPage_default, null)
+    }), /* @__PURE__ */ import_react25.default.createElement(Route, {
+      path: "*",
+      element: /* @__PURE__ */ import_react25.default.createElement(NotFound_default, null)
+    }))))));
+  };
+  var App_default = App;
+
   // src/index.tsx
   var firebaseConfig = {
     apiKey: "AIzaSyDm43g2Ad3uqfqc0yVWR7-3Wjjva0pG7HI",
@@ -40306,24 +40332,9 @@ const theme2 = createTheme({ palette: {
     appId: "1:960434173894:web:ea8054234881ce580c24c7"
   };
   initializeApp(firebaseConfig);
-  import_react_dom2.default.render(/* @__PURE__ */ import_react25.default.createElement(import_react25.default.StrictMode, null, /* @__PURE__ */ import_react25.default.createElement(StyledEngineProvider, {
+  import_react_dom2.default.render(/* @__PURE__ */ import_react26.default.createElement(import_react26.default.StrictMode, null, /* @__PURE__ */ import_react26.default.createElement(StyledEngineProvider, {
     injectFirst: true
-  }, /* @__PURE__ */ import_react25.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react25.default.createElement(Routes, null, /* @__PURE__ */ import_react25.default.createElement(Route, {
-    path: "/",
-    element: /* @__PURE__ */ import_react25.default.createElement(App_default, null)
-  }, /* @__PURE__ */ import_react25.default.createElement(Route, {
-    index: true,
-    element: /* @__PURE__ */ import_react25.default.createElement(LandingPage_default, null)
-  }), /* @__PURE__ */ import_react25.default.createElement(Route, {
-    path: "login",
-    element: /* @__PURE__ */ import_react25.default.createElement(LoginPage_default, null)
-  }), /* @__PURE__ */ import_react25.default.createElement(Route, {
-    path: "register",
-    element: /* @__PURE__ */ import_react25.default.createElement(RegisterPage_default, null)
-  }), /* @__PURE__ */ import_react25.default.createElement(Route, {
-    path: "*",
-    element: /* @__PURE__ */ import_react25.default.createElement(NotFound_default, null)
-  })))))), document.getElementById("root"));
+  }, /* @__PURE__ */ import_react26.default.createElement(App_default, null))), document.getElementById("root"));
 })();
 /*
 object-assign

@@ -1,13 +1,14 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
-import Alert from '@mui/material/Alert';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AlertState, UserState } from './types';
 import AlertContext from './utils/alertContext';
 import UserContext from './utils/userContext';
-import TopBar from './components/TopBar';
-import Header from './components/Header';
-import Menu from './components/Menu';
 import AppPresenter from './presenters/app';
+import Layout from './views/Layout';
+import LandingPage from './views/LandingPage';
+import LoginPage from './views/LoginPage';
+import RegisterPage from './views/RegisterPage';
+import NotFound from './views/NotFound';
 
 const App: React.FC = () => {
     const [alert, setAlert] = useState<AlertState>({ message: '', type: undefined });
@@ -22,22 +23,16 @@ const App: React.FC = () => {
     return (
         <UserContext.Provider value={userData}>
             <AlertContext.Provider value={alertData}>
-                <TopBar user={user} />
-                <Header />
-                <Menu user={user} />
-                <div className="alert-container">
-                    { alert.message
-                                && (
-                                    <Alert
-                                        onClose={() => { setAlert({ message: '', type: undefined }); }}
-                                        severity={alert.type}
-                                    >{alert.message}
-                                    </Alert>
-                                ) }
-                </div>
-                <main>
-                    <Outlet />
-                </main>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<Layout alert={alert} setAlert={setAlert} user={user} />}>
+                            <Route index element={<LandingPage />} />
+                            <Route path="login" element={<LoginPage />} />
+                            <Route path="register" element={<RegisterPage />} />
+                            <Route path="*" element={<NotFound />} />
+                        </Route>
+                    </Routes>
+                </BrowserRouter>
             </AlertContext.Provider>
         </UserContext.Provider>
     );
