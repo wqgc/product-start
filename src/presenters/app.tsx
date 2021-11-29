@@ -1,8 +1,10 @@
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import React from 'react';
-import { UserState } from '../types';
+import { UserState, AlertState } from '../types';
+import UserService from '../services/UserService';
 
 type SetUserStatusParameter = React.Dispatch<React.SetStateAction<UserState>> | null
+type LogoutHandlerParameter = React.Dispatch<React.SetStateAction<AlertState>> | null
 
 class AppPresenter {
     // Sets whether user is online or not into context
@@ -27,6 +29,17 @@ class AppPresenter {
                 });
             }
         });
+    }
+
+    static async logoutHandler(setAlert: LogoutHandlerParameter) {
+        if (setAlert !== null) {
+            try {
+                await UserService.logout();
+                setAlert({ message: 'Successfully logged out!', type: 'success' });
+            } catch (error: any) {
+                setAlert({ message: error.message, type: 'error' });
+            }
+        }
     }
 }
 

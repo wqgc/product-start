@@ -1044,7 +1044,7 @@
             }
             return dispatcher;
           }
-          function useContext9(Context, unstable_observedBits) {
+          function useContext10(Context, unstable_observedBits) {
             var dispatcher = resolveDispatcher();
             {
               if (unstable_observedBits !== void 0) {
@@ -1641,7 +1641,7 @@
           exports.lazy = lazy;
           exports.memo = memo2;
           exports.useCallback = useCallback13;
-          exports.useContext = useContext9;
+          exports.useContext = useContext10;
           exports.useDebugValue = useDebugValue3;
           exports.useEffect = useEffect16;
           exports.useImperativeHandle = useImperativeHandle6;
@@ -31956,6 +31956,9 @@ const theme2 = createTheme({ palette: {
   function onAuthStateChanged(auth, nextOrObserver, error, completed) {
     return getModularInstance(auth).onAuthStateChanged(nextOrObserver, error, completed);
   }
+  function signOut(auth) {
+    return getModularInstance(auth).signOut();
+  }
   function startEnrollPhoneMfa(auth, request) {
     return _performApiRequest(auth, "POST", "/v2/accounts/mfaEnrollment:start", _addTidIfNecessary(auth, request));
   }
@@ -33560,6 +33563,56 @@ const theme2 = createTheme({ palette: {
   }
   registerAuth("Browser");
 
+  // src/constants.ts
+  var BASE_URL = "/api/v1/";
+  var SITE_NAME = "ProductStart";
+  var CONSTANTS = { BASE_URL, SITE_NAME };
+  var constants_default = CONSTANTS;
+
+  // src/services/UserService.ts
+  var UserService = class {
+    static async register(email, password) {
+      const auth = getAuth();
+      return createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+        return userCredential.user;
+      }).catch((error) => {
+        throw new Error(error);
+      });
+    }
+    static async updateCurrentDisplayName(displayName) {
+      const auth = getAuth();
+      if (auth.currentUser !== null) {
+        return updateProfile(auth.currentUser, { displayName }).then(() => {
+          return displayName;
+        }).catch((error) => {
+          throw new Error(error);
+        });
+      }
+      throw new Error("User not signed in");
+    }
+    static async updateDB(uid, data) {
+      return fetch(`${constants_default.BASE_URL}users/${uid}`, {
+        method: "PUT",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+      }).then((response) => {
+        if (response.ok) {
+          return uid;
+        }
+        return Promise.reject(response);
+      }).catch((error) => {
+        throw new Error(error);
+      });
+    }
+    static async logout() {
+      const auth = getAuth();
+      signOut(auth).catch((error) => {
+        throw new Error(error);
+      });
+    }
+  };
+  var UserService_default = UserService;
+
   // src/presenters/app.tsx
   var AppPresenter = class {
     static setUserStatus(setUser) {
@@ -33581,6 +33634,16 @@ const theme2 = createTheme({ palette: {
           });
         }
       });
+    }
+    static async logoutHandler(setAlert) {
+      if (setAlert !== null) {
+        try {
+          await UserService_default.logout();
+          setAlert({ message: "Successfully logged out!", type: "success" });
+        } catch (error) {
+          setAlert({ message: error.message, type: "error" });
+        }
+      }
     }
   };
   var app_default = AppPresenter;
@@ -35403,6 +35466,8 @@ const theme2 = createTheme({ palette: {
   // src/components/TopBar.tsx
   var import_react17 = __toModule(require_react());
   var TopBar = ({ user }) => {
+    const { setAlert } = (0, import_react17.useContext)(alertContext_default);
+    const clickLogout = () => app_default.logoutHandler(setAlert);
     return /* @__PURE__ */ import_react17.default.createElement("div", null, /* @__PURE__ */ import_react17.default.createElement("ul", {
       className: "topbar menu__horizontal"
     }, user.signedIn ? /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement("strong", {
@@ -35410,7 +35475,8 @@ const theme2 = createTheme({ palette: {
     }, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
       to: "/"
     }, user.profile.displayName))), /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
-      to: "/"
+      to: "/",
+      onClick: clickLogout
     }, "Logout"))) : /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement("strong", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
       to: "/login"
     }, "Login"))), /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
@@ -35421,14 +35487,6 @@ const theme2 = createTheme({ palette: {
 
   // src/components/Header.tsx
   var import_react18 = __toModule(require_react());
-
-  // src/constants.ts
-  var BASE_URL = "/api/v1/";
-  var SITE_NAME = "ProductStart";
-  var CONSTANTS = { BASE_URL, SITE_NAME };
-  var constants_default = CONSTANTS;
-
-  // src/components/Header.tsx
   var Header = () => {
     return /* @__PURE__ */ import_react18.default.createElement("header", null, /* @__PURE__ */ import_react18.default.createElement("h1", {
       className: "site-name"
@@ -40108,44 +40166,6 @@ const theme2 = createTheme({ palette: {
     variant: import_prop_types46.default.oneOfType([import_prop_types46.default.oneOf(["contained", "outlined", "text"]), import_prop_types46.default.string])
   } : void 0;
   var Button_default = Button;
-
-  // src/services/UserService.ts
-  var UserService = class {
-    static async register(email, password) {
-      const auth = getAuth();
-      return createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
-        return userCredential.user;
-      }).catch((error) => {
-        throw new Error(error);
-      });
-    }
-    static async updateCurrentDisplayName(displayName) {
-      const auth = getAuth();
-      if (auth.currentUser !== null) {
-        return updateProfile(auth.currentUser, { displayName }).then(() => {
-          return displayName;
-        }).catch((error) => {
-          throw new Error(error);
-        });
-      }
-      throw new Error("User not signed in");
-    }
-    static async updateDB(uid, data) {
-      return fetch(`${constants_default.BASE_URL}users/${uid}`, {
-        method: "PUT",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" }
-      }).then((response) => {
-        if (response.ok) {
-          return uid;
-        }
-        return Promise.reject(response);
-      }).catch((error) => {
-        throw new Error(error);
-      });
-    }
-  };
-  var UserService_default = UserService;
 
   // src/presenters/register.ts
   var RegisterPresenter = class {

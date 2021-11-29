@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { UserState } from '../types';
+import AlertContext from '../utils/alertContext';
+import AppPresenter from '../presenters/app';
 
 interface TopBarProps {
     user: UserState
 }
 
 const TopBar: React.FC<TopBarProps> = ({ user }) => {
+    const { setAlert } = useContext(AlertContext);
+
+    const clickLogout = () => AppPresenter.logoutHandler(setAlert);
+
     return (
         <div>
             <ul className="topbar menu__horizontal">
@@ -19,7 +25,7 @@ const TopBar: React.FC<TopBarProps> = ({ user }) => {
                                 </strong>
                             </li>
                             <li>
-                                <NavLink to="/">Logout</NavLink>
+                                <NavLink to="/" onClick={clickLogout}>Logout</NavLink>
                             </li>
                         </>
                     )
