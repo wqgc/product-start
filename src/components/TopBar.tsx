@@ -15,7 +15,7 @@ const TopBar: React.FC<TopBarProps> = ({ user }) => {
                         <>
                             <li>
                                 <strong>
-                                    <NavLink to="/">Current User</NavLink>
+                                    <NavLink to="/">{user.profile.displayName}</NavLink>
                                 </strong>
                             </li>
                             <li>

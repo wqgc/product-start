@@ -14,9 +14,12 @@ class AppPresenter {
         }
 
         return onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser((prevState) => {
-                    return { ...prevState, signedIn: true };
+            if (user && user.displayName) {
+                setUser({
+                    signedIn: true,
+                    profile: {
+                        displayName: user.displayName,
+                    },
                 });
             } else {
                 setUser((prevState) => {

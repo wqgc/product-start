@@ -13,7 +13,7 @@ import Enforce from './components/auth/Enforce';
 
 const App: React.FC = () => {
     const [alert, setAlert] = useState<AlertState>({ message: '', type: undefined });
-    const [user, setUser] = useState<UserState>({ signedIn: false });
+    const [user, setUser] = useState<UserState>({ signedIn: false, profile: { displayName: '' } });
 
     useEffect(() => {
         AppPresenter.setUserStatus(setUser);

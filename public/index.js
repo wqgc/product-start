@@ -33568,9 +33568,12 @@ const theme2 = createTheme({ palette: {
         return null;
       }
       return onAuthStateChanged(auth, (user) => {
-        if (user) {
-          setUser((prevState) => {
-            return __spreadProps(__spreadValues({}, prevState), { signedIn: true });
+        if (user && user.displayName) {
+          setUser({
+            signedIn: true,
+            profile: {
+              displayName: user.displayName
+            }
           });
         } else {
           setUser((prevState) => {
@@ -35404,7 +35407,7 @@ const theme2 = createTheme({ palette: {
       className: "topbar menu__horizontal"
     }, user.signedIn ? /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement("strong", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
       to: "/"
-    }, "Current User"))), /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
+    }, user.profile.displayName))), /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
       to: "/"
     }, "Logout"))) : /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement("strong", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
       to: "/login"
@@ -40303,7 +40306,7 @@ const theme2 = createTheme({ palette: {
   // src/App.tsx
   var App = () => {
     const [alert, setAlert] = (0, import_react26.useState)({ message: "", type: void 0 });
-    const [user, setUser] = (0, import_react26.useState)({ signedIn: false });
+    const [user, setUser] = (0, import_react26.useState)({ signedIn: false, profile: { displayName: "" } });
     (0, import_react26.useEffect)(() => {
       app_default.setUserStatus(setUser);
     }, []);
