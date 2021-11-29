@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Divider from '@mui/material/Divider';
+import ProductPreview from '../components/ProductPreview';
 import CONSTANTS from '../constants';
 
 const LandingPage: React.FC = () => {
@@ -8,9 +9,11 @@ const LandingPage: React.FC = () => {
         <div>
             <section>
                 <h2>Discover New Ideas!</h2>
-                <p>
-                    A list of products will go here.
-                </p>
+                <div>
+                    <ProductPreview title="prod1" creator="creator1" id="" />
+                    <ProductPreview title="prod2" creator="creator2" id="" />
+                    <ProductPreview title="prod3" creator="creator3" id="" />
+                </div>
             </section>
             <Divider /><br />
             <section>

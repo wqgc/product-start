@@ -3,7 +3,7 @@ import React from 'react';
 const ProductsPage: React.FC = () => {
     return (
         <div>
-            w.i.p
+            <h2>My Products</h2>
         </div>
     );
 };
