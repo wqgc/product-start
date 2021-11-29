@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertState, RegistrationData } from '../types';
+import { AlertState, RegistrationData, UserState } from '../types';
 import UserService from '../services/UserService';
 
 type SetErrors = React.Dispatch<React.SetStateAction<RegistrationData<boolean>>>
@@ -8,11 +8,14 @@ interface SubmitParameters {
     data: RegistrationData<string>
     setAlert: React.Dispatch<React.SetStateAction<AlertState>> | null
     setErrors: SetErrors
+    setUser: React.Dispatch<React.SetStateAction<UserState>> | null
 }
 
 class RegisterPresenter {
-    static async formSubmit({ data, setAlert, setErrors }: SubmitParameters): Promise<void> {
-        if (setAlert !== null) {
+    static async formSubmit({
+        data, setAlert, setErrors, setUser,
+    }: SubmitParameters): Promise<void> {
+        if (setAlert !== null && setUser !== null) {
             if (this.isFormValid(data, setErrors)) {
                 try {
                     // It may be possible for earlier steps to work and later ones to fail,
@@ -20,8 +23,13 @@ class RegisterPresenter {
                     const { uid } = await UserService.register(data.email, data.password);
                     await UserService.updateCurrentDisplayName(data.displayName);
                     await UserService.updateDB(uid, { displayName: data.displayName });
+                    setUser({
+                        signedIn: true,
+                        profile: {
+                            displayName: data.displayName,
+                        },
+                    });
                     setAlert({ message: 'Registered successfully!', type: 'success' });
-                    // TODO: Navigate elsewhere
                 } catch (error: any) {
                     // Firebase errors aren't the most readable, so I would fix this with more time
                     setAlert({ message: error.message, type: 'error' });

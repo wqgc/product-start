@@ -51,7 +51,7 @@ button {
 .menu__horizontal a {
   text-decoration: none;
 }
-.registration-container {
+.form-container {
   display: flex;
   flex-direction: column;
 }

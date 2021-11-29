@@ -3,9 +3,11 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import RegisterPresenter from '../presenters/register';
 import AlertContext from '../utils/alertContext';
+import UserContext from '../utils/userContext';
 
 const RegisterPage: React.FC = () => {
     const { setAlert } = useContext(AlertContext);
+    const { setUser } = useContext(UserContext);
     const [email, setEmail] = useState('');
     const [displayName, setDisplayName] = useState('');
     const [password, setPassword] = useState('');
@@ -26,8 +28,8 @@ const RegisterPage: React.FC = () => {
 
     useEffect(() => {
         const newData = {
-            email,
-            displayName,
+            email: email.trim(),
+            displayName: displayName.trim(),
             password,
             confirmPassword,
         };
@@ -47,7 +49,7 @@ const RegisterPage: React.FC = () => {
     return (
         <div>
             <h2>Register</h2>
-            <form className="registration-container">
+            <form className="form-container">
                 <TextField
                     id="email-input"
                     helperText={helperText.email}
@@ -88,7 +90,13 @@ const RegisterPage: React.FC = () => {
                 />
                 <Button
                     variant="contained"
-                    onClick={() => RegisterPresenter.formSubmit({ data, setAlert, setErrors })}
+                    onClick={
+                        () => RegisterPresenter.formSubmit(
+                            {
+                                data, setAlert, setErrors, setUser,
+                            },
+                        )
+                    }
                     disabled={registerDisabled}
                 >
                     Register

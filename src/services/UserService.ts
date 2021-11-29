@@ -1,5 +1,9 @@
 import {
-    getAuth, createUserWithEmailAndPassword, updateProfile, signOut,
+    getAuth,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    updateProfile,
+    signOut,
 } from 'firebase/auth';
 import { PublicUserData } from '../types';
 import CONSTANTS from '../constants';
@@ -50,6 +54,17 @@ class UserService {
         signOut(auth).catch((error) => {
             throw new Error(error);
         });
+    }
+
+    static async login(email: string, password: string) {
+        const auth = getAuth();
+        return signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                return userCredential.user;
+            })
+            .catch((error) => {
+                throw new Error(error);
+            });
     }
 }
 

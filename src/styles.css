@@ -53,7 +53,7 @@ button {
     text-decoration: none;
 }
 
-.registration-container {
+.form-container {
     display: flex;
     flex-direction: column;
 }

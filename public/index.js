@@ -1044,7 +1044,7 @@
             }
             return dispatcher;
           }
-          function useContext10(Context, unstable_observedBits) {
+          function useContext11(Context, unstable_observedBits) {
             var dispatcher = resolveDispatcher();
             {
               if (unstable_observedBits !== void 0) {
@@ -1061,7 +1061,7 @@
             }
             return dispatcher.useContext(Context, unstable_observedBits);
           }
-          function useState16(initialState) {
+          function useState17(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1073,7 +1073,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect16(create, deps) {
+          function useEffect17(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1641,15 +1641,15 @@
           exports.lazy = lazy;
           exports.memo = memo2;
           exports.useCallback = useCallback13;
-          exports.useContext = useContext10;
+          exports.useContext = useContext11;
           exports.useDebugValue = useDebugValue3;
-          exports.useEffect = useEffect16;
+          exports.useEffect = useEffect17;
           exports.useImperativeHandle = useImperativeHandle6;
           exports.useLayoutEffect = useLayoutEffect6;
           exports.useMemo = useMemo6;
           exports.useReducer = useReducer;
           exports.useRef = useRef20;
-          exports.useState = useState16;
+          exports.useState = useState17;
           exports.version = ReactVersion;
         })();
       }
@@ -31917,6 +31917,9 @@ const theme2 = createTheme({ palette: {
     }
     return userCredential;
   }
+  async function signInWithCredential(auth, credential) {
+    return _signInWithCredential(_castAuth(auth), credential);
+  }
   async function createUserWithEmailAndPassword(auth, email, password) {
     const authInternal = _castAuth(auth);
     const response = await signUp(authInternal, {
@@ -31927,6 +31930,9 @@ const theme2 = createTheme({ palette: {
     const userCredential = await UserCredentialImpl._fromIdTokenResponse(authInternal, "signIn", response);
     await authInternal._updateCurrentUser(userCredential.user);
     return userCredential;
+  }
+  function signInWithEmailAndPassword(auth, email, password) {
+    return signInWithCredential(getModularInstance(auth), EmailAuthProvider.credential(email, password));
   }
   async function updateProfile$1(auth, request) {
     return _performApiRequest(auth, "POST", "/v1/accounts:update", request);
@@ -33607,6 +33613,14 @@ const theme2 = createTheme({ palette: {
     static async logout() {
       const auth = getAuth();
       signOut(auth).catch((error) => {
+        throw new Error(error);
+      });
+    }
+    static async login(email, password) {
+      const auth = getAuth();
+      return signInWithEmailAndPassword(auth, email, password).then((userCredential) => {
+        return userCredential.user;
+      }).catch((error) => {
         throw new Error(error);
       });
     }
@@ -35737,24 +35751,17 @@ const theme2 = createTheme({ palette: {
 
   // src/views/LoginPage.tsx
   var import_react22 = __toModule(require_react());
-  var LoginPage = () => {
-    return /* @__PURE__ */ import_react22.default.createElement("div", null, "Login!");
-  };
-  var LoginPage_default = LoginPage;
-
-  // src/views/RegisterPage.tsx
-  var import_react23 = __toModule(require_react());
 
   // node_modules/@mui/material/TextField/TextField.js
-  var React67 = __toModule(require_react());
+  var React66 = __toModule(require_react());
   var import_prop_types45 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/Input/Input.js
-  var React46 = __toModule(require_react());
+  var React45 = __toModule(require_react());
   var import_prop_types26 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/InputBase/InputBase.js
-  var React45 = __toModule(require_react());
+  var React44 = __toModule(require_react());
   var import_prop_types25 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/FormControl/formControlState.js
@@ -35775,24 +35782,24 @@ const theme2 = createTheme({ palette: {
   }
 
   // node_modules/@mui/material/FormControl/FormControlContext.js
-  var React42 = __toModule(require_react());
-  var FormControlContext = /* @__PURE__ */ React42.createContext();
+  var React41 = __toModule(require_react());
+  var FormControlContext = /* @__PURE__ */ React41.createContext();
   if (true) {
     FormControlContext.displayName = "FormControlContext";
   }
   var FormControlContext_default = FormControlContext;
 
   // node_modules/@mui/material/FormControl/useFormControl.js
-  var React43 = __toModule(require_react());
+  var React42 = __toModule(require_react());
   function useFormControl() {
-    return React43.useContext(FormControlContext_default);
+    return React42.useContext(FormControlContext_default);
   }
 
   // node_modules/@mui/material/utils/useEnhancedEffect.js
   var useEnhancedEffect_default2 = useEnhancedEffect_default;
 
   // node_modules/@mui/material/GlobalStyles/GlobalStyles.js
-  var React44 = __toModule(require_react());
+  var React43 = __toModule(require_react());
   var import_prop_types24 = __toModule(require_prop_types());
   var import_jsx_runtime27 = __toModule(require_jsx_runtime());
   function GlobalStyles2(props) {
@@ -35983,7 +35990,7 @@ const theme2 = createTheme({ palette: {
       }
     }
   });
-  var InputBase = /* @__PURE__ */ React45.forwardRef(function InputBase2(inProps, ref) {
+  var InputBase = /* @__PURE__ */ React44.forwardRef(function InputBase2(inProps, ref) {
     const props = useThemeProps2({
       props: inProps,
       name: "MuiInputBase"
@@ -36024,9 +36031,9 @@ const theme2 = createTheme({ palette: {
     const value = inputPropsProp.value != null ? inputPropsProp.value : valueProp;
     const {
       current: isControlled
-    } = React45.useRef(value != null);
-    const inputRef = React45.useRef();
-    const handleInputRefWarning = React45.useCallback((instance) => {
+    } = React44.useRef(value != null);
+    const inputRef = React44.useRef();
+    const handleInputRefWarning = React44.useCallback((instance) => {
       if (true) {
         if (instance && instance.nodeName !== "INPUT" && !instance.focus) {
           console.error(["MUI: You have provided a `inputComponent` to the input component", "that does not correctly handle the `ref` prop.", "Make sure the `ref` prop is called with a HTMLInputElement."].join("\n"));
@@ -36036,10 +36043,10 @@ const theme2 = createTheme({ palette: {
     const handleInputPropsRefProp = useForkRef_default(inputPropsProp.ref, handleInputRefWarning);
     const handleInputRefProp = useForkRef_default(inputRefProp, handleInputPropsRefProp);
     const handleInputRef = useForkRef_default(inputRef, handleInputRefProp);
-    const [focused, setFocused] = React45.useState(false);
+    const [focused, setFocused] = React44.useState(false);
     const muiFormControl = useFormControl();
     if (true) {
-      React45.useEffect(() => {
+      React44.useEffect(() => {
         if (muiFormControl) {
           return muiFormControl.registerEffect();
         }
@@ -36052,7 +36059,7 @@ const theme2 = createTheme({ palette: {
       states: ["color", "disabled", "error", "hiddenLabel", "size", "required", "filled"]
     });
     fcs.focused = muiFormControl ? muiFormControl.focused : focused;
-    React45.useEffect(() => {
+    React44.useEffect(() => {
       if (!muiFormControl && disabled && focused) {
         setFocused(false);
         if (onBlur) {
@@ -36062,7 +36069,7 @@ const theme2 = createTheme({ palette: {
     }, [muiFormControl, disabled, focused, onBlur]);
     const onFilled = muiFormControl && muiFormControl.onFilled;
     const onEmpty = muiFormControl && muiFormControl.onEmpty;
-    const checkDirty = React45.useCallback((obj) => {
+    const checkDirty = React44.useCallback((obj) => {
       if (isFilled(obj)) {
         if (onFilled) {
           onFilled();
@@ -36125,7 +36132,7 @@ const theme2 = createTheme({ palette: {
         onChange(event, ...args);
       }
     };
-    React45.useEffect(() => {
+    React44.useEffect(() => {
       checkDirty(inputRef.current);
     }, []);
     const handleClick = (event) => {
@@ -36164,7 +36171,7 @@ const theme2 = createTheme({ palette: {
         value: "x"
       });
     };
-    React45.useEffect(() => {
+    React44.useEffect(() => {
       if (muiFormControl) {
         muiFormControl.setAdornedStart(Boolean(startAdornment));
       }
@@ -36188,7 +36195,7 @@ const theme2 = createTheme({ palette: {
     const rootProps = componentsProps.root || {};
     const Input3 = components.Input || InputBaseComponent;
     inputProps = _extends({}, inputProps, componentsProps.input);
-    return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(React45.Fragment, {
+    return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(React44.Fragment, {
       children: [inputGlobalStyles, /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(Root, _extends({}, rootProps, !isHostComponent_default(Root) && {
         ownerState: _extends({}, ownerState, rootProps.ownerState)
       }, {
@@ -36372,7 +36379,7 @@ const theme2 = createTheme({ palette: {
     slot: "Input",
     overridesResolver: inputOverridesResolver
   })({});
-  var Input = /* @__PURE__ */ React46.forwardRef(function Input2(inProps, ref) {
+  var Input = /* @__PURE__ */ React45.forwardRef(function Input2(inProps, ref) {
     const props = useThemeProps2({
       props: inProps,
       name: "MuiInput"
@@ -36450,7 +36457,7 @@ const theme2 = createTheme({ palette: {
   var Input_default = Input;
 
   // node_modules/@mui/material/FilledInput/FilledInput.js
-  var React47 = __toModule(require_react());
+  var React46 = __toModule(require_react());
   var import_prop_types27 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/FilledInput/filledInputClasses.js
@@ -36605,7 +36612,7 @@ const theme2 = createTheme({ palette: {
     paddingTop: 8,
     paddingBottom: 9
   }));
-  var FilledInput = /* @__PURE__ */ React47.forwardRef(function FilledInput2(inProps, ref) {
+  var FilledInput = /* @__PURE__ */ React46.forwardRef(function FilledInput2(inProps, ref) {
     const props = useThemeProps2({
       props: inProps,
       name: "MuiFilledInput"
@@ -36689,11 +36696,11 @@ const theme2 = createTheme({ palette: {
   var FilledInput_default = FilledInput;
 
   // node_modules/@mui/material/OutlinedInput/OutlinedInput.js
-  var React49 = __toModule(require_react());
+  var React48 = __toModule(require_react());
   var import_prop_types29 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/OutlinedInput/NotchedOutline.js
-  var React48 = __toModule(require_react());
+  var React47 = __toModule(require_react());
   var import_prop_types28 = __toModule(require_prop_types());
   var import_jsx_runtime32 = __toModule(require_jsx_runtime());
   var _excluded25 = ["children", "classes", "className", "label", "notched"];
@@ -36886,7 +36893,7 @@ const theme2 = createTheme({ palette: {
   }, ownerState.endAdornment && {
     paddingRight: 0
   }));
-  var OutlinedInput = /* @__PURE__ */ React49.forwardRef(function OutlinedInput2(inProps, ref) {
+  var OutlinedInput = /* @__PURE__ */ React48.forwardRef(function OutlinedInput2(inProps, ref) {
     const props = useThemeProps2({
       props: inProps,
       name: "MuiOutlinedInput"
@@ -36961,11 +36968,11 @@ const theme2 = createTheme({ palette: {
   var OutlinedInput_default = OutlinedInput;
 
   // node_modules/@mui/material/InputLabel/InputLabel.js
-  var React51 = __toModule(require_react());
+  var React50 = __toModule(require_react());
   var import_prop_types31 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/FormLabel/FormLabel.js
-  var React50 = __toModule(require_react());
+  var React49 = __toModule(require_react());
   var import_prop_types30 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/FormLabel/formLabelClasses.js
@@ -37032,7 +37039,7 @@ const theme2 = createTheme({ palette: {
       color: theme.palette.error.main
     }
   }));
-  var FormLabel = /* @__PURE__ */ React50.forwardRef(function FormLabel2(inProps, ref) {
+  var FormLabel = /* @__PURE__ */ React49.forwardRef(function FormLabel2(inProps, ref) {
     const props = useThemeProps2({
       props: inProps,
       name: "MuiFormLabel"
@@ -37174,7 +37181,7 @@ const theme2 = createTheme({ palette: {
     maxWidth: "calc(133% - 24px)",
     transform: "translate(14px, -9px) scale(0.75)"
   })));
-  var InputLabel = /* @__PURE__ */ React51.forwardRef(function InputLabel2(inProps, ref) {
+  var InputLabel = /* @__PURE__ */ React50.forwardRef(function InputLabel2(inProps, ref) {
     const props = useThemeProps2({
       name: "MuiInputLabel",
       props: inProps
@@ -37227,7 +37234,7 @@ const theme2 = createTheme({ palette: {
   var InputLabel_default = InputLabel;
 
   // node_modules/@mui/material/FormControl/FormControl.js
-  var React52 = __toModule(require_react());
+  var React51 = __toModule(require_react());
   var import_prop_types32 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/utils/isMuiElement.js
@@ -37281,7 +37288,7 @@ const theme2 = createTheme({ palette: {
   }, ownerState.fullWidth && {
     width: "100%"
   }));
-  var FormControl = /* @__PURE__ */ React52.forwardRef(function FormControl2(inProps, ref) {
+  var FormControl = /* @__PURE__ */ React51.forwardRef(function FormControl2(inProps, ref) {
     const props = useThemeProps2({
       props: inProps,
       name: "MuiFormControl"
@@ -37314,10 +37321,10 @@ const theme2 = createTheme({ palette: {
       variant
     });
     const classes = useUtilityClasses15(ownerState);
-    const [adornedStart, setAdornedStart] = React52.useState(() => {
+    const [adornedStart, setAdornedStart] = React51.useState(() => {
       let initialAdornedStart = false;
       if (children) {
-        React52.Children.forEach(children, (child) => {
+        React51.Children.forEach(children, (child) => {
           if (!isMuiElement_default(child, ["Input", "Select"])) {
             return;
           }
@@ -37329,10 +37336,10 @@ const theme2 = createTheme({ palette: {
       }
       return initialAdornedStart;
     });
-    const [filled, setFilled] = React52.useState(() => {
+    const [filled, setFilled] = React51.useState(() => {
       let initialFilled = false;
       if (children) {
-        React52.Children.forEach(children, (child) => {
+        React51.Children.forEach(children, (child) => {
           if (!isMuiElement_default(child, ["Input", "Select"])) {
             return;
           }
@@ -37343,14 +37350,14 @@ const theme2 = createTheme({ palette: {
       }
       return initialFilled;
     });
-    const [focusedState, setFocused] = React52.useState(false);
+    const [focusedState, setFocused] = React51.useState(false);
     if (disabled && focusedState) {
       setFocused(false);
     }
     const focused = visuallyFocused !== void 0 && !disabled ? visuallyFocused : focusedState;
     let registerEffect;
     if (true) {
-      const registeredInput = React52.useRef(false);
+      const registeredInput = React51.useRef(false);
       registerEffect = () => {
         if (registeredInput.current) {
           console.error(["MUI: There are multiple `InputBase` components inside a FormControl.", "This creates visual inconsistencies, only use one `InputBase`."].join("\n"));
@@ -37361,10 +37368,10 @@ const theme2 = createTheme({ palette: {
         };
       };
     }
-    const onFilled = React52.useCallback(() => {
+    const onFilled = React51.useCallback(() => {
       setFilled(true);
     }, []);
-    const onEmpty = React52.useCallback(() => {
+    const onEmpty = React51.useCallback(() => {
       setFilled(false);
     }, []);
     const childContext = {
@@ -37422,7 +37429,7 @@ const theme2 = createTheme({ palette: {
   var FormControl_default = FormControl;
 
   // node_modules/@mui/material/FormHelperText/FormHelperText.js
-  var React53 = __toModule(require_react());
+  var React52 = __toModule(require_react());
   var import_prop_types33 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/FormHelperText/formHelperTextClasses.js
@@ -37483,7 +37490,7 @@ const theme2 = createTheme({ palette: {
     marginLeft: 14,
     marginRight: 14
   }));
-  var FormHelperText = /* @__PURE__ */ React53.forwardRef(function FormHelperText2(inProps, ref) {
+  var FormHelperText = /* @__PURE__ */ React52.forwardRef(function FormHelperText2(inProps, ref) {
     const props = useThemeProps2({
       props: inProps,
       name: "MuiFormHelperText"
@@ -37542,11 +37549,11 @@ const theme2 = createTheme({ palette: {
   var FormHelperText_default = FormHelperText;
 
   // node_modules/@mui/material/Select/Select.js
-  var React66 = __toModule(require_react());
+  var React65 = __toModule(require_react());
   var import_prop_types44 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/Select/SelectInput.js
-  var React64 = __toModule(require_react());
+  var React63 = __toModule(require_react());
   var import_react_is4 = __toModule(require_react_is3());
   var import_prop_types43 = __toModule(require_prop_types());
 
@@ -37554,22 +37561,22 @@ const theme2 = createTheme({ palette: {
   var ownerDocument_default = ownerDocument;
 
   // node_modules/@mui/material/Menu/Menu.js
-  var React62 = __toModule(require_react());
+  var React61 = __toModule(require_react());
   var import_react_is3 = __toModule(require_react_is3());
   var import_prop_types41 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/MenuList/MenuList.js
-  var React56 = __toModule(require_react());
+  var React55 = __toModule(require_react());
   var import_react_is2 = __toModule(require_react_is3());
   var import_prop_types35 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/List/List.js
-  var React55 = __toModule(require_react());
+  var React54 = __toModule(require_react());
   var import_prop_types34 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/List/ListContext.js
-  var React54 = __toModule(require_react());
-  var ListContext = /* @__PURE__ */ React54.createContext({});
+  var React53 = __toModule(require_react());
+  var ListContext = /* @__PURE__ */ React53.createContext({});
   if (true) {
     ListContext.displayName = "ListContext";
   }
@@ -37619,7 +37626,7 @@ const theme2 = createTheme({ palette: {
   }, ownerState.subheader && {
     paddingTop: 0
   }));
-  var List = /* @__PURE__ */ React55.forwardRef(function List2(inProps, ref) {
+  var List = /* @__PURE__ */ React54.forwardRef(function List2(inProps, ref) {
     const props = useThemeProps2({
       props: inProps,
       name: "MuiList"
@@ -37632,7 +37639,7 @@ const theme2 = createTheme({ palette: {
       disablePadding = false,
       subheader
     } = props, other = _objectWithoutPropertiesLoose(props, _excluded31);
-    const context = React55.useMemo(() => ({
+    const context = React54.useMemo(() => ({
       dense
     }), [dense]);
     const ownerState = _extends({}, props, {
@@ -37726,7 +37733,7 @@ const theme2 = createTheme({ palette: {
     }
     return false;
   }
-  var MenuList = /* @__PURE__ */ React56.forwardRef(function MenuList2(props, ref) {
+  var MenuList = /* @__PURE__ */ React55.forwardRef(function MenuList2(props, ref) {
     const {
       actions,
       autoFocus = false,
@@ -37738,8 +37745,8 @@ const theme2 = createTheme({ palette: {
       onKeyDown,
       variant = "selectedMenu"
     } = props, other = _objectWithoutPropertiesLoose(props, _excluded33);
-    const listRef = React56.useRef(null);
-    const textCriteriaRef = React56.useRef({
+    const listRef = React55.useRef(null);
+    const textCriteriaRef = React55.useRef({
       keys: [],
       repeating: true,
       previousKeyMatched: true,
@@ -37750,7 +37757,7 @@ const theme2 = createTheme({ palette: {
         listRef.current.focus();
       }
     }, [autoFocus]);
-    React56.useImperativeHandle(actions, () => ({
+    React55.useImperativeHandle(actions, () => ({
       adjustStyleForScrollbar: (containerElement, theme) => {
         const noExplicitWidth = !listRef.current.style.width;
         if (containerElement.clientHeight < listRef.current.clientHeight && noExplicitWidth) {
@@ -37805,8 +37812,8 @@ const theme2 = createTheme({ palette: {
     };
     const handleRef = useForkRef_default(listRef, ref);
     let activeItemIndex = -1;
-    React56.Children.forEach(children, (child, index) => {
-      if (!/* @__PURE__ */ React56.isValidElement(child)) {
+    React55.Children.forEach(children, (child, index) => {
+      if (!/* @__PURE__ */ React55.isValidElement(child)) {
         return;
       }
       if (true) {
@@ -37822,7 +37829,7 @@ const theme2 = createTheme({ palette: {
         }
       }
     });
-    const items = React56.Children.map(children, (child, index) => {
+    const items = React55.Children.map(children, (child, index) => {
       if (index === activeItemIndex) {
         const newChildProps = {};
         if (autoFocusItem) {
@@ -37831,7 +37838,7 @@ const theme2 = createTheme({ palette: {
         if (child.props.tabIndex === void 0 && variant === "selectedMenu") {
           newChildProps.tabIndex = 0;
         }
-        return /* @__PURE__ */ React56.cloneElement(child, newChildProps);
+        return /* @__PURE__ */ React55.cloneElement(child, newChildProps);
       }
       return child;
     });
@@ -37858,7 +37865,7 @@ const theme2 = createTheme({ palette: {
   var MenuList_default = MenuList;
 
   // node_modules/@mui/material/Popover/Popover.js
-  var React61 = __toModule(require_react());
+  var React60 = __toModule(require_react());
   var import_prop_types40 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/utils/debounce.js
@@ -37868,7 +37875,7 @@ const theme2 = createTheme({ palette: {
   var ownerWindow_default = ownerWindow;
 
   // node_modules/@mui/material/Grow/Grow.js
-  var React57 = __toModule(require_react());
+  var React56 = __toModule(require_react());
   var import_prop_types36 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/transitions/utils.js
@@ -37903,7 +37910,7 @@ const theme2 = createTheme({ palette: {
       transform: "none"
     }
   };
-  var Grow = /* @__PURE__ */ React57.forwardRef(function Grow2(props, ref) {
+  var Grow = /* @__PURE__ */ React56.forwardRef(function Grow2(props, ref) {
     const {
       addEndListener,
       appear = true,
@@ -37920,10 +37927,10 @@ const theme2 = createTheme({ palette: {
       timeout: timeout2 = "auto",
       TransitionComponent = Transition_default
     } = props, other = _objectWithoutPropertiesLoose(props, _excluded34);
-    const timer = React57.useRef();
-    const autoTimeout = React57.useRef();
+    const timer = React56.useRef();
+    const autoTimeout = React56.useRef();
     const theme = useTheme5();
-    const nodeRef = React57.useRef(null);
+    const nodeRef = React56.useRef(null);
     const foreignRef = useForkRef_default(children.ref, ref);
     const handleRef = useForkRef_default(nodeRef, foreignRef);
     const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
@@ -38013,7 +38020,7 @@ const theme2 = createTheme({ palette: {
         addEndListener(nodeRef.current, next2);
       }
     };
-    React57.useEffect(() => {
+    React56.useEffect(() => {
       return () => {
         clearTimeout(timer.current);
       };
@@ -38032,7 +38039,7 @@ const theme2 = createTheme({ palette: {
       timeout: timeout2 === "auto" ? null : timeout2
     }, other, {
       children: (state, childProps) => {
-        return /* @__PURE__ */ React57.cloneElement(children, _extends({
+        return /* @__PURE__ */ React56.cloneElement(children, _extends({
           style: _extends({
             opacity: 0,
             transform: getScale(0.75),
@@ -38069,15 +38076,15 @@ const theme2 = createTheme({ palette: {
   var Grow_default = Grow;
 
   // node_modules/@mui/material/Modal/Modal.js
-  var React60 = __toModule(require_react());
+  var React59 = __toModule(require_react());
   var import_prop_types39 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/Backdrop/Backdrop.js
-  var React59 = __toModule(require_react());
+  var React58 = __toModule(require_react());
   var import_prop_types38 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/Fade/Fade.js
-  var React58 = __toModule(require_react());
+  var React57 = __toModule(require_react());
   var import_prop_types37 = __toModule(require_prop_types());
   var import_jsx_runtime42 = __toModule(require_jsx_runtime());
   var _excluded35 = ["addEndListener", "appear", "children", "easing", "in", "onEnter", "onEntered", "onEntering", "onExit", "onExited", "onExiting", "style", "timeout", "TransitionComponent"];
@@ -38093,7 +38100,7 @@ const theme2 = createTheme({ palette: {
     enter: duration.enteringScreen,
     exit: duration.leavingScreen
   };
-  var Fade = /* @__PURE__ */ React58.forwardRef(function Fade2(props, ref) {
+  var Fade = /* @__PURE__ */ React57.forwardRef(function Fade2(props, ref) {
     const {
       addEndListener,
       appear = true,
@@ -38112,7 +38119,7 @@ const theme2 = createTheme({ palette: {
     } = props, other = _objectWithoutPropertiesLoose(props, _excluded35);
     const theme = useTheme5();
     const enableStrictModeCompat = true;
-    const nodeRef = React58.useRef(null);
+    const nodeRef = React57.useRef(null);
     const foreignRef = useForkRef_default(children.ref, ref);
     const handleRef = useForkRef_default(nodeRef, foreignRef);
     const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
@@ -38177,7 +38184,7 @@ const theme2 = createTheme({ palette: {
       timeout: timeout2
     }, other, {
       children: (state, childProps) => {
-        return /* @__PURE__ */ React58.cloneElement(children, _extends({
+        return /* @__PURE__ */ React57.cloneElement(children, _extends({
           style: _extends({
             opacity: 0,
             visibility: state === "exited" && !inProp ? "hidden" : void 0
@@ -38245,7 +38252,7 @@ const theme2 = createTheme({ palette: {
   }, ownerState.invisible && {
     backgroundColor: "transparent"
   }));
-  var Backdrop = /* @__PURE__ */ React59.forwardRef(function Backdrop2(inProps, ref) {
+  var Backdrop = /* @__PURE__ */ React58.forwardRef(function Backdrop2(inProps, ref) {
     var _componentsProps$root;
     const props = useThemeProps2({
       props: inProps,
@@ -38342,7 +38349,7 @@ const theme2 = createTheme({ palette: {
   })({
     zIndex: -1
   });
-  var Modal = /* @__PURE__ */ React60.forwardRef(function Modal2(inProps, ref) {
+  var Modal = /* @__PURE__ */ React59.forwardRef(function Modal2(inProps, ref) {
     var _componentsProps$root;
     const props = useThemeProps2({
       name: "MuiModal",
@@ -38363,7 +38370,7 @@ const theme2 = createTheme({ palette: {
       hideBackdrop = false,
       keepMounted = false
     } = props, other = _objectWithoutPropertiesLoose(props, _excluded37);
-    const [exited, setExited] = React60.useState(true);
+    const [exited, setExited] = React59.useState(true);
     const commonProps = {
       closeAfterTransition,
       disableAutoFocus,
@@ -38491,7 +38498,7 @@ const theme2 = createTheme({ palette: {
     maxHeight: "calc(100% - 32px)",
     outline: 0
   });
-  var Popover = /* @__PURE__ */ React61.forwardRef(function Popover2(inProps, ref) {
+  var Popover = /* @__PURE__ */ React60.forwardRef(function Popover2(inProps, ref) {
     const props = useThemeProps2({
       props: inProps,
       name: "MuiPopover"
@@ -38522,7 +38529,7 @@ const theme2 = createTheme({ palette: {
         onEntering
       } = {}
     } = props, TransitionProps = _objectWithoutPropertiesLoose(props.TransitionProps, _excluded38), other = _objectWithoutPropertiesLoose(props, _excluded210);
-    const paperRef = React61.useRef();
+    const paperRef = React60.useRef();
     const handlePaperRef = useForkRef_default(paperRef, PaperProps.ref);
     const ownerState = _extends({}, props, {
       anchorOrigin,
@@ -38536,7 +38543,7 @@ const theme2 = createTheme({ palette: {
       TransitionProps
     });
     const classes = useUtilityClasses18(ownerState);
-    const getAnchorOffset = React61.useCallback(() => {
+    const getAnchorOffset = React60.useCallback(() => {
       if (anchorReference === "anchorPosition") {
         if (true) {
           if (!anchorPosition) {
@@ -38559,13 +38566,13 @@ const theme2 = createTheme({ palette: {
         left: anchorRect.left + getOffsetLeft(anchorRect, anchorOrigin.horizontal)
       };
     }, [anchorEl, anchorOrigin.horizontal, anchorOrigin.vertical, anchorPosition, anchorReference]);
-    const getTransformOrigin = React61.useCallback((elemRect) => {
+    const getTransformOrigin = React60.useCallback((elemRect) => {
       return {
         vertical: getOffsetTop(elemRect, transformOrigin.vertical),
         horizontal: getOffsetLeft(elemRect, transformOrigin.horizontal)
       };
     }, [transformOrigin.horizontal, transformOrigin.vertical]);
-    const getPositioningStyle = React61.useCallback((element) => {
+    const getPositioningStyle = React60.useCallback((element) => {
       const elemRect = {
         width: element.offsetWidth,
         height: element.offsetHeight
@@ -38615,7 +38622,7 @@ const theme2 = createTheme({ palette: {
         transformOrigin: getTransformOriginValue(elemTransformOrigin)
       };
     }, [anchorEl, anchorReference, getAnchorOffset, getTransformOrigin, marginThreshold]);
-    const setPositioningStyles = React61.useCallback(() => {
+    const setPositioningStyles = React60.useCallback(() => {
       const element = paperRef.current;
       if (!element) {
         return;
@@ -38635,17 +38642,17 @@ const theme2 = createTheme({ palette: {
       }
       setPositioningStyles();
     };
-    React61.useEffect(() => {
+    React60.useEffect(() => {
       if (open) {
         setPositioningStyles();
       }
     });
-    React61.useImperativeHandle(action, () => open ? {
+    React60.useImperativeHandle(action, () => open ? {
       updatePosition: () => {
         setPositioningStyles();
       }
     } : null, [open, setPositioningStyles]);
-    React61.useEffect(() => {
+    React60.useEffect(() => {
       if (!open) {
         return void 0;
       }
@@ -38791,7 +38798,7 @@ const theme2 = createTheme({ palette: {
   })({
     outline: 0
   });
-  var Menu2 = /* @__PURE__ */ React62.forwardRef(function Menu3(inProps, ref) {
+  var Menu2 = /* @__PURE__ */ React61.forwardRef(function Menu3(inProps, ref) {
     const props = useThemeProps2({
       props: inProps,
       name: "MuiMenu"
@@ -38825,7 +38832,7 @@ const theme2 = createTheme({ palette: {
     });
     const classes = useUtilityClasses19(ownerState);
     const autoFocusItem = autoFocus && !disableAutoFocusItem && open;
-    const menuListActionsRef = React62.useRef(null);
+    const menuListActionsRef = React61.useRef(null);
     const handleEntering = (element, isAppearing) => {
       if (menuListActionsRef.current) {
         menuListActionsRef.current.adjustStyleForScrollbar(element, theme);
@@ -38843,8 +38850,8 @@ const theme2 = createTheme({ palette: {
       }
     };
     let activeItemIndex = -1;
-    React62.Children.map(children, (child, index) => {
-      if (!/* @__PURE__ */ React62.isValidElement(child)) {
+    React61.Children.map(children, (child, index) => {
+      if (!/* @__PURE__ */ React61.isValidElement(child)) {
         return;
       }
       if (true) {
@@ -38919,7 +38926,7 @@ const theme2 = createTheme({ palette: {
   var Menu_default2 = Menu2;
 
   // node_modules/@mui/material/NativeSelect/NativeSelectInput.js
-  var React63 = __toModule(require_react());
+  var React62 = __toModule(require_react());
   var import_prop_types42 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/NativeSelect/nativeSelectClasses.js
@@ -39031,7 +39038,7 @@ const theme2 = createTheme({ palette: {
       return [styles4.icon, ownerState.variant && styles4[`icon${capitalize_default(ownerState.variant)}`], ownerState.open && styles4.iconOpen];
     }
   })(nativeSelectIconStyles);
-  var NativeSelectInput = /* @__PURE__ */ React63.forwardRef(function NativeSelectInput2(props, ref) {
+  var NativeSelectInput = /* @__PURE__ */ React62.forwardRef(function NativeSelectInput2(props, ref) {
     const {
       className,
       disabled,
@@ -39044,7 +39051,7 @@ const theme2 = createTheme({ palette: {
       variant
     });
     const classes = useUtilityClasses20(ownerState);
-    return /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(React63.Fragment, {
+    return /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(React62.Fragment, {
       children: [/* @__PURE__ */ (0, import_jsx_runtime47.jsx)(NativeSelectSelect, _extends({
         ownerState,
         className: clsx_m_default(classes.select, className),
@@ -39162,7 +39169,7 @@ const theme2 = createTheme({ palette: {
     };
     return composeClasses(slots, getSelectUtilityClasses, classes);
   };
-  var SelectInput = /* @__PURE__ */ React64.forwardRef(function SelectInput2(props, ref) {
+  var SelectInput = /* @__PURE__ */ React63.forwardRef(function SelectInput2(props, ref) {
     const {
       "aria-describedby": ariaDescribedby,
       "aria-label": ariaLabel,
@@ -39197,34 +39204,34 @@ const theme2 = createTheme({ palette: {
       default: defaultValue,
       name: "Select"
     });
-    const inputRef = React64.useRef(null);
-    const displayRef = React64.useRef(null);
-    const [displayNode, setDisplayNode] = React64.useState(null);
+    const inputRef = React63.useRef(null);
+    const displayRef = React63.useRef(null);
+    const [displayNode, setDisplayNode] = React63.useState(null);
     const {
       current: isOpenControlled
-    } = React64.useRef(openProp != null);
-    const [menuMinWidthState, setMenuMinWidthState] = React64.useState();
-    const [openState, setOpenState] = React64.useState(false);
+    } = React63.useRef(openProp != null);
+    const [menuMinWidthState, setMenuMinWidthState] = React63.useState();
+    const [openState, setOpenState] = React63.useState(false);
     const handleRef = useForkRef_default(ref, inputRefProp);
-    const handleDisplayRef = React64.useCallback((node2) => {
+    const handleDisplayRef = React63.useCallback((node2) => {
       displayRef.current = node2;
       if (node2) {
         setDisplayNode(node2);
       }
     }, []);
-    React64.useImperativeHandle(handleRef, () => ({
+    React63.useImperativeHandle(handleRef, () => ({
       focus: () => {
         displayRef.current.focus();
       },
       node: inputRef.current,
       value
     }), [value]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       if (autoFocus) {
         displayRef.current.focus();
       }
     }, [autoFocus]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       const label = ownerDocument_default(displayRef.current).getElementById(labelId);
       if (label) {
         const handler = () => {
@@ -39263,7 +39270,7 @@ const theme2 = createTheme({ palette: {
     const handleClose = (event) => {
       update(false, event);
     };
-    const childrenArray = React64.Children.toArray(children);
+    const childrenArray = React63.Children.toArray(children);
     const handleChange = (event) => {
       const index = childrenArray.map((child2) => child2.props.value).indexOf(event.target.value);
       if (index === -1) {
@@ -39356,7 +39363,7 @@ const theme2 = createTheme({ palette: {
       }
     }
     const items = childrenArray.map((child) => {
-      if (!/* @__PURE__ */ React64.isValidElement(child)) {
+      if (!/* @__PURE__ */ React63.isValidElement(child)) {
         return null;
       }
       if (true) {
@@ -39382,7 +39389,7 @@ const theme2 = createTheme({ palette: {
       if (selected) {
         foundMatch = true;
       }
-      return /* @__PURE__ */ React64.cloneElement(child, {
+      return /* @__PURE__ */ React63.cloneElement(child, {
         "aria-selected": selected ? "true" : "false",
         onClick: handleItemClick(child),
         onKeyUp: (event) => {
@@ -39400,7 +39407,7 @@ const theme2 = createTheme({ palette: {
       });
     });
     if (true) {
-      React64.useEffect(() => {
+      React63.useEffect(() => {
         if (!foundMatch && !multiple && value !== "") {
           const values3 = childrenArray.map((child) => child.props.value);
           console.warn([`MUI: You have provided an out-of-range value \`${value}\` for the select ${name4 ? `(name="${name4}") ` : ""}component.`, "Consider providing a value that matches one of the available options or ''.", `The available values are ${values3.filter((x) => x != null).map((x) => `\`${x}\``).join(", ") || '""'}.`].join("\n"));
@@ -39427,7 +39434,7 @@ const theme2 = createTheme({ palette: {
       open
     });
     const classes = useUtilityClasses21(ownerState);
-    return /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(React64.Fragment, {
+    return /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(React63.Fragment, {
       children: [/* @__PURE__ */ (0, import_jsx_runtime49.jsx)(SelectSelect, _extends({
         ref: handleDisplayRef,
         tabIndex,
@@ -39529,7 +39536,7 @@ const theme2 = createTheme({ palette: {
   var SelectInput_default = SelectInput;
 
   // node_modules/@mui/material/internal/svg-icons/ArrowDropDown.js
-  var React65 = __toModule(require_react());
+  var React64 = __toModule(require_react());
   var import_jsx_runtime51 = __toModule(require_jsx_runtime());
   var ArrowDropDown_default = createSvgIcon(/* @__PURE__ */ (0, import_jsx_runtime51.jsx)("path", {
     d: "M7 10l5 5 5-5z"
@@ -39546,7 +39553,7 @@ const theme2 = createTheme({ palette: {
     } = ownerState;
     return classes;
   };
-  var Select = /* @__PURE__ */ React66.forwardRef(function Select2(inProps, ref) {
+  var Select = /* @__PURE__ */ React65.forwardRef(function Select2(inProps, ref) {
     const props = useThemeProps2({
       name: "MuiSelect",
       props: inProps
@@ -39593,7 +39600,7 @@ const theme2 = createTheme({ palette: {
     });
     const classes = useUtilityClasses22(ownerState);
     const inputComponentRef = useForkRef_default(ref, InputComponent.ref);
-    return /* @__PURE__ */ React66.cloneElement(InputComponent, _extends({
+    return /* @__PURE__ */ React65.cloneElement(InputComponent, _extends({
       inputComponent,
       inputProps: _extends({
         children,
@@ -39683,7 +39690,7 @@ const theme2 = createTheme({ palette: {
     slot: "Root",
     overridesResolver: (props, styles4) => styles4.root
   })({});
-  var TextField = /* @__PURE__ */ React67.forwardRef(function TextField2(inProps, ref) {
+  var TextField = /* @__PURE__ */ React66.forwardRef(function TextField2(inProps, ref) {
     const props = useThemeProps2({
       props: inProps,
       name: "MuiTextField"
@@ -39747,7 +39754,7 @@ const theme2 = createTheme({ palette: {
       if (label) {
         var _InputLabelProps$requ;
         const displayRequired = (_InputLabelProps$requ = InputLabelProps == null ? void 0 : InputLabelProps.required) != null ? _InputLabelProps$requ : required;
-        InputMore.label = /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)(React67.Fragment, {
+        InputMore.label = /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)(React66.Fragment, {
           children: [label, displayRequired && "\xA0*"]
         });
       }
@@ -39854,7 +39861,7 @@ const theme2 = createTheme({ palette: {
   var TextField_default = TextField;
 
   // node_modules/@mui/material/Button/Button.js
-  var React69 = __toModule(require_react());
+  var React68 = __toModule(require_react());
   var import_prop_types46 = __toModule(require_prop_types());
 
   // node_modules/@mui/material/Button/buttonClasses.js
@@ -39865,8 +39872,8 @@ const theme2 = createTheme({ palette: {
   var buttonClasses_default = buttonClasses;
 
   // node_modules/@mui/material/ButtonGroup/ButtonGroupContext.js
-  var React68 = __toModule(require_react());
-  var ButtonGroupContext = /* @__PURE__ */ React68.createContext({});
+  var React67 = __toModule(require_react());
+  var ButtonGroupContext = /* @__PURE__ */ React67.createContext({});
   if (true) {
     ButtonGroupContext.displayName = "ButtonGroupContext";
   }
@@ -40067,7 +40074,7 @@ const theme2 = createTheme({ palette: {
   }, ownerState.size === "small" && {
     marginRight: -2
   }, commonIconStyles(ownerState)));
-  var Button = /* @__PURE__ */ React69.forwardRef(function Button2(inProps, ref) {
+  var Button = /* @__PURE__ */ React68.forwardRef(function Button2(inProps, ref) {
     const props = useThemeProps2({
       props: inProps,
       name: "MuiButton"
@@ -40082,7 +40089,7 @@ const theme2 = createTheme({ palette: {
       fullWidth: fullWidthContext,
       size: sizeContext,
       variant: variantContext
-    } = React69.useContext(ButtonGroupContext_default);
+    } = React68.useContext(ButtonGroupContext_default);
     const {
       children,
       className,
@@ -40167,15 +40174,87 @@ const theme2 = createTheme({ palette: {
   } : void 0;
   var Button_default = Button;
 
+  // src/presenters/login.ts
+  var LoginPresenter = class {
+    static async formSubmit({ data, setAlert }) {
+      if (setAlert !== null) {
+        if (this.isFormValid(data)) {
+          try {
+            await UserService_default.login(data.email.trim(), data.password);
+            setAlert({ message: "Logged in successfully!", type: "success" });
+          } catch (_error) {
+            setAlert({ message: "Incorrect email or password.", type: "error" });
+          }
+        } else {
+          setAlert({ message: "Form data is missing.", type: "error" });
+        }
+      }
+    }
+    static isFormValid(data) {
+      const { email, password } = data;
+      if (email && password) {
+        return true;
+      }
+      return false;
+    }
+  };
+  var login_default = LoginPresenter;
+
+  // src/views/LoginPage.tsx
+  var LoginPage = () => {
+    const { setAlert } = (0, import_react22.useContext)(alertContext_default);
+    const [email, setEmail] = (0, import_react22.useState)("");
+    const [password, setPassword] = (0, import_react22.useState)("");
+    const [loginDisabled, setLoginDisabled] = (0, import_react22.useState)(true);
+    (0, import_react22.useEffect)(() => {
+      setLoginDisabled(!login_default.isFormValid({ email, password }));
+    }, [email, password]);
+    return /* @__PURE__ */ import_react22.default.createElement("div", null, /* @__PURE__ */ import_react22.default.createElement("h2", null, "Login"), /* @__PURE__ */ import_react22.default.createElement("form", {
+      className: "form-container"
+    }, /* @__PURE__ */ import_react22.default.createElement(TextField_default, {
+      id: "email-input",
+      label: "Email Address",
+      value: email,
+      onChange: ({ target }) => setEmail(target.value),
+      required: true
+    }), /* @__PURE__ */ import_react22.default.createElement(TextField_default, {
+      id: "password-input",
+      type: "password",
+      label: "Password",
+      value: password,
+      onChange: ({ target }) => setPassword(target.value),
+      required: true
+    }), /* @__PURE__ */ import_react22.default.createElement(Button_default, {
+      variant: "contained",
+      onClick: () => login_default.formSubmit({ data: { email, password }, setAlert }),
+      disabled: loginDisabled
+    }, "Login")));
+  };
+  var LoginPage_default = LoginPage;
+
+  // src/views/RegisterPage.tsx
+  var import_react23 = __toModule(require_react());
+
   // src/presenters/register.ts
   var RegisterPresenter = class {
-    static async formSubmit({ data, setAlert, setErrors }) {
-      if (setAlert !== null) {
+    static async formSubmit({
+      data,
+      setAlert,
+      setErrors,
+      setUser
+    }) {
+      if (setAlert !== null && setUser !== null) {
         if (this.isFormValid(data, setErrors)) {
           try {
             const { uid } = await UserService_default.register(data.email, data.password);
             await UserService_default.updateCurrentDisplayName(data.displayName);
             await UserService_default.updateDB(uid, { displayName: data.displayName });
+            setUser({
+              signedIn: true,
+              profile: {
+                displayName: data.displayName
+              }
+            });
             setAlert({ message: "Registered successfully!", type: "success" });
           } catch (error) {
             setAlert({ message: error.message, type: "error" });
@@ -40225,6 +40304,7 @@ const theme2 = createTheme({ palette: {
   // src/views/RegisterPage.tsx
   var RegisterPage = () => {
     const { setAlert } = (0, import_react23.useContext)(alertContext_default);
+    const { setUser } = (0, import_react23.useContext)(userContext_default);
     const [email, setEmail] = (0, import_react23.useState)("");
     const [displayName, setDisplayName] = (0, import_react23.useState)("");
     const [password, setPassword] = (0, import_react23.useState)("");
@@ -40244,8 +40324,8 @@ const theme2 = createTheme({ palette: {
     const [registerDisabled, setRegisterDisabled] = (0, import_react23.useState)(true);
     (0, import_react23.useEffect)(() => {
       const newData = {
-        email,
-        displayName,
+        email: email.trim(),
+        displayName: displayName.trim(),
         password,
         confirmPassword
       };
@@ -40260,7 +40340,7 @@ const theme2 = createTheme({ palette: {
       confirmPassword: "Must match password"
     };
     return /* @__PURE__ */ import_react23.default.createElement("div", null, /* @__PURE__ */ import_react23.default.createElement("h2", null, "Register"), /* @__PURE__ */ import_react23.default.createElement("form", {
-      className: "registration-container"
+      className: "form-container"
     }, /* @__PURE__ */ import_react23.default.createElement(TextField_default, {
       id: "email-input",
       helperText: helperText.email,
@@ -40297,7 +40377,12 @@ const theme2 = createTheme({ palette: {
       required: true
     }), /* @__PURE__ */ import_react23.default.createElement(Button_default, {
       variant: "contained",
-      onClick: () => register_default.formSubmit({ data, setAlert, setErrors }),
+      onClick: () => register_default.formSubmit({
+        data,
+        setAlert,
+        setErrors,
+        setUser
+      }),
       disabled: registerDisabled
     }, "Register")));
   };
