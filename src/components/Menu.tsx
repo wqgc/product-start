@@ -15,10 +15,10 @@ const Menu: React.FC<MenuProps> = ({ user }) => {
         <nav>
             <ul className="main-navigation menu__horizontal">
                 <li>
-                    <NavLink to="/">My Products</NavLink>
+                    <NavLink to="/products">My Products</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/">My Pledges</NavLink>
+                    <NavLink to="/pledges">My Pledges</NavLink>
                 </li>
             </ul>
         </nav>

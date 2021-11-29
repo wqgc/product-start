@@ -8,6 +8,11 @@ import Layout from './views/Layout';
 import LandingPage from './views/LandingPage';
 import LoginPage from './views/LoginPage';
 import RegisterPage from './views/RegisterPage';
+import ProductsPage from './views/products/ProductsPage';
+import CreatePage from './views/products/CreatePage';
+import ProductPage from './views/products/ProductPage';
+import EditPage from './views/products/EditPage';
+import PledgesPage from './views/PledgesPage';
 import NotFound from './views/NotFound';
 import Enforce from './components/auth/Enforce';
 
@@ -40,6 +45,13 @@ const App: React.FC = () => {
                                     <Enforce enforce="signedOut" user={user}><RegisterPage /></Enforce>
                                 }
                             />
+                            <Route path="products" element={<ProductsPage />}>
+                                <Route path="create" element={<CreatePage />} />
+                                <Route path=":id" element={<ProductPage />}>
+                                    <Route path="edit" element={<EditPage />} />
+                                </Route>
+                            </Route>
+                            <Route path="pledges" element={<PledgesPage />} />
                             <Route path="*" element={<NotFound />} />
                         </Route>
                     </Routes>

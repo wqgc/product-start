@@ -2457,11 +2457,11 @@
       if (true) {
         (function() {
           "use strict";
-          var React75 = require_react();
+          var React80 = require_react();
           var _assign = require_object_assign();
           var Scheduler = require_scheduler();
           var tracing = require_tracing();
-          var ReactSharedInternals = React75.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React80.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function warn(format) {
             {
               for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2493,7 +2493,7 @@
               Function.prototype.apply.call(console[level], console, argsWithFormat);
             }
           }
-          if (!React75) {
+          if (!React80) {
             {
               throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
             }
@@ -3709,7 +3709,7 @@
           var didWarnInvalidChild = false;
           function flattenChildren(children) {
             var content = "";
-            React75.Children.forEach(children, function(child) {
+            React80.Children.forEach(children, function(child) {
               if (child == null) {
                 return;
               }
@@ -3720,7 +3720,7 @@
           function validateProps(element, props) {
             {
               if (typeof props.children === "object" && props.children !== null) {
-                React75.Children.forEach(props.children, function(child) {
+                React80.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -10913,7 +10913,7 @@
           }
           var fakeInternalInstance = {};
           var isArray = Array.isArray;
-          var emptyRefsObject = new React75.Component().refs;
+          var emptyRefsObject = new React80.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -21360,7 +21360,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       if (true) {
         (function() {
           "use strict";
-          var React75 = require_react();
+          var React80 = require_react();
           var _assign = require_object_assign();
           var REACT_ELEMENT_TYPE = 60103;
           var REACT_PORTAL_TYPE = 60106;
@@ -21417,7 +21417,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             }
             return null;
           }
-          var ReactSharedInternals = React75.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React80.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
@@ -23881,7 +23881,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   registerVersion(name2, version2, "app");
 
   // src/index.tsx
-  var import_react27 = __toModule(require_react());
+  var import_react32 = __toModule(require_react());
   var import_react_dom2 = __toModule(require_react_dom());
 
   // node_modules/@babel/runtime/helpers/esm/extends.js
@@ -29107,7 +29107,7 @@ const theme2 = createTheme({ palette: {
   var styled_default = styled2;
 
   // src/App.tsx
-  var import_react26 = __toModule(require_react());
+  var import_react31 = __toModule(require_react());
 
   // node_modules/react-router-dom/index.js
   var import_react10 = __toModule(require_react());
@@ -35486,9 +35486,7 @@ const theme2 = createTheme({ palette: {
       className: "topbar menu__horizontal"
     }, user.signedIn ? /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement("strong", {
       className: "topbar__display-name"
-    }, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
-      to: "/"
-    }, user.profile.displayName))), /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
+    }, user.profile.displayName)), /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
       to: "/",
       onClick: clickLogout
     }, "Logout"))) : /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement("strong", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
@@ -35519,9 +35517,9 @@ const theme2 = createTheme({ palette: {
     return /* @__PURE__ */ import_react19.default.createElement("nav", null, /* @__PURE__ */ import_react19.default.createElement("ul", {
       className: "main-navigation menu__horizontal"
     }, /* @__PURE__ */ import_react19.default.createElement("li", null, /* @__PURE__ */ import_react19.default.createElement(NavLink, {
-      to: "/"
+      to: "/products"
     }, "My Products")), /* @__PURE__ */ import_react19.default.createElement("li", null, /* @__PURE__ */ import_react19.default.createElement(NavLink, {
-      to: "/"
+      to: "/pledges"
     }, "My Pledges"))));
   };
   var Menu_default = Menu;
@@ -40388,66 +40386,116 @@ const theme2 = createTheme({ palette: {
   };
   var RegisterPage_default = RegisterPage;
 
-  // src/views/NotFound.tsx
+  // src/views/products/ProductsPage.tsx
   var import_react24 = __toModule(require_react());
+  var ProductsPage = () => {
+    return /* @__PURE__ */ import_react24.default.createElement("div", null, "w.i.p");
+  };
+  var ProductsPage_default = ProductsPage;
+
+  // src/views/products/CreatePage.tsx
+  var import_react25 = __toModule(require_react());
+  var CreatePage = () => {
+    return /* @__PURE__ */ import_react25.default.createElement("div", null, "w.i.p");
+  };
+  var CreatePage_default = CreatePage;
+
+  // src/views/products/ProductPage.tsx
+  var import_react26 = __toModule(require_react());
+  var ProductPage = () => {
+    return /* @__PURE__ */ import_react26.default.createElement("div", null, "w.i.p");
+  };
+  var ProductPage_default = ProductPage;
+
+  // src/views/products/EditPage.tsx
+  var import_react27 = __toModule(require_react());
+  var EditPage = () => {
+    return /* @__PURE__ */ import_react27.default.createElement("div", null, "w.i.p");
+  };
+  var EditPage_default = EditPage;
+
+  // src/views/PledgesPage.tsx
+  var import_react28 = __toModule(require_react());
+  var PledgesPage = () => {
+    return /* @__PURE__ */ import_react28.default.createElement("div", null, "w.i.p");
+  };
+  var PledgesPage_default = PledgesPage;
+
+  // src/views/NotFound.tsx
+  var import_react29 = __toModule(require_react());
   var NotFound = () => {
-    return /* @__PURE__ */ import_react24.default.createElement("div", null, "Oh no, that page doesn't seem to exist.");
+    return /* @__PURE__ */ import_react29.default.createElement("div", null, "Oh no, that page doesn't seem to exist.");
   };
   var NotFound_default = NotFound;
 
   // src/components/auth/Enforce.tsx
-  var import_react25 = __toModule(require_react());
+  var import_react30 = __toModule(require_react());
   var Enforce = ({ enforce, user, children }) => {
     const navigate = useNavigate();
-    (0, import_react25.useLayoutEffect)(() => {
+    (0, import_react30.useLayoutEffect)(() => {
       if (enforce === "signedIn" && !user.signedIn) {
         navigate("/login", { replace: false });
       } else if (enforce === "signedOut" && user.signedIn) {
         navigate("/", { replace: false });
       }
     }, [enforce, user]);
-    return /* @__PURE__ */ import_react25.default.createElement("div", null, children);
+    return /* @__PURE__ */ import_react30.default.createElement("div", null, children);
   };
   var Enforce_default = Enforce;
 
   // src/App.tsx
   var App = () => {
-    const [alert, setAlert] = (0, import_react26.useState)({ message: "", type: void 0 });
-    const [user, setUser] = (0, import_react26.useState)({ signedIn: false, profile: { displayName: "" } });
-    (0, import_react26.useEffect)(() => {
+    const [alert, setAlert] = (0, import_react31.useState)({ message: "", type: void 0 });
+    const [user, setUser] = (0, import_react31.useState)({ signedIn: false, profile: { displayName: "" } });
+    (0, import_react31.useEffect)(() => {
       app_default.setUserStatus(setUser);
     }, []);
-    const alertData = (0, import_react26.useMemo)(() => ({ alert, setAlert }), []);
-    const userData = (0, import_react26.useMemo)(() => ({ user, setUser }), []);
-    return /* @__PURE__ */ import_react26.default.createElement(userContext_default.Provider, {
+    const alertData = (0, import_react31.useMemo)(() => ({ alert, setAlert }), []);
+    const userData = (0, import_react31.useMemo)(() => ({ user, setUser }), []);
+    return /* @__PURE__ */ import_react31.default.createElement(userContext_default.Provider, {
       value: userData
-    }, /* @__PURE__ */ import_react26.default.createElement(alertContext_default.Provider, {
+    }, /* @__PURE__ */ import_react31.default.createElement(alertContext_default.Provider, {
       value: alertData
-    }, /* @__PURE__ */ import_react26.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react26.default.createElement(Routes, null, /* @__PURE__ */ import_react26.default.createElement(Route, {
+    }, /* @__PURE__ */ import_react31.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react31.default.createElement(Routes, null, /* @__PURE__ */ import_react31.default.createElement(Route, {
       path: "/",
-      element: /* @__PURE__ */ import_react26.default.createElement(Layout_default, {
+      element: /* @__PURE__ */ import_react31.default.createElement(Layout_default, {
         alert,
         setAlert,
         user
       })
-    }, /* @__PURE__ */ import_react26.default.createElement(Route, {
+    }, /* @__PURE__ */ import_react31.default.createElement(Route, {
       index: true,
-      element: /* @__PURE__ */ import_react26.default.createElement(LandingPage_default, null)
-    }), /* @__PURE__ */ import_react26.default.createElement(Route, {
+      element: /* @__PURE__ */ import_react31.default.createElement(LandingPage_default, null)
+    }), /* @__PURE__ */ import_react31.default.createElement(Route, {
       path: "login",
-      element: /* @__PURE__ */ import_react26.default.createElement(Enforce_default, {
+      element: /* @__PURE__ */ import_react31.default.createElement(Enforce_default, {
         enforce: "signedOut",
         user
-      }, /* @__PURE__ */ import_react26.default.createElement(LoginPage_default, null))
-    }), /* @__PURE__ */ import_react26.default.createElement(Route, {
+      }, /* @__PURE__ */ import_react31.default.createElement(LoginPage_default, null))
+    }), /* @__PURE__ */ import_react31.default.createElement(Route, {
       path: "register",
-      element: /* @__PURE__ */ import_react26.default.createElement(Enforce_default, {
+      element: /* @__PURE__ */ import_react31.default.createElement(Enforce_default, {
         enforce: "signedOut",
         user
-      }, /* @__PURE__ */ import_react26.default.createElement(RegisterPage_default, null))
-    }), /* @__PURE__ */ import_react26.default.createElement(Route, {
+      }, /* @__PURE__ */ import_react31.default.createElement(RegisterPage_default, null))
+    }), /* @__PURE__ */ import_react31.default.createElement(Route, {
+      path: "products",
+      element: /* @__PURE__ */ import_react31.default.createElement(ProductsPage_default, null)
+    }, /* @__PURE__ */ import_react31.default.createElement(Route, {
+      path: "create",
+      element: /* @__PURE__ */ import_react31.default.createElement(CreatePage_default, null)
+    }), /* @__PURE__ */ import_react31.default.createElement(Route, {
+      path: ":id",
+      element: /* @__PURE__ */ import_react31.default.createElement(ProductPage_default, null)
+    }, /* @__PURE__ */ import_react31.default.createElement(Route, {
+      path: "edit",
+      element: /* @__PURE__ */ import_react31.default.createElement(EditPage_default, null)
+    }))), /* @__PURE__ */ import_react31.default.createElement(Route, {
+      path: "pledges",
+      element: /* @__PURE__ */ import_react31.default.createElement(PledgesPage_default, null)
+    }), /* @__PURE__ */ import_react31.default.createElement(Route, {
       path: "*",
-      element: /* @__PURE__ */ import_react26.default.createElement(NotFound_default, null)
+      element: /* @__PURE__ */ import_react31.default.createElement(NotFound_default, null)
     }))))));
   };
   var App_default = App;
@@ -40463,9 +40511,9 @@ const theme2 = createTheme({ palette: {
     appId: "1:960434173894:web:ea8054234881ce580c24c7"
   };
   initializeApp(firebaseConfig);
-  import_react_dom2.default.render(/* @__PURE__ */ import_react27.default.createElement(import_react27.default.StrictMode, null, /* @__PURE__ */ import_react27.default.createElement(StyledEngineProvider, {
+  import_react_dom2.default.render(/* @__PURE__ */ import_react32.default.createElement(import_react32.default.StrictMode, null, /* @__PURE__ */ import_react32.default.createElement(StyledEngineProvider, {
     injectFirst: true
-  }, /* @__PURE__ */ import_react27.default.createElement(App_default, null))), document.getElementById("root"));
+  }, /* @__PURE__ */ import_react32.default.createElement(App_default, null))), document.getElementById("root"));
 })();
 /*
 object-assign
