@@ -1,7 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { UserState } from '../types';
 
-const Menu: React.FC = () => {
+interface MenuProps {
+    user: UserState
+}
+
+const Menu: React.FC<MenuProps> = ({ user }) => {
+    if (!user.signedIn) {
+        return null;
+    }
+
     return (
         <nav>
             <ul className="main-navigation menu__horizontal">

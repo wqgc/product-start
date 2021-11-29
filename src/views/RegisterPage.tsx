@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import Register from '../presenters/register';
+import RegisterPresenter from '../presenters/register';
 import AlertContext from '../utils/alertContext';
 
 const RegisterPage: React.FC = () => {
@@ -33,7 +33,7 @@ const RegisterPage: React.FC = () => {
         };
         setData(newData);
 
-        const dataIsValid = Register.isFormValid(newData, setErrors);
+        const dataIsValid = RegisterPresenter.isFormValid(newData, setErrors);
         setRegisterDisabled(!dataIsValid);
     }, [email, displayName, password, confirmPassword, setRegisterDisabled]);
 
@@ -88,7 +88,7 @@ const RegisterPage: React.FC = () => {
                 />
                 <Button
                     variant="contained"
-                    onClick={() => Register.formSubmit({ data, setAlert, setErrors })}
+                    onClick={() => RegisterPresenter.formSubmit({ data, setAlert, setErrors })}
                     disabled={registerDisabled}
                 >
                     Register

@@ -10,7 +10,7 @@ interface SubmitParameters {
     setErrors: SetErrors
 }
 
-class Register {
+class RegisterPresenter {
     static async formSubmit({ data, setAlert, setErrors }: SubmitParameters): Promise<void> {
         if (setAlert !== null) {
             if (this.isFormValid(data, setErrors)) {
@@ -69,4 +69,4 @@ class Register {
     }
 }
 
-export default Register;
+export default RegisterPresenter;

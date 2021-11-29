@@ -55,6 +55,9 @@ button {
   display: flex;
   flex-direction: column;
 }
+.alert-container {
+  margin: 12px 0;
+}
 ul {
   margin: 0;
   padding: 0;

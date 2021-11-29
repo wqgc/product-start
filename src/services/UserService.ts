@@ -1,4 +1,6 @@
-import { getAuth, createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import {
+    getAuth, createUserWithEmailAndPassword, updateProfile,
+} from 'firebase/auth';
 import { PublicUserData } from '../types';
 import CONSTANTS from '../constants';
 

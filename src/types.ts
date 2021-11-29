@@ -5,6 +5,10 @@ export interface AlertState {
     type: AlertColor | undefined
 }
 
+export interface UserState {
+    signedIn: boolean
+}
+
 export interface RegistrationData<Type> {
     email: Type
     displayName: Type

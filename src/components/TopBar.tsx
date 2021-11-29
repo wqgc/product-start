@@ -1,26 +1,40 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { UserState } from '../types';
 
-const TopBar: React.FC = () => {
+interface TopBarProps {
+    user: UserState
+}
+
+const TopBar: React.FC<TopBarProps> = ({ user }) => {
     return (
         <div>
             <ul className="topbar menu__horizontal">
-                <li>
-                    <strong>
-                        <NavLink to="/login">Login</NavLink>
-                    </strong>
-                </li>
-                <li>
-                    <NavLink to="/register">Register</NavLink>
-                </li>
-                <li>
-                    <strong>
-                        <NavLink to="/">Current User</NavLink>
-                    </strong>
-                </li>
-                <li>
-                    <NavLink to="/">Logout</NavLink>
-                </li>
+                { user.signedIn
+                    ? (
+                        <>
+                            <li>
+                                <strong>
+                                    <NavLink to="/">Current User</NavLink>
+                                </strong>
+                            </li>
+                            <li>
+                                <NavLink to="/">Logout</NavLink>
+                            </li>
+                        </>
+                    )
+                    : (
+                        <>
+                            <li>
+                                <strong>
+                                    <NavLink to="/login">Login</NavLink>
+                                </strong>
+                            </li>
+                            <li>
+                                <NavLink to="/register">Register</NavLink>
+                            </li>
+                        </>
+                    )}
             </ul>
         </div>
     );

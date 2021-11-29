@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Divider from '@mui/material/Divider';
 import CONSTANTS from '../constants';
 
 const LandingPage: React.FC = () => {
@@ -11,6 +12,7 @@ const LandingPage: React.FC = () => {
                     A list of products will go here.
                 </p>
             </section>
+            <Divider /><br />
             <section>
                 <h2>What is {CONSTANTS.SITE_NAME}?</h2>
                 <p>
