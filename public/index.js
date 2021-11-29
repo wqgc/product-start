@@ -35405,7 +35405,9 @@ const theme2 = createTheme({ palette: {
   var TopBar = ({ user }) => {
     return /* @__PURE__ */ import_react17.default.createElement("div", null, /* @__PURE__ */ import_react17.default.createElement("ul", {
       className: "topbar menu__horizontal"
-    }, user.signedIn ? /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement("strong", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
+    }, user.signedIn ? /* @__PURE__ */ import_react17.default.createElement(import_react17.default.Fragment, null, /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement("strong", {
+      className: "topbar__display-name"
+    }, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
       to: "/"
     }, user.profile.displayName))), /* @__PURE__ */ import_react17.default.createElement("li", null, /* @__PURE__ */ import_react17.default.createElement(NavLink, {
       to: "/"

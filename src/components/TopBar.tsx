@@ -14,7 +14,7 @@ const TopBar: React.FC<TopBarProps> = ({ user }) => {
                     ? (
                         <>
                             <li>
-                                <strong>
+                                <strong className="topbar__display-name">
                                     <NavLink to="/">{user.profile.displayName}</NavLink>
                                 </strong>
                             </li>
