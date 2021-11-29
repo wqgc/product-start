@@ -9,7 +9,7 @@ const LandingPage: React.FC = () => {
         <div>
             <section>
                 <h2>Discover New Ideas!</h2>
-                <div>
+                <div className="product-previews">
                     <ProductPreview title="prod1" creator="creator1" id="" />
                     <ProductPreview title="prod2" creator="creator2" id="" />
                     <ProductPreview title="prod3" creator="creator3" id="" />

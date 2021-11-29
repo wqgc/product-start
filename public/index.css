@@ -35,6 +35,9 @@ h3 {
   margin: 0;
   padding: 0;
 }
+h3 {
+  margin-bottom: 6px;
+}
 button {
   margin: 0 12px;
 }
@@ -84,6 +87,20 @@ ul {
   display: flex;
   justify-content: center;
   font-size: large;
+}
+.product-previews {
+  display: flex;
+  flex-direction: column;
+  margin: 16px 0;
+}
+.product-previews:first-of-type {
+  margin-top: 0;
+}
+.card__product-preview {
+  margin: 8px 0;
+}
+.MuiCardContent-root {
+  padding-bottom: 4px;
 }
 .MuiFormControl-root {
   margin: 8px 0;

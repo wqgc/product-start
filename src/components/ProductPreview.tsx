@@ -13,19 +13,17 @@ interface ProductPreviewProps {
 
 const ProductPreview: React.FC<ProductPreviewProps> = ({ title, creator, id }) => {
     return (
-        <div>
-            <Card>
-                <CardContent>
-                    <h3>{title}</h3>
-                    <div>{creator}</div>
-                </CardContent>
-                <CardActions>
-                    <Button size="small">
-                        <Link to={`/products/${id}`}>Find Out More</Link>
-                    </Button>
-                </CardActions>
-            </Card>
-        </div>
+        <Card className="card__product-preview">
+            <CardContent>
+                <h3>{title}</h3>
+                <div>{creator}</div>
+            </CardContent>
+            <CardActions>
+                <Button size="small">
+                    <Link to={`/products/${id}`}>Find Out More</Link>
+                </Button>
+            </CardActions>
+        </Card>
     );
 };
 

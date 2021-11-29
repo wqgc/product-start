@@ -36257,17 +36257,21 @@ const theme2 = createTheme({ palette: {
 
   // src/components/ProductPreview.tsx
   var ProductPreview = ({ title, creator, id }) => {
-    return /* @__PURE__ */ import_react21.default.createElement("div", null, /* @__PURE__ */ import_react21.default.createElement(Card_default, null, /* @__PURE__ */ import_react21.default.createElement(CardContent_default, null, /* @__PURE__ */ import_react21.default.createElement("h3", null, title), /* @__PURE__ */ import_react21.default.createElement("div", null, creator)), /* @__PURE__ */ import_react21.default.createElement(CardActions_default, null, /* @__PURE__ */ import_react21.default.createElement(Button_default, {
+    return /* @__PURE__ */ import_react21.default.createElement(Card_default, {
+      className: "card__product-preview"
+    }, /* @__PURE__ */ import_react21.default.createElement(CardContent_default, null, /* @__PURE__ */ import_react21.default.createElement("h3", null, title), /* @__PURE__ */ import_react21.default.createElement("div", null, creator)), /* @__PURE__ */ import_react21.default.createElement(CardActions_default, null, /* @__PURE__ */ import_react21.default.createElement(Button_default, {
       size: "small"
     }, /* @__PURE__ */ import_react21.default.createElement(Link, {
       to: `/products/${id}`
-    }, "Find Out More")))));
+    }, "Find Out More"))));
   };
   var ProductPreview_default = ProductPreview;
 
   // src/views/LandingPage.tsx
   var LandingPage = () => {
-    return /* @__PURE__ */ import_react22.default.createElement("div", null, /* @__PURE__ */ import_react22.default.createElement("section", null, /* @__PURE__ */ import_react22.default.createElement("h2", null, "Discover New Ideas!"), /* @__PURE__ */ import_react22.default.createElement("div", null, /* @__PURE__ */ import_react22.default.createElement(ProductPreview_default, {
+    return /* @__PURE__ */ import_react22.default.createElement("div", null, /* @__PURE__ */ import_react22.default.createElement("section", null, /* @__PURE__ */ import_react22.default.createElement("h2", null, "Discover New Ideas!"), /* @__PURE__ */ import_react22.default.createElement("div", {
+      className: "product-previews"
+    }, /* @__PURE__ */ import_react22.default.createElement(ProductPreview_default, {
       title: "prod1",
       creator: "creator1",
       id: ""
