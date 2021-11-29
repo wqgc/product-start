@@ -9,6 +9,7 @@ import LandingPage from './views/LandingPage';
 import LoginPage from './views/LoginPage';
 import RegisterPage from './views/RegisterPage';
 import NotFound from './views/NotFound';
+import Enforce from './components/auth/Enforce';
 
 const App: React.FC = () => {
     const [alert, setAlert] = useState<AlertState>({ message: '', type: undefined });
@@ -27,8 +28,18 @@ const App: React.FC = () => {
                     <Routes>
                         <Route path="/" element={<Layout alert={alert} setAlert={setAlert} user={user} />}>
                             <Route index element={<LandingPage />} />
-                            <Route path="login" element={<LoginPage />} />
-                            <Route path="register" element={<RegisterPage />} />
+                            <Route
+                                path="login"
+                                element={
+                                    <Enforce enforce="signedOut" user={user}><LoginPage /></Enforce>
+                                }
+                            />
+                            <Route
+                                path="register"
+                                element={
+                                    <Enforce enforce="signedOut" user={user}><RegisterPage /></Enforce>
+                                }
+                            />
                             <Route path="*" element={<NotFound />} />
                         </Route>
                     </Routes>
