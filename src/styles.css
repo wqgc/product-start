@@ -98,20 +98,20 @@ ul {
     font-size: large;
 }
 
-.product-previews {
+.product-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 16px 0;
 }
 
-.product-previews:first-of-type {
-    margin-top: 0;
-}
-
 .card__product-preview {
     margin: 8px 0;
     width: 100%;
+}
+
+.card__product-preview:first-of-type {
+    margin-top: 0;
 }
 
 .MuiFormControl-root {

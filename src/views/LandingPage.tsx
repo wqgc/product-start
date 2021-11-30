@@ -56,7 +56,7 @@ const LandingPage: React.FC<{ user: UserState }> = ({ user }) => {
             <Divider /><br />
             <section>
                 <h2>Discover New Ideas!</h2>
-                <div className="product-previews">
+                <div className="product-container">
                     { productsLoading
                         && <CircularProgress /> }
                     { !productsLoading
