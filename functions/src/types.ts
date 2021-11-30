@@ -1,19 +1,17 @@
-export interface ProductBody {
+export interface ProductPreview {
+    uid: string
     title: string
     goal: number
+    creatorName: string
+    creatorUID: string
+}
+
+export interface ProductBody {
+    currentFunds: number
     description: string
 }
 
-export interface ProductId {
-    id: string
-}
-
-export type Product = ProductId & ProductBody
-
-export interface ReadConfig {
-    id?: string
-    limit?: number
-}
+export type Product = ProductBody & ProductPreview
 
 export interface User {
     uid: string

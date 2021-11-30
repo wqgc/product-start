@@ -25,4 +25,6 @@ export interface ProductData<Type> {
     title: Type
     goal: Type
     description: Type
+    creatorName?: string
+    creatorUID?: string
 }

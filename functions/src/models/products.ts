@@ -3,7 +3,7 @@ import { Product } from '../types';
 
 class Products {
     /*
-    static create(body: ProductBody): Product {
+    static create(body: Omit<Product, 'id'>): Product {
 
     }
     */
@@ -20,11 +20,11 @@ class Products {
     }
 
     /*
-    static update(body: Product): Product {
+    static update(id: string, body: ProductBody): Product {
 
     }
 
-    static delete(): void {
+    static delete(id: string): void {
 
     }
     */
