@@ -26,7 +26,8 @@ class UserService {
             return updateProfile(auth.currentUser, { displayName })
                 .then(() => {
                     return displayName;
-                }).catch((error) => {
+                })
+                .catch((error) => {
                     throw new Error(error);
                 });
         }
@@ -34,7 +35,7 @@ class UserService {
     }
 
     static async updateDB(uid: string, data: PublicUserData) {
-        return fetch(`${CONSTANTS.BASE_URL}users/${uid}`, {
+        return fetch(`${CONSTANTS.BASE_URL}/users/${uid}`, {
             method: 'PUT',
             body: JSON.stringify(data),
             headers: { 'Content-Type': 'application/json' },
@@ -44,7 +45,8 @@ class UserService {
                     return uid;
                 }
                 return Promise.reject(response);
-            }).catch((error) => {
+            })
+            .catch((error) => {
                 throw new Error(error);
             });
     }

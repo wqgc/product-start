@@ -1,11 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Divider from '@mui/material/Divider';
+import CircularProgress from '@mui/material/CircularProgress';
 import ProductPreview from '../components/ProductPreview';
 import CONSTANTS from '../constants';
-import { UserState } from '../types';
+import { UserState, ProductData } from '../types';
+import LandingPresenter from '../presenters/landing';
 
 const LandingPage: React.FC<{ user: UserState }> = ({ user }) => {
+    const [products, setProducts] = useState<ProductData<string>[] | null>(null);
+    const [productsLoading, setProductsLoading] = useState(true);
+
+    useEffect(() => {
+        LandingPresenter.setLatestProducts({ setProducts, setProductsLoading });
+    }, []);
+
+    // Map latest products to product preview element
+    let latestProductElements;
+    if (products) {
+        // eslint-disable-next-line consistent-return
+        latestProductElements = products.map((product) => {
+            const { title, creatorName, productUID } = product;
+            if (title && creatorName && productUID) {
+                return (
+                    <ProductPreview
+                        title={title}
+                        creator={creatorName}
+                        id={productUID}
+                    />
+                );
+            }
+        });
+    }
+
     return (
         <div>
             <section>
@@ -30,9 +57,13 @@ const LandingPage: React.FC<{ user: UserState }> = ({ user }) => {
             <section>
                 <h2>Discover New Ideas!</h2>
                 <div className="product-previews">
-                    <ProductPreview title="prod1" creator="creator1" id="" />
-                    <ProductPreview title="prod2" creator="creator2" id="" />
-                    <ProductPreview title="prod3" creator="creator3" id="" />
+                    { productsLoading
+                        && <CircularProgress /> }
+                    { !productsLoading
+                        && (
+                            latestProductElements
+                            || <p>No one has created a product idea yet. Be the first?</p>
+                        ) }
                 </div>
             </section>
         </div>

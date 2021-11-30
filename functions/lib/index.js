@@ -11,14 +11,15 @@ const main = express();
 app.use(bodyParser.json());
 main.use('/api/v1', app);
 // Product Routes
-// Get all products
+// Get aggregate products
 app.get('/products', async (_request, response) => {
     const products = await Products.read();
     response.json(products);
 });
 // Get one product
-app.get('/products/:id', (_request, response) => {
-    response.send('');
+app.get('/products/:id', async (request, response) => {
+    const product = await Products.read(request.params.id);
+    response.json(product);
 });
 // Create product
 app.post('/products', (_request, response) => {
@@ -33,10 +34,6 @@ app.delete('/products/:id', (_request, response) => {
     response.send('');
 });
 // User Routes
-// Get all users
-app.get('/users', (_request, response) => {
-    response.send('');
-});
 // Get one user
 app.get('/users/:id', (_request, response) => {
     response.send('');

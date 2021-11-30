@@ -101,6 +101,7 @@ ul {
 .product-previews {
     display: flex;
     flex-direction: column;
+    align-items: center;
     margin: 16px 0;
 }
 
@@ -110,10 +111,7 @@ ul {
 
 .card__product-preview {
     margin: 8px 0;
-}
-
-.MuiCardContent-root {
-    padding-bottom: 4px;
+    width: 100%;
 }
 
 .MuiFormControl-root {

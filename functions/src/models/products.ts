@@ -1,30 +1,43 @@
 import firebase from 'firebase-admin';
-import { Product } from '../types';
+import { Product, AggregateProducts } from '../types';
 
 class Products {
     /*
-    static create(body: Omit<Product, 'id'>): Product {
+    static create(body: Omit<Product, 'uid'>): Product {
 
     }
     */
 
-    static async read(): Promise<Product[]> {
+    static async read(uid?: string): Promise<Product | AggregateProducts> {
         const db = firebase.firestore();
-        const productsRef = db.collection('products');
-        const snapshot = await productsRef.get();
-        const result: Product[] = [];
+        let productsRef;
 
-        snapshot.forEach((doc) => result.push(doc.data() as Product));
+        if (uid) {
+            // Get single product
+            productsRef = db.collection('products').doc(uid);
+        } else {
+            // Get aggregate product preview data
+            productsRef = db.collection('aggregate').doc('latestProducts');
+        }
 
-        return result;
+        const doc = await productsRef.get();
+
+        if (!doc.exists) {
+            throw new Error('Document does not exist.');
+        } else {
+            if (uid) {
+                return doc.data() as Product;
+            }
+            return doc.data() as AggregateProducts;
+        }
     }
 
     /*
-    static update(id: string, body: ProductBody): Product {
+    static update(uid: string, body: ProductBody): Product {
 
     }
 
-    static delete(id: string): void {
+    static delete(uid: string): void {
 
     }
     */

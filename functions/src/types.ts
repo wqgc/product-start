@@ -1,5 +1,5 @@
 export interface ProductPreview {
-    uid: string
+    productUID: string
     title: string
     goal: number
     creatorName: string
@@ -12,6 +12,10 @@ export interface ProductBody {
 }
 
 export type Product = ProductBody & ProductPreview
+
+export interface AggregateProducts {
+    products: ProductPreview[]
+}
 
 export interface User {
     uid: string

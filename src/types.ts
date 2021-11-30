@@ -22,6 +22,7 @@ export interface UserState {
 }
 
 export interface ProductData<Type> {
+    productUID?: string
     title: Type
     goal: Type
     description: Type
