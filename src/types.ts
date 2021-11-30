@@ -20,3 +20,9 @@ export interface UserState {
     signedIn: boolean
     profile: PublicUserData
 }
+
+export interface ProductData<Type> {
+    title: Type
+    goal: Type
+    description: Type
+}

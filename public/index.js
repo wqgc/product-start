@@ -1044,7 +1044,7 @@
             }
             return dispatcher;
           }
-          function useContext11(Context, unstable_observedBits) {
+          function useContext12(Context, unstable_observedBits) {
             var dispatcher = resolveDispatcher();
             {
               if (unstable_observedBits !== void 0) {
@@ -1061,7 +1061,7 @@
             }
             return dispatcher.useContext(Context, unstable_observedBits);
           }
-          function useState17(initialState) {
+          function useState18(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1073,7 +1073,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect17(create, deps) {
+          function useEffect18(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1641,15 +1641,15 @@
           exports.lazy = lazy;
           exports.memo = memo2;
           exports.useCallback = useCallback13;
-          exports.useContext = useContext11;
+          exports.useContext = useContext12;
           exports.useDebugValue = useDebugValue3;
-          exports.useEffect = useEffect17;
+          exports.useEffect = useEffect18;
           exports.useImperativeHandle = useImperativeHandle6;
           exports.useLayoutEffect = useLayoutEffect6;
           exports.useMemo = useMemo6;
           exports.useReducer = useReducer;
           exports.useRef = useRef20;
-          exports.useState = useState17;
+          exports.useState = useState18;
           exports.version = ReactVersion;
         })();
       }
@@ -36268,8 +36268,10 @@ const theme2 = createTheme({ palette: {
   var ProductPreview_default = ProductPreview;
 
   // src/views/LandingPage.tsx
-  var LandingPage = () => {
-    return /* @__PURE__ */ import_react22.default.createElement("div", null, /* @__PURE__ */ import_react22.default.createElement("section", null, /* @__PURE__ */ import_react22.default.createElement("h2", null, "Discover New Ideas!"), /* @__PURE__ */ import_react22.default.createElement("div", {
+  var LandingPage = ({ user }) => {
+    return /* @__PURE__ */ import_react22.default.createElement("div", null, /* @__PURE__ */ import_react22.default.createElement("section", null, /* @__PURE__ */ import_react22.default.createElement("h2", null, "What is ", constants_default.SITE_NAME, "?"), /* @__PURE__ */ import_react22.default.createElement("p", null, constants_default.SITE_NAME, " is a place for entrepreneurs to share product ideas and receive initial funding from interested users. Turn your dream product into a reality. Or, as a user, find and support a product that really matters to you!"), /* @__PURE__ */ import_react22.default.createElement("p", null, /* @__PURE__ */ import_react22.default.createElement("strong", null, "This is a demo site for presentational purposes.")), !user.signedIn && /* @__PURE__ */ import_react22.default.createElement("p", null, "Sounds interesting? ", /* @__PURE__ */ import_react22.default.createElement(Link, {
+      to: "/register"
+    }, "Sign up today!"))), /* @__PURE__ */ import_react22.default.createElement(Divider_default, null), /* @__PURE__ */ import_react22.default.createElement("br", null), /* @__PURE__ */ import_react22.default.createElement("section", null, /* @__PURE__ */ import_react22.default.createElement("h2", null, "Discover New Ideas!"), /* @__PURE__ */ import_react22.default.createElement("div", {
       className: "product-previews"
     }, /* @__PURE__ */ import_react22.default.createElement(ProductPreview_default, {
       title: "prod1",
@@ -36283,9 +36285,7 @@ const theme2 = createTheme({ palette: {
       title: "prod3",
       creator: "creator3",
       id: ""
-    }))), /* @__PURE__ */ import_react22.default.createElement(Divider_default, null), /* @__PURE__ */ import_react22.default.createElement("br", null), /* @__PURE__ */ import_react22.default.createElement("section", null, /* @__PURE__ */ import_react22.default.createElement("h2", null, "What is ", constants_default.SITE_NAME, "?"), /* @__PURE__ */ import_react22.default.createElement("p", null, constants_default.SITE_NAME, " is a place for entrepreneurs to share product ideas and receive initial funding from interested users. Turn your dream product into a reality. Or, as a user, find and support a product that really matters to you!"), /* @__PURE__ */ import_react22.default.createElement("p", null, /* @__PURE__ */ import_react22.default.createElement("strong", null, "This is a demo site for presentational purposes.")), /* @__PURE__ */ import_react22.default.createElement("p", null, "Sounds interesting? ", /* @__PURE__ */ import_react22.default.createElement(Link, {
-      to: "/register"
-    }, "Sign up today!"))));
+    }))));
   };
   var LandingPage_default = LandingPage;
 
@@ -40435,7 +40435,7 @@ const theme2 = createTheme({ palette: {
     (0, import_react23.useEffect)(() => {
       setLoginDisabled(!login_default.isFormValid({ email, password }));
     }, [email, password]);
-    return /* @__PURE__ */ import_react23.default.createElement("div", null, /* @__PURE__ */ import_react23.default.createElement("h2", null, "Login"), /* @__PURE__ */ import_react23.default.createElement("form", {
+    return /* @__PURE__ */ import_react23.default.createElement("div", null, /* @__PURE__ */ import_react23.default.createElement("h2", null, "Login"), /* @__PURE__ */ import_react23.default.createElement("div", {
       className: "form-container"
     }, /* @__PURE__ */ import_react23.default.createElement(TextField_default, {
       id: "email-input",
@@ -40565,7 +40565,7 @@ const theme2 = createTheme({ palette: {
       password: "Must be longer than six characters, contain one upper and lowercase letter, one number, and one special character",
       confirmPassword: "Must match password"
     };
-    return /* @__PURE__ */ import_react24.default.createElement("div", null, /* @__PURE__ */ import_react24.default.createElement("h2", null, "Register"), /* @__PURE__ */ import_react24.default.createElement("form", {
+    return /* @__PURE__ */ import_react24.default.createElement("div", null, /* @__PURE__ */ import_react24.default.createElement("h2", null, "Register"), /* @__PURE__ */ import_react24.default.createElement("div", {
       className: "form-container"
     }, /* @__PURE__ */ import_react24.default.createElement(TextField_default, {
       id: "email-input",
@@ -40623,8 +40623,102 @@ const theme2 = createTheme({ palette: {
 
   // src/views/products/CreatePage.tsx
   var import_react26 = __toModule(require_react());
+
+  // src/presenters/createProduct.tsx
+  var CreateProductPresenter = class {
+    static isFormValid(data, setErrors) {
+      const { title, goal, description } = data;
+      const errors = {
+        title: false,
+        goal: false,
+        description: false
+      };
+      if (title && description && goal) {
+        if (title.length < 3 || title.length > 32) {
+          errors.title = true;
+        }
+        if (goal.length > 12 || !/^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/.test(goal)) {
+          errors.goal = true;
+        }
+        if (description.length > 2e3) {
+          errors.description = true;
+        }
+        setErrors(errors);
+        if (errors.title || errors.goal || errors.description) {
+          return false;
+        }
+        return true;
+      }
+      return false;
+    }
+  };
+  var createProduct_default = CreateProductPresenter;
+
+  // src/views/products/CreatePage.tsx
   var CreatePage = () => {
-    return /* @__PURE__ */ import_react26.default.createElement("div", null, /* @__PURE__ */ import_react26.default.createElement("h2", null, "Create Campaign"));
+    const { setAlert } = (0, import_react26.useContext)(alertContext_default);
+    const [title, setTitle] = (0, import_react26.useState)("");
+    const [goal, setGoal] = (0, import_react26.useState)("");
+    const [description, setDescription] = (0, import_react26.useState)("");
+    const [data, setData] = (0, import_react26.useState)({
+      title,
+      goal,
+      description
+    });
+    const [errors, setErrors] = (0, import_react26.useState)({
+      title: false,
+      goal: false,
+      description: false
+    });
+    const [createDisabled, setCreateDisabled] = (0, import_react26.useState)(true);
+    (0, import_react26.useEffect)(() => {
+      const newData = {
+        title: title.trim(),
+        goal: goal.trim(),
+        description
+      };
+      setData(newData);
+      const dataIsValid = createProduct_default.isFormValid(newData, setErrors);
+      setCreateDisabled(!dataIsValid);
+    }, [title, goal, description]);
+    const helperText = {
+      title: "Must be between 3-32 characters",
+      goal: "Please input a valid USD amount",
+      description: "Tell us about your product within 2,000 words"
+    };
+    return /* @__PURE__ */ import_react26.default.createElement("div", null, /* @__PURE__ */ import_react26.default.createElement("h2", null, "Create Campaign"), /* @__PURE__ */ import_react26.default.createElement("div", {
+      className: "form-container"
+    }, /* @__PURE__ */ import_react26.default.createElement(TextField_default, {
+      id: "title-input",
+      helperText: helperText.title,
+      label: "Campaign Title",
+      error: errors.title,
+      value: title,
+      onChange: ({ target }) => setTitle(target.value),
+      required: true
+    }), /* @__PURE__ */ import_react26.default.createElement(TextField_default, {
+      id: "goal-input",
+      helperText: helperText.goal,
+      label: "Funding Goal in USD",
+      error: errors.goal,
+      value: goal,
+      onChange: ({ target }) => setGoal(target.value),
+      required: true
+    }), /* @__PURE__ */ import_react26.default.createElement(TextField_default, {
+      id: "description-input",
+      helperText: helperText.description,
+      label: "Campaign Description",
+      multiline: true,
+      rows: 8,
+      error: errors.description,
+      value: description,
+      onChange: ({ target }) => setDescription(target.value)
+    }), /* @__PURE__ */ import_react26.default.createElement(Button_default, {
+      variant: "contained",
+      onClick: () => {
+      },
+      disabled: createDisabled
+    }, "Create")));
   };
   var CreatePage_default = CreatePage;
 
@@ -40693,7 +40787,9 @@ const theme2 = createTheme({ palette: {
       })
     }, /* @__PURE__ */ import_react32.default.createElement(Route, {
       index: true,
-      element: /* @__PURE__ */ import_react32.default.createElement(LandingPage_default, null)
+      element: /* @__PURE__ */ import_react32.default.createElement(LandingPage_default, {
+        user
+      })
     }), /* @__PURE__ */ import_react32.default.createElement(Route, {
       path: "login",
       element: /* @__PURE__ */ import_react32.default.createElement(Enforce_default, {

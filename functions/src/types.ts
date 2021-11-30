@@ -1,7 +1,7 @@
 export interface ProductBody {
-    name: string
+    title: string
+    goal: number
     description: string
-    fundingGoal: number
 }
 
 export interface ProductId {

@@ -17,7 +17,7 @@ const LoginPage: React.FC = () => {
     return (
         <div>
             <h2>Login</h2>
-            <form className="form-container">
+            <div className="form-container">
                 <TextField
                     id="email-input"
                     label="Email Address"
@@ -42,7 +42,7 @@ const LoginPage: React.FC = () => {
                 >
                     Login
                 </Button>
-            </form>
+            </div>
         </div>
     );
 };

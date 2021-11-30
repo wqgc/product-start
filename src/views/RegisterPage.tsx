@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import RegisterPresenter from '../presenters/register';
 import AlertContext from '../utils/alertContext';
 import UserContext from '../utils/userContext';
+import { RegistrationData } from '../types';
 
 const RegisterPage: React.FC = () => {
     const { setAlert } = useContext(AlertContext);
@@ -12,13 +13,13 @@ const RegisterPage: React.FC = () => {
     const [displayName, setDisplayName] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [data, setData] = useState({
+    const [data, setData] = useState<RegistrationData<string>>({
         email,
         displayName,
         password,
         confirmPassword,
     });
-    const [errors, setErrors] = useState({
+    const [errors, setErrors] = useState<RegistrationData<boolean>>({
         email: false,
         displayName: false,
         password: false,
@@ -49,7 +50,7 @@ const RegisterPage: React.FC = () => {
     return (
         <div>
             <h2>Register</h2>
-            <form className="form-container">
+            <div className="form-container">
                 <TextField
                     id="email-input"
                     helperText={helperText.email}
@@ -101,7 +102,7 @@ const RegisterPage: React.FC = () => {
                 >
                     Register
                 </Button>
-            </form>
+            </div>
         </div>
     );
 };

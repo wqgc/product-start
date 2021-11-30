@@ -32,7 +32,7 @@ const App: React.FC = () => {
                 <BrowserRouter>
                     <Routes>
                         <Route path="/" element={<Layout alert={alert} setAlert={setAlert} user={user} />}>
-                            <Route index element={<LandingPage />} />
+                            <Route index element={<LandingPage user={user} />} />
                             <Route
                                 path="login"
                                 element={
