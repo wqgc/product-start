@@ -1061,7 +1061,7 @@
             }
             return dispatcher.useContext(Context, unstable_observedBits);
           }
-          function useState20(initialState) {
+          function useState21(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1073,11 +1073,11 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect20(create, deps) {
+          function useEffect22(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
-          function useLayoutEffect6(create, deps) {
+          function useLayoutEffect5(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useLayoutEffect(create, deps);
           }
@@ -1643,13 +1643,13 @@
           exports.useCallback = useCallback13;
           exports.useContext = useContext12;
           exports.useDebugValue = useDebugValue3;
-          exports.useEffect = useEffect20;
+          exports.useEffect = useEffect22;
           exports.useImperativeHandle = useImperativeHandle6;
-          exports.useLayoutEffect = useLayoutEffect6;
+          exports.useLayoutEffect = useLayoutEffect5;
           exports.useMemo = useMemo6;
           exports.useReducer = useReducer;
           exports.useRef = useRef20;
-          exports.useState = useState20;
+          exports.useState = useState21;
           exports.version = ReactVersion;
         })();
       }
@@ -38364,7 +38364,11 @@ const theme2 = createTheme({ palette: {
     const [productsLoading, setProductsLoading] = (0, import_react22.useState)(true);
     (0, import_react22.useEffect)(() => {
       let isMounted = true;
-      landing_default.setLatestProducts({ setProducts, setProductsLoading, isMounted });
+      landing_default.setLatestProducts({
+        setProducts,
+        setProductsLoading,
+        isMounted
+      });
       return () => {
         isMounted = false;
       };
@@ -43032,11 +43036,63 @@ const theme2 = createTheme({ palette: {
 
   // src/views/products/ProductsPage.tsx
   var import_react25 = __toModule(require_react());
+
+  // src/presenters/products.tsx
+  var ProductsPresenter = class {
+    static async setProducts({ setProducts, setProductsLoading, isMounted }) {
+      try {
+        const { currentUser } = getAuth();
+        if (!currentUser) {
+          throw new Error("User missing");
+        }
+        const { products } = await UserService_default.get(currentUser.uid);
+        if (isMounted) {
+          if (products) {
+            setProducts(products);
+          }
+          setProductsLoading(false);
+        }
+      } catch (_error) {
+        if (isMounted)
+          setProductsLoading(false);
+      }
+    }
+  };
+  var products_default = ProductsPresenter;
+
+  // src/views/products/ProductsPage.tsx
   var ProductsPage = () => {
+    const [products, setProducts] = (0, import_react25.useState)(null);
+    const [productsLoading, setProductsLoading] = (0, import_react25.useState)(true);
     const navigate = useNavigate();
+    (0, import_react25.useEffect)(() => {
+      let isMounted = true;
+      products_default.setProducts({
+        setProducts,
+        setProductsLoading,
+        isMounted
+      });
+      return () => {
+        isMounted = false;
+      };
+    }, []);
+    let productElements;
+    if (products) {
+      productElements = products.map((product) => {
+        const { title, creatorName, productUID } = product;
+        if (title && creatorName && productUID) {
+          return /* @__PURE__ */ import_react25.default.createElement(ProductPreview_default, {
+            key: productUID,
+            title,
+            creator: creatorName,
+            id: productUID
+          });
+        }
+      });
+    }
     return /* @__PURE__ */ import_react25.default.createElement("div", null, /* @__PURE__ */ import_react25.default.createElement("h2", null, "My Products"), /* @__PURE__ */ import_react25.default.createElement("div", {
       className: "product-container"
-    }, "Your products will go here, using the ProductPreview component"), /* @__PURE__ */ import_react25.default.createElement("br", null), /* @__PURE__ */ import_react25.default.createElement(Divider_default, null), /* @__PURE__ */ import_react25.default.createElement("br", null), /* @__PURE__ */ import_react25.default.createElement(Button_default, {
+    }, productsLoading && /* @__PURE__ */ import_react25.default.createElement(CircularProgress_default, null), !productsLoading && (productElements && productElements.length > 0 ? productElements : /* @__PURE__ */ import_react25.default.createElement("p", null, "No products yet."))), /* @__PURE__ */ import_react25.default.createElement(Divider_default, null), /* @__PURE__ */ import_react25.default.createElement("br", null), /* @__PURE__ */ import_react25.default.createElement(Button_default, {
       variant: "contained",
       onClick: () => navigate("create", { replace: false })
     }, "Start a New Campaign"));
@@ -43061,13 +43117,14 @@ const theme2 = createTheme({ palette: {
             if (currentUser) {
               const product = __spreadProps(__spreadValues({}, data), {
                 creatorName: currentUser.displayName,
-                creatorUID: currentUser.uid,
-                currentFunds: "0"
+                creatorUID: currentUser.uid
               });
               const newProduct = await ProductService_default.create(product);
               await ProductService_default.updateLatestProducts(newProduct);
               const userData = await UserService_default.get(currentUser.uid);
-              userData.products.push(data);
+              userData.products.push(__spreadProps(__spreadValues({}, product), {
+                productUID: newProduct.productUID
+              }));
               await UserService_default.updateDB(currentUser.uid, userData);
               navigate("/products", { replace: false });
               setAlert({ message: "Created product campaign!", type: "success" });
@@ -43255,7 +43312,7 @@ const theme2 = createTheme({ palette: {
   var import_react31 = __toModule(require_react());
   var Enforce = ({ enforce, user, children }) => {
     const navigate = useNavigate();
-    (0, import_react31.useLayoutEffect)(() => {
+    (0, import_react31.useEffect)(() => {
       if (enforce === "signedIn" && !user.signedIn) {
         navigate("/login", { replace: false });
       } else if (enforce === "signedOut" && user.signedIn) {
@@ -43305,19 +43362,31 @@ const theme2 = createTheme({ palette: {
       }, /* @__PURE__ */ import_react32.default.createElement(RegisterPage_default, null))
     }), /* @__PURE__ */ import_react32.default.createElement(Route, {
       path: "products",
-      element: /* @__PURE__ */ import_react32.default.createElement(ProductsPage_default, null)
+      element: /* @__PURE__ */ import_react32.default.createElement(Enforce_default, {
+        enforce: "signedIn",
+        user
+      }, /* @__PURE__ */ import_react32.default.createElement(ProductsPage_default, null))
     }), /* @__PURE__ */ import_react32.default.createElement(Route, {
       path: "products/create",
-      element: /* @__PURE__ */ import_react32.default.createElement(CreatePage_default, null)
+      element: /* @__PURE__ */ import_react32.default.createElement(Enforce_default, {
+        enforce: "signedIn",
+        user
+      }, /* @__PURE__ */ import_react32.default.createElement(CreatePage_default, null))
     }), /* @__PURE__ */ import_react32.default.createElement(Route, {
       path: "products/:id",
       element: /* @__PURE__ */ import_react32.default.createElement(ProductPage_default, null)
     }), /* @__PURE__ */ import_react32.default.createElement(Route, {
       path: "products/:id/edit",
-      element: /* @__PURE__ */ import_react32.default.createElement(EditPage_default, null)
+      element: /* @__PURE__ */ import_react32.default.createElement(Enforce_default, {
+        enforce: "signedIn",
+        user
+      }, /* @__PURE__ */ import_react32.default.createElement(EditPage_default, null))
     }), /* @__PURE__ */ import_react32.default.createElement(Route, {
       path: "pledges",
-      element: /* @__PURE__ */ import_react32.default.createElement(PledgesPage_default, null)
+      element: /* @__PURE__ */ import_react32.default.createElement(Enforce_default, {
+        enforce: "signedIn",
+        user
+      }, /* @__PURE__ */ import_react32.default.createElement(PledgesPage_default, null))
     }), /* @__PURE__ */ import_react32.default.createElement(Route, {
       path: "*",
       element: /* @__PURE__ */ import_react32.default.createElement(NotFound_default, null)

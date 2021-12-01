@@ -5,7 +5,7 @@ class Users {
         const userRef = db.collection('users').doc(uid);
         const doc = await userRef.get();
         if (!doc.exists) {
-            throw new Error('User does not exist.');
+            throw new Error('User does not exist');
         }
         else {
             return doc.data();
@@ -22,7 +22,7 @@ class Users {
             await db.collection('users').doc(uid).set({ displayName, pledges, products });
         }
         else {
-            throw new Error('User uid missing.');
+            throw new Error('User uid missing');
         }
     }
 }

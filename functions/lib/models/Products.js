@@ -2,7 +2,8 @@ import firebase from 'firebase-admin';
 class Products {
     static async create(data) {
         const db = firebase.firestore();
-        const { title, goal, creatorName, creatorUID, currentFunds, description, } = data;
+        const { title, goal, creatorName, creatorUID, description, } = data;
+        const currentFunds = '0';
         const response = await db.collection('products').add({
             title, goal, creatorName, creatorUID, currentFunds, description,
         });
@@ -21,7 +22,7 @@ class Products {
         }
         const doc = await productsRef.get();
         if (!doc.exists) {
-            throw new Error('Document does not exist.');
+            throw new Error('Document does not exist');
         }
         else {
             if (uid) {

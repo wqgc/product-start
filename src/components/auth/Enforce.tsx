@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserState } from '../../types';
 
@@ -11,7 +11,7 @@ interface EnforceProps {
 const Enforce: React.FC<EnforceProps> = ({ enforce, user, children }) => {
     const navigate = useNavigate();
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (enforce === 'signedIn' && !user.signedIn) {
             navigate('/login', { replace: false });
         } else if (enforce === 'signedOut' && user.signedIn) {

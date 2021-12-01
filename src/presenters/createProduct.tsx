@@ -26,7 +26,6 @@ class CreateProductPresenter {
                             ...data,
                             creatorName: currentUser.displayName,
                             creatorUID: currentUser.uid,
-                            currentFunds: '0',
                         } as ProductData<string>;
 
                         const newProduct = await ProductService.create(product);
@@ -34,7 +33,9 @@ class CreateProductPresenter {
 
                         // Update user data to store user's current products
                         const userData = await UserService.get(currentUser.uid);
-                        userData.products.push(data);
+                        userData.products.push({
+                            ...product, productUID: newProduct.productUID,
+                        });
                         await UserService.updateDB(currentUser.uid, userData);
                         navigate('/products', { replace: false });
                         setAlert({ message: 'Created product campaign!', type: 'success' });

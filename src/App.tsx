@@ -45,11 +45,31 @@ const App: React.FC = () => {
                                     <Enforce enforce="signedOut" user={user}><RegisterPage /></Enforce>
                                 }
                             />
-                            <Route path="products" element={<ProductsPage />} />
-                            <Route path="products/create" element={<CreatePage />} />
+                            <Route
+                                path="products"
+                                element={
+                                    <Enforce enforce="signedIn" user={user}><ProductsPage /></Enforce>
+                                }
+                            />
+                            <Route
+                                path="products/create"
+                                element={
+                                    <Enforce enforce="signedIn" user={user}><CreatePage /></Enforce>
+                                }
+                            />
                             <Route path="products/:id" element={<ProductPage />} />
-                            <Route path="products/:id/edit" element={<EditPage />} />
-                            <Route path="pledges" element={<PledgesPage />} />
+                            <Route
+                                path="products/:id/edit"
+                                element={
+                                    <Enforce enforce="signedIn" user={user}><EditPage /></Enforce>
+                                }
+                            />
+                            <Route
+                                path="pledges"
+                                element={
+                                    <Enforce enforce="signedIn" user={user}><PledgesPage /></Enforce>
+                                }
+                            />
                             <Route path="*" element={<NotFound />} />
                         </Route>
                     </Routes>
