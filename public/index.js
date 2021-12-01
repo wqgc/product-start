@@ -38341,15 +38341,18 @@ const theme2 = createTheme({ palette: {
 
   // src/presenters/landing.tsx
   var LandingPresenter = class {
-    static async setLatestProducts({ setProducts, setProductsLoading }) {
+    static async setLatestProducts({ setProducts, setProductsLoading, isMounted }) {
       try {
         const { products } = await ProductService_default.getLatestProducts();
-        if (products) {
-          setProducts(products);
+        if (isMounted) {
+          if (products) {
+            setProducts(products);
+          }
+          setProductsLoading(false);
         }
-        setProductsLoading(false);
       } catch (_error) {
-        setProductsLoading(false);
+        if (isMounted)
+          setProductsLoading(false);
       }
     }
   };
@@ -38360,7 +38363,11 @@ const theme2 = createTheme({ palette: {
     const [products, setProducts] = (0, import_react22.useState)(null);
     const [productsLoading, setProductsLoading] = (0, import_react22.useState)(true);
     (0, import_react22.useEffect)(() => {
-      landing_default.setLatestProducts({ setProducts, setProductsLoading });
+      let isMounted = true;
+      landing_default.setLatestProducts({ setProducts, setProductsLoading, isMounted });
+      return () => {
+        isMounted = false;
+      };
     }, []);
     let latestProductElements;
     if (products) {

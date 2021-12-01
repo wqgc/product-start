@@ -5,20 +5,23 @@ import { ProductData } from '../types';
 interface SetLatestProductsParameters {
     setProducts: React.Dispatch<React.SetStateAction<ProductData<string>[] | null>>
     setProductsLoading: React.Dispatch<React.SetStateAction<boolean>>
+    isMounted: boolean
 }
 
 class LandingPresenter {
     static async setLatestProducts(
-        { setProducts, setProductsLoading }: SetLatestProductsParameters,
+        { setProducts, setProductsLoading, isMounted }: SetLatestProductsParameters,
     ) {
         try {
             const { products } = await ProductService.getLatestProducts();
-            if (products) {
-                setProducts(products);
+            if (isMounted) {
+                if (products) {
+                    setProducts(products);
+                }
+                setProductsLoading(false);
             }
-            setProductsLoading(false);
         } catch (_error) {
-            setProductsLoading(false);
+            if (isMounted) setProductsLoading(false);
         }
     }
 }

@@ -11,8 +11,13 @@ const LandingPage: React.FC<{ user: UserState }> = ({ user }) => {
     const [products, setProducts] = useState<ProductData<string>[] | null>(null);
     const [productsLoading, setProductsLoading] = useState(true);
 
+    // Get and set latest products
     useEffect(() => {
-        LandingPresenter.setLatestProducts({ setProducts, setProductsLoading });
+        // Keep track of whether the component is mounted,
+        // so state isn't updated unnecessarily after unmount
+        let isMounted = true;
+        LandingPresenter.setLatestProducts({ setProducts, setProductsLoading, isMounted });
+        return () => { isMounted = false; };
     }, []);
 
     // Map latest products to product preview element
