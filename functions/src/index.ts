@@ -4,6 +4,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import Products from './models/products.js';
 import Users from './models/users.js';
+import { Product, ProductPreview, AggregateProducts } from './types';
 
 firebase.initializeApp();
 const app = express();
@@ -40,17 +41,44 @@ app.post('/products', (_request, response) => {
 });
 
 // Update aggregate products
-app.patch('/products', (_request, response) => {
-    // TODO:
-    // Get previous aggregate data
-    // Unshift new product to the start of products array, include uid under productUID
-    // If the amount of products has gone over the limit, pop the last product off
-    response.send('');
+app.patch('/products', async (request, response) => {
+    const AGGREGATE_PRODUCTS_LIMIT = 10;
+
+    const {
+        productUID, title, goal, creatorName, creatorUID,
+    } = request.body;
+    try {
+        // Get previous aggregate data
+        const { products } = await Products.read() as AggregateProducts;
+        // Insert new product
+        products.unshift({
+            productUID, title, goal, creatorName, creatorUID,
+        } as ProductPreview);
+        // If the amount of products has gone over the limit, remove last product
+        if (products.length > AGGREGATE_PRODUCTS_LIMIT) {
+            products.pop();
+        }
+        // Update aggregate products
+        await Products.update({ products });
+        response.status(200).send('Successfully updated aggregate products');
+    } catch (error) {
+        response.status(400).send((error as Error).message);
+    }
 });
 
 // Update product
-app.put('/products/:id', (_request, response) => {
-    response.send('');
+app.put('/products/:id', async (request, response) => {
+    const {
+        title, goal, creatorName, creatorUID, currentFunds, description,
+    } = request.body;
+    try {
+        await Products.update({
+            title, goal, creatorName, creatorUID, currentFunds, description,
+        } as Product, request.params.id);
+        response.status(200).send('Successfully updated product');
+    } catch (error) {
+        response.status(400).send((error as Error).message);
+    }
 });
 
 // Delete product
