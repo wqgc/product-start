@@ -1,10 +1,53 @@
-import { ProductData } from '../types';
+import { getAuth } from 'firebase/auth';
+import { NavigateFunction } from 'react-router-dom';
+import { ProductData, AlertState } from '../types';
+import ProductService from '../services/ProductService';
+import UserService from '../services/UserService';
 
 type SetErrors = React.Dispatch<React.SetStateAction<ProductData<boolean>>>
 
+interface SubmitParameters {
+    data: ProductData<string>
+    setAlert: React.Dispatch<React.SetStateAction<AlertState>> | null
+    setErrors: SetErrors
+    navigate: NavigateFunction
+}
+
 class CreateProductPresenter {
-    static async formSubmit() {
-        // After submitting form, redirect to /products
+    static async formSubmit({
+        data, setAlert, setErrors, navigate,
+    }: SubmitParameters): Promise<void> {
+        if (setAlert !== null) {
+            if (this.isFormValid(data, setErrors)) {
+                try {
+                    const { currentUser } = getAuth();
+                    if (currentUser) {
+                        const product = {
+                            ...data,
+                            creatorName: currentUser.displayName,
+                            creatorUID: currentUser.uid,
+                            currentFunds: '0',
+                        } as ProductData<string>;
+
+                        const newProduct = await ProductService.create(product);
+                        await ProductService.updateLatestProducts(newProduct);
+
+                        // Update user data to store user's current products
+                        const userData = await UserService.get(currentUser.uid);
+                        userData.products.push(data);
+                        await UserService.updateDB(currentUser.uid, userData);
+                        navigate('/products', { replace: false });
+                        setAlert({ message: 'Created product campaign!', type: 'success' });
+                    } else {
+                        throw new Error('Missing current user.');
+                    }
+                } catch (error: any) {
+                    setAlert({ message: error.message, type: 'error' });
+                }
+            } else {
+                setAlert({ message: 'Form data invalid.', type: 'error' });
+            }
+        }
     }
 
     static isFormValid(data: ProductData<string>, setErrors: SetErrors): boolean {

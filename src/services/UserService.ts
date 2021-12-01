@@ -34,14 +34,14 @@ class UserService {
         throw new Error('User not signed in');
     }
 
-    static async updateDB(uid: string, data: PublicUserData) {
+    static async updateDB(id: string, data: PublicUserData) {
         try {
             const token = await getAuth().currentUser?.getIdToken(true);
             if (!token) {
                 throw new Error('User missing');
             }
 
-            return fetch(`${CONSTANTS.BASE_URL}/users/${uid}`, {
+            return fetch(`${CONSTANTS.BASE_URL}/users/${id}`, {
                 method: 'PUT',
                 body: JSON.stringify(data),
                 headers: {
@@ -51,7 +51,7 @@ class UserService {
             })
                 .then((response) => {
                     if (response.ok) {
-                        return uid;
+                        return id;
                     }
                     return Promise.reject(response);
                 })
@@ -61,6 +61,20 @@ class UserService {
         } catch (error: any) {
             throw new Error(error);
         }
+    }
+
+    static async get(id: string) {
+        return fetch(`${CONSTANTS.BASE_URL}/users/${id}`)
+            .then((response) => {
+                if (response.ok) {
+                    return response.json();
+                }
+                return Promise.reject(response);
+            })
+            .then((data) => data)
+            .catch((error) => {
+                throw new Error(error);
+            });
     }
 
     static async logout() {

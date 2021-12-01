@@ -36,10 +36,11 @@ app.get('/products/:id', async (request, response) => {
 app.post('/products', async (request, response) => {
     const { title, goal, creatorName, creatorUID, currentFunds, description, } = request.body;
     try {
+        await Auth.verifyUser(request.get('Authorization'), creatorUID);
         const productUID = await Products.create({
             title, goal, creatorName, creatorUID, currentFunds, description,
         });
-        response.json({ productUID });
+        response.json(productUID);
     }
     catch (error) {
         response.status(400).send(error.message);
@@ -78,6 +79,9 @@ app.patch('/products', async (request, response) => {
 app.put('/products/:id', async (request, response) => {
     const { title, goal, creatorName, creatorUID, currentFunds, description, } = request.body;
     try {
+        // Ensure the requesting user is the creator
+        await Auth.verifyUser(request.get('Authorization'), creatorUID);
+        // Update the product
         await Products.update({
             title, goal, creatorName, creatorUID, currentFunds, description,
         }, request.params.id);
@@ -90,6 +94,11 @@ app.put('/products/:id', async (request, response) => {
 // Delete product
 app.delete('/products/:id', async (request, response) => {
     try {
+        // Get the product creator's UID
+        const { creatorUID } = await Products.read(request.params.id);
+        // Ensure the requesting user is the creator
+        await Auth.verifyUser(request.get('Authorization'), creatorUID);
+        // Delete product
         await Products.delete(request.params.id);
         response.status(200).send('Successfully deleted product');
     }

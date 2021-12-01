@@ -24,7 +24,11 @@ class Users {
         pledges = pledges || [];
         products = products || [];
 
-        await db.collection('users').doc(uid).set({ displayName, pledges, products });
+        if (uid) {
+            await db.collection('users').doc(uid).set({ displayName, pledges, products });
+        } else {
+            throw new Error('User uid missing.');
+        }
     }
 }
 

@@ -48,9 +48,13 @@ class ProductService {
             })
                 .then((response) => {
                     if (response.ok) {
-                        return data;
+                        return response.json();
                     }
                     return Promise.reject(response);
+                })
+                .then((productUID) => {
+                    const newData = { ...data, productUID };
+                    return newData;
                 })
                 .catch((error) => {
                     throw new Error(error);

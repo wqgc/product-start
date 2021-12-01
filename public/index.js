@@ -35719,14 +35719,14 @@ const theme2 = createTheme({ palette: {
       }
       throw new Error("User not signed in");
     }
-    static async updateDB(uid, data) {
+    static async updateDB(id, data) {
       var _a;
       try {
         const token2 = await ((_a = getAuth().currentUser) == null ? void 0 : _a.getIdToken(true));
         if (!token2) {
           throw new Error("User missing");
         }
-        return fetch(`${constants_default.BASE_URL}/users/${uid}`, {
+        return fetch(`${constants_default.BASE_URL}/users/${id}`, {
           method: "PUT",
           body: JSON.stringify(data),
           headers: {
@@ -35735,7 +35735,7 @@ const theme2 = createTheme({ palette: {
           }
         }).then((response) => {
           if (response.ok) {
-            return uid;
+            return id;
           }
           return Promise.reject(response);
         }).catch((error) => {
@@ -35744,6 +35744,16 @@ const theme2 = createTheme({ palette: {
       } catch (error) {
         throw new Error(error);
       }
+    }
+    static async get(id) {
+      return fetch(`${constants_default.BASE_URL}/users/${id}`).then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        return Promise.reject(response);
+      }).then((data) => data).catch((error) => {
+        throw new Error(error);
+      });
     }
     static async logout() {
       const auth = getAuth();
@@ -38228,6 +38238,103 @@ const theme2 = createTheme({ palette: {
       }).then((data) => data).catch((error) => {
         throw new Error(error);
       });
+    }
+    static async create(data) {
+      var _a;
+      try {
+        const token2 = await ((_a = getAuth().currentUser) == null ? void 0 : _a.getIdToken(true));
+        if (!token2) {
+          throw new Error("User missing");
+        }
+        return fetch(`${constants_default.BASE_URL}/products`, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token2}`
+          }
+        }).then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          return Promise.reject(response);
+        }).then((productUID) => {
+          const newData = __spreadProps(__spreadValues({}, data), { productUID });
+          return newData;
+        }).catch((error) => {
+          throw new Error(error);
+        });
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
+    static async updateLatestProducts(data, remove = false) {
+      return fetch(`${constants_default.BASE_URL}/products`, {
+        method: "PATCH",
+        body: JSON.stringify(remove === true ? __spreadProps(__spreadValues({}, data), {
+          remove: true
+        }) : data),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then((response) => {
+        if (response.ok) {
+          return data;
+        }
+        return Promise.reject(response);
+      }).catch((error) => {
+        throw new Error(error);
+      });
+    }
+    static async updateProduct(id, data) {
+      var _a;
+      try {
+        const token2 = await ((_a = getAuth().currentUser) == null ? void 0 : _a.getIdToken(true));
+        if (!token2) {
+          throw new Error("User missing");
+        }
+        return fetch(`${constants_default.BASE_URL}/products/${id}`, {
+          method: "PUT",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token2}`
+          }
+        }).then((response) => {
+          if (response.ok) {
+            return data;
+          }
+          return Promise.reject(response);
+        }).catch((error) => {
+          throw new Error(error);
+        });
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
+    static async delete(id) {
+      var _a;
+      try {
+        const token2 = await ((_a = getAuth().currentUser) == null ? void 0 : _a.getIdToken(true));
+        if (!token2) {
+          throw new Error("User missing");
+        }
+        return fetch(`${constants_default.BASE_URL}/products/${id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token2}`
+          }
+        }).then((response) => {
+          if (response.ok) {
+            return Promise.resolve(response);
+          }
+          return Promise.reject(response);
+        }).catch((error) => {
+          throw new Error(error);
+        });
+      } catch (error) {
+        throw new Error(error);
+      }
     }
   };
   var ProductService_default = ProductService;
@@ -42934,7 +43041,39 @@ const theme2 = createTheme({ palette: {
 
   // src/presenters/createProduct.tsx
   var CreateProductPresenter = class {
-    static async formSubmit() {
+    static async formSubmit({
+      data,
+      setAlert,
+      setErrors,
+      navigate
+    }) {
+      if (setAlert !== null) {
+        if (this.isFormValid(data, setErrors)) {
+          try {
+            const { currentUser } = getAuth();
+            if (currentUser) {
+              const product = __spreadProps(__spreadValues({}, data), {
+                creatorName: currentUser.displayName,
+                creatorUID: currentUser.uid,
+                currentFunds: "0"
+              });
+              const newProduct = await ProductService_default.create(product);
+              await ProductService_default.updateLatestProducts(newProduct);
+              const userData = await UserService_default.get(currentUser.uid);
+              userData.products.push(data);
+              await UserService_default.updateDB(currentUser.uid, userData);
+              navigate("/products", { replace: false });
+              setAlert({ message: "Created product campaign!", type: "success" });
+            } else {
+              throw new Error("Missing current user.");
+            }
+          } catch (error) {
+            setAlert({ message: error.message, type: "error" });
+          }
+        } else {
+          setAlert({ message: "Form data invalid.", type: "error" });
+        }
+      }
     }
     static isFormValid(data, setErrors) {
       const { title, goal, description } = data;
@@ -42981,6 +43120,7 @@ const theme2 = createTheme({ palette: {
       description: false
     });
     const [createDisabled, setCreateDisabled] = (0, import_react26.useState)(true);
+    const navigate = useNavigate();
     (0, import_react26.useEffect)(() => {
       const newData = {
         title: title.trim(),
@@ -43025,8 +43165,12 @@ const theme2 = createTheme({ palette: {
       onChange: ({ target }) => setDescription(target.value)
     }), /* @__PURE__ */ import_react26.default.createElement(Button_default, {
       variant: "contained",
-      onClick: () => {
-      },
+      onClick: () => createProduct_default.formSubmit({
+        data,
+        setAlert,
+        setErrors,
+        navigate
+      }),
       disabled: createDisabled
     }, "Create")));
   };

@@ -46,7 +46,7 @@ app.post('/products', async (request, response) => {
         const productUID = await Products.create({
             title, goal, creatorName, creatorUID, currentFunds, description,
         });
-        response.json({ productUID });
+        response.json(productUID);
     } catch (error) {
         response.status(400).send((error as Error).message);
     }

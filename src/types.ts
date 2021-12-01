@@ -29,7 +29,7 @@ interface Pledge {
 
 export interface PublicUserData {
     displayName: string
-    pledges?: Pledge
+    pledges?: Pledge[]
     products?: ProductData<string>[]
 }
 
