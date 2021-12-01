@@ -1061,7 +1061,7 @@
             }
             return dispatcher.useContext(Context, unstable_observedBits);
           }
-          function useState19(initialState) {
+          function useState20(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1073,7 +1073,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect19(create, deps) {
+          function useEffect20(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1643,13 +1643,13 @@
           exports.useCallback = useCallback13;
           exports.useContext = useContext12;
           exports.useDebugValue = useDebugValue3;
-          exports.useEffect = useEffect19;
+          exports.useEffect = useEffect20;
           exports.useImperativeHandle = useImperativeHandle6;
           exports.useLayoutEffect = useLayoutEffect6;
           exports.useMemo = useMemo6;
           exports.useReducer = useReducer;
           exports.useRef = useRef20;
-          exports.useState = useState19;
+          exports.useState = useState20;
           exports.version = ReactVersion;
         })();
       }
@@ -29436,6 +29436,13 @@ const theme2 = createTheme({ palette: {
   function useOutlet() {
     return (0, import_react9.useContext)(RouteContext).outlet;
   }
+  function useParams() {
+    let {
+      matches
+    } = (0, import_react9.useContext)(RouteContext);
+    let routeMatch = matches[matches.length - 1];
+    return routeMatch ? routeMatch.params : {};
+  }
   function useResolvedPath(to) {
     let {
       matches
@@ -36084,6 +36091,16 @@ const theme2 = createTheme({ palette: {
         throw new Error(error);
       });
     }
+    static async getProduct(id) {
+      return fetch(`${constants_default.BASE_URL}/products/${id}`).then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        return Promise.reject(response);
+      }).then((data) => data).catch((error) => {
+        throw new Error(error);
+      });
+    }
   };
   var ProductService_default = ProductService;
 
@@ -40880,8 +40897,45 @@ const theme2 = createTheme({ palette: {
 
   // src/views/products/ProductPage.tsx
   var import_react27 = __toModule(require_react());
+
+  // src/presenters/product.tsx
+  var ProductPresenter = class {
+    static async setProduct({
+      id,
+      setProduct,
+      setProductLoading,
+      navigate
+    }) {
+      try {
+        const product = await ProductService_default.getProduct(id);
+        if (product) {
+          setProduct(product);
+        }
+        setProductLoading(false);
+      } catch (error) {
+        navigate("/404", { replace: false });
+      }
+    }
+  };
+  var product_default = ProductPresenter;
+
+  // src/views/products/ProductPage.tsx
   var ProductPage = () => {
-    return /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("h2", null, "Product Title Here"));
+    const [product, setProduct] = (0, import_react27.useState)(null);
+    const [productLoading, setProductLoading] = (0, import_react27.useState)(true);
+    const { id } = useParams();
+    const navigate = useNavigate();
+    (0, import_react27.useEffect)(() => {
+      if (id) {
+        product_default.setProduct({
+          id,
+          setProduct,
+          setProductLoading,
+          navigate
+        });
+      }
+    }, []);
+    return /* @__PURE__ */ import_react27.default.createElement("div", null, productLoading && /* @__PURE__ */ import_react27.default.createElement(CircularProgress_default, null), !productLoading && product && /* @__PURE__ */ import_react27.default.createElement(import_react27.default.Fragment, null, /* @__PURE__ */ import_react27.default.createElement("h2", null, product.title), /* @__PURE__ */ import_react27.default.createElement("p", null, product.description)));
   };
   var ProductPage_default = ProductPage;
 

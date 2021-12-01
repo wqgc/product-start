@@ -16,14 +16,22 @@ main.use('/api/v1', app);
 // Product Routes
 // Get aggregate products
 app.get('/products', async (_request, response) => {
-    const products = await Products.read();
-    response.json(products);
+    try {
+        const products = await Products.read();
+        response.json(products);
+    } catch (error) {
+        response.status(400).send((error as Error).message);
+    }
 });
 
 // Get one product
 app.get('/products/:id', async (request, response) => {
-    const product = await Products.read(request.params.id);
-    response.json(product);
+    try {
+        const product = await Products.read(request.params.id);
+        response.json(product);
+    } catch (error) {
+        response.status(400).send((error as Error).message);
+    }
 });
 
 // Create product
