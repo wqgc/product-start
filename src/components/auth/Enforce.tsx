@@ -12,9 +12,9 @@ const Enforce: React.FC<EnforceProps> = ({ enforce, user, children }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (enforce === 'signedIn' && !user.signedIn) {
+        if (enforce === 'signedIn' && user.signedIn === false) {
             navigate('/login', { replace: false });
-        } else if (enforce === 'signedOut' && user.signedIn) {
+        } else if (enforce === 'signedOut' && user.signedIn === true) {
             navigate('/', { replace: false });
         }
     }, [enforce, user]);

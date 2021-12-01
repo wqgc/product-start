@@ -34,6 +34,6 @@ export interface PublicUserData {
 }
 
 export interface UserState {
-    signedIn: boolean
+    signedIn: boolean | null // Null when still loading
     profile: PublicUserData
 }

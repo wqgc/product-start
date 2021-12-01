@@ -32061,7 +32061,7 @@ const theme2 = createTheme({ palette: {
   // src/utils/userContext.ts
   var import_react12 = __toModule(require_react());
   var UserContext = import_react12.default.createContext({
-    user: { signedIn: false },
+    user: { signedIn: null },
     setUser: null
   });
   var userContext_default = UserContext;
@@ -43061,7 +43061,7 @@ const theme2 = createTheme({ palette: {
   var products_default = ProductsPresenter;
 
   // src/views/products/ProductsPage.tsx
-  var ProductsPage = () => {
+  var ProductsPage = ({ user }) => {
     const [products, setProducts] = (0, import_react25.useState)(null);
     const [productsLoading, setProductsLoading] = (0, import_react25.useState)(true);
     const navigate = useNavigate();
@@ -43075,7 +43075,7 @@ const theme2 = createTheme({ palette: {
       return () => {
         isMounted = false;
       };
-    }, []);
+    }, [user]);
     let productElements;
     if (products) {
       productElements = products.map((product) => {
@@ -43313,9 +43313,9 @@ const theme2 = createTheme({ palette: {
   var Enforce = ({ enforce, user, children }) => {
     const navigate = useNavigate();
     (0, import_react31.useEffect)(() => {
-      if (enforce === "signedIn" && !user.signedIn) {
+      if (enforce === "signedIn" && user.signedIn === false) {
         navigate("/login", { replace: false });
-      } else if (enforce === "signedOut" && user.signedIn) {
+      } else if (enforce === "signedOut" && user.signedIn === true) {
         navigate("/", { replace: false });
       }
     }, [enforce, user]);
@@ -43326,7 +43326,7 @@ const theme2 = createTheme({ palette: {
   // src/App.tsx
   var App = () => {
     const [alert, setAlert] = (0, import_react32.useState)({ message: "", type: void 0 });
-    const [user, setUser] = (0, import_react32.useState)({ signedIn: false, profile: { displayName: "" } });
+    const [user, setUser] = (0, import_react32.useState)({ signedIn: null, profile: { displayName: "" } });
     (0, import_react32.useEffect)(() => {
       app_default.setUserStatus(setUser);
     }, []);
@@ -43365,7 +43365,9 @@ const theme2 = createTheme({ palette: {
       element: /* @__PURE__ */ import_react32.default.createElement(Enforce_default, {
         enforce: "signedIn",
         user
-      }, /* @__PURE__ */ import_react32.default.createElement(ProductsPage_default, null))
+      }, /* @__PURE__ */ import_react32.default.createElement(ProductsPage_default, {
+        user
+      }))
     }), /* @__PURE__ */ import_react32.default.createElement(Route, {
       path: "products/create",
       element: /* @__PURE__ */ import_react32.default.createElement(Enforce_default, {

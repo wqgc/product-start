@@ -3,11 +3,11 @@ import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import CircularProgress from '@mui/material/CircularProgress';
 import { useNavigate } from 'react-router-dom';
-import { ProductData } from '../../types';
+import { ProductData, UserState } from '../../types';
 import ProductsPresenter from '../../presenters/products';
 import ProductPreview from '../../components/ProductPreview';
 
-const ProductsPage: React.FC = () => {
+const ProductsPage: React.FC<{ user: UserState }> = ({ user }) => {
     const [products, setProducts] = useState<ProductData<string>[] | null>(null);
     const [productsLoading, setProductsLoading] = useState(true);
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ const ProductsPage: React.FC = () => {
             setProducts, setProductsLoading, isMounted,
         });
         return () => { isMounted = false; };
-    }, []);
+    }, [user]);
 
     // Map latest products to product preview element
     let productElements;

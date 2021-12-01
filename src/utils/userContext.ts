@@ -8,7 +8,7 @@ interface UserContextValue {
 
 const UserContext = React.createContext(
     {
-        user: { signedIn: false } as UserState,
+        user: { signedIn: null } as UserState,
         setUser: null,
     } as UserContextValue,
 );
