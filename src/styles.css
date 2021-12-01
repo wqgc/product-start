@@ -103,6 +103,7 @@ ul {
     flex-direction: column;
     align-items: center;
     margin: 16px 0;
+    width: 100%;
 }
 
 .card__product-preview {
@@ -112,6 +113,10 @@ ul {
 
 .card__product-preview:first-of-type {
     margin-top: 0;
+}
+
+.details {
+    line-height: 1.4em;
 }
 
 .MuiFormControl-root {

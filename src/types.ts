@@ -28,4 +28,5 @@ export interface ProductData<Type> {
     description: Type
     creatorName?: string
     creatorUID?: string
+    currentFunds?: string
 }
