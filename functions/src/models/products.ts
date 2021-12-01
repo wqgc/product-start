@@ -58,11 +58,10 @@ class Products {
         }
     }
 
-    /*
-    static delete(uid: string): void {
-
+    static async delete(uid: string): Promise<void> {
+        const db = firebase.firestore();
+        await db.collection('products').doc(uid).delete();
     }
-    */
 }
 
 export default Products;

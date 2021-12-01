@@ -36,8 +36,18 @@ app.get('/products/:id', async (request, response) => {
 });
 
 // Create product
-app.post('/products', (_request, response) => {
-    response.send('');
+app.post('/products', async (request, response) => {
+    const {
+        title, goal, creatorName, creatorUID, currentFunds, description,
+    } = request.body;
+    try {
+        const productUID = await Products.create({
+            title, goal, creatorName, creatorUID, currentFunds, description,
+        });
+        response.json({ productUID });
+    } catch (error) {
+        response.status(400).send((error as Error).message);
+    }
 });
 
 // Update aggregate products
@@ -82,14 +92,24 @@ app.put('/products/:id', async (request, response) => {
 });
 
 // Delete product
-app.delete('/products/:id', (_request, response) => {
-    response.send('');
+app.delete('/products/:id', async (request, response) => {
+    try {
+        await Products.delete(request.params.id);
+        response.status(200).send('Successfully deleted product');
+    } catch (error) {
+        response.status(400).send((error as Error).message);
+    }
 });
 
 // User Routes
 // Get one user
-app.get('/users/:id', (_request, response) => {
-    response.send('');
+app.get('/users/:id', async (request, response) => {
+    try {
+        const user = await Users.read(request.params.id);
+        response.json(user);
+    } catch (error) {
+        response.status(400).send((error as Error).message);
+    }
 });
 
 // Update user
