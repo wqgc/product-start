@@ -55,18 +55,24 @@ app.patch('/products', async (request, response) => {
     const AGGREGATE_PRODUCTS_LIMIT = 10;
 
     const {
-        productUID, title, goal, creatorName, creatorUID,
+        remove, productUID, title, goal, creatorName, creatorUID,
     } = request.body;
     try {
         // Get previous aggregate data
-        const { products } = await Products.read() as AggregateProducts;
-        // Insert new product
-        products.unshift({
-            productUID, title, goal, creatorName, creatorUID,
-        } as ProductPreview);
-        // If the amount of products has gone over the limit, remove last product
-        if (products.length > AGGREGATE_PRODUCTS_LIMIT) {
-            products.pop();
+        let { products } = await Products.read() as AggregateProducts;
+
+        if (remove === true) {
+            // Filter product out of array
+            products = products.filter((product) => product.productUID !== productUID);
+        } else {
+            // Insert new product
+            products.unshift({
+                productUID, title, goal, creatorName, creatorUID,
+            } as ProductPreview);
+            // If the amount of products has gone over the limit, remove last product
+            if (products.length > AGGREGATE_PRODUCTS_LIMIT) {
+                products.pop();
+            }
         }
         // Update aggregate products
         await Products.update({ products });
