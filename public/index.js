@@ -42906,7 +42906,13 @@ const theme2 = createTheme({ palette: {
   // src/views/products/ProductsPage.tsx
   var import_react25 = __toModule(require_react());
   var ProductsPage = () => {
-    return /* @__PURE__ */ import_react25.default.createElement("div", null, /* @__PURE__ */ import_react25.default.createElement("h2", null, "My Products"));
+    const navigate = useNavigate();
+    return /* @__PURE__ */ import_react25.default.createElement("div", null, /* @__PURE__ */ import_react25.default.createElement("h2", null, "My Products"), /* @__PURE__ */ import_react25.default.createElement("div", {
+      className: "product-container"
+    }, "Your products will go here, using the ProductPreview component"), /* @__PURE__ */ import_react25.default.createElement("br", null), /* @__PURE__ */ import_react25.default.createElement(Divider_default, null), /* @__PURE__ */ import_react25.default.createElement("br", null), /* @__PURE__ */ import_react25.default.createElement(Button_default, {
+      variant: "contained",
+      onClick: () => navigate("create", { replace: false })
+    }, "Start a New Campaign"));
   };
   var ProductsPage_default = ProductsPage;
 
@@ -42915,6 +42921,8 @@ const theme2 = createTheme({ palette: {
 
   // src/presenters/createProduct.tsx
   var CreateProductPresenter = class {
+    static async formSubmit() {
+    }
     static isFormValid(data, setErrors) {
       const { title, goal, description } = data;
       const errors = {

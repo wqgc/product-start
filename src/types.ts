@@ -12,15 +12,6 @@ export interface RegistrationData<Type> {
     confirmPassword: Type
 }
 
-export interface PublicUserData {
-    displayName: string
-}
-
-export interface UserState {
-    signedIn: boolean
-    profile: PublicUserData
-}
-
 export interface ProductData<Type> {
     productUID?: string
     title: Type
@@ -29,4 +20,20 @@ export interface ProductData<Type> {
     creatorName?: string
     creatorUID?: string
     currentFunds?: string
+}
+
+interface Pledge {
+    amount: number
+    product: ProductData<string>
+}
+
+export interface PublicUserData {
+    displayName: string
+    pledges?: Pledge
+    products?: ProductData<string>[]
+}
+
+export interface UserState {
+    signedIn: boolean
+    profile: PublicUserData
 }

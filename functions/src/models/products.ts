@@ -32,11 +32,25 @@ class Products {
         }
     }
 
-    /*
-    static update(uid: string, body: ProductBody): Product {
+    static async update(data: Product | AggregateProducts, uid?: string): Promise<void> {
+        const db = firebase.firestore();
 
+        if (uid) {
+            // Update single product
+            const {
+                title, goal, creatorName, creatorUID, currentFunds, description,
+            } = data as Product;
+
+            await db.collection('products').doc(uid).set({
+                title, goal, creatorName, creatorUID, currentFunds, description,
+            });
+        } else {
+            // Update aggregate products document
+            await db.collection('aggregate').doc('latestProducts').set(data);
+        }
     }
 
+    /*
     static delete(uid: string): void {
 
     }

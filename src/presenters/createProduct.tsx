@@ -3,6 +3,10 @@ import { ProductData } from '../types';
 type SetErrors = React.Dispatch<React.SetStateAction<ProductData<boolean>>>
 
 class CreateProductPresenter {
+    static async formSubmit() {
+        // After submitting form, redirect to /products
+    }
+
     static isFormValid(data: ProductData<string>, setErrors: SetErrors): boolean {
         const { title, goal, description } = data;
 

@@ -39,6 +39,15 @@ app.post('/products', (_request, response) => {
     response.send('');
 });
 
+// Update aggregate products
+app.patch('/products', (_request, response) => {
+    // TODO:
+    // Get previous aggregate data
+    // Unshift new product to the start of products array, include uid under productUID
+    // If the amount of products has gone over the limit, pop the last product off
+    response.send('');
+});
+
 // Update product
 app.put('/products/:id', (_request, response) => {
     response.send('');
@@ -57,9 +66,11 @@ app.get('/users/:id', (_request, response) => {
 
 // Update user
 app.put('/users/:id', async (request, response) => {
-    const { displayName } = request.body;
+    const { displayName, pledges, products } = request.body;
     try {
-        await Users.update({ uid: request.params.id, displayName });
+        await Users.update({
+            uid: request.params.id, displayName, pledges, products,
+        });
         response.status(200).send('Successfully updated user');
     } catch (error) {
         response.status(400).send((error as Error).message);

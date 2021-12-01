@@ -1,13 +1,13 @@
 export interface ProductPreview {
     productUID: string
     title: string
-    goal: number
+    goal: string
     creatorName: string
     creatorUID: string
 }
 
 export interface ProductBody {
-    currentFunds: number
+    currentFunds: string
     description: string
 }
 
@@ -17,7 +17,14 @@ export interface AggregateProducts {
     products: ProductPreview[]
 }
 
+interface Pledge {
+    amount: string
+    product: ProductPreview
+}
+
 export interface User {
     uid: string
     displayName: string
+    pledges: Pledge
+    products: ProductPreview[]
 }
