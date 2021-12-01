@@ -35720,18 +35720,30 @@ const theme2 = createTheme({ palette: {
       throw new Error("User not signed in");
     }
     static async updateDB(uid, data) {
-      return fetch(`${constants_default.BASE_URL}/users/${uid}`, {
-        method: "PUT",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" }
-      }).then((response) => {
-        if (response.ok) {
-          return uid;
+      var _a;
+      try {
+        const token2 = await ((_a = getAuth().currentUser) == null ? void 0 : _a.getIdToken(true));
+        if (!token2) {
+          throw new Error("User missing");
         }
-        return Promise.reject(response);
-      }).catch((error) => {
+        return fetch(`${constants_default.BASE_URL}/users/${uid}`, {
+          method: "PUT",
+          body: JSON.stringify(data),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token2}`
+          }
+        }).then((response) => {
+          if (response.ok) {
+            return uid;
+          }
+          return Promise.reject(response);
+        }).catch((error) => {
+          throw new Error(error);
+        });
+      } catch (error) {
         throw new Error(error);
-      });
+      }
     }
     static async logout() {
       const auth = getAuth();
@@ -38249,6 +38261,7 @@ const theme2 = createTheme({ palette: {
         const { title, creatorName, productUID } = product;
         if (title && creatorName && productUID) {
           return /* @__PURE__ */ import_react22.default.createElement(ProductPreview_default, {
+            key: productUID,
             title,
             creator: creatorName,
             id: productUID

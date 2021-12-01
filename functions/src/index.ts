@@ -4,6 +4,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import Products from './models/products.js';
 import Users from './models/users.js';
+import Auth from './auth.js';
 import { Product, ProductPreview, AggregateProducts } from './types';
 
 firebase.initializeApp();
@@ -41,6 +42,7 @@ app.post('/products', async (request, response) => {
         title, goal, creatorName, creatorUID, currentFunds, description,
     } = request.body;
     try {
+        await Auth.verifyUser(request.get('Authorization'), creatorUID);
         const productUID = await Products.create({
             title, goal, creatorName, creatorUID, currentFunds, description,
         });
@@ -88,6 +90,9 @@ app.put('/products/:id', async (request, response) => {
         title, goal, creatorName, creatorUID, currentFunds, description,
     } = request.body;
     try {
+        // Ensure the requesting user is the creator
+        await Auth.verifyUser(request.get('Authorization'), creatorUID);
+        // Update the product
         await Products.update({
             title, goal, creatorName, creatorUID, currentFunds, description,
         } as Product, request.params.id);
@@ -100,6 +105,11 @@ app.put('/products/:id', async (request, response) => {
 // Delete product
 app.delete('/products/:id', async (request, response) => {
     try {
+        // Get the product creator's UID
+        const { creatorUID } = await Products.read(request.params.id) as Product;
+        // Ensure the requesting user is the creator
+        await Auth.verifyUser(request.get('Authorization'), creatorUID);
+        // Delete product
         await Products.delete(request.params.id);
         response.status(200).send('Successfully deleted product');
     } catch (error) {
@@ -122,6 +132,7 @@ app.get('/users/:id', async (request, response) => {
 app.put('/users/:id', async (request, response) => {
     const { displayName, pledges, products } = request.body;
     try {
+        await Auth.verifyUser(request.get('Authorization'), request.params.id);
         await Users.update({
             uid: request.params.id, displayName, pledges, products,
         });

@@ -24,6 +24,7 @@ const LandingPage: React.FC<{ user: UserState }> = ({ user }) => {
             if (title && creatorName && productUID) {
                 return (
                     <ProductPreview
+                        key={productUID}
                         title={title}
                         creator={creatorName}
                         id={productUID}

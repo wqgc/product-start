@@ -25,6 +25,6 @@ interface Pledge {
 export interface User {
     uid: string
     displayName: string
-    pledges: Pledge
+    pledges: Pledge[]
     products: ProductPreview[]
 }

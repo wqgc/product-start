@@ -17,9 +17,12 @@ class Users {
 
     static async update(data: User): Promise<void> {
         const db = firebase.firestore();
-        const {
-            uid, displayName, pledges, products,
-        } = data;
+        const { uid, displayName } = data;
+        let { pledges, products } = data;
+
+        // If the following are undefined, initialize them as an empty array
+        pledges = pledges || [];
+        products = products || [];
 
         await db.collection('users').doc(uid).set({ displayName, pledges, products });
     }
