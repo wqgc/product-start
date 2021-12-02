@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
+import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { useNavigate, useParams } from 'react-router-dom';
 import moneyFormatter from 'money-formatter';
@@ -46,6 +47,13 @@ const ProductPage: React.FC = () => {
 
                         <h3>Pledge to {product.title}</h3>
                         <p>w.i.p</p>
+
+                        <Divider />
+                        <br />
+
+                        <Button variant="contained" onClick={() => navigate('edit', { replace: false })}>
+                            Edit Campaign Details
+                        </Button>
                     </>
                 ) }
         </div>

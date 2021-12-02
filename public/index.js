@@ -1061,7 +1061,7 @@
             }
             return dispatcher.useContext(Context, unstable_observedBits);
           }
-          function useState21(initialState) {
+          function useState22(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1073,7 +1073,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect22(create, deps) {
+          function useEffect23(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1643,13 +1643,13 @@
           exports.useCallback = useCallback13;
           exports.useContext = useContext12;
           exports.useDebugValue = useDebugValue3;
-          exports.useEffect = useEffect22;
+          exports.useEffect = useEffect23;
           exports.useImperativeHandle = useImperativeHandle6;
           exports.useLayoutEffect = useLayoutEffect5;
           exports.useMemo = useMemo6;
           exports.useReducer = useReducer;
           exports.useRef = useRef20;
-          exports.useState = useState21;
+          exports.useState = useState22;
           exports.version = ReactVersion;
         })();
       }
@@ -43262,6 +43262,10 @@ const theme2 = createTheme({ palette: {
         navigate("/404", { replace: false });
       }
     }
+    static async submitProductUpdate() {
+    }
+    static async deleteProduct() {
+    }
   };
   var product_default = ProductPresenter;
 
@@ -43283,14 +43287,41 @@ const theme2 = createTheme({ palette: {
     }, []);
     return /* @__PURE__ */ import_react27.default.createElement("div", null, productLoading && /* @__PURE__ */ import_react27.default.createElement(CircularProgress_default, null), !productLoading && product && /* @__PURE__ */ import_react27.default.createElement(import_react27.default.Fragment, null, /* @__PURE__ */ import_react27.default.createElement("h2", null, product.title), /* @__PURE__ */ import_react27.default.createElement("div", {
       className: "details"
-    }, /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("em", null, "By ", product.creatorName)), /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("strong", null, "Goal:"), " ", import_money_formatter.default.format("USD", product.goal)), /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("strong", null, "Raised so far:"), " ", import_money_formatter.default.format("USD", product.currentFunds))), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement(Divider_default, null), /* @__PURE__ */ import_react27.default.createElement("p", null, product.description), /* @__PURE__ */ import_react27.default.createElement(Divider_default, null), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement("h3", null, "Pledge to ", product.title), /* @__PURE__ */ import_react27.default.createElement("p", null, "w.i.p")));
+    }, /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("em", null, "By ", product.creatorName)), /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("strong", null, "Goal:"), " ", import_money_formatter.default.format("USD", product.goal)), /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("strong", null, "Raised so far:"), " ", import_money_formatter.default.format("USD", product.currentFunds))), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement(Divider_default, null), /* @__PURE__ */ import_react27.default.createElement("p", null, product.description), /* @__PURE__ */ import_react27.default.createElement(Divider_default, null), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement("h3", null, "Pledge to ", product.title), /* @__PURE__ */ import_react27.default.createElement("p", null, "w.i.p"), /* @__PURE__ */ import_react27.default.createElement(Divider_default, null), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement(Button_default, {
+      variant: "contained",
+      onClick: () => navigate("edit", { replace: false })
+    }, "Edit Campaign Details")));
   };
   var ProductPage_default = ProductPage;
 
   // src/views/products/EditPage.tsx
   var import_react28 = __toModule(require_react());
   var EditPage = () => {
-    return /* @__PURE__ */ import_react28.default.createElement("div", null, /* @__PURE__ */ import_react28.default.createElement("h2", null, "Edit Campaign"));
+    const [product, setProduct] = (0, import_react28.useState)(null);
+    const [productLoading, setProductLoading] = (0, import_react28.useState)(true);
+    const { id } = useParams();
+    const navigate = useNavigate();
+    (0, import_react28.useEffect)(() => {
+      if (id) {
+        product_default.setProduct({
+          id,
+          setProduct,
+          setProductLoading,
+          navigate
+        });
+      }
+    }, []);
+    return /* @__PURE__ */ import_react28.default.createElement("div", null, productLoading && /* @__PURE__ */ import_react28.default.createElement(CircularProgress_default, null), !productLoading && product && /* @__PURE__ */ import_react28.default.createElement(import_react28.default.Fragment, null, /* @__PURE__ */ import_react28.default.createElement("h2", null, "Edit ", product.title, " Campaign"), /* @__PURE__ */ import_react28.default.createElement("div", {
+      className: "button-container"
+    }, /* @__PURE__ */ import_react28.default.createElement(Button_default, {
+      onClick: () => {
+      },
+      color: "error"
+    }, "Delete Campaign"), /* @__PURE__ */ import_react28.default.createElement(Button_default, {
+      variant: "contained",
+      onClick: () => {
+      }
+    }, "Submit Changes"))));
   };
   var EditPage_default = EditPage;
 

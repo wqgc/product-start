@@ -24,6 +24,14 @@ class ProductPresenter {
             navigate('/404', { replace: false });
         }
     }
+
+    static async submitProductUpdate() {
+        //
+    }
+
+    static async deleteProduct() {
+        //
+    }
 }
 
 export default ProductPresenter;

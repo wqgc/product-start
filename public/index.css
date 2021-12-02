@@ -58,6 +58,10 @@ button {
   display: flex;
   flex-direction: column;
 }
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
 .alert-container {
   margin: 12px 0;
 }

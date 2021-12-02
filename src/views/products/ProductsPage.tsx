@@ -60,7 +60,7 @@ const ProductsPage: React.FC<{ user: UserState }> = ({ user }) => {
             <br />
 
             <Button variant="contained" onClick={() => navigate('create', { replace: false })}>
-                    Start a New Campaign
+                Start a New Campaign
             </Button>
         </div>
     );
