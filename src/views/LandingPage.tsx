@@ -16,9 +16,11 @@ const LandingPage: React.FC<{ user: UserState }> = ({ user }) => {
         // Keep track of whether the component is mounted,
         // so state isn't updated unnecessarily after unmount
         let isMounted = true;
-        LandingPresenter.setLatestProducts({
-            setProducts, setProductsLoading, isMounted,
-        });
+        if (!products) {
+            LandingPresenter.setLatestProducts({
+                setProducts, setProductsLoading, isMounted,
+            });
+        }
         return () => { isMounted = false; };
     }, []);
 

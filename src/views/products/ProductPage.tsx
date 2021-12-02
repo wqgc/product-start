@@ -15,7 +15,7 @@ const ProductPage: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (id) {
+        if (id && !product) {
             ProductPresenter.setProduct({
                 id, setProduct, setProductLoading, navigate,
             });

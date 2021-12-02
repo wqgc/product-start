@@ -17,9 +17,11 @@ const ProductsPage: React.FC<{ user: UserState }> = ({ user }) => {
         // Keep track of whether the component is mounted,
         // so state isn't updated unnecessarily after unmount
         let isMounted = true;
-        ProductsPresenter.setProducts({
-            setProducts, setProductsLoading, isMounted,
-        });
+        if (!products) {
+            ProductsPresenter.setProducts({
+                setProducts, setProductsLoading, isMounted,
+            });
+        }
         return () => { isMounted = false; };
     }, [user]);
 

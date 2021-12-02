@@ -1044,7 +1044,7 @@
             }
             return dispatcher;
           }
-          function useContext12(Context, unstable_observedBits) {
+          function useContext13(Context, unstable_observedBits) {
             var dispatcher = resolveDispatcher();
             {
               if (unstable_observedBits !== void 0) {
@@ -1641,7 +1641,7 @@
           exports.lazy = lazy;
           exports.memo = memo2;
           exports.useCallback = useCallback13;
-          exports.useContext = useContext12;
+          exports.useContext = useContext13;
           exports.useDebugValue = useDebugValue3;
           exports.useEffect = useEffect23;
           exports.useImperativeHandle = useImperativeHandle6;
@@ -38364,11 +38364,13 @@ const theme2 = createTheme({ palette: {
     const [productsLoading, setProductsLoading] = (0, import_react22.useState)(true);
     (0, import_react22.useEffect)(() => {
       let isMounted = true;
-      landing_default.setLatestProducts({
-        setProducts,
-        setProductsLoading,
-        isMounted
-      });
+      if (!products) {
+        landing_default.setLatestProducts({
+          setProducts,
+          setProductsLoading,
+          isMounted
+        });
+      }
       return () => {
         isMounted = false;
       };
@@ -43067,11 +43069,13 @@ const theme2 = createTheme({ palette: {
     const navigate = useNavigate();
     (0, import_react25.useEffect)(() => {
       let isMounted = true;
-      products_default.setProducts({
-        setProducts,
-        setProductsLoading,
-        isMounted
-      });
+      if (!products) {
+        products_default.setProducts({
+          setProducts,
+          setProductsLoading,
+          isMounted
+        });
+      }
       return () => {
         isMounted = false;
       };
@@ -43264,7 +43268,38 @@ const theme2 = createTheme({ palette: {
     }
     static async submitProductUpdate() {
     }
-    static async deleteProduct() {
+    static isUpdateValid(description, setDescriptionError) {
+      if (description.length > 2e3) {
+        setDescriptionError(true);
+        return false;
+      }
+      setDescriptionError(false);
+      return true;
+    }
+    static async deleteProduct({
+      id,
+      data,
+      setAlert,
+      navigate
+    }) {
+      if (id !== void 0 && setAlert !== null) {
+        try {
+          await ProductService_default.delete(id);
+          const { currentUser } = getAuth();
+          if (currentUser) {
+            const userData = await UserService_default.get(currentUser.uid);
+            userData.products = userData.products.filter((product) => product.productUID !== id);
+            await UserService_default.updateDB(currentUser.uid, userData);
+            await ProductService_default.updateLatestProducts(__spreadProps(__spreadValues({}, data), { productUID: id }), true);
+            navigate("/products", { replace: false });
+            setAlert({ message: "Deleted product campaign.", type: "success" });
+          } else {
+            throw new Error("Missing current user.");
+          }
+        } catch (error) {
+          setAlert({ message: error.message, type: "error" });
+        }
+      }
     }
   };
   var product_default = ProductPresenter;
@@ -43276,7 +43311,7 @@ const theme2 = createTheme({ palette: {
     const { id } = useParams();
     const navigate = useNavigate();
     (0, import_react27.useEffect)(() => {
-      if (id) {
+      if (id && !product) {
         product_default.setProduct({
           id,
           setProduct,
@@ -43297,12 +43332,17 @@ const theme2 = createTheme({ palette: {
   // src/views/products/EditPage.tsx
   var import_react28 = __toModule(require_react());
   var EditPage = () => {
+    const { setAlert } = (0, import_react28.useContext)(alertContext_default);
     const [product, setProduct] = (0, import_react28.useState)(null);
     const [productLoading, setProductLoading] = (0, import_react28.useState)(true);
+    const [description, setDescription] = (0, import_react28.useState)("");
+    const [descInitialized, setDescInitialized] = (0, import_react28.useState)(false);
+    const [descriptionError, setDescriptionError] = (0, import_react28.useState)(false);
+    const [updateDisabled, setUpdateDisabled] = (0, import_react28.useState)(false);
     const { id } = useParams();
     const navigate = useNavigate();
     (0, import_react28.useEffect)(() => {
-      if (id) {
+      if (id && !product) {
         product_default.setProduct({
           id,
           setProduct,
@@ -43311,17 +43351,43 @@ const theme2 = createTheme({ palette: {
         });
       }
     }, []);
+    (0, import_react28.useEffect)(() => {
+      if (product && descInitialized === false) {
+        setDescription(product.description);
+        setDescInitialized(true);
+      }
+    }, [product]);
+    (0, import_react28.useEffect)(() => {
+      const dataIsValid = product_default.isUpdateValid(description, setDescriptionError);
+      setUpdateDisabled(!dataIsValid);
+    }, [description]);
     return /* @__PURE__ */ import_react28.default.createElement("div", null, productLoading && /* @__PURE__ */ import_react28.default.createElement(CircularProgress_default, null), !productLoading && product && /* @__PURE__ */ import_react28.default.createElement(import_react28.default.Fragment, null, /* @__PURE__ */ import_react28.default.createElement("h2", null, "Edit ", product.title, " Campaign"), /* @__PURE__ */ import_react28.default.createElement("div", {
+      className: "form-container"
+    }, /* @__PURE__ */ import_react28.default.createElement(TextField_default, {
+      id: "description-input",
+      helperText: "Tell us about your product within 2,000 words",
+      label: "Campaign Description",
+      multiline: true,
+      rows: 8,
+      error: descriptionError,
+      value: description,
+      onChange: ({ target }) => setDescription(target.value)
+    }), /* @__PURE__ */ import_react28.default.createElement("div", {
       className: "button-container"
     }, /* @__PURE__ */ import_react28.default.createElement(Button_default, {
-      onClick: () => {
-      },
+      onClick: () => product_default.deleteProduct({
+        id,
+        data: product,
+        setAlert,
+        navigate
+      }),
       color: "error"
     }, "Delete Campaign"), /* @__PURE__ */ import_react28.default.createElement(Button_default, {
       variant: "contained",
       onClick: () => {
-      }
-    }, "Submit Changes"))));
+      },
+      disabled: updateDisabled
+    }, "Submit Changes")))));
   };
   var EditPage_default = EditPage;
 
