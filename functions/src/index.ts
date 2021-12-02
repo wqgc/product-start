@@ -2,14 +2,20 @@ import * as functions from 'firebase-functions';
 import firebase from 'firebase-admin';
 import express from 'express';
 import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
+import Stripe from 'stripe';
 import Products from './models/products.js';
 import Users from './models/users.js';
 import Auth from './auth.js';
 import { Product, ProductPreview, AggregateProducts } from './types';
 
+dotenv.config();
 firebase.initializeApp();
 const app = express();
 const main = express();
+const stripe = new Stripe(process.env.STRIPE_TEST_KEY || functions.config().stripe.testkey, {
+    apiVersion: '2020-08-27',
+});
 
 // Middleware
 app.use(bodyParser.json());
@@ -137,6 +143,41 @@ app.put('/users/:id', async (request, response) => {
             uid: request.params.id, displayName, pledges, products,
         });
         response.status(200).send('Successfully updated user');
+    } catch (error) {
+        response.status(400).send((error as Error).message);
+    }
+});
+
+// Stripe checkout session
+app.post('/create-checkout-session/:id', async (request, response) => {
+    const { pledgeAmount, pledgerUID } = request.body;
+
+    // Remove commas and get the price in cents
+    const priceInCents = parseFloat(pledgeAmount.replace(/,/g, '')) * 100;
+
+    try {
+        await Auth.verifyUser(request.get('Authorization'), pledgerUID);
+        const session = await stripe.checkout.sessions.create({
+            line_items: [
+                {
+                    price_data: {
+                        currency: 'usd',
+                        product: request.params.id,
+                        unit_amount: priceInCents,
+                    },
+                    quantity: 1,
+                },
+            ],
+            mode: 'payment',
+            success_url: `${request.get('Host')}/products/${request.params.id}/success`,
+            cancel_url: `${request.get('Host')}/products/${request.params.id}`,
+        });
+
+        if (session.url) {
+            response.redirect(303, session.url);
+        } else {
+            response.status(500).send('There was an error with your request');
+        }
     } catch (error) {
         response.status(400).send((error as Error).message);
     }
