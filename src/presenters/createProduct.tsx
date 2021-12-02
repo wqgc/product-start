@@ -3,6 +3,7 @@ import { NavigateFunction } from 'react-router-dom';
 import { ProductData, AlertState } from '../types';
 import ProductService from '../services/ProductService';
 import UserService from '../services/UserService';
+import CONSTANTS from '../constants';
 
 type SetErrors = React.Dispatch<React.SetStateAction<ProductData<boolean>>>
 
@@ -67,7 +68,7 @@ class CreateProductPresenter {
             if (goal.length > 12 || !/^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/.test(goal)) {
                 errors.goal = true;
             }
-            if (description.length > 2_000) {
+            if (description.length > CONSTANTS.PRODUCT_DESCRIPTION_MAXLENGTH) {
                 errors.description = true;
             }
             setErrors(errors);

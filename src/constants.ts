@@ -1,5 +1,6 @@
 const BASE_URL = '/api/v1';
 const SITE_NAME = 'ProductStart';
+const PRODUCT_DESCRIPTION_MAXLENGTH = 2_000;
 
-const CONSTANTS = { BASE_URL, SITE_NAME };
+const CONSTANTS = { BASE_URL, SITE_NAME, PRODUCT_DESCRIPTION_MAXLENGTH };
 export default CONSTANTS;

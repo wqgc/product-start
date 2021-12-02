@@ -4,6 +4,7 @@ import { NavigateFunction } from 'react-router-dom';
 import ProductService from '../services/ProductService';
 import UserService from '../services/UserService';
 import { ProductData, AlertState } from '../types';
+import CONSTANTS from '../constants';
 
 interface SetProductParameters {
     id: string
@@ -12,14 +13,15 @@ interface SetProductParameters {
     navigate: NavigateFunction
 }
 
-interface DeleteProductParameters {
+type SetDescriptionError = React.Dispatch<React.SetStateAction<boolean>>
+
+interface ChangeProductParameters {
     id: string | undefined
     data: ProductData<string>
     setAlert: React.Dispatch<React.SetStateAction<AlertState>> | null
     navigate: NavigateFunction
+    setDescriptionError?: SetDescriptionError
 }
-
-type SetDescriptionError = React.Dispatch<React.SetStateAction<boolean>>
 
 class ProductPresenter {
     static async setProduct({
@@ -36,12 +38,28 @@ class ProductPresenter {
         }
     }
 
-    static async submitProductUpdate() {
-        //
+    static async submitProductUpdate({
+        id, data, setAlert, navigate, setDescriptionError,
+    }: ChangeProductParameters) {
+        // Since you can only update the description, and the description isn't
+        // visible in product previews, we don't have to worry about syncing updates
+        if (id !== undefined && setAlert !== null && setDescriptionError) {
+            if (this.isUpdateValid(data.description, setDescriptionError)) {
+                try {
+                    await ProductService.updateProduct(id, data);
+                    setAlert({ message: 'Successfully updated product!', type: 'success' });
+                    navigate(`/products/${id}`, { replace: false });
+                } catch (error: any) {
+                    setAlert({ message: error.message, type: 'error' });
+                }
+            } else {
+                setAlert({ message: 'Form data invalid.', type: 'error' });
+            }
+        }
     }
 
     static isUpdateValid(description: string, setDescriptionError: SetDescriptionError): boolean {
-        if (description.length > 2_000) {
+        if (description.length > CONSTANTS.PRODUCT_DESCRIPTION_MAXLENGTH) {
             setDescriptionError(true);
             return false;
         }
@@ -51,7 +69,7 @@ class ProductPresenter {
 
     static async deleteProduct({
         id, data, setAlert, navigate,
-    }: DeleteProductParameters) {
+    }: ChangeProductParameters) {
         if (id !== undefined && setAlert !== null) {
             try {
                 // Delete product

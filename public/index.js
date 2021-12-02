@@ -35695,7 +35695,8 @@ const theme2 = createTheme({ palette: {
   // src/constants.ts
   var BASE_URL = "/api/v1";
   var SITE_NAME = "ProductStart";
-  var CONSTANTS = { BASE_URL, SITE_NAME };
+  var PRODUCT_DESCRIPTION_MAXLENGTH = 2e3;
+  var CONSTANTS = { BASE_URL, SITE_NAME, PRODUCT_DESCRIPTION_MAXLENGTH };
   var constants_default = CONSTANTS;
 
   // src/services/UserService.ts
@@ -43157,7 +43158,7 @@ const theme2 = createTheme({ palette: {
         if (goal.length > 12 || !/^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/.test(goal)) {
           errors.goal = true;
         }
-        if (description.length > 2e3) {
+        if (description.length > constants_default.PRODUCT_DESCRIPTION_MAXLENGTH) {
           errors.description = true;
         }
         setErrors(errors);
@@ -43266,10 +43267,29 @@ const theme2 = createTheme({ palette: {
         navigate("/404", { replace: false });
       }
     }
-    static async submitProductUpdate() {
+    static async submitProductUpdate({
+      id,
+      data,
+      setAlert,
+      navigate,
+      setDescriptionError
+    }) {
+      if (id !== void 0 && setAlert !== null && setDescriptionError) {
+        if (this.isUpdateValid(data.description, setDescriptionError)) {
+          try {
+            await ProductService_default.updateProduct(id, data);
+            setAlert({ message: "Successfully updated product!", type: "success" });
+            navigate(`/products/${id}`, { replace: false });
+          } catch (error) {
+            setAlert({ message: error.message, type: "error" });
+          }
+        } else {
+          setAlert({ message: "Form data invalid.", type: "error" });
+        }
+      }
     }
     static isUpdateValid(description, setDescriptionError) {
-      if (description.length > 2e3) {
+      if (description.length > constants_default.PRODUCT_DESCRIPTION_MAXLENGTH) {
         setDescriptionError(true);
         return false;
       }
@@ -43384,8 +43404,13 @@ const theme2 = createTheme({ palette: {
       color: "error"
     }, "Delete Campaign"), /* @__PURE__ */ import_react28.default.createElement(Button_default, {
       variant: "contained",
-      onClick: () => {
-      },
+      onClick: () => product_default.submitProductUpdate({
+        id,
+        data: __spreadProps(__spreadValues({}, product), { description }),
+        setAlert,
+        navigate,
+        setDescriptionError
+      }),
       disabled: updateDisabled
     }, "Submit Changes")))));
   };
@@ -43706,4 +43731,3 @@ PERFORMANCE OF THIS SOFTWARE.
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-//# sourceMappingURL=index.js.map

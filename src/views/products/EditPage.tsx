@@ -72,7 +72,19 @@ const EditPage: React.FC = () => {
                                 >
                                     Delete Campaign
                                 </Button>
-                                <Button variant="contained" onClick={() => {}} disabled={updateDisabled}>
+                                <Button
+                                    variant="contained"
+                                    onClick={
+                                        () => ProductPresenter.submitProductUpdate({
+                                            id,
+                                            data: { ...product, description },
+                                            setAlert,
+                                            navigate,
+                                            setDescriptionError,
+                                        })
+                                    }
+                                    disabled={updateDisabled}
+                                >
                                     Submit Changes
                                 </Button>
                             </div>
