@@ -4,6 +4,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import Stripe from 'stripe';
+import cookieParser from 'cookie-parser';
 import Products from './models/products.js';
 import Users from './models/users.js';
 import Auth from './auth.js';
@@ -18,8 +19,12 @@ const stripe = new Stripe(process.env.STRIPE_TEST_KEY || functions.config().stri
 });
 
 // Middleware
+app.use(cookieParser());
 app.use(bodyParser.json());
 main.use('/api/v1', app);
+
+// http://localhost:5000 when testing locally
+const SITE_URL = process.env.SITE_URL || functions.config().site.url;
 
 // Product Routes
 // Get aggregate products
@@ -154,7 +159,7 @@ app.post('/create-checkout-session/:id', async (request, response) => {
 
     try {
         // Remove commas and get the price in cents
-        const priceInCents = parseFloat(pledgeAmount.replace(/,/g, '')) * 100;
+        const priceInCents = Math.floor(parseFloat(pledgeAmount.replace(/,/g, '')) * 100);
 
         await Auth.verifyUser(request.get('Authorization'), pledgerUID);
         const session = await stripe.checkout.sessions.create({
@@ -162,22 +167,56 @@ app.post('/create-checkout-session/:id', async (request, response) => {
                 {
                     price_data: {
                         currency: 'usd',
-                        product: request.params.id,
+                        product: 'prod_KhlefyN9lsd6AN',
                         unit_amount: priceInCents,
                     },
                     quantity: 1,
                 },
             ],
             mode: 'payment',
-            success_url: `${request.get('Host')}/products/${request.params.id}/success`,
-            cancel_url: `${request.get('Host')}/products/${request.params.id}`,
+            success_url: `${SITE_URL}/products/${request.params.id}/${pledgeAmount}/success`,
+            cancel_url: `${SITE_URL}/products/${request.params.id}`,
         });
 
         if (session.url) {
-            response.redirect(303, session.url);
+            response.json({ url: session.url });
         } else {
             response.status(500).send('There was an error with your request');
         }
+    } catch (error) {
+        response.status(400).send((error as Error).message);
+    }
+});
+
+app.post('/pledge/:id', async (request, response) => {
+    const { pledgeAmount, pledgerUID } = request.body;
+    response.set({
+        'Set-Cookie': `pledge={amount:${pledgeAmount}, user:${pledgerUID}, product:${request.params.id}}; Secure; HttpOnly`,
+        'Access-Control-Allow-Credentials': 'true',
+    });
+    response.status(200).send('Set cookies');
+});
+
+// eslint-disable-next-line consistent-return
+app.post('/pledge/:id/confirm', async (request, response) => {
+    const { pledgeAmount, pledgerUID } = request.body;
+
+    try {
+        if (!request.cookies.pledge) {
+            return response.status(401).send();
+        }
+        await Auth.verifyUser(request.get('Authorization'), pledgerUID);
+
+        // Ensure sent data matches data in cookie
+        const cookieData = JSON.parse(request.cookies.pledge);
+        if (cookieData.amount === pledgeAmount
+            && cookieData.user === pledgerUID
+            && cookieData.product === request.params.id) {
+            // TODO: Update product's currentFunds and add pledge to user
+            // TODO: Delete cookie data
+            response.status(200).send('Pledge confirmation successful');
+        }
+        throw new Error('Data missing');
     } catch (error) {
         response.status(400).send((error as Error).message);
     }

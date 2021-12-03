@@ -94,6 +94,43 @@ class UserService {
                 throw new Error(error);
             });
     }
+
+    static async createCheckoutSession(id: string, pledgeAmount: string) {
+        try {
+            const { currentUser } = getAuth();
+            const token = await getAuth().currentUser?.getIdToken(true);
+            if (!token || !currentUser) {
+                throw new Error('User missing');
+            }
+
+            // TODO:
+            // Make a request to store data in a HttpOnly cookie
+            // This will be used later in order to update the database after success
+
+            return fetch(`${CONSTANTS.BASE_URL}/create-checkout-session/${id}`, {
+                method: 'POST',
+                body: JSON.stringify({ pledgeAmount, pledgerUID: currentUser.uid }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    return Promise.reject(response);
+                })
+                .then(({ url }) => {
+                    window.location = url;
+                })
+                .catch((error) => {
+                    throw new Error(error);
+                });
+        } catch (error: any) {
+            throw new Error(error);
+        }
+    }
 }
 
 export default UserService;

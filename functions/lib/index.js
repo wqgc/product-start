@@ -17,6 +17,12 @@ const stripe = new Stripe(process.env.STRIPE_TEST_KEY || functions.config().stri
 // Middleware
 app.use(bodyParser.json());
 main.use('/api/v1', app);
+let SITE_URL = 'http://localhost:5000';
+// "functions.config is not a function" if we try to run locally,
+// so check that before setting it to the Firebase environment variable
+if (typeof functions.config === 'function') {
+    SITE_URL = functions.config().site.url;
+}
 // Product Routes
 // Get aggregate products
 app.get('/products', async (_request, response) => {
@@ -142,25 +148,25 @@ app.post('/create-checkout-session/:id', async (request, response) => {
     const { pledgeAmount, pledgerUID } = request.body;
     try {
         // Remove commas and get the price in cents
-        const priceInCents = parseFloat(pledgeAmount.replace(/,/g, '')) * 100;
+        const priceInCents = Math.floor(parseFloat(pledgeAmount.replace(/,/g, '')) * 100);
         await Auth.verifyUser(request.get('Authorization'), pledgerUID);
         const session = await stripe.checkout.sessions.create({
             line_items: [
                 {
                     price_data: {
                         currency: 'usd',
-                        product: request.params.id,
+                        product: 'prod_KhlefyN9lsd6AN',
                         unit_amount: priceInCents,
                     },
                     quantity: 1,
                 },
             ],
             mode: 'payment',
-            success_url: `${request.get('Host')}/products/${request.params.id}/success`,
-            cancel_url: `${request.get('Host')}/products/${request.params.id}`,
+            success_url: `${SITE_URL}/products/${request.params.id}/success`,
+            cancel_url: `${SITE_URL}/products/${request.params.id}`,
         });
         if (session.url) {
-            response.redirect(303, session.url);
+            response.json({ url: session.url });
         }
         else {
             response.status(500).send('There was an error with your request');

@@ -30,6 +30,12 @@ interface ChangeProductParameters {
     setDescriptionError?: SetError
 }
 
+interface SubmitPledgeParameters {
+    id: string | undefined
+    pledgeAmount: string
+    setPledgeError: SetError
+}
+
 class ProductPresenter {
     static async setProduct({
         id, setProduct, setProductLoading, navigate, isMounted,
@@ -98,12 +104,18 @@ class ProductPresenter {
         return true;
     }
 
-    static isPledgeValid(pledge: string, setPledgeError: SetError): boolean {
-        if (!pledge) {
+    static async submitPledge({ id, pledgeAmount, setPledgeError }: SubmitPledgeParameters) {
+        if (id !== undefined && this.isPledgeValid(pledgeAmount, setPledgeError)) {
+            await UserService.createCheckoutSession(id, pledgeAmount);
+        }
+    }
+
+    static isPledgeValid(pledgeAmount: string, setPledgeError: SetError): boolean {
+        if (!pledgeAmount) {
             setPledgeError(false);
             return false;
         }
-        if (pledge.length > 12 || !/^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/.test(pledge)) {
+        if (pledgeAmount.length > 12 || !/^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/.test(pledgeAmount)) {
             setPledgeError(true);
             return false;
         }

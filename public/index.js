@@ -35770,6 +35770,35 @@ const theme2 = createTheme({ palette: {
         throw new Error(error);
       });
     }
+    static async createCheckoutSession(id, pledgeAmount) {
+      var _a;
+      try {
+        const { currentUser } = getAuth();
+        const token2 = await ((_a = getAuth().currentUser) == null ? void 0 : _a.getIdToken(true));
+        if (!token2 || !currentUser) {
+          throw new Error("User missing");
+        }
+        return fetch(`${constants_default.BASE_URL}/create-checkout-session/${id}`, {
+          method: "POST",
+          body: JSON.stringify({ pledgeAmount, pledgerUID: currentUser.uid }),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token2}`
+          }
+        }).then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          return Promise.reject(response);
+        }).then(({ url }) => {
+          window.location = url;
+        }).catch((error) => {
+          throw new Error(error);
+        });
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
   };
   var UserService_default = UserService;
 
@@ -43320,12 +43349,17 @@ const theme2 = createTheme({ palette: {
       setDescriptionError(false);
       return true;
     }
-    static isPledgeValid(pledge, setPledgeError) {
-      if (!pledge) {
+    static async submitPledge({ id, pledgeAmount, setPledgeError }) {
+      if (id !== void 0 && this.isPledgeValid(pledgeAmount, setPledgeError)) {
+        await UserService_default.createCheckoutSession(id, pledgeAmount);
+      }
+    }
+    static isPledgeValid(pledgeAmount, setPledgeError) {
+      if (!pledgeAmount) {
         setPledgeError(false);
         return false;
       }
-      if (pledge.length > 12 || !/^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/.test(pledge)) {
+      if (pledgeAmount.length > 12 || !/^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/.test(pledgeAmount)) {
         setPledgeError(true);
         return false;
       }
@@ -43411,8 +43445,11 @@ const theme2 = createTheme({ palette: {
       required: true
     }), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement(Button_default, {
       variant: "contained",
-      onClick: () => {
-      },
+      onClick: () => product_default.submitPledge({
+        id,
+        pledgeAmount: pledge,
+        setPledgeError
+      }),
       disabled: pledgeDisabled
     }, "Pledge"))), (user == null ? void 0 : user.uid) === product.creatorUID && /* @__PURE__ */ import_react27.default.createElement(import_react27.default.Fragment, null, /* @__PURE__ */ import_react27.default.createElement(Divider_default, null), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement(Button_default, {
       variant: "contained",

@@ -87,7 +87,17 @@ const ProductPage: React.FC<{ user: UserState }> = ({ user }) => {
                                                     required
                                                 />
                                                 <br />
-                                                <Button variant="contained" onClick={() => {}} disabled={pledgeDisabled}>
+                                                <Button
+                                                    variant="contained"
+                                                    onClick={
+                                                        () => ProductPresenter.submitPledge({
+                                                            id,
+                                                            pledgeAmount: pledge,
+                                                            setPledgeError,
+                                                        })
+                                                    }
+                                                    disabled={pledgeDisabled}
+                                                >
                                                     Pledge
                                                 </Button>
                                             </div>

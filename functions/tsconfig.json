@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "es6",
     "moduleResolution": "Node",
-    "noImplicitReturns": true,
+    "noImplicitReturns": false,
     "noUnusedLocals": true,
     "outDir": "lib",
     "sourceMap": true,

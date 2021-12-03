@@ -12,6 +12,7 @@ import ProductsPage from './views/products/ProductsPage';
 import CreatePage from './views/products/CreatePage';
 import ProductPage from './views/products/ProductPage';
 import EditPage from './views/products/EditPage';
+import PledgeSuccessPage from './views/products/PledgeSuccessPage';
 import PledgesPage from './views/PledgesPage';
 import NotFound from './views/NotFound';
 import Enforce from './components/auth/Enforce';
@@ -62,6 +63,12 @@ const App: React.FC = () => {
                                 path="products/:id/edit"
                                 element={
                                     <Enforce enforce="signedIn" user={user}><EditPage user={user} /></Enforce>
+                                }
+                            />
+                            <Route
+                                path="products/:id/:pledgeAmount/success"
+                                element={
+                                    <Enforce enforce="signedIn" user={user}><PledgeSuccessPage user={user} /></Enforce>
                                 }
                             />
                             <Route
