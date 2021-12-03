@@ -9,6 +9,7 @@ import Products from './models/products.js';
 import Users from './models/users.js';
 import Auth from './auth.js';
 import { Product, ProductPreview, AggregateProducts } from './types';
+import Utils from './utils.js';
 
 dotenv.config();
 firebase.initializeApp();
@@ -159,7 +160,7 @@ app.post('/create-checkout-session/:id', async (request, response) => {
 
     try {
         // Remove commas and get the price in cents
-        const priceInCents = Math.floor(parseFloat(pledgeAmount.replace(/,/g, '')) * 100);
+        const priceInCents = Utils.toCents(pledgeAmount);
 
         await Auth.verifyUser(request.get('Authorization'), pledgerUID);
         const session = await stripe.checkout.sessions.create({
@@ -178,8 +179,19 @@ app.post('/create-checkout-session/:id', async (request, response) => {
             cancel_url: `${SITE_URL}/products/${request.params.id}`,
         });
 
-        if (session.url) {
-            response.json({ url: session.url });
+        // eslint-disable-next-line camelcase
+        if (session.url && session?.payment_intent) {
+            // Save metadata to retrieve later
+            const paymentIntent = await stripe.paymentIntents.update(
+                session.payment_intent as string,
+                {
+                    metadata: {
+                        pledgeAmount, pledgerUID, productUID: request.params.id,
+                    },
+                },
+            );
+
+            response.json({ url: session.url, intent: paymentIntent.id });
         } else {
             response.status(500).send('There was an error with your request');
         }
@@ -188,38 +200,55 @@ app.post('/create-checkout-session/:id', async (request, response) => {
     }
 });
 
-app.post('/pledge/:id', async (request, response) => {
-    const { pledgeAmount, pledgerUID } = request.body;
+app.post('/pledge', async (request, response) => {
+    const { intent } = request.body;
     response.set({
-        'Set-Cookie': `pledge={amount:${pledgeAmount}, user:${pledgerUID}, product:${request.params.id}}; Secure; HttpOnly`,
+        'Set-Cookie': `intent=${intent}; Secure; HttpOnly`,
         'Access-Control-Allow-Credentials': 'true',
     });
-    response.status(200).send('Set cookies');
+    response.status(200).send('Set cookie');
 });
 
-// eslint-disable-next-line consistent-return
-app.post('/pledge/:id/confirm', async (request, response) => {
-    const { pledgeAmount, pledgerUID } = request.body;
+app.post('/pledge/confirm', async (request, response) => {
+    const intentId = request.cookies.intent;
 
-    try {
-        if (!request.cookies.pledge) {
-            return response.status(401).send();
-        }
-        await Auth.verifyUser(request.get('Authorization'), pledgerUID);
-
-        // Ensure sent data matches data in cookie
-        const cookieData = JSON.parse(request.cookies.pledge);
-        if (cookieData.amount === pledgeAmount
-            && cookieData.user === pledgerUID
-            && cookieData.product === request.params.id) {
-            // TODO: Update product's currentFunds and add pledge to user
-            // TODO: Delete cookie data
-            response.status(200).send('Pledge confirmation successful');
-        }
-        throw new Error('Data missing');
-    } catch (error) {
-        response.status(400).send((error as Error).message);
+    if (!intentId) {
+        return response.status(401).send();
     }
+
+    const paymentIntent = await stripe.paymentIntents.retrieve(intentId);
+
+    if (paymentIntent.status === 'succeeded') {
+        const { metadata } = paymentIntent;
+
+        // Get previous product data to update
+        const product = await Products.read(metadata.productUID) as Product;
+        // Add pledge amount to current funds as cents, then convert back to USD string
+        product.currentFunds = ((Utils.toCents(product.currentFunds)
+            + Utils.toCents(metadata.pledgeAmount)) / 100).toString();
+        // Update product with new current funds total
+        await Products.update(product, metadata.productUID);
+
+        // Add pledge to user
+        const user = await Users.read(metadata.pledgerUID);
+        user.pledges.push({
+            amount: metadata.pledgeAmount,
+            product: {
+                productUID: product.productUID,
+                title: product.title,
+                goal: product.goal,
+                creatorName: product.creatorName,
+                creatorUID: product.creatorUID,
+            },
+        });
+        await Users.update(user);
+
+        // Clear intent cookie
+        response.clearCookie('intent');
+
+        return response.status(200).send('Confirmation successful');
+    }
+    return response.status(400).send('Payment did not succeed');
 });
 
 const api = functions.https.onRequest(main);

@@ -103,11 +103,7 @@ class UserService {
                 throw new Error('User missing');
             }
 
-            // TODO:
-            // Make a request to store data in a HttpOnly cookie
-            // This will be used later in order to update the database after success
-
-            return fetch(`${CONSTANTS.BASE_URL}/create-checkout-session/${id}`, {
+            const result = await fetch(`${CONSTANTS.BASE_URL}/create-checkout-session/${id}`, {
                 method: 'POST',
                 body: JSON.stringify({ pledgeAmount, pledgerUID: currentUser.uid }),
                 headers: {
@@ -121,8 +117,27 @@ class UserService {
                     }
                     return Promise.reject(response);
                 })
-                .then(({ url }) => {
-                    window.location = url;
+                .then((data) => {
+                    return data;
+                })
+                .catch((error) => {
+                    throw new Error(error);
+                });
+
+            // Make a request to store intent in a HttpOnly cookie
+            // This will be used later in order to update the database after success
+            return fetch(`${CONSTANTS.BASE_URL}/pledge`, {
+                method: 'POST',
+                body: JSON.stringify(result),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        window.location = result.url;
+                    }
+                    return Promise.reject(response);
                 })
                 .catch((error) => {
                     throw new Error(error);
