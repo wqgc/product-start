@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build-client": "esbuild src/index.tsx --bundle --outfile=public/index.js",
+    "build-client": "esbuild src/index.tsx --bundle --minify --outfile=public/index.js",
     "build-server": "cd functions && tsc",
     "build": "npm run build-client && npm run build-server",
     "lint": "eslint --ext .js,.ts .",
