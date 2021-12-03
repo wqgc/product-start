@@ -25,7 +25,7 @@ const ProductsPage: React.FC<{ user: UserState }> = ({ user }) => {
         return () => { isMounted = false; };
     }, [user]);
 
-    // Map latest products to product preview element
+    // Map products to product preview element
     let productElements;
     if (products) {
         // eslint-disable-next-line consistent-return

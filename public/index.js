@@ -1061,7 +1061,7 @@
             }
             return dispatcher.useContext(Context, unstable_observedBits);
           }
-          function useState22(initialState) {
+          function useState23(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1073,7 +1073,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect24(create, deps) {
+          function useEffect25(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1643,13 +1643,13 @@
           exports.useCallback = useCallback13;
           exports.useContext = useContext13;
           exports.useDebugValue = useDebugValue3;
-          exports.useEffect = useEffect24;
+          exports.useEffect = useEffect25;
           exports.useImperativeHandle = useImperativeHandle6;
           exports.useLayoutEffect = useLayoutEffect5;
           exports.useMemo = useMemo6;
           exports.useReducer = useReducer;
           exports.useRef = useRef20;
-          exports.useState = useState22;
+          exports.useState = useState23;
           exports.version = ReactVersion;
         })();
       }
@@ -43574,8 +43574,64 @@ const theme2 = createTheme({ palette: {
 
   // src/views/PledgesPage.tsx
   var import_react30 = __toModule(require_react());
-  var PledgesPage = () => {
-    return /* @__PURE__ */ import_react30.default.createElement("div", null, /* @__PURE__ */ import_react30.default.createElement("h2", null, "My Pledges"));
+
+  // src/presenters/pledges.tsx
+  var PledgesPresenter = class {
+    static async setPledges({ setPledges, setPledgesLoading, isMounted }) {
+      try {
+        const { currentUser } = getAuth();
+        if (!currentUser) {
+          throw new Error("User missing");
+        }
+        const { pledges } = await UserService_default.get(currentUser.uid);
+        if (isMounted) {
+          if (pledges) {
+            setPledges(pledges);
+          }
+          setPledgesLoading(false);
+        }
+      } catch (_error) {
+        if (isMounted)
+          setPledgesLoading(false);
+      }
+    }
+  };
+  var pledges_default = PledgesPresenter;
+
+  // src/views/PledgesPage.tsx
+  var PledgesPage = ({ user }) => {
+    const [pledges, setPledges] = (0, import_react30.useState)(null);
+    const [pledgesLoading, setPledgesLoading] = (0, import_react30.useState)(true);
+    (0, import_react30.useEffect)(() => {
+      let isMounted = true;
+      if (!pledges) {
+        pledges_default.setPledges({
+          setPledges,
+          setPledgesLoading,
+          isMounted
+        });
+      }
+      return () => {
+        isMounted = false;
+      };
+    }, [user]);
+    let pledgeElements;
+    if (pledges) {
+      pledgeElements = pledges.map((pledge) => {
+        const { title, creatorName, productUID } = pledge.product;
+        if (title && creatorName && productUID) {
+          return /* @__PURE__ */ import_react30.default.createElement(ProductPreview_default, {
+            key: productUID,
+            title,
+            creator: creatorName,
+            id: productUID
+          });
+        }
+      });
+    }
+    return /* @__PURE__ */ import_react30.default.createElement("div", null, /* @__PURE__ */ import_react30.default.createElement("h2", null, "My Pledges"), /* @__PURE__ */ import_react30.default.createElement("div", {
+      className: "product-container"
+    }, pledgesLoading && /* @__PURE__ */ import_react30.default.createElement(CircularProgress_default, null), !pledgesLoading && (pledgeElements && pledgeElements.length > 0 ? pledgeElements : /* @__PURE__ */ import_react30.default.createElement("p", null, "No pledges yet."))));
   };
   var PledgesPage_default = PledgesPage;
 
@@ -43678,7 +43734,9 @@ const theme2 = createTheme({ palette: {
       element: /* @__PURE__ */ import_react33.default.createElement(Enforce_default, {
         enforce: "signedIn",
         user
-      }, /* @__PURE__ */ import_react33.default.createElement(PledgesPage_default, null))
+      }, /* @__PURE__ */ import_react33.default.createElement(PledgesPage_default, {
+        user
+      }))
     }), /* @__PURE__ */ import_react33.default.createElement(Route, {
       path: "*",
       element: /* @__PURE__ */ import_react33.default.createElement(NotFound_default, null)

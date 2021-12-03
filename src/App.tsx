@@ -74,7 +74,7 @@ const App: React.FC = () => {
                             <Route
                                 path="pledges"
                                 element={
-                                    <Enforce enforce="signedIn" user={user}><PledgesPage /></Enforce>
+                                    <Enforce enforce="signedIn" user={user}><PledgesPage user={user} /></Enforce>
                                 }
                             />
                             <Route path="*" element={<NotFound />} />

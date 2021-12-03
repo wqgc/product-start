@@ -3,7 +3,7 @@ import { getAuth } from 'firebase/auth';
 import UserService from '../services/UserService';
 import { ProductData } from '../types';
 
-interface SetLatestProductsParameters {
+interface SetProductsParameters {
     setProducts: React.Dispatch<React.SetStateAction<ProductData<string>[] | null>>
     setProductsLoading: React.Dispatch<React.SetStateAction<boolean>>
     isMounted: boolean
@@ -11,7 +11,7 @@ interface SetLatestProductsParameters {
 
 class ProductsPresenter {
     static async setProducts(
-        { setProducts, setProductsLoading, isMounted }: SetLatestProductsParameters,
+        { setProducts, setProductsLoading, isMounted }: SetProductsParameters,
     ) {
         try {
             const { currentUser } = getAuth();
