@@ -39,7 +39,7 @@ const CreatePage: React.FC = () => {
 
     const helperText = {
         title: 'Must be between 3-32 characters',
-        goal: 'Please input a valid USD amount',
+        goal: 'Please input a valid USD amount less than 12 numbers long',
         description: 'Tell us about your product within 2,000 words',
     };
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
+import TextField from '@mui/material/TextField';
 import { useNavigate, useParams } from 'react-router-dom';
 import moneyFormatter from 'money-formatter';
 import ProductPresenter from '../../presenters/product';
@@ -10,11 +11,15 @@ import { ProductData, Pledge, UserState } from '../../types';
 const ProductPage: React.FC<{ user: UserState }> = ({ user }) => {
     const [userPledgeData, setUserPledgeData] = useState<Pledge | null>(null);
     const [product, setProduct] = useState<ProductData<string> | null>(null);
+    const [pledge, setPledge] = useState('');
+    const [pledgeError, setPledgeError] = useState(false);
+    const [pledgeDisabled, setPledgeDisabled] = useState(true);
     const [productLoading, setProductLoading] = useState(true);
 
     const { id } = useParams();
     const navigate = useNavigate();
 
+    // Set initial data
     useEffect(() => {
         let isMounted = true;
         const setData = async () => {
@@ -32,6 +37,12 @@ const ProductPage: React.FC<{ user: UserState }> = ({ user }) => {
         setData();
         return () => { isMounted = false; };
     }, []);
+
+    // Check pledge validity
+    useEffect(() => {
+        const dataIsValid = ProductPresenter.isPledgeValid(pledge, setPledgeError);
+        setPledgeDisabled(!dataIsValid);
+    }, [pledge]);
 
     return (
         <div>
@@ -63,12 +74,23 @@ const ProductPage: React.FC<{ user: UserState }> = ({ user }) => {
                                     { userPledgeData
                                         ? <p>You've pledged {moneyFormatter.format('USD', userPledgeData.amount)}!</p>
                                         : (
-                                            <>
-                                                <p>pledge form here</p>
-                                                <Button variant="contained" onClick={() => {}}>
+                                            <div>
+                                                <TextField
+                                                    id="pledge-input"
+                                                    helperText="Please input a valid USD amount less than 12 numbers long"
+                                                    label="Pledge Amount in USD"
+                                                    error={pledgeError}
+                                                    value={pledge}
+                                                    onChange={(
+                                                        { target },
+                                                    ) => setPledge(target.value)}
+                                                    required
+                                                />
+                                                <br />
+                                                <Button variant="contained" onClick={() => {}} disabled={pledgeDisabled}>
                                                     Pledge
                                                 </Button>
-                                            </>
+                                            </div>
                                         )}
                                 </>
                             )}

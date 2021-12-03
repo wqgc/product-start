@@ -14,7 +14,7 @@ interface SetProductParameters {
     isMounted: boolean
 }
 
-type SetDescriptionError = React.Dispatch<React.SetStateAction<boolean>>
+type SetError = React.Dispatch<React.SetStateAction<boolean>>
 
 interface SetUserPledgeDataParameters {
     setUserPledgeData: React.Dispatch<React.SetStateAction<Pledge | null>>
@@ -27,7 +27,7 @@ interface ChangeProductParameters {
     data: ProductData<string>
     setAlert: React.Dispatch<React.SetStateAction<AlertState>> | null
     navigate: NavigateFunction
-    setDescriptionError?: SetDescriptionError
+    setDescriptionError?: SetError
 }
 
 class ProductPresenter {
@@ -89,12 +89,25 @@ class ProductPresenter {
         }
     }
 
-    static isUpdateValid(description: string, setDescriptionError: SetDescriptionError): boolean {
+    static isUpdateValid(description: string, setDescriptionError: SetError): boolean {
         if (description.length > CONSTANTS.PRODUCT_DESCRIPTION_MAXLENGTH) {
             setDescriptionError(true);
             return false;
         }
         setDescriptionError(false);
+        return true;
+    }
+
+    static isPledgeValid(pledge: string, setPledgeError: SetError): boolean {
+        if (!pledge) {
+            setPledgeError(false);
+            return false;
+        }
+        if (pledge.length > 12 || !/^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/.test(pledge)) {
+            setPledgeError(true);
+            return false;
+        }
+        setPledgeError(false);
         return true;
     }
 

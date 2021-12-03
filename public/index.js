@@ -43203,7 +43203,7 @@ const theme2 = createTheme({ palette: {
     }, [title, goal, description]);
     const helperText = {
       title: "Must be between 3-32 characters",
-      goal: "Please input a valid USD amount",
+      goal: "Please input a valid USD amount less than 12 numbers long",
       description: "Tell us about your product within 2,000 words"
     };
     return /* @__PURE__ */ import_react26.default.createElement("div", null, /* @__PURE__ */ import_react26.default.createElement("h2", null, "Create Campaign"), /* @__PURE__ */ import_react26.default.createElement("div", {
@@ -43320,6 +43320,18 @@ const theme2 = createTheme({ palette: {
       setDescriptionError(false);
       return true;
     }
+    static isPledgeValid(pledge, setPledgeError) {
+      if (!pledge) {
+        setPledgeError(false);
+        return false;
+      }
+      if (pledge.length > 12 || !/^[+-]?[0-9]{1,3}(?:,?[0-9]{3})*(?:\.[0-9]{2})?$/.test(pledge)) {
+        setPledgeError(true);
+        return false;
+      }
+      setPledgeError(false);
+      return true;
+    }
     static async deleteProduct({
       id,
       data,
@@ -43352,6 +43364,9 @@ const theme2 = createTheme({ palette: {
   var ProductPage = ({ user }) => {
     const [userPledgeData, setUserPledgeData] = (0, import_react27.useState)(null);
     const [product, setProduct] = (0, import_react27.useState)(null);
+    const [pledge, setPledge] = (0, import_react27.useState)("");
+    const [pledgeError, setPledgeError] = (0, import_react27.useState)(false);
+    const [pledgeDisabled, setPledgeDisabled] = (0, import_react27.useState)(true);
     const [productLoading, setProductLoading] = (0, import_react27.useState)(true);
     const { id } = useParams();
     const navigate = useNavigate();
@@ -43380,12 +43395,25 @@ const theme2 = createTheme({ palette: {
         isMounted = false;
       };
     }, []);
+    (0, import_react27.useEffect)(() => {
+      const dataIsValid = product_default.isPledgeValid(pledge, setPledgeError);
+      setPledgeDisabled(!dataIsValid);
+    }, [pledge]);
     return /* @__PURE__ */ import_react27.default.createElement("div", null, productLoading && /* @__PURE__ */ import_react27.default.createElement(CircularProgress_default, null), !productLoading && product && /* @__PURE__ */ import_react27.default.createElement(import_react27.default.Fragment, null, /* @__PURE__ */ import_react27.default.createElement("h2", null, product.title), /* @__PURE__ */ import_react27.default.createElement("div", {
       className: "details"
-    }, /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("em", null, "By ", product.creatorName)), /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("strong", null, "Goal:"), " ", import_money_formatter.default.format("USD", product.goal)), /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("strong", null, "Raised so far:"), " ", import_money_formatter.default.format("USD", product.currentFunds))), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement(Divider_default, null), /* @__PURE__ */ import_react27.default.createElement("p", null, product.description), (user == null ? void 0 : user.signedIn) && (user == null ? void 0 : user.uid) !== product.creatorUID && /* @__PURE__ */ import_react27.default.createElement(import_react27.default.Fragment, null, /* @__PURE__ */ import_react27.default.createElement(Divider_default, null), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement("h3", null, "Pledge to ", product.title), userPledgeData ? /* @__PURE__ */ import_react27.default.createElement("p", null, "You've pledged ", import_money_formatter.default.format("USD", userPledgeData.amount), "!") : /* @__PURE__ */ import_react27.default.createElement(import_react27.default.Fragment, null, /* @__PURE__ */ import_react27.default.createElement("p", null, "pledge form here"), /* @__PURE__ */ import_react27.default.createElement(Button_default, {
+    }, /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("em", null, "By ", product.creatorName)), /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("strong", null, "Goal:"), " ", import_money_formatter.default.format("USD", product.goal)), /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("strong", null, "Raised so far:"), " ", import_money_formatter.default.format("USD", product.currentFunds))), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement(Divider_default, null), /* @__PURE__ */ import_react27.default.createElement("p", null, product.description), (user == null ? void 0 : user.signedIn) && (user == null ? void 0 : user.uid) !== product.creatorUID && /* @__PURE__ */ import_react27.default.createElement(import_react27.default.Fragment, null, /* @__PURE__ */ import_react27.default.createElement(Divider_default, null), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement("h3", null, "Pledge to ", product.title), userPledgeData ? /* @__PURE__ */ import_react27.default.createElement("p", null, "You've pledged ", import_money_formatter.default.format("USD", userPledgeData.amount), "!") : /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement(TextField_default, {
+      id: "pledge-input",
+      helperText: "Please input a valid USD amount less than 12 numbers long",
+      label: "Pledge Amount in USD",
+      error: pledgeError,
+      value: pledge,
+      onChange: ({ target }) => setPledge(target.value),
+      required: true
+    }), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement(Button_default, {
       variant: "contained",
       onClick: () => {
-      }
+      },
+      disabled: pledgeDisabled
     }, "Pledge"))), (user == null ? void 0 : user.uid) === product.creatorUID && /* @__PURE__ */ import_react27.default.createElement(import_react27.default.Fragment, null, /* @__PURE__ */ import_react27.default.createElement(Divider_default, null), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement(Button_default, {
       variant: "contained",
       onClick: () => navigate("edit", { replace: false })
