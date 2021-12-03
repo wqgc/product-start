@@ -24,8 +24,10 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 main.use('/api/v1', app);
 
-// http://localhost:5000 when testing locally
-const SITE_URL = process.env.SITE_URL || functions.config().site.url;
+let SITE_URL = 'https://rn-db-823f5.web.app';
+if (typeof functions.config !== 'function') {
+    SITE_URL = process.env.SITE_URL as string;
+}
 
 // Product Routes
 // Get aggregate products
@@ -203,7 +205,7 @@ app.post('/create-checkout-session/:id', async (request, response) => {
 app.post('/pledge', async (request, response) => {
     const { intent } = request.body;
     response.set({
-        'Set-Cookie': `intent=${intent}; Secure; HttpOnly`,
+        'Set-Cookie': `intent=${intent}; SameSite=Lax; Secure; HttpOnly`,
         'Access-Control-Allow-Credentials': 'true',
     });
     response.status(200).send('Set cookie');
