@@ -36,14 +36,12 @@ class Products {
         if (uid) {
             // Update single product
             const { title, goal, creatorName, creatorUID, currentFunds, description, } = data;
-            await db.collection('products').doc(uid).set({
+            return db.collection('products').doc(uid).set({
                 title, goal, creatorName, creatorUID, currentFunds, description,
             });
         }
-        else {
-            // Update aggregate products document
-            await db.collection('aggregate').doc('latestProducts').set(data);
-        }
+        // Update aggregate products document
+        return db.collection('aggregate').doc('latestProducts').set(data);
     }
     static async delete(uid) {
         const db = firebase.firestore();

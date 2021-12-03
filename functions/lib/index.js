@@ -4,9 +4,11 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import Stripe from 'stripe';
+import cookieParser from 'cookie-parser';
 import Products from './models/products.js';
 import Users from './models/users.js';
 import Auth from './auth.js';
+import Utils from './utils.js';
 dotenv.config();
 firebase.initializeApp();
 const app = express();
@@ -15,14 +17,11 @@ const stripe = new Stripe(process.env.STRIPE_TEST_KEY || functions.config().stri
     apiVersion: '2020-08-27',
 });
 // Middleware
+app.use(cookieParser());
 app.use(bodyParser.json());
 main.use('/api/v1', app);
-let SITE_URL = 'http://localhost:5000';
-// "functions.config is not a function" if we try to run locally,
-// so check that before setting it to the Firebase environment variable
-if (typeof functions.config === 'function') {
-    SITE_URL = functions.config().site.url;
-}
+// http://localhost:5000 when testing locally
+const SITE_URL = process.env.SITE_URL || functions.config().site.url;
 // Product Routes
 // Get aggregate products
 app.get('/products', async (_request, response) => {
@@ -148,7 +147,7 @@ app.post('/create-checkout-session/:id', async (request, response) => {
     const { pledgeAmount, pledgerUID } = request.body;
     try {
         // Remove commas and get the price in cents
-        const priceInCents = Math.floor(parseFloat(pledgeAmount.replace(/,/g, '')) * 100);
+        const priceInCents = Utils.toCents(pledgeAmount);
         await Auth.verifyUser(request.get('Authorization'), pledgerUID);
         const session = await stripe.checkout.sessions.create({
             line_items: [
@@ -162,14 +161,67 @@ app.post('/create-checkout-session/:id', async (request, response) => {
                 },
             ],
             mode: 'payment',
-            success_url: `${SITE_URL}/products/${request.params.id}/success`,
+            success_url: `${SITE_URL}/products/${request.params.id}/${pledgeAmount}/success`,
             cancel_url: `${SITE_URL}/products/${request.params.id}`,
         });
-        if (session.url) {
-            response.json({ url: session.url });
+        // eslint-disable-next-line camelcase
+        if (session.url && (session === null || session === void 0 ? void 0 : session.payment_intent)) {
+            // Save metadata to retrieve later
+            const paymentIntent = await stripe.paymentIntents.update(session.payment_intent, {
+                metadata: {
+                    pledgeAmount, pledgerUID, productUID: request.params.id,
+                },
+            });
+            response.json({ url: session.url, intent: paymentIntent.id });
         }
         else {
             response.status(500).send('There was an error with your request');
+        }
+    }
+    catch (error) {
+        response.status(400).send(error.message);
+    }
+});
+app.post('/pledge', async (request, response) => {
+    const { intent } = request.body;
+    response.set({
+        'Set-Cookie': `intent=${intent}; Secure; HttpOnly`,
+        'Access-Control-Allow-Credentials': 'true',
+    });
+    response.status(200).send('Set cookie');
+});
+app.post('/pledge/confirm', async (request, response) => {
+    const intentId = request.cookies.intent;
+    if (!intentId) {
+        response.status(401).send();
+    }
+    try {
+        const paymentIntent = await stripe.paymentIntents.retrieve(intentId);
+        if (paymentIntent.status === 'succeeded') {
+            const { metadata } = paymentIntent;
+            // Get previous product data to update
+            const product = await Products.read(metadata.productUID);
+            // Add pledge amount to current funds as cents, then convert back to USD string
+            product.currentFunds = ((Utils.toCents(product.currentFunds)
+                + Utils.toCents(metadata.pledgeAmount)) / 100).toString();
+            // Update product with new current funds total
+            await Products.update(product, metadata.productUID);
+            // Add pledge to user
+            const user = await Users.read(metadata.pledgerUID);
+            user.pledges.push({
+                amount: metadata.pledgeAmount,
+                product: {
+                    productUID: metadata.productUID,
+                    title: product.title,
+                    goal: product.goal,
+                    creatorName: product.creatorName,
+                    creatorUID: product.creatorUID,
+                },
+            });
+            await Users.update(Object.assign(Object.assign({}, user), { uid: metadata.pledgerUID }));
+            // Clear intent cookie
+            response.clearCookie('intent');
+            response.status(200).send('Confirmation successful');
         }
     }
     catch (error) {

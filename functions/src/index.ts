@@ -213,42 +213,44 @@ app.post('/pledge/confirm', async (request, response) => {
     const intentId = request.cookies.intent;
 
     if (!intentId) {
-        return response.status(401).send();
+        response.status(401).send();
     }
 
-    const paymentIntent = await stripe.paymentIntents.retrieve(intentId);
+    try {
+        const paymentIntent = await stripe.paymentIntents.retrieve(intentId);
 
-    if (paymentIntent.status === 'succeeded') {
-        const { metadata } = paymentIntent;
+        if (paymentIntent.status === 'succeeded') {
+            const { metadata } = paymentIntent;
 
-        // Get previous product data to update
-        const product = await Products.read(metadata.productUID) as Product;
-        // Add pledge amount to current funds as cents, then convert back to USD string
-        product.currentFunds = ((Utils.toCents(product.currentFunds)
-            + Utils.toCents(metadata.pledgeAmount)) / 100).toString();
-        // Update product with new current funds total
-        await Products.update(product, metadata.productUID);
+            // Get previous product data to update
+            const product = await Products.read(metadata.productUID) as Product;
+            // Add pledge amount to current funds as cents, then convert back to USD string
+            product.currentFunds = ((Utils.toCents(product.currentFunds)
+                + Utils.toCents(metadata.pledgeAmount)) / 100).toString();
+            // Update product with new current funds total
+            await Products.update(product, metadata.productUID);
 
-        // Add pledge to user
-        const user = await Users.read(metadata.pledgerUID);
-        user.pledges.push({
-            amount: metadata.pledgeAmount,
-            product: {
-                productUID: product.productUID,
-                title: product.title,
-                goal: product.goal,
-                creatorName: product.creatorName,
-                creatorUID: product.creatorUID,
-            },
-        });
-        await Users.update(user);
+            // Add pledge to user
+            const user = await Users.read(metadata.pledgerUID);
+            user.pledges.push({
+                amount: metadata.pledgeAmount,
+                product: {
+                    productUID: metadata.productUID,
+                    title: product.title,
+                    goal: product.goal,
+                    creatorName: product.creatorName,
+                    creatorUID: product.creatorUID,
+                },
+            });
+            await Users.update({ ...user, uid: metadata.pledgerUID });
 
-        // Clear intent cookie
-        response.clearCookie('intent');
-
-        return response.status(200).send('Confirmation successful');
+            // Clear intent cookie
+            response.clearCookie('intent');
+            response.status(200).send('Confirmation successful');
+        }
+    } catch (error) {
+        response.status(400).send((error as Error).message);
     }
-    return response.status(400).send('Payment did not succeed');
 });
 
 const api = functions.https.onRequest(main);

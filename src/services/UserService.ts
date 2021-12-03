@@ -146,6 +146,15 @@ class UserService {
             throw new Error(error);
         }
     }
+
+    static async confirmPledge() {
+        return fetch(`${CONSTANTS.BASE_URL}/pledge/confirm`, {
+            method: 'POST',
+        })
+            .catch((error) => {
+                throw new Error(error);
+            });
+    }
 }
 
 export default UserService;

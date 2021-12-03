@@ -41,7 +41,7 @@ class Products {
         }
     }
 
-    static async update(data: Product | AggregateProducts, uid?: string): Promise<void> {
+    static async update(data: Product | AggregateProducts, uid?: string): Promise<any> {
         const db = firebase.firestore();
 
         if (uid) {
@@ -50,13 +50,12 @@ class Products {
                 title, goal, creatorName, creatorUID, currentFunds, description,
             } = data as Product;
 
-            await db.collection('products').doc(uid).set({
+            return db.collection('products').doc(uid).set({
                 title, goal, creatorName, creatorUID, currentFunds, description,
             });
-        } else {
-            // Update aggregate products document
-            await db.collection('aggregate').doc('latestProducts').set(data);
         }
+        // Update aggregate products document
+        return db.collection('aggregate').doc('latestProducts').set(data);
     }
 
     static async delete(uid: string): Promise<void> {

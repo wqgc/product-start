@@ -23,20 +23,22 @@ const ProductPage: React.FC<{ user: UserState }> = ({ user }) => {
     useEffect(() => {
         let isMounted = true;
         const setData = async () => {
-            if (id && !product) {
-                if (user && user.signedIn === true) {
+            if (id) {
+                if (user && user.signedIn === true && !userPledgeData) {
                     await ProductPresenter.setPledgeData({
                         setUserPledgeData, productId: id, isMounted,
                     });
                 }
-                await ProductPresenter.setProduct({
-                    id, setProduct, setProductLoading, navigate, isMounted,
-                });
+                if (!product) {
+                    await ProductPresenter.setProduct({
+                        id, setProduct, setProductLoading, navigate, isMounted,
+                    });
+                }
             }
         };
         setData();
         return () => { isMounted = false; };
-    }, []);
+    }, [user]);
 
     // Check pledge validity
     useEffect(() => {

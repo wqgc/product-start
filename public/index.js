@@ -1073,7 +1073,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect23(create, deps) {
+          function useEffect24(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1643,7 +1643,7 @@
           exports.useCallback = useCallback13;
           exports.useContext = useContext13;
           exports.useDebugValue = useDebugValue3;
-          exports.useEffect = useEffect23;
+          exports.useEffect = useEffect24;
           exports.useImperativeHandle = useImperativeHandle6;
           exports.useLayoutEffect = useLayoutEffect5;
           exports.useMemo = useMemo6;
@@ -2457,11 +2457,11 @@
       if (true) {
         (function() {
           "use strict";
-          var React84 = require_react();
+          var React85 = require_react();
           var _assign = require_object_assign();
           var Scheduler = require_scheduler();
           var tracing = require_tracing();
-          var ReactSharedInternals = React84.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React85.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function warn(format) {
             {
               for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2493,7 +2493,7 @@
               Function.prototype.apply.call(console[level], console, argsWithFormat);
             }
           }
-          if (!React84) {
+          if (!React85) {
             {
               throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
             }
@@ -3709,7 +3709,7 @@
           var didWarnInvalidChild = false;
           function flattenChildren(children) {
             var content = "";
-            React84.Children.forEach(children, function(child) {
+            React85.Children.forEach(children, function(child) {
               if (child == null) {
                 return;
               }
@@ -3720,7 +3720,7 @@
           function validateProps(element, props) {
             {
               if (typeof props.children === "object" && props.children !== null) {
-                React84.Children.forEach(props.children, function(child) {
+                React85.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -10913,7 +10913,7 @@
           }
           var fakeInternalInstance = {};
           var isArray = Array.isArray;
-          var emptyRefsObject = new React84.Component().refs;
+          var emptyRefsObject = new React85.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -21360,7 +21360,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       if (true) {
         (function() {
           "use strict";
-          var React84 = require_react();
+          var React85 = require_react();
           var _assign = require_object_assign();
           var REACT_ELEMENT_TYPE = 60103;
           var REACT_PORTAL_TYPE = 60106;
@@ -21417,7 +21417,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             }
             return null;
           }
-          var ReactSharedInternals = React84.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React85.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
@@ -25997,7 +25997,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
   registerVersion(name2, version2, "app");
 
   // src/index.tsx
-  var import_react33 = __toModule(require_react());
+  var import_react34 = __toModule(require_react());
   var import_react_dom2 = __toModule(require_react_dom());
 
   // node_modules/@babel/runtime/helpers/esm/extends.js
@@ -31223,7 +31223,7 @@ const theme2 = createTheme({ palette: {
   var styled_default = styled2;
 
   // src/App.tsx
-  var import_react32 = __toModule(require_react());
+  var import_react33 = __toModule(require_react());
 
   // node_modules/react-router-dom/index.js
   var import_react10 = __toModule(require_react());
@@ -35778,7 +35778,7 @@ const theme2 = createTheme({ palette: {
         if (!token2 || !currentUser) {
           throw new Error("User missing");
         }
-        return fetch(`${constants_default.BASE_URL}/create-checkout-session/${id}`, {
+        const result = await fetch(`${constants_default.BASE_URL}/create-checkout-session/${id}`, {
           method: "POST",
           body: JSON.stringify({ pledgeAmount, pledgerUID: currentUser.uid }),
           headers: {
@@ -35790,14 +35790,35 @@ const theme2 = createTheme({ palette: {
             return response.json();
           }
           return Promise.reject(response);
-        }).then(({ url }) => {
-          window.location = url;
+        }).then((data) => {
+          return data;
+        }).catch((error) => {
+          throw new Error(error);
+        });
+        return fetch(`${constants_default.BASE_URL}/pledge`, {
+          method: "POST",
+          body: JSON.stringify(result),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        }).then((response) => {
+          if (response.ok) {
+            window.location = result.url;
+          }
+          return Promise.reject(response);
         }).catch((error) => {
           throw new Error(error);
         });
       } catch (error) {
         throw new Error(error);
       }
+    }
+    static async confirmPledge() {
+      return fetch(`${constants_default.BASE_URL}/pledge/confirm`, {
+        method: "POST"
+      }).catch((error) => {
+        throw new Error(error);
+      });
     }
   };
   var UserService_default = UserService;
@@ -43311,7 +43332,7 @@ const theme2 = createTheme({ palette: {
         let pledge;
         for (let i = 0; i < pledges.length; i += 1) {
           if (pledges[i].product.productUID === productId) {
-            pledge = pledges[i].product;
+            pledge = pledges[i];
             break;
           }
         }
@@ -43407,28 +43428,30 @@ const theme2 = createTheme({ palette: {
     (0, import_react27.useEffect)(() => {
       let isMounted = true;
       const setData = async () => {
-        if (id && !product) {
-          if (user && user.signedIn === true) {
+        if (id) {
+          if (user && user.signedIn === true && !userPledgeData) {
             await product_default.setPledgeData({
               setUserPledgeData,
               productId: id,
               isMounted
             });
           }
-          await product_default.setProduct({
-            id,
-            setProduct,
-            setProductLoading,
-            navigate,
-            isMounted
-          });
+          if (!product) {
+            await product_default.setProduct({
+              id,
+              setProduct,
+              setProductLoading,
+              navigate,
+              isMounted
+            });
+          }
         }
       };
       setData();
       return () => {
         isMounted = false;
       };
-    }, []);
+    }, [user]);
     (0, import_react27.useEffect)(() => {
       const dataIsValid = product_default.isPledgeValid(pledge, setPledgeError);
       setPledgeDisabled(!dataIsValid);
@@ -43535,108 +43558,130 @@ const theme2 = createTheme({ palette: {
   };
   var EditPage_default = EditPage;
 
-  // src/views/PledgesPage.tsx
+  // src/views/products/PledgeSuccessPage.tsx
   var import_react29 = __toModule(require_react());
+  var import_money_formatter2 = __toModule(require_money_formatter());
+  var PledgeSuccessPage = ({ user }) => {
+    const { id, pledgeAmount } = useParams();
+    (0, import_react29.useEffect)(() => {
+      UserService_default.confirmPledge();
+    }, []);
+    return /* @__PURE__ */ import_react29.default.createElement("div", null, /* @__PURE__ */ import_react29.default.createElement("h2", null, "Success!"), /* @__PURE__ */ import_react29.default.createElement("p", null, user.profile.displayName, ", you have successfully pledged ", import_money_formatter2.default.format("USD", pledgeAmount), "."), /* @__PURE__ */ import_react29.default.createElement(Link, {
+      to: `/products/${id}`
+    }, "Return to Product Page"));
+  };
+  var PledgeSuccessPage_default = PledgeSuccessPage;
+
+  // src/views/PledgesPage.tsx
+  var import_react30 = __toModule(require_react());
   var PledgesPage = () => {
-    return /* @__PURE__ */ import_react29.default.createElement("div", null, /* @__PURE__ */ import_react29.default.createElement("h2", null, "My Pledges"));
+    return /* @__PURE__ */ import_react30.default.createElement("div", null, /* @__PURE__ */ import_react30.default.createElement("h2", null, "My Pledges"));
   };
   var PledgesPage_default = PledgesPage;
 
   // src/views/NotFound.tsx
-  var import_react30 = __toModule(require_react());
+  var import_react31 = __toModule(require_react());
   var NotFound = () => {
-    return /* @__PURE__ */ import_react30.default.createElement("div", null, "Oh no, that page doesn't seem to exist.");
+    return /* @__PURE__ */ import_react31.default.createElement("div", null, "Oh no, that page doesn't seem to exist.");
   };
   var NotFound_default = NotFound;
 
   // src/components/auth/Enforce.tsx
-  var import_react31 = __toModule(require_react());
+  var import_react32 = __toModule(require_react());
   var Enforce = ({ enforce, user, children }) => {
     const navigate = useNavigate();
-    (0, import_react31.useEffect)(() => {
+    (0, import_react32.useEffect)(() => {
       if (enforce === "signedIn" && user.signedIn === false) {
         navigate("/login", { replace: false });
       } else if (enforce === "signedOut" && user.signedIn === true) {
         navigate("/", { replace: false });
       }
     }, [enforce, user]);
-    return /* @__PURE__ */ import_react31.default.createElement("div", null, children);
+    return /* @__PURE__ */ import_react32.default.createElement("div", null, children);
   };
   var Enforce_default = Enforce;
 
   // src/App.tsx
   var App = () => {
-    const [alert, setAlert] = (0, import_react32.useState)({ message: "", type: void 0 });
-    const [user, setUser] = (0, import_react32.useState)({ uid: "", signedIn: null, profile: { displayName: "" } });
-    (0, import_react32.useEffect)(() => {
+    const [alert, setAlert] = (0, import_react33.useState)({ message: "", type: void 0 });
+    const [user, setUser] = (0, import_react33.useState)({ uid: "", signedIn: null, profile: { displayName: "" } });
+    (0, import_react33.useEffect)(() => {
       app_default.setUserStatus(setUser);
     }, []);
-    const alertData = (0, import_react32.useMemo)(() => ({ alert, setAlert }), []);
-    const userData = (0, import_react32.useMemo)(() => ({ user, setUser }), []);
-    return /* @__PURE__ */ import_react32.default.createElement(userContext_default.Provider, {
+    const alertData = (0, import_react33.useMemo)(() => ({ alert, setAlert }), []);
+    const userData = (0, import_react33.useMemo)(() => ({ user, setUser }), []);
+    return /* @__PURE__ */ import_react33.default.createElement(userContext_default.Provider, {
       value: userData
-    }, /* @__PURE__ */ import_react32.default.createElement(alertContext_default.Provider, {
+    }, /* @__PURE__ */ import_react33.default.createElement(alertContext_default.Provider, {
       value: alertData
-    }, /* @__PURE__ */ import_react32.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react32.default.createElement(Routes, null, /* @__PURE__ */ import_react32.default.createElement(Route, {
+    }, /* @__PURE__ */ import_react33.default.createElement(BrowserRouter, null, /* @__PURE__ */ import_react33.default.createElement(Routes, null, /* @__PURE__ */ import_react33.default.createElement(Route, {
       path: "/",
-      element: /* @__PURE__ */ import_react32.default.createElement(Layout_default, {
+      element: /* @__PURE__ */ import_react33.default.createElement(Layout_default, {
         alert,
         setAlert,
         user
       })
-    }, /* @__PURE__ */ import_react32.default.createElement(Route, {
+    }, /* @__PURE__ */ import_react33.default.createElement(Route, {
       index: true,
-      element: /* @__PURE__ */ import_react32.default.createElement(LandingPage_default, {
+      element: /* @__PURE__ */ import_react33.default.createElement(LandingPage_default, {
         user
       })
-    }), /* @__PURE__ */ import_react32.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react33.default.createElement(Route, {
       path: "login",
-      element: /* @__PURE__ */ import_react32.default.createElement(Enforce_default, {
+      element: /* @__PURE__ */ import_react33.default.createElement(Enforce_default, {
         enforce: "signedOut",
         user
-      }, /* @__PURE__ */ import_react32.default.createElement(LoginPage_default, null))
-    }), /* @__PURE__ */ import_react32.default.createElement(Route, {
+      }, /* @__PURE__ */ import_react33.default.createElement(LoginPage_default, null))
+    }), /* @__PURE__ */ import_react33.default.createElement(Route, {
       path: "register",
-      element: /* @__PURE__ */ import_react32.default.createElement(Enforce_default, {
+      element: /* @__PURE__ */ import_react33.default.createElement(Enforce_default, {
         enforce: "signedOut",
         user
-      }, /* @__PURE__ */ import_react32.default.createElement(RegisterPage_default, null))
-    }), /* @__PURE__ */ import_react32.default.createElement(Route, {
+      }, /* @__PURE__ */ import_react33.default.createElement(RegisterPage_default, null))
+    }), /* @__PURE__ */ import_react33.default.createElement(Route, {
       path: "products",
-      element: /* @__PURE__ */ import_react32.default.createElement(Enforce_default, {
+      element: /* @__PURE__ */ import_react33.default.createElement(Enforce_default, {
         enforce: "signedIn",
         user
-      }, /* @__PURE__ */ import_react32.default.createElement(ProductsPage_default, {
+      }, /* @__PURE__ */ import_react33.default.createElement(ProductsPage_default, {
         user
       }))
-    }), /* @__PURE__ */ import_react32.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react33.default.createElement(Route, {
       path: "products/create",
-      element: /* @__PURE__ */ import_react32.default.createElement(Enforce_default, {
+      element: /* @__PURE__ */ import_react33.default.createElement(Enforce_default, {
         enforce: "signedIn",
         user
-      }, /* @__PURE__ */ import_react32.default.createElement(CreatePage_default, null))
-    }), /* @__PURE__ */ import_react32.default.createElement(Route, {
+      }, /* @__PURE__ */ import_react33.default.createElement(CreatePage_default, null))
+    }), /* @__PURE__ */ import_react33.default.createElement(Route, {
       path: "products/:id",
-      element: /* @__PURE__ */ import_react32.default.createElement(ProductPage_default, {
+      element: /* @__PURE__ */ import_react33.default.createElement(ProductPage_default, {
         user
       })
-    }), /* @__PURE__ */ import_react32.default.createElement(Route, {
+    }), /* @__PURE__ */ import_react33.default.createElement(Route, {
       path: "products/:id/edit",
-      element: /* @__PURE__ */ import_react32.default.createElement(Enforce_default, {
+      element: /* @__PURE__ */ import_react33.default.createElement(Enforce_default, {
         enforce: "signedIn",
         user
-      }, /* @__PURE__ */ import_react32.default.createElement(EditPage_default, {
+      }, /* @__PURE__ */ import_react33.default.createElement(EditPage_default, {
         user
       }))
-    }), /* @__PURE__ */ import_react32.default.createElement(Route, {
-      path: "pledges",
-      element: /* @__PURE__ */ import_react32.default.createElement(Enforce_default, {
+    }), /* @__PURE__ */ import_react33.default.createElement(Route, {
+      path: "products/:id/:pledgeAmount/success",
+      element: /* @__PURE__ */ import_react33.default.createElement(Enforce_default, {
         enforce: "signedIn",
         user
-      }, /* @__PURE__ */ import_react32.default.createElement(PledgesPage_default, null))
-    }), /* @__PURE__ */ import_react32.default.createElement(Route, {
+      }, /* @__PURE__ */ import_react33.default.createElement(PledgeSuccessPage_default, {
+        user
+      }))
+    }), /* @__PURE__ */ import_react33.default.createElement(Route, {
+      path: "pledges",
+      element: /* @__PURE__ */ import_react33.default.createElement(Enforce_default, {
+        enforce: "signedIn",
+        user
+      }, /* @__PURE__ */ import_react33.default.createElement(PledgesPage_default, null))
+    }), /* @__PURE__ */ import_react33.default.createElement(Route, {
       path: "*",
-      element: /* @__PURE__ */ import_react32.default.createElement(NotFound_default, null)
+      element: /* @__PURE__ */ import_react33.default.createElement(NotFound_default, null)
     }))))));
   };
   var App_default = App;
@@ -43652,9 +43697,9 @@ const theme2 = createTheme({ palette: {
     appId: "1:960434173894:web:ea8054234881ce580c24c7"
   };
   initializeApp(firebaseConfig);
-  import_react_dom2.default.render(/* @__PURE__ */ import_react33.default.createElement(import_react33.default.StrictMode, null, /* @__PURE__ */ import_react33.default.createElement(StyledEngineProvider, {
+  import_react_dom2.default.render(/* @__PURE__ */ import_react34.default.createElement(import_react34.default.StrictMode, null, /* @__PURE__ */ import_react34.default.createElement(StyledEngineProvider, {
     injectFirst: true
-  }, /* @__PURE__ */ import_react33.default.createElement(App_default, null))), document.getElementById("root"));
+  }, /* @__PURE__ */ import_react34.default.createElement(App_default, null))), document.getElementById("root"));
 })();
 /*
 object-assign

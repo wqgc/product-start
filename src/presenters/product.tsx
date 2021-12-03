@@ -64,7 +64,7 @@ class ProductPresenter {
             // Get user's pledge for this product
             for (let i = 0; i < pledges.length; i += 1) {
                 if (pledges[i].product.productUID === productId) {
-                    pledge = pledges[i].product;
+                    pledge = pledges[i];
                     break;
                 }
             }

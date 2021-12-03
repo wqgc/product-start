@@ -15,7 +15,7 @@ class Users {
         }
     }
 
-    static async update(data: User): Promise<void> {
+    static async update(data: User): Promise<any> {
         const db = firebase.firestore();
         const { uid, displayName } = data;
         let { pledges, products } = data;
@@ -25,10 +25,9 @@ class Users {
         products = products || [];
 
         if (uid) {
-            await db.collection('users').doc(uid).set({ displayName, pledges, products });
-        } else {
-            throw new Error('User uid missing');
+            return db.collection('users').doc(uid).set({ displayName, pledges, products });
         }
+        throw new Error('User uid missing');
     }
 }
 
