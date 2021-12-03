@@ -9,14 +9,16 @@ interface SubmitParameters {
     setAlert: React.Dispatch<React.SetStateAction<AlertState>> | null
     setErrors: SetErrors
     setUser: React.Dispatch<React.SetStateAction<UserState>> | null
+    setSubmitLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 class RegisterPresenter {
     static async formSubmit({
-        data, setAlert, setErrors, setUser,
+        data, setAlert, setErrors, setUser, setSubmitLoading,
     }: SubmitParameters): Promise<void> {
         if (setAlert !== null && setUser !== null) {
             if (this.isFormValid(data, setErrors)) {
+                setSubmitLoading(true);
                 try {
                     // It may be possible for earlier steps to work and later ones to fail,
                     // so this would be important to take into consideration in the future
@@ -24,6 +26,7 @@ class RegisterPresenter {
                     await UserService.updateCurrentDisplayName(data.displayName);
                     await UserService.updateDB(uid, { displayName: data.displayName });
                     setUser({
+                        uid: '',
                         signedIn: true,
                         profile: {
                             displayName: data.displayName,
@@ -34,6 +37,7 @@ class RegisterPresenter {
                     // Firebase errors aren't the most readable, so I would fix this with more time
                     setAlert({ message: error.message, type: 'error' });
                 }
+                setSubmitLoading(false);
             } else {
                 setAlert({ message: 'Form data invalid.', type: 'error' });
             }

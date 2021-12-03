@@ -952,7 +952,7 @@
             }
             return lazyType;
           }
-          function forwardRef39(render) {
+          function forwardRef40(render) {
             {
               if (render != null && render.$$typeof === REACT_MEMO_TYPE) {
                 error("forwardRef requires a render function but received a `memo` component. Instead of forwardRef(memo(...)), use memo(forwardRef(...)).");
@@ -1636,7 +1636,7 @@
           exports.createElement = createElement$1;
           exports.createFactory = createFactory;
           exports.createRef = createRef;
-          exports.forwardRef = forwardRef39;
+          exports.forwardRef = forwardRef40;
           exports.isValidElement = isValidElement9;
           exports.lazy = lazy;
           exports.memo = memo2;
@@ -2457,11 +2457,11 @@
       if (true) {
         (function() {
           "use strict";
-          var React85 = require_react();
+          var React86 = require_react();
           var _assign = require_object_assign();
           var Scheduler = require_scheduler();
           var tracing = require_tracing();
-          var ReactSharedInternals = React85.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React86.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function warn(format) {
             {
               for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
@@ -2493,7 +2493,7 @@
               Function.prototype.apply.call(console[level], console, argsWithFormat);
             }
           }
-          if (!React85) {
+          if (!React86) {
             {
               throw Error("ReactDOM was loaded before React. Make sure you load the React package before loading ReactDOM.");
             }
@@ -2505,7 +2505,7 @@
           var HostPortal = 4;
           var HostComponent = 5;
           var HostText = 6;
-          var Fragment11 = 7;
+          var Fragment12 = 7;
           var Mode = 8;
           var ContextConsumer = 9;
           var ContextProvider = 10;
@@ -3709,7 +3709,7 @@
           var didWarnInvalidChild = false;
           function flattenChildren(children) {
             var content = "";
-            React85.Children.forEach(children, function(child) {
+            React86.Children.forEach(children, function(child) {
               if (child == null) {
                 return;
               }
@@ -3720,7 +3720,7 @@
           function validateProps(element, props) {
             {
               if (typeof props.children === "object" && props.children !== null) {
-                React85.Children.forEach(props.children, function(child) {
+                React86.Children.forEach(props.children, function(child) {
                   if (child == null) {
                     return;
                   }
@@ -10913,7 +10913,7 @@
           }
           var fakeInternalInstance = {};
           var isArray = Array.isArray;
-          var emptyRefsObject = new React85.Component().refs;
+          var emptyRefsObject = new React86.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -11689,7 +11689,7 @@
               }
             }
             function updateFragment2(returnFiber, current2, fragment, lanes, key) {
-              if (current2 === null || current2.tag !== Fragment11) {
+              if (current2 === null || current2.tag !== Fragment12) {
                 var created = createFiberFromFragment(fragment, returnFiber.mode, lanes, key);
                 created.return = returnFiber;
                 return created;
@@ -12057,7 +12057,7 @@
               while (child !== null) {
                 if (child.key === key) {
                   switch (child.tag) {
-                    case Fragment11: {
+                    case Fragment12: {
                       if (element.type === REACT_FRAGMENT_TYPE) {
                         deleteRemainingChildren(returnFiber, child.sibling);
                         var existing = useFiber(child, element.props.children);
@@ -15661,7 +15661,7 @@
                 var _resolvedProps2 = workInProgress2.elementType === type ? _unresolvedProps2 : resolveDefaultProps(type, _unresolvedProps2);
                 return updateForwardRef(current2, workInProgress2, type, _resolvedProps2, renderLanes2);
               }
-              case Fragment11:
+              case Fragment12:
                 return updateFragment(current2, workInProgress2, renderLanes2);
               case Mode:
                 return updateMode(current2, workInProgress2, renderLanes2);
@@ -15828,7 +15828,7 @@
               case SimpleMemoComponent:
               case FunctionComponent:
               case ForwardRef2:
-              case Fragment11:
+              case Fragment12:
               case Mode:
               case Profiler:
               case ContextConsumer:
@@ -19532,7 +19532,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             return fiber;
           }
           function createFiberFromFragment(elements, mode, lanes, key) {
-            var fiber = createFiber(Fragment11, elements, key, mode);
+            var fiber = createFiber(Fragment12, elements, key, mode);
             fiber.lanes = lanes;
             return fiber;
           }
@@ -20504,7 +20504,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           var ContextProvider = REACT_PROVIDER_TYPE;
           var Element2 = REACT_ELEMENT_TYPE;
           var ForwardRef2 = REACT_FORWARD_REF_TYPE;
-          var Fragment11 = REACT_FRAGMENT_TYPE;
+          var Fragment12 = REACT_FRAGMENT_TYPE;
           var Lazy = REACT_LAZY_TYPE;
           var Memo2 = REACT_MEMO_TYPE;
           var Portal3 = REACT_PORTAL_TYPE;
@@ -20563,7 +20563,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           exports.ContextProvider = ContextProvider;
           exports.Element = Element2;
           exports.ForwardRef = ForwardRef2;
-          exports.Fragment = Fragment11;
+          exports.Fragment = Fragment12;
           exports.Lazy = Lazy;
           exports.Memo = Memo2;
           exports.Portal = Portal3;
@@ -20758,7 +20758,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           var ContextProvider = REACT_PROVIDER_TYPE;
           var Element2 = REACT_ELEMENT_TYPE;
           var ForwardRef2 = REACT_FORWARD_REF_TYPE;
-          var Fragment11 = REACT_FRAGMENT_TYPE;
+          var Fragment12 = REACT_FRAGMENT_TYPE;
           var Lazy = REACT_LAZY_TYPE;
           var Memo2 = REACT_MEMO_TYPE;
           var Portal3 = REACT_PORTAL_TYPE;
@@ -20817,7 +20817,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           exports.ContextProvider = ContextProvider;
           exports.Element = Element2;
           exports.ForwardRef = ForwardRef2;
-          exports.Fragment = Fragment11;
+          exports.Fragment = Fragment12;
           exports.Lazy = Lazy;
           exports.Memo = Memo2;
           exports.Portal = Portal3;
@@ -21360,7 +21360,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
       if (true) {
         (function() {
           "use strict";
-          var React85 = require_react();
+          var React86 = require_react();
           var _assign = require_object_assign();
           var REACT_ELEMENT_TYPE = 60103;
           var REACT_PORTAL_TYPE = 60106;
@@ -21417,7 +21417,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
             }
             return null;
           }
-          var ReactSharedInternals = React85.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React86.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
@@ -22309,7 +22309,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           var ContextProvider = REACT_PROVIDER_TYPE;
           var Element2 = REACT_ELEMENT_TYPE;
           var ForwardRef2 = REACT_FORWARD_REF_TYPE;
-          var Fragment11 = REACT_FRAGMENT_TYPE;
+          var Fragment12 = REACT_FRAGMENT_TYPE;
           var Lazy = REACT_LAZY_TYPE;
           var Memo2 = REACT_MEMO_TYPE;
           var Portal3 = REACT_PORTAL_TYPE;
@@ -22373,7 +22373,7 @@ For more info, visit https://reactjs.org/link/mock-scheduler`);
           exports.ContextProvider = ContextProvider;
           exports.Element = Element2;
           exports.ForwardRef = ForwardRef2;
-          exports.Fragment = Fragment11;
+          exports.Fragment = Fragment12;
           exports.Lazy = Lazy;
           exports.Memo = Memo2;
           exports.Portal = Portal3;
@@ -28161,7 +28161,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   var React8 = __toModule(require_react());
   var hadKeyboardEvent = true;
   var hadFocusVisibleRecently = false;
-  var hadFocusVisibleRecentlyTimeout = null;
+  var hadFocusVisibleRecentlyTimeout;
   var inputTypesWhitelist = {
     text: true,
     search: true,
@@ -29312,7 +29312,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
   function createStyled3(input = {}) {
     const {
       defaultTheme: defaultTheme2 = systemDefaultTheme2,
-      rootShouldForwardProp: rootShouldForwardProp2 = shouldForwardProp,
+      rootShouldForwardProp: rootShouldForwardProp3 = shouldForwardProp,
       slotShouldForwardProp: slotShouldForwardProp2 = shouldForwardProp
     } = input;
     return (tag, inputOptions = {}) => {
@@ -29333,7 +29333,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_liter
       }
       let shouldForwardPropOption = shouldForwardProp;
       if (componentSlot === "Root") {
-        shouldForwardPropOption = rootShouldForwardProp2;
+        shouldForwardPropOption = rootShouldForwardProp3;
       } else if (componentSlot) {
         shouldForwardPropOption = slotShouldForwardProp2;
       }
@@ -42935,21 +42935,265 @@ const theme2 = createTheme({ palette: {
   // src/views/RegisterPage.tsx
   var import_react24 = __toModule(require_react());
 
+  // node_modules/@mui/lab/LoadingButton/LoadingButton.js
+  var React74 = __toModule(require_react());
+  var import_prop_types50 = __toModule(require_prop_types());
+
+  // node_modules/@mui/lab/node_modules/@mui/base/composeClasses/composeClasses.js
+  function composeClasses2(slots, getUtilityClass, classes) {
+    const output = {};
+    Object.keys(slots).forEach((slot) => {
+      output[slot] = slots[slot].reduce((acc, key) => {
+        if (key) {
+          if (classes && classes[key]) {
+            acc.push(classes[key]);
+          }
+          acc.push(getUtilityClass(key));
+        }
+        return acc;
+      }, []).join(" ");
+    });
+    return output;
+  }
+
+  // node_modules/@mui/lab/node_modules/@mui/base/generateUtilityClass/ClassNameGenerator.js
+  var defaultGenerator2 = (componentName) => componentName;
+  var createClassNameGenerator2 = () => {
+    let generate = defaultGenerator2;
+    return {
+      configure(generator) {
+        generate = generator;
+      },
+      generate(componentName) {
+        return generate(componentName);
+      },
+      reset() {
+        generate = defaultGenerator2;
+      }
+    };
+  };
+  var ClassNameGenerator2 = createClassNameGenerator2();
+  var ClassNameGenerator_default2 = ClassNameGenerator2;
+
+  // node_modules/@mui/lab/node_modules/@mui/base/generateUtilityClass/generateUtilityClass.js
+  var globalStateClassesMapping2 = {
+    active: "Mui-active",
+    checked: "Mui-checked",
+    completed: "Mui-completed",
+    disabled: "Mui-disabled",
+    error: "Mui-error",
+    expanded: "Mui-expanded",
+    focused: "Mui-focused",
+    focusVisible: "Mui-focusVisible",
+    required: "Mui-required",
+    selected: "Mui-selected"
+  };
+  function generateUtilityClass2(componentName, slot) {
+    const globalStateClass = globalStateClassesMapping2[slot];
+    return globalStateClass || `${ClassNameGenerator_default2.generate(componentName)}-${slot}`;
+  }
+
+  // node_modules/@mui/lab/node_modules/@mui/base/generateUtilityClasses/generateUtilityClasses.js
+  function generateUtilityClasses2(componentName, slots) {
+    const result = {};
+    slots.forEach((slot) => {
+      result[slot] = generateUtilityClass2(componentName, slot);
+    });
+    return result;
+  }
+
+  // node_modules/@mui/lab/LoadingButton/loadingButtonClasses.js
+  function getLoadingButtonUtilityClass(slot) {
+    return generateUtilityClass2("MuiLoadingButton", slot);
+  }
+  var loadingButtonClasses = generateUtilityClasses2("MuiLoadingButton", ["root", "loading", "loadingIndicator", "loadingIndicatorCenter", "loadingIndicatorStart", "loadingIndicatorEnd", "endIconLoadingEnd", "startIconLoadingStart"]);
+  var loadingButtonClasses_default = loadingButtonClasses;
+
+  // node_modules/@mui/lab/LoadingButton/LoadingButton.js
+  var import_jsx_runtime60 = __toModule(require_jsx_runtime());
+  var import_jsx_runtime61 = __toModule(require_jsx_runtime());
+  var _excluded48 = ["children", "disabled", "loading", "loadingIndicator", "loadingPosition", "variant"];
+  var useUtilityClasses28 = (ownerState) => {
+    const {
+      loading,
+      loadingPosition,
+      classes
+    } = ownerState;
+    const slots = {
+      root: ["root", loading && "loading"],
+      startIcon: [loading && `startIconLoading${capitalize_default(loadingPosition)}`],
+      endIcon: [loading && `endIconLoading${capitalize_default(loadingPosition)}`],
+      loadingIndicator: ["loadingIndicator", loading && `loadingIndicator${capitalize_default(loadingPosition)}`]
+    };
+    const composedClasses = composeClasses2(slots, getLoadingButtonUtilityClass, classes);
+    return _extends({}, classes, composedClasses);
+  };
+  var rootShouldForwardProp2 = (prop) => prop !== "ownerState" && prop !== "theme" && prop !== "sx" && prop !== "as" && prop !== "classes";
+  var LoadingButtonRoot = styled_default(Button_default, {
+    shouldForwardProp: (prop) => rootShouldForwardProp2(prop) || prop === "classes",
+    name: "MuiLoadingButton",
+    slot: "Root",
+    overridesResolver: (props, styles4) => {
+      return [styles4.root, styles4.startIconLoadingStart && {
+        [`& .${loadingButtonClasses_default.startIconLoadingStart}`]: styles4.startIconLoadingStart
+      }, styles4.endIconLoadingEnd && {
+        [`& .${loadingButtonClasses_default.endIconLoadingEnd}`]: styles4.endIconLoadingEnd
+      }];
+    }
+  })(({
+    ownerState,
+    theme
+  }) => _extends({
+    [`& .${loadingButtonClasses_default.startIconLoadingStart}, & .${loadingButtonClasses_default.endIconLoadingEnd}`]: {
+      transition: theme.transitions.create(["opacity"], {
+        duration: theme.transitions.duration.short
+      }),
+      opacity: 0
+    }
+  }, ownerState.loadingPosition === "center" && {
+    transition: theme.transitions.create(["background-color", "box-shadow", "border-color"], {
+      duration: theme.transitions.duration.short
+    }),
+    [`&.${loadingButtonClasses_default.loading}`]: {
+      color: "transparent"
+    }
+  }, ownerState.loadingPosition === "start" && ownerState.fullWidth && {
+    [`& .${loadingButtonClasses_default.startIconLoadingStart}, & .${loadingButtonClasses_default.endIconLoadingEnd}`]: {
+      transition: theme.transitions.create(["opacity"], {
+        duration: theme.transitions.duration.short
+      }),
+      opacity: 0,
+      marginRight: -8
+    }
+  }, ownerState.loadingPosition === "end" && ownerState.fullWidth && {
+    [`& .${loadingButtonClasses_default.startIconLoadingStart}, & .${loadingButtonClasses_default.endIconLoadingEnd}`]: {
+      transition: theme.transitions.create(["opacity"], {
+        duration: theme.transitions.duration.short
+      }),
+      opacity: 0,
+      marginLeft: -8
+    }
+  }));
+  var LoadingButtonLoadingIndicator = styled_default("div", {
+    name: "MuiLoadingButton",
+    slot: "LoadingIndicator",
+    overridesResolver: (props, styles4) => {
+      const {
+        ownerState
+      } = props;
+      return [styles4.loadingIndicator, styles4[`loadingIndicator${capitalize_default(ownerState.loadingPosition)}`]];
+    }
+  })(({
+    theme,
+    ownerState
+  }) => _extends({
+    position: "absolute",
+    visibility: "visible",
+    display: "flex"
+  }, ownerState.loadingPosition === "start" && (ownerState.variant === "outlined" || ownerState.variant === "contained") && {
+    left: 14
+  }, ownerState.loadingPosition === "start" && ownerState.variant === "text" && {
+    left: 6
+  }, ownerState.loadingPosition === "center" && {
+    left: "50%",
+    transform: "translate(-50%)",
+    color: theme.palette.action.disabled
+  }, ownerState.loadingPosition === "end" && (ownerState.variant === "outlined" || ownerState.variant === "contained") && {
+    right: 14
+  }, ownerState.loadingPosition === "end" && ownerState.variant === "text" && {
+    right: 6
+  }, ownerState.loadingPosition === "start" && ownerState.fullWidth && {
+    position: "relative",
+    left: -10
+  }, ownerState.loadingPosition === "end" && ownerState.fullWidth && {
+    position: "relative",
+    right: -10
+  }));
+  var LoadingIndicator = /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(CircularProgress_default, {
+    color: "inherit",
+    size: 16
+  });
+  var LoadingButton = /* @__PURE__ */ React74.forwardRef(function LoadingButton2(inProps, ref) {
+    const props = useThemeProps2({
+      props: inProps,
+      name: "MuiLoadingButton"
+    });
+    const {
+      children,
+      disabled = false,
+      loading = false,
+      loadingIndicator = LoadingIndicator,
+      loadingPosition = "center",
+      variant = "text"
+    } = props, other = _objectWithoutPropertiesLoose(props, _excluded48);
+    const ownerState = _extends({}, props, {
+      disabled,
+      loading,
+      loadingIndicator,
+      loadingPosition,
+      variant
+    });
+    const classes = useUtilityClasses28(ownerState);
+    return /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(LoadingButtonRoot, _extends({
+      disabled: disabled || loading,
+      ref
+    }, other, {
+      variant,
+      classes,
+      ownerState,
+      children: ownerState.loadingPosition === "end" ? /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(React74.Fragment, {
+        children: [children, loading && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(LoadingButtonLoadingIndicator, {
+          className: classes.loadingIndicator,
+          ownerState,
+          children: loadingIndicator
+        })]
+      }) : /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(React74.Fragment, {
+        children: [loading && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(LoadingButtonLoadingIndicator, {
+          className: classes.loadingIndicator,
+          ownerState,
+          children: loadingIndicator
+        }), children]
+      })
+    }));
+  });
+  true ? LoadingButton.propTypes = {
+    children: import_prop_types50.default.node,
+    classes: import_prop_types50.default.object,
+    disabled: import_prop_types50.default.bool,
+    loading: import_prop_types50.default.bool,
+    loadingIndicator: import_prop_types50.default.node,
+    loadingPosition: chainPropTypes(import_prop_types50.default.oneOf(["start", "end", "center"]), (props) => {
+      if (props.loadingPosition === "start" && !props.startIcon) {
+        return new Error(`MUI: The loadingPosition="start" should be used in combination with startIcon.`);
+      }
+      if (props.loadingPosition === "end" && !props.endIcon) {
+        return new Error(`MUI: The loadingPosition="end" should be used in combination with endIcon.`);
+      }
+      return null;
+    }),
+    sx: import_prop_types50.default.oneOfType([import_prop_types50.default.arrayOf(import_prop_types50.default.oneOfType([import_prop_types50.default.func, import_prop_types50.default.object])), import_prop_types50.default.func, import_prop_types50.default.object]),
+    variant: import_prop_types50.default.oneOf(["contained", "outlined", "text"])
+  } : void 0;
+  var LoadingButton_default = LoadingButton;
+
   // src/presenters/register.ts
   var RegisterPresenter = class {
     static async formSubmit({
       data,
       setAlert,
       setErrors,
-      setUser
+      setUser,
+      setSubmitLoading
     }) {
       if (setAlert !== null && setUser !== null) {
         if (this.isFormValid(data, setErrors)) {
+          setSubmitLoading(true);
           try {
             const { uid } = await UserService_default.register(data.email, data.password);
             await UserService_default.updateCurrentDisplayName(data.displayName);
             await UserService_default.updateDB(uid, { displayName: data.displayName });
             setUser({
+              uid: "",
               signedIn: true,
               profile: {
                 displayName: data.displayName
@@ -42959,6 +43203,7 @@ const theme2 = createTheme({ palette: {
           } catch (error) {
             setAlert({ message: error.message, type: "error" });
           }
+          setSubmitLoading(false);
         } else {
           setAlert({ message: "Form data invalid.", type: "error" });
         }
@@ -43022,6 +43267,7 @@ const theme2 = createTheme({ palette: {
       confirmPassword: false
     });
     const [registerDisabled, setRegisterDisabled] = (0, import_react24.useState)(true);
+    const [submitLoading, setSubmitLoading] = (0, import_react24.useState)(false);
     (0, import_react24.useEffect)(() => {
       const newData = {
         email: email.trim(),
@@ -43075,13 +43321,15 @@ const theme2 = createTheme({ palette: {
       value: confirmPassword,
       onChange: ({ target }) => setConfirmPassword(target.value),
       required: true
-    }), /* @__PURE__ */ import_react24.default.createElement(Button_default, {
+    }), /* @__PURE__ */ import_react24.default.createElement(LoadingButton_default, {
       variant: "contained",
+      loading: submitLoading,
       onClick: () => register_default.formSubmit({
         data,
         setAlert,
         setErrors,
-        setUser
+        setUser,
+        setSubmitLoading
       }),
       disabled: registerDisabled
     }, "Register")));
@@ -43164,10 +43412,12 @@ const theme2 = createTheme({ palette: {
       data,
       setAlert,
       setErrors,
-      navigate
+      navigate,
+      setSubmitLoading
     }) {
       if (setAlert !== null) {
         if (this.isFormValid(data, setErrors)) {
+          setSubmitLoading(true);
           try {
             const { currentUser } = getAuth();
             if (currentUser) {
@@ -43190,6 +43440,7 @@ const theme2 = createTheme({ palette: {
           } catch (error) {
             setAlert({ message: error.message, type: "error" });
           }
+          setSubmitLoading(false);
         } else {
           setAlert({ message: "Form data invalid.", type: "error" });
         }
@@ -43240,6 +43491,7 @@ const theme2 = createTheme({ palette: {
       description: false
     });
     const [createDisabled, setCreateDisabled] = (0, import_react26.useState)(true);
+    const [submitLoading, setSubmitLoading] = (0, import_react26.useState)(false);
     const navigate = useNavigate();
     (0, import_react26.useEffect)(() => {
       const newData = {
@@ -43283,13 +43535,15 @@ const theme2 = createTheme({ palette: {
       error: errors.description,
       value: description,
       onChange: ({ target }) => setDescription(target.value)
-    }), /* @__PURE__ */ import_react26.default.createElement(Button_default, {
+    }), /* @__PURE__ */ import_react26.default.createElement(LoadingButton_default, {
       variant: "contained",
+      loading: submitLoading,
       onClick: () => createProduct_default.formSubmit({
         data,
         setAlert,
         setErrors,
-        navigate
+        navigate,
+        setSubmitLoading
       }),
       disabled: createDisabled
     }, "Create")));
@@ -43370,9 +43624,16 @@ const theme2 = createTheme({ palette: {
       setDescriptionError(false);
       return true;
     }
-    static async submitPledge({ id, pledgeAmount, setPledgeError }) {
+    static async submitPledge({
+      id,
+      pledgeAmount,
+      setPledgeError,
+      setSubmitLoading
+    }) {
       if (id !== void 0 && this.isPledgeValid(pledgeAmount, setPledgeError)) {
+        setSubmitLoading(true);
         await UserService_default.createCheckoutSession(id, pledgeAmount);
+        setSubmitLoading(false);
       }
     }
     static isPledgeValid(pledgeAmount, setPledgeError) {
@@ -43423,6 +43684,7 @@ const theme2 = createTheme({ palette: {
     const [pledgeError, setPledgeError] = (0, import_react27.useState)(false);
     const [pledgeDisabled, setPledgeDisabled] = (0, import_react27.useState)(true);
     const [productLoading, setProductLoading] = (0, import_react27.useState)(true);
+    const [submitLoading, setSubmitLoading] = (0, import_react27.useState)(false);
     const { id } = useParams();
     const navigate = useNavigate();
     (0, import_react27.useEffect)(() => {
@@ -43466,12 +43728,14 @@ const theme2 = createTheme({ palette: {
       value: pledge,
       onChange: ({ target }) => setPledge(target.value),
       required: true
-    }), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement(Button_default, {
+    }), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement(LoadingButton_default, {
       variant: "contained",
+      loading: submitLoading,
       onClick: () => product_default.submitPledge({
         id,
         pledgeAmount: pledge,
-        setPledgeError
+        setPledgeError,
+        setSubmitLoading
       }),
       disabled: pledgeDisabled
     }, "Pledge"))), (user == null ? void 0 : user.uid) === product.creatorUID && /* @__PURE__ */ import_react27.default.createElement(import_react27.default.Fragment, null, /* @__PURE__ */ import_react27.default.createElement(Divider_default, null), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement(Button_default, {
@@ -43896,7 +44160,17 @@ PERFORMANCE OF THIS SOFTWARE.
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+/** @license MUI v5.0.0-alpha.58
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
 /** @license MUI v5.2.0
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+/** @license MUI v5.2.2
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.

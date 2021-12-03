@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import RegisterPresenter from '../presenters/register';
 import AlertContext from '../utils/alertContext';
 import UserContext from '../utils/userContext';
@@ -26,6 +26,7 @@ const RegisterPage: React.FC = () => {
         confirmPassword: false,
     });
     const [registerDisabled, setRegisterDisabled] = useState(true);
+    const [submitLoading, setSubmitLoading] = useState(false);
 
     useEffect(() => {
         const newData = {
@@ -89,19 +90,24 @@ const RegisterPage: React.FC = () => {
                     onChange={({ target }) => setConfirmPassword(target.value)}
                     required
                 />
-                <Button
+                <LoadingButton
                     variant="contained"
+                    loading={submitLoading}
                     onClick={
                         () => RegisterPresenter.formSubmit(
                             {
-                                data, setAlert, setErrors, setUser,
+                                data,
+                                setAlert,
+                                setErrors,
+                                setUser,
+                                setSubmitLoading,
                             },
                         )
                     }
                     disabled={registerDisabled}
                 >
                     Register
-                </Button>
+                </LoadingButton>
             </div>
         </div>
     );

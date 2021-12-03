@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
 import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import Divider from '@mui/material/Divider';
 import TextField from '@mui/material/TextField';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -15,6 +16,7 @@ const ProductPage: React.FC<{ user: UserState }> = ({ user }) => {
     const [pledgeError, setPledgeError] = useState(false);
     const [pledgeDisabled, setPledgeDisabled] = useState(true);
     const [productLoading, setProductLoading] = useState(true);
+    const [submitLoading, setSubmitLoading] = useState(false);
 
     const { id } = useParams();
     const navigate = useNavigate();
@@ -89,19 +91,21 @@ const ProductPage: React.FC<{ user: UserState }> = ({ user }) => {
                                                     required
                                                 />
                                                 <br />
-                                                <Button
+                                                <LoadingButton
                                                     variant="contained"
+                                                    loading={submitLoading}
                                                     onClick={
                                                         () => ProductPresenter.submitPledge({
                                                             id,
                                                             pledgeAmount: pledge,
                                                             setPledgeError,
+                                                            setSubmitLoading,
                                                         })
                                                     }
                                                     disabled={pledgeDisabled}
                                                 >
                                                     Pledge
-                                                </Button>
+                                                </LoadingButton>
                                             </div>
                                         )}
                                 </>

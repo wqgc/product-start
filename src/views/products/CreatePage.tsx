@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import LoadingButton from '@mui/lab/LoadingButton';
 import CreateProductPresenter from '../../presenters/createProduct';
 import AlertContext from '../../utils/alertContext';
 import { ProductData } from '../../types';
@@ -22,6 +22,7 @@ const CreatePage: React.FC = () => {
         description: false,
     });
     const [createDisabled, setCreateDisabled] = useState(true);
+    const [submitLoading, setSubmitLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -75,19 +76,24 @@ const CreatePage: React.FC = () => {
                     value={description}
                     onChange={({ target }) => setDescription(target.value)}
                 />
-                <Button
+                <LoadingButton
                     variant="contained"
+                    loading={submitLoading}
                     onClick={
                         () => CreateProductPresenter.formSubmit(
                             {
-                                data, setAlert, setErrors, navigate,
+                                data,
+                                setAlert,
+                                setErrors,
+                                navigate,
+                                setSubmitLoading,
                             },
                         )
                     }
                     disabled={createDisabled}
                 >
                     Create
-                </Button>
+                </LoadingButton>
             </div>
         </div>
     );

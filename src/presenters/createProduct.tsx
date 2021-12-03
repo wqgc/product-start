@@ -12,14 +12,16 @@ interface SubmitParameters {
     setAlert: React.Dispatch<React.SetStateAction<AlertState>> | null
     setErrors: SetErrors
     navigate: NavigateFunction
+    setSubmitLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 class CreateProductPresenter {
     static async formSubmit({
-        data, setAlert, setErrors, navigate,
+        data, setAlert, setErrors, navigate, setSubmitLoading,
     }: SubmitParameters): Promise<void> {
         if (setAlert !== null) {
             if (this.isFormValid(data, setErrors)) {
+                setSubmitLoading(true);
                 try {
                     const { currentUser } = getAuth();
                     if (currentUser) {
@@ -46,6 +48,7 @@ class CreateProductPresenter {
                 } catch (error: any) {
                     setAlert({ message: error.message, type: 'error' });
                 }
+                setSubmitLoading(false);
             } else {
                 setAlert({ message: 'Form data invalid.', type: 'error' });
             }

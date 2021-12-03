@@ -34,6 +34,7 @@ interface SubmitPledgeParameters {
     id: string | undefined
     pledgeAmount: string
     setPledgeError: SetError
+    setSubmitLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 class ProductPresenter {
@@ -104,9 +105,13 @@ class ProductPresenter {
         return true;
     }
 
-    static async submitPledge({ id, pledgeAmount, setPledgeError }: SubmitPledgeParameters) {
+    static async submitPledge({
+        id, pledgeAmount, setPledgeError, setSubmitLoading,
+    }: SubmitPledgeParameters) {
         if (id !== undefined && this.isPledgeValid(pledgeAmount, setPledgeError)) {
+            setSubmitLoading(true);
             await UserService.createCheckoutSession(id, pledgeAmount);
+            setSubmitLoading(false);
         }
     }
 
