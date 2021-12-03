@@ -20,6 +20,7 @@ const EditPage = lazy(() => import('./views/products/EditPage'));
 const PledgeSuccessPage = lazy(() => import('./views/products/PledgeSuccessPage'));
 const PledgesPage = lazy(() => import('./views/PledgesPage'));
 const NotFound = lazy(() => import('./views/NotFound'));
+const Loading = <div />;
 
 const App: React.FC = () => {
     const [alert, setAlert] = useState<AlertState>({ message: '', type: undefined });
@@ -34,59 +35,92 @@ const App: React.FC = () => {
     return (
         <UserContext.Provider value={userData}>
             <AlertContext.Provider value={alertData}>
-                <Suspense fallback={<div>Loading...</div>}>
-                    <BrowserRouter>
-                        <Routes>
-                            <Route path="/" element={<Layout alert={alert} setAlert={setAlert} user={user} />}>
-                                <Route index element={<LandingPage user={user} />} />
-                                <Route
-                                    path="login"
-                                    element={
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<Layout alert={alert} setAlert={setAlert} user={user} />}>
+                            <Route
+                                index
+                                element={(
+                                    <Suspense fallback={Loading}>
+                                        <LandingPage user={user} />
+                                    </Suspense>
+                                )}
+                            />
+                            <Route
+                                path="login"
+                                element={(
+                                    <Suspense fallback={Loading}>
                                         <Enforce enforce="signedOut" user={user}><LoginPage /></Enforce>
-                                    }
-                                />
-                                <Route
-                                    path="register"
-                                    element={
+                                    </Suspense>
+                                )}
+                            />
+                            <Route
+                                path="register"
+                                element={(
+                                    <Suspense fallback={Loading}>
                                         <Enforce enforce="signedOut" user={user}><RegisterPage /></Enforce>
-                                    }
-                                />
-                                <Route
-                                    path="products"
-                                    element={
+                                    </Suspense>
+                                )}
+                            />
+                            <Route
+                                path="products"
+                                element={(
+                                    <Suspense fallback={Loading}>
                                         <Enforce enforce="signedIn" user={user}><ProductsPage user={user} /></Enforce>
-                                    }
-                                />
-                                <Route
-                                    path="products/create"
-                                    element={
+                                    </Suspense>
+                                )}
+                            />
+                            <Route
+                                path="products/create"
+                                element={(
+                                    <Suspense fallback={Loading}>
                                         <Enforce enforce="signedIn" user={user}><CreatePage /></Enforce>
-                                    }
-                                />
-                                <Route path="products/:id" element={<ProductPage user={user} />} />
-                                <Route
-                                    path="products/:id/edit"
-                                    element={
+                                    </Suspense>
+                                )}
+                            />
+                            <Route
+                                path="products/:id"
+                                element={(
+                                    <Suspense fallback={Loading}>
+                                        <ProductPage user={user} />
+                                    </Suspense>
+                                )}
+                            />
+                            <Route
+                                path="products/:id/edit"
+                                element={(
+                                    <Suspense fallback={Loading}>
                                         <Enforce enforce="signedIn" user={user}><EditPage user={user} /></Enforce>
-                                    }
-                                />
-                                <Route
-                                    path="products/:id/:pledgeAmount/success"
-                                    element={
+                                    </Suspense>
+                                )}
+                            />
+                            <Route
+                                path="products/:id/:pledgeAmount/success"
+                                element={(
+                                    <Suspense fallback={Loading}>
                                         <Enforce enforce="signedIn" user={user}><PledgeSuccessPage user={user} /></Enforce>
-                                    }
-                                />
-                                <Route
-                                    path="pledges"
-                                    element={
+                                    </Suspense>
+                                )}
+                            />
+                            <Route
+                                path="pledges"
+                                element={(
+                                    <Suspense fallback={Loading}>
                                         <Enforce enforce="signedIn" user={user}><PledgesPage user={user} /></Enforce>
-                                    }
-                                />
-                                <Route path="*" element={<NotFound />} />
-                            </Route>
-                        </Routes>
-                    </BrowserRouter>
-                </Suspense>
+                                    </Suspense>
+                                )}
+                            />
+                            <Route
+                                path="*"
+                                element={(
+                                    <Suspense fallback={Loading}>
+                                        <NotFound />
+                                    </Suspense>
+                                )}
+                            />
+                        </Route>
+                    </Routes>
+                </BrowserRouter>
             </AlertContext.Provider>
         </UserContext.Provider>
     );
