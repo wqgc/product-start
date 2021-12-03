@@ -18,6 +18,7 @@ class AppPresenter {
         return onAuthStateChanged(auth, (user) => {
             if (user && user.displayName) {
                 setUser({
+                    uid: user.uid,
                     signedIn: true,
                     profile: {
                         displayName: user.displayName,
@@ -25,7 +26,7 @@ class AppPresenter {
                 });
             } else {
                 setUser((prevState) => {
-                    return { ...prevState, signedIn: false };
+                    return { ...prevState, uid: '', signedIn: false };
                 });
             }
         });

@@ -18,7 +18,7 @@ import Enforce from './components/auth/Enforce';
 
 const App: React.FC = () => {
     const [alert, setAlert] = useState<AlertState>({ message: '', type: undefined });
-    const [user, setUser] = useState<UserState>({ signedIn: null, profile: { displayName: '' } });
+    const [user, setUser] = useState<UserState>({ uid: '', signedIn: null, profile: { displayName: '' } });
 
     useEffect(() => {
         AppPresenter.setUserStatus(setUser);
@@ -57,11 +57,11 @@ const App: React.FC = () => {
                                     <Enforce enforce="signedIn" user={user}><CreatePage /></Enforce>
                                 }
                             />
-                            <Route path="products/:id" element={<ProductPage />} />
+                            <Route path="products/:id" element={<ProductPage user={user} />} />
                             <Route
                                 path="products/:id/edit"
                                 element={
-                                    <Enforce enforce="signedIn" user={user}><EditPage /></Enforce>
+                                    <Enforce enforce="signedIn" user={user}><EditPage user={user} /></Enforce>
                                 }
                             />
                             <Route

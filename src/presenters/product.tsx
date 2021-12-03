@@ -3,7 +3,7 @@ import { getAuth } from 'firebase/auth';
 import { NavigateFunction } from 'react-router-dom';
 import ProductService from '../services/ProductService';
 import UserService from '../services/UserService';
-import { ProductData, AlertState } from '../types';
+import { ProductData, AlertState, Pledge } from '../types';
 import CONSTANTS from '../constants';
 
 interface SetProductParameters {
@@ -11,9 +11,16 @@ interface SetProductParameters {
     setProduct: React.Dispatch<React.SetStateAction<ProductData<string> | null>>
     setProductLoading: React.Dispatch<React.SetStateAction<boolean>>
     navigate: NavigateFunction
+    isMounted: boolean
 }
 
 type SetDescriptionError = React.Dispatch<React.SetStateAction<boolean>>
+
+interface SetUserPledgeDataParameters {
+    setUserPledgeData: React.Dispatch<React.SetStateAction<Pledge | null>>
+    productId: string
+    isMounted: boolean
+}
 
 interface ChangeProductParameters {
     id: string | undefined
@@ -25,16 +32,40 @@ interface ChangeProductParameters {
 
 class ProductPresenter {
     static async setProduct({
-        id, setProduct, setProductLoading, navigate,
+        id, setProduct, setProductLoading, navigate, isMounted,
     }: SetProductParameters) {
         try {
             const product = await ProductService.getProduct(id);
-            if (product) {
-                setProduct(product);
+            if (isMounted) {
+                if (product) {
+                    setProduct(product);
+                }
+                setProductLoading(false);
             }
-            setProductLoading(false);
         } catch (error) {
             navigate('/404', { replace: false });
+        }
+    }
+
+    static async setPledgeData({
+        setUserPledgeData, productId, isMounted,
+    }: SetUserPledgeDataParameters) {
+        const { currentUser } = getAuth();
+        if (currentUser) {
+            const { pledges } = await UserService.get(currentUser.uid);
+            let pledge;
+
+            // Get user's pledge for this product
+            for (let i = 0; i < pledges.length; i += 1) {
+                if (pledges[i].product.productUID === productId) {
+                    pledge = pledges[i].product;
+                    break;
+                }
+            }
+
+            if (pledge && isMounted) {
+                setUserPledgeData(pledge);
+            }
         }
     }
 

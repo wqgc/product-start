@@ -152,10 +152,10 @@ app.put('/users/:id', async (request, response) => {
 app.post('/create-checkout-session/:id', async (request, response) => {
     const { pledgeAmount, pledgerUID } = request.body;
 
-    // Remove commas and get the price in cents
-    const priceInCents = parseFloat(pledgeAmount.replace(/,/g, '')) * 100;
-
     try {
+        // Remove commas and get the price in cents
+        const priceInCents = parseFloat(pledgeAmount.replace(/,/g, '')) * 100;
+
         await Auth.verifyUser(request.get('Authorization'), pledgerUID);
         const session = await stripe.checkout.sessions.create({
             line_items: [

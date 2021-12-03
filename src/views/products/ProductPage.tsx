@@ -5,9 +5,10 @@ import Divider from '@mui/material/Divider';
 import { useNavigate, useParams } from 'react-router-dom';
 import moneyFormatter from 'money-formatter';
 import ProductPresenter from '../../presenters/product';
-import { ProductData } from '../../types';
+import { ProductData, Pledge, UserState } from '../../types';
 
-const ProductPage: React.FC = () => {
+const ProductPage: React.FC<{ user: UserState }> = ({ user }) => {
+    const [userPledgeData, setUserPledgeData] = useState<Pledge | null>(null);
     const [product, setProduct] = useState<ProductData<string> | null>(null);
     const [productLoading, setProductLoading] = useState(true);
 
@@ -15,11 +16,21 @@ const ProductPage: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (id && !product) {
-            ProductPresenter.setProduct({
-                id, setProduct, setProductLoading, navigate,
-            });
-        }
+        let isMounted = true;
+        const setData = async () => {
+            if (id && !product) {
+                if (user && user.signedIn === true) {
+                    await ProductPresenter.setPledgeData({
+                        setUserPledgeData, productId: id, isMounted,
+                    });
+                }
+                await ProductPresenter.setProduct({
+                    id, setProduct, setProductLoading, navigate, isMounted,
+                });
+            }
+        };
+        setData();
+        return () => { isMounted = false; };
     }, []);
 
     return (
@@ -42,20 +53,40 @@ const ProductPage: React.FC = () => {
 
                         <p>{product.description}</p>
 
-                        <Divider />
-                        <br />
+                        { (user?.signedIn && user?.uid !== product.creatorUID)
+                            && (
+                                <>
+                                    <Divider />
+                                    <br />
 
-                        <h3>Pledge to {product.title}</h3>
-                        <p>w.i.p</p>
+                                    <h3>Pledge to {product.title}</h3>
+                                    { userPledgeData
+                                        ? <p>You've pledged {moneyFormatter.format('USD', userPledgeData.amount)}!</p>
+                                        : (
+                                            <>
+                                                <p>pledge form here</p>
+                                                <Button variant="contained" onClick={() => {}}>
+                                                    Pledge
+                                                </Button>
+                                            </>
+                                        )}
+                                </>
+                            )}
 
-                        <Divider />
-                        <br />
+                        { user?.uid === product.creatorUID
+                            && (
+                                <>
+                                    <Divider />
+                                    <br />
 
-                        <Button variant="contained" onClick={() => navigate('edit', { replace: false })}>
-                            Edit Campaign Details
-                        </Button>
+                                    <Button variant="contained" onClick={() => navigate('edit', { replace: false })}>
+                                        Edit Campaign Details
+                                    </Button>
+                                </>
+                            )}
+
                     </>
-                ) }
+                )}
         </div>
     );
 };

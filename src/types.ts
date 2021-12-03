@@ -22,7 +22,7 @@ export interface ProductData<Type> {
     currentFunds?: string
 }
 
-interface Pledge {
+export interface Pledge {
     amount: number
     product: ProductData<string>
 }
@@ -34,6 +34,7 @@ export interface PublicUserData {
 }
 
 export interface UserState {
+    uid: string
     signedIn: boolean | null // Null when still loading
     profile: PublicUserData
 }

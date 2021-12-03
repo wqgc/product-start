@@ -5,9 +5,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import ProductPresenter from '../../presenters/product';
 import AlertContext from '../../utils/alertContext';
-import { ProductData } from '../../types';
+import { ProductData, UserState } from '../../types';
 
-const EditPage: React.FC = () => {
+const EditPage: React.FC<{ user: UserState }> = ({ user }) => {
     const { setAlert } = useContext(AlertContext);
     const [product, setProduct] = useState<ProductData<string> | null>(null);
     const [productLoading, setProductLoading] = useState(true);
@@ -21,12 +21,21 @@ const EditPage: React.FC = () => {
 
     // Get and set product data
     useEffect(() => {
+        let isMounted = true;
         if (id && !product) {
             ProductPresenter.setProduct({
-                id, setProduct, setProductLoading, navigate,
+                id, setProduct, setProductLoading, navigate, isMounted,
             });
         }
+        return () => { isMounted = false; };
     }, []);
+
+    // If the user is not the product owner, redirect them back to product page
+    useEffect(() => {
+        if (product && user.uid !== product.creatorUID) {
+            navigate(`/products/${id}`, { replace: false });
+        }
+    }, [product]);
 
     // Set existing description
     useEffect(() => {

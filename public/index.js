@@ -32061,7 +32061,7 @@ const theme2 = createTheme({ palette: {
   // src/utils/userContext.ts
   var import_react12 = __toModule(require_react());
   var UserContext = import_react12.default.createContext({
-    user: { signedIn: null },
+    user: { uid: "", signedIn: null },
     setUser: null
   });
   var userContext_default = UserContext;
@@ -35783,6 +35783,7 @@ const theme2 = createTheme({ palette: {
       return onAuthStateChanged(auth, (user) => {
         if (user && user.displayName) {
           setUser({
+            uid: user.uid,
             signedIn: true,
             profile: {
               displayName: user.displayName
@@ -35790,7 +35791,7 @@ const theme2 = createTheme({ palette: {
           });
         } else {
           setUser((prevState) => {
-            return __spreadProps(__spreadValues({}, prevState), { signedIn: false });
+            return __spreadProps(__spreadValues({}, prevState), { uid: "", signedIn: false });
           });
         }
       });
@@ -43255,16 +43256,39 @@ const theme2 = createTheme({ palette: {
       id,
       setProduct,
       setProductLoading,
-      navigate
+      navigate,
+      isMounted
     }) {
       try {
         const product = await ProductService_default.getProduct(id);
-        if (product) {
-          setProduct(product);
+        if (isMounted) {
+          if (product) {
+            setProduct(product);
+          }
+          setProductLoading(false);
         }
-        setProductLoading(false);
       } catch (error) {
         navigate("/404", { replace: false });
+      }
+    }
+    static async setPledgeData({
+      setUserPledgeData,
+      productId,
+      isMounted
+    }) {
+      const { currentUser } = getAuth();
+      if (currentUser) {
+        const { pledges } = await UserService_default.get(currentUser.uid);
+        let pledge;
+        for (let i = 0; i < pledges.length; i += 1) {
+          if (pledges[i].product.productUID === productId) {
+            pledge = pledges[i].product;
+            break;
+          }
+        }
+        if (pledge && isMounted) {
+          setUserPledgeData(pledge);
+        }
       }
     }
     static async submitProductUpdate({
@@ -43325,33 +43349,53 @@ const theme2 = createTheme({ palette: {
   var product_default = ProductPresenter;
 
   // src/views/products/ProductPage.tsx
-  var ProductPage = () => {
+  var ProductPage = ({ user }) => {
+    const [userPledgeData, setUserPledgeData] = (0, import_react27.useState)(null);
     const [product, setProduct] = (0, import_react27.useState)(null);
     const [productLoading, setProductLoading] = (0, import_react27.useState)(true);
     const { id } = useParams();
     const navigate = useNavigate();
     (0, import_react27.useEffect)(() => {
-      if (id && !product) {
-        product_default.setProduct({
-          id,
-          setProduct,
-          setProductLoading,
-          navigate
-        });
-      }
+      let isMounted = true;
+      const setData = async () => {
+        if (id && !product) {
+          if (user && user.signedIn === true) {
+            await product_default.setPledgeData({
+              setUserPledgeData,
+              productId: id,
+              isMounted
+            });
+          }
+          await product_default.setProduct({
+            id,
+            setProduct,
+            setProductLoading,
+            navigate,
+            isMounted
+          });
+        }
+      };
+      setData();
+      return () => {
+        isMounted = false;
+      };
     }, []);
     return /* @__PURE__ */ import_react27.default.createElement("div", null, productLoading && /* @__PURE__ */ import_react27.default.createElement(CircularProgress_default, null), !productLoading && product && /* @__PURE__ */ import_react27.default.createElement(import_react27.default.Fragment, null, /* @__PURE__ */ import_react27.default.createElement("h2", null, product.title), /* @__PURE__ */ import_react27.default.createElement("div", {
       className: "details"
-    }, /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("em", null, "By ", product.creatorName)), /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("strong", null, "Goal:"), " ", import_money_formatter.default.format("USD", product.goal)), /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("strong", null, "Raised so far:"), " ", import_money_formatter.default.format("USD", product.currentFunds))), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement(Divider_default, null), /* @__PURE__ */ import_react27.default.createElement("p", null, product.description), /* @__PURE__ */ import_react27.default.createElement(Divider_default, null), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement("h3", null, "Pledge to ", product.title), /* @__PURE__ */ import_react27.default.createElement("p", null, "w.i.p"), /* @__PURE__ */ import_react27.default.createElement(Divider_default, null), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement(Button_default, {
+    }, /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("em", null, "By ", product.creatorName)), /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("strong", null, "Goal:"), " ", import_money_formatter.default.format("USD", product.goal)), /* @__PURE__ */ import_react27.default.createElement("div", null, /* @__PURE__ */ import_react27.default.createElement("strong", null, "Raised so far:"), " ", import_money_formatter.default.format("USD", product.currentFunds))), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement(Divider_default, null), /* @__PURE__ */ import_react27.default.createElement("p", null, product.description), (user == null ? void 0 : user.signedIn) && (user == null ? void 0 : user.uid) !== product.creatorUID && /* @__PURE__ */ import_react27.default.createElement(import_react27.default.Fragment, null, /* @__PURE__ */ import_react27.default.createElement(Divider_default, null), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement("h3", null, "Pledge to ", product.title), userPledgeData ? /* @__PURE__ */ import_react27.default.createElement("p", null, "You've pledged ", import_money_formatter.default.format("USD", userPledgeData.amount), "!") : /* @__PURE__ */ import_react27.default.createElement(import_react27.default.Fragment, null, /* @__PURE__ */ import_react27.default.createElement("p", null, "pledge form here"), /* @__PURE__ */ import_react27.default.createElement(Button_default, {
+      variant: "contained",
+      onClick: () => {
+      }
+    }, "Pledge"))), (user == null ? void 0 : user.uid) === product.creatorUID && /* @__PURE__ */ import_react27.default.createElement(import_react27.default.Fragment, null, /* @__PURE__ */ import_react27.default.createElement(Divider_default, null), /* @__PURE__ */ import_react27.default.createElement("br", null), /* @__PURE__ */ import_react27.default.createElement(Button_default, {
       variant: "contained",
       onClick: () => navigate("edit", { replace: false })
-    }, "Edit Campaign Details")));
+    }, "Edit Campaign Details"))));
   };
   var ProductPage_default = ProductPage;
 
   // src/views/products/EditPage.tsx
   var import_react28 = __toModule(require_react());
-  var EditPage = () => {
+  var EditPage = ({ user }) => {
     const { setAlert } = (0, import_react28.useContext)(alertContext_default);
     const [product, setProduct] = (0, import_react28.useState)(null);
     const [productLoading, setProductLoading] = (0, import_react28.useState)(true);
@@ -43362,15 +43406,25 @@ const theme2 = createTheme({ palette: {
     const { id } = useParams();
     const navigate = useNavigate();
     (0, import_react28.useEffect)(() => {
+      let isMounted = true;
       if (id && !product) {
         product_default.setProduct({
           id,
           setProduct,
           setProductLoading,
-          navigate
+          navigate,
+          isMounted
         });
       }
+      return () => {
+        isMounted = false;
+      };
     }, []);
+    (0, import_react28.useEffect)(() => {
+      if (product && user.uid !== product.creatorUID) {
+        navigate(`/products/${id}`, { replace: false });
+      }
+    }, [product]);
     (0, import_react28.useEffect)(() => {
       if (product && descInitialized === false) {
         setDescription(product.description);
@@ -43448,7 +43502,7 @@ const theme2 = createTheme({ palette: {
   // src/App.tsx
   var App = () => {
     const [alert, setAlert] = (0, import_react32.useState)({ message: "", type: void 0 });
-    const [user, setUser] = (0, import_react32.useState)({ signedIn: null, profile: { displayName: "" } });
+    const [user, setUser] = (0, import_react32.useState)({ uid: "", signedIn: null, profile: { displayName: "" } });
     (0, import_react32.useEffect)(() => {
       app_default.setUserStatus(setUser);
     }, []);
@@ -43498,13 +43552,17 @@ const theme2 = createTheme({ palette: {
       }, /* @__PURE__ */ import_react32.default.createElement(CreatePage_default, null))
     }), /* @__PURE__ */ import_react32.default.createElement(Route, {
       path: "products/:id",
-      element: /* @__PURE__ */ import_react32.default.createElement(ProductPage_default, null)
+      element: /* @__PURE__ */ import_react32.default.createElement(ProductPage_default, {
+        user
+      })
     }), /* @__PURE__ */ import_react32.default.createElement(Route, {
       path: "products/:id/edit",
       element: /* @__PURE__ */ import_react32.default.createElement(Enforce_default, {
         enforce: "signedIn",
         user
-      }, /* @__PURE__ */ import_react32.default.createElement(EditPage_default, null))
+      }, /* @__PURE__ */ import_react32.default.createElement(EditPage_default, {
+        user
+      }))
     }), /* @__PURE__ */ import_react32.default.createElement(Route, {
       path: "pledges",
       element: /* @__PURE__ */ import_react32.default.createElement(Enforce_default, {
