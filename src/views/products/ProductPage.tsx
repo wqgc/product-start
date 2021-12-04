@@ -97,7 +97,7 @@ const ProductPage: React.FC<{ user: UserState }> = ({ user }) => {
                                                     onClick={
                                                         () => ProductPresenter.submitPledge({
                                                             id,
-                                                            pledgeAmount: pledge,
+                                                            pledgeAmount: pledge.replace(/,/g, ''),
                                                             setPledgeError,
                                                             setSubmitLoading,
                                                         })

@@ -29,7 +29,7 @@ const CreatePage: React.FC = () => {
     useEffect(() => {
         const newData = {
             title: title.trim(),
-            goal: goal.trim(),
+            goal: (goal.trim()).replace(/,/g, ''),
             description,
         };
         setData(newData);
