@@ -2,7 +2,7 @@ import firebase from 'firebase-admin';
 import { Product, AggregateProducts } from '../types';
 
 class Products {
-    static async create(data: Omit<Product, 'productUID'>): Promise<string> {
+    static async create(data: Omit<Product, 'productUID' | 'currentFunds'>): Promise<string> {
         const db = firebase.firestore();
 
         const {

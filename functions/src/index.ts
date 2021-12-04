@@ -53,12 +53,12 @@ app.get('/products/:id', async (request, response) => {
 // Create product
 app.post('/products', async (request, response) => {
     const {
-        title, goal, creatorName, creatorUID, currentFunds, description,
+        title, goal, creatorName, creatorUID, description,
     } = request.body;
     try {
         await Auth.verifyUser(request.get('Authorization'), creatorUID);
         const productUID = await Products.create({
-            title, goal, creatorName, creatorUID, currentFunds, description,
+            title, goal, creatorName, creatorUID, description,
         });
         response.json(productUID);
     } catch (error) {
