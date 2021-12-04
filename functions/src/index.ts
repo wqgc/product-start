@@ -158,7 +158,9 @@ app.put('/users/:id', async (request, response) => {
 
 // Stripe checkout session
 app.post('/create-checkout-session/:id', async (request, response) => {
-    const { pledgeAmount, pledgerUID } = request.body;
+    const { pledgerUID } = request.body;
+    let { pledgeAmount } = request.body;
+    pledgeAmount = pledgeAmount.replace(/,/g, '');
 
     try {
         // Remove commas and get the price in cents
