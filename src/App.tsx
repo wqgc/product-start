@@ -10,16 +10,16 @@ import Layout from './views/Layout';
 import Enforce from './components/auth/Enforce';
 
 // Lazy load routes to reduce initial JS load
-const LandingPage = lazy(() => import('./views/LandingPage'));
-const LoginPage = lazy(() => import('./views/LoginPage'));
-const RegisterPage = lazy(() => import('./views/RegisterPage'));
-const ProductsPage = lazy(() => import('./views/products/ProductsPage'));
-const CreatePage = lazy(() => import('./views/products/CreatePage'));
-const ProductPage = lazy(() => import('./views/products/ProductPage'));
-const EditPage = lazy(() => import('./views/products/EditPage'));
-const PledgeSuccessPage = lazy(() => import('./views/products/PledgeSuccessPage'));
-const PledgesPage = lazy(() => import('./views/PledgesPage'));
-const NotFound = lazy(() => import('./views/NotFound'));
+const LandingPage = lazy(() => import('./views/LandingPage.js'));
+const LoginPage = lazy(() => import('./views/LoginPage.js'));
+const RegisterPage = lazy(() => import('./views/RegisterPage.js'));
+const ProductsPage = lazy(() => import('./views/products/ProductsPage.js'));
+const CreatePage = lazy(() => import('./views/products/CreatePage.js'));
+const ProductPage = lazy(() => import('./views/products/ProductPage.js'));
+const EditPage = lazy(() => import('./views/products/EditPage.js'));
+const PledgeSuccessPage = lazy(() => import('./views/products/PledgeSuccessPage.js'));
+const PledgesPage = lazy(() => import('./views/PledgesPage.js'));
+const NotFound = lazy(() => import('./views/NotFound.js'));
 const Loading = <div />;
 
 const App: React.FC = () => {
