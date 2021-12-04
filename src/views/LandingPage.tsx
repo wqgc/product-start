@@ -71,8 +71,9 @@ const LandingPage: React.FC<{ user: UserState }> = ({ user }) => {
                         && <CircularProgress /> }
                     { !productsLoading
                         && (
-                            latestProductElements
-                            || <p>No one has created a product idea yet. Be the first?</p>
+                            latestProductElements && latestProductElements.length > 0
+                                ? latestProductElements
+                                : <p>No one has created a product idea yet. Be the first?</p>
                         ) }
                 </div>
             </section>
