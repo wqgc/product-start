@@ -25,7 +25,7 @@ const TopBar: React.FC<TopBarProps> = ({ user }) => {
                                 </strong>
                             </li>
                             <li>
-                                <NavLink to="/" onClick={clickLogout}>Logout</NavLink>
+                                <NavLink to={{}} onClick={clickLogout}>Logout</NavLink>
                             </li>
                         </>
                     )
