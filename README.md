@@ -5,7 +5,7 @@ For this project, I followed the following prompt:
 The main three ways in which a user can interact with the app is registration/logging in, creating product campaigns to raise money, and pledging to a campaign to help fund it.
 
 ## Getting Started
-You can try ProductStart at [https://rn-db-823f5.web.app](https://rn-db-823f5.web.app/), or run it locally:
+You can try running it locally:
 
 ```
 git clone https://github.com/wqgc/product-start.git
